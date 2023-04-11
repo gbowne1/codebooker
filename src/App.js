@@ -21,6 +21,7 @@ import Avatar from '@mui/material/Avatar';
 import AdbIcon from '@mui/icons-material/Adb';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+import AddIcon from '@mui/icons-material/Add';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
@@ -32,32 +33,40 @@ import Fab from '@mui/material/Fab';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListSubheader from '@mui/material/ListSubheader';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
-
+import Rating from '@mui/material/Rating';
 import Slide from '@mui/material/Slide';
+import Library from './components/Library/Library';
 import logo from './logo.svg';
 import './App.css';
 
+const label = { inputProps: { 'aria-label': 'Color switch demo' } };
+
 export default function App() {
-  return (
-    <div className="App">
-      <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            CodeBooker
-          </Typography>
-        </Toolbar>
-      </AppBar>
-    </Box>
-    </div>
-  );
+	return (
+		<div className="App">
+			<Box sx={{ flexGrow: 1 }}>
+				<AppBar position="fixed">
+					<Toolbar>
+						<IconButton
+							size="large"
+							edge="start"
+							color="inherit"
+							aria-label="menu"
+							sx={{ mr: 2 }}
+						>
+							<MenuIcon />
+						</IconButton>
+						<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+							CodeBooker
+						</Typography>
+						<NotificationsIcon />
+						<Switch {...label}
+							inputProps={{ 'aria-label': 'controlled' }} />
+						<Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+					</Toolbar>
+				</AppBar>
+				<Library />
+			</Box>
+		</div>
+	);
 }
