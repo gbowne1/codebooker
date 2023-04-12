@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Added
 
+- Initial Commit
+
 ### Fixed
 
 ### Changed
@@ -17,14 +19,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 # [0.0.1] - 2023-04-09
 
+- Initial Commit
+
 ## Added
+
+- Initial Commit
+- Adding initial files and components.
 
 ## Fixed
 
 ## Changed
 
 ## Removed
-
 
 [unreleased]: https://github.com/gbowne1/codebooker/compare/v1.1.1...HEAD
 [0.0.1]: https://github.com/gbowne1/codebooker/releases/tag/v0.0.1

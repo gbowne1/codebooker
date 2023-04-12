@@ -14,7 +14,7 @@ You should already be familiar with React 17 and or 18, JavaScript ES5/ES6/ES7.
 
 ## Style
 
-I have not created an official style guide yet. If anyone would like to create a style guide for us. Create a Discussion.
+I have not created an official style guide yet. I also have not created a Figma or layout. If anyone would like to create a style guide for us. Create a Discussion.  I have typically let the community help
 
 ## Development
 
