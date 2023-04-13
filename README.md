@@ -32,4 +32,4 @@ The backend of this project is currently under construction so please use the Cr
 
 This is not hosted anywhere yet and is not yet production ready.
 
-If you would like something to work on, there are plenty of TODO's here <https://github.com/gbowne1/codebooker/blob/main/TODO.md>
+If you would like something to work on, there are plenty of TODO's here <https://github.com/gbowne1/codebooker/blob/master/TODO.md>
