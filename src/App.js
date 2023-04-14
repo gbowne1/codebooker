@@ -39,6 +39,7 @@ import Library from './components/Library/Library';
 import logo from './logo.svg';
 import './App.css';
 import SideNav from './components/SideNav/SideNav';
+import BookSearch from './components/BookSearch/BookSearch';
 
 const label = { inputProps: { 'aria-label': 'Color switch demo' } };
 
@@ -53,6 +54,7 @@ export default function App() {
 						<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
 							CodeBooker
 						</Typography>
+						<BookSearch/>
 						<NotificationsIcon />
 						<Switch {...label}
 							inputProps={{ 'aria-label': 'controlled' }} />
