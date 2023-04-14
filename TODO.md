@@ -29,7 +29,7 @@ This project is built using React 18.2 and MUI v5.11.6 with core components buil
 ## In Progress
 
 - [ ] Creating Library component
-  - [ ] create a table of books 
+  - [ ] create a table of books
 
 ## Completed Column ✓
 
@@ -39,4 +39,3 @@ This project is built using React 18.2 and MUI v5.11.6 with core components buil
 - [ ] Created .gitub special files
 - [ ] Created community documentation
 - [ ] Created developer documentation
-- [ ]

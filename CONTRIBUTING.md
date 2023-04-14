@@ -4,6 +4,7 @@ We welcome Pull Requests (PR's) as well as having people working on fixing it's 
 If you notice an issue with this app, please feel free to open an issue.
 
 A lot of developers prefer asking if they could contribute or be assigned a task as a reply to a reported issue in the Issues tab.  This is great.
+
 Typically, if you think it will take you longer than 72 hours after having been assigned to the issue you will work on to submit a PR, please
 let us know that way issues do not go stale.
 
@@ -18,7 +19,13 @@ I have not created an official style guide yet. I also have not created a Figma 
 
 ## Development
 
-If you are not sure what to work on, review the issues list.  There are also TODO's that will listed in the included TODO.md file.
+If you are not sure what to work on, review the issues list.  There are also TODO's that will listed in the included [TODO.md](./TODO.md) file.
+
+React gives us built in hooks such as useEffect, useSelector, useRef, useHook, useCallback, useContext, useMemo, useForm, useHistory, etc. Please make sure that we make the most use of what React gives us.
+
+The browser also gives us things like localStorage, IndexedDB, Session Storage, Cookies and Cache Storage.  Please make use of them for 
+
+Please also make sure you use accessibility (A11y) with themes and styles paying attention to focus styling, contrast and keyboard-accesibility.
 
 ### PR's
 

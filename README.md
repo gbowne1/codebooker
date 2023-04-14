@@ -22,7 +22,9 @@ This project is built using:
 
 Bootstrapped with Create-React-App v5 aka react-scripts using `npx create-react-app codebooker`
 
-If you would like to contribute to this repository, please read our [Contributing](https://github.com/gbowne1/codebooker/blob/main/CONTRIBUTING.md) document. We welcome your pull requests here. We do not
+If you would like to contribute to this repository, please read our [Contributing](https://github.com/gbowne1/codebooker/blob/master/CONTRIBUTING.md) document. We welcome your pull requests here.
+
+This project is built from community contributions and community driven design. Submit a PR with your design for review along with a screenshot and we will look at it for possible merge. We have found that this process works the best.  Community members can also help imporove the design through issues and Pull Requests, see the contributing document.
 
 We recommend using this with Node 18.15.0, be sure and let us know.  We do not recommend using any other versions that are not currently on LTS.
 
