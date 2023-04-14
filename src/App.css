@@ -1,3 +1,21 @@
 .App {
   
 }
+.search-window {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s, color 0.3s;
+    padding: 20px;
+  }
+  
+  .light {
+    background-color: #f5f5f5;
+    color: #333;
+  }
+  
+  .dark {
+    background-color: #333;
+    color: #f5f5f5;
+  }
+  
