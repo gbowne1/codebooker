@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
+import { styled, alpha, ThemeProvider, createTheme } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -43,26 +43,61 @@ import BookSearch from './components/BookSearch/BookSearch';
 
 const label = { inputProps: { 'aria-label': 'Color switch demo' } };
 
-export default function App() {
+const lightTheme = createTheme({
+  palette: {
+    mode: 'light',
+    primary: {
+      main: '#1976d2',
+    },
+    secondary: {
+      main: '#f50057',
+    },
+  },
+});
 
-	return (
-		<div className="App">
-			<Box sx={{ flexGrow: 1 }}>
-				<AppBar position="fixed">
-					<Toolbar>
-						<SideNav/>
-						<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-							CodeBooker
-						</Typography>
-						<BookSearch/>
-						<NotificationsIcon />
-						<Switch {...label}
-							inputProps={{ 'aria-label': 'controlled' }} />
-						<Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-					</Toolbar>
-				</AppBar>
-				<Library />
-			</Box>
-		</div>
-	);
-}
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: '#90caf9',
+    },
+    secondary: {
+      main: '#f48fb1',
+    },
+  },
+});
+
+export default function App() {
+  const [isDarkMode, setIsDarkMode] = React.useState(false);
+
+  const handleToggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
+  return (
+    <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
+      <CssBaseline />
+      <div className="App">
+        <Box sx={{ flexGrow: 1 }}>
+          <AppBar position="fixed">
+            <Toolbar>
+              <SideNav />
+              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                CodeBooker
+              </Typography>
+              <BookSearch />
+              <NotificationsIcon />
+              <Switch
+                {...label}
+                inputProps={{ 'aria-label': 'controlled' }}
+                checked={isDarkMode}
+                onChange={handleToggleDarkMode}
+              />
+              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+            </Toolbar>
+          </AppBar>
+		  </Box>
+		  <Library/>
+		  </div>
+		  </ThemeProvider>
+  );}

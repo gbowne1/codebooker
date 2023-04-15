@@ -47,8 +47,8 @@ const rows = [
 
 export default function Library() {
 	return (
-		<TableContainer component={Paper}>
-			<Table sx={{ minWidth: 750 }} size="medium" aria-label="simple table" style={{marginLeft: 260}}>
+		<TableContainer style={{marginTop:80}} component={Paper}>
+			<Table sx={{ minWidth: 750 }} size="medium" aria-label="simple table" style={{marginLeft:20}}>
 				<TableHead>
 					<TableRow>
 						<TableCell>Title</TableCell>
@@ -68,10 +68,10 @@ export default function Library() {
 							<TableCell component="th" scope="row">
 								{row.name}
 							</TableCell>
-							<TableCell align="right">{row.calories}</TableCell>
-							<TableCell align="right">{row.fat}</TableCell>
-							<TableCell align="right">{row.carbs}</TableCell>
-							<TableCell align="right">{row.protein}</TableCell>
+							<TableCell align="center">{row.calories}</TableCell>
+							<TableCell align="center">{row.fat}</TableCell>
+							<TableCell align="center">{row.carbs}</TableCell>
+							<TableCell align="center">{row.protein}</TableCell>
 						</TableRow>
 					))}
 				</TableBody>
