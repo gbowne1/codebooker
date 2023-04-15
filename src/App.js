@@ -17,6 +17,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import Container from '@mui/material/Container';
+import SettingsIcon from '@mui/icons-material/Settings';
 import Avatar from '@mui/material/Avatar';
 import AdbIcon from '@mui/icons-material/Adb';
 import InputBase from '@mui/material/InputBase';
@@ -40,6 +41,7 @@ import logo from './logo.svg';
 import './App.css';
 import SideNav from './components/SideNav/SideNav';
 import BookSearch from './components/BookSearch/BookSearch';
+import Setting from './components/SettingIcon/Setting';
 
 const label = { inputProps: { 'aria-label': 'Color switch demo' } };
 
@@ -94,6 +96,8 @@ export default function App() {
                 onChange={handleToggleDarkMode}
               />
               <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+              {/* <SettingsIcon style={{marginLeft:20}} /> */}
+              <Setting/>
             </Toolbar>
           </AppBar>
 		  </Box>

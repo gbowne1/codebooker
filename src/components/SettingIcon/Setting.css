@@ -1,0 +1,27 @@
+.app-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    /* height: 60px; */
+    /* padding-right: 20px; */
+    margin-left: 15px;
+    /* background-color: #f0f0f0; */
+  }
+  
+  .settings-sidebar {
+    position: fixed;
+    top: 0;
+    right: -200px;
+    width: 200px;
+    height: 40vh;
+    padding: 20px;
+    margin-top: 80px;
+    background-color: #1976d2;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-out;
+  }
+  
+  .settings-sidebar.open {
+    transform: translateX(-200px);
+  }
+  
