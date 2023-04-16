@@ -42,6 +42,7 @@ import './App.css';
 import SideNav from './components/SideNav/SideNav';
 import BookSearch from './components/BookSearch/BookSearch';
 import Setting from './components/SettingIcon/Setting';
+import Dropdown from './components/Dropdown/Dropdown';
 
 const label = { inputProps: { 'aria-label': 'Color switch demo' } };
 
@@ -95,7 +96,8 @@ export default function App() {
                 checked={isDarkMode}
                 onChange={handleToggleDarkMode}
               />
-              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+              {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" /> */}
+              <Dropdown />
               {/* <SettingsIcon style={{marginLeft:20}} /> */}
               <Setting/>
             </Toolbar>
