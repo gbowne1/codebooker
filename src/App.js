@@ -22,7 +22,6 @@ import Avatar from '@mui/material/Avatar';
 import AdbIcon from '@mui/icons-material/Adb';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-import AddIcon from '@mui/icons-material/Add';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
@@ -88,6 +87,7 @@ export default function App() {
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                 CodeBooker
               </Typography>
+              
               <BookSearch />
               <NotificationsIcon />
               <Switch
