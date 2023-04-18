@@ -16,21 +16,28 @@ import SchoolIcon from "@mui/icons-material/School";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import PsychologyIcon from "@mui/icons-material/Psychology";
+import WebIcon from "@mui/icons-material/Web";
+import LayersIcon from "@mui/icons-material/Layers";
+import DesignServicesIcon from "@mui/icons-material/DesignServices";
+import CodeIcon from "@mui/icons-material/Code";
+import DataObjectIcon from "@mui/icons-material/DataObject";
+import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
+import BugReportIcon from "@mui/icons-material/BugReport";
 
 export default function SideNav() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isItemExpanded, setIsItemExpanded] = useState({});
 
-  const expandItem = (label) => {
-    setIsItemExpanded({ ...isItemExpanded, [label]: !isItemExpanded[label] });
+  const expandItem = (name) => {
+    setIsItemExpanded({ ...isItemExpanded, [name]: !isItemExpanded[name] });
   };
 
-  const MenuButton = ({ buttonProps, label, icon, expandable }) => (
+  const MenuButton = ({ buttonProps, name, label, icon, expandable }) => (
     <ListItemButton
       {...buttonProps}
       onClick={() => {
         buttonProps.onClick?.();
-        expandable && expandItem(label);
+        expandable && expandItem(name);
       }}
     >
       <ListItemIcon>{icon}</ListItemIcon>
@@ -51,7 +58,7 @@ export default function SideNav() {
           setIsDrawerOpen(true);
         }}
       >
-        <MenuIcon  />
+        <MenuIcon />
       </IconButton>
       <Drawer
         anchor="left"
@@ -68,6 +75,7 @@ export default function SideNav() {
                 component: "a",
               }}
               label="Library"
+              name="library"
               icon={<BookIcon />}
             />
             <MenuButton
@@ -76,20 +84,100 @@ export default function SideNav() {
                 component: "a",
               }}
               label="Category"
+              name="category"
               expandable
               icon={<CategoryIcon />}
             />
-            <Collapse in={isItemExpanded.Category} timeout="auto" unmountOnExit>
+            <Collapse in={isItemExpanded.category} timeout="auto" unmountOnExit>
               <List component="div" disablePadding>
                 <MenuButton
                   buttonProps={{ sx: { pl: 4 } }}
                   label="Educational"
+                  name="educational"
                   icon={<SchoolIcon />}
                 />
                 <MenuButton
                   buttonProps={{ sx: { pl: 4 } }}
                   label="Psychology"
+                  name="psychology"
                   icon={<PsychologyIcon />}
+                />
+                <MenuButton
+                  buttonProps={{ sx: { pl: 4 } }}
+                  label="Web Development"
+                  name="webdev"
+                  expandable
+                  icon={<WebIcon />}
+                />
+                <Collapse
+                  in={isItemExpanded.webdev}
+                  timeout="auto"
+                  unmountOnExit
+                >
+                  <List component="div" disablePadding>
+                    <MenuButton
+                      buttonProps={{ sx: { pl: 7 } }}
+                      label="HTML, CSS, JavaScript, etc."
+                      name="webstack"
+                      icon={<LayersIcon />}
+                    />
+                    <MenuButton
+                      buttonProps={{ sx: { pl: 7 } }}
+                      label="Web Design"
+                      name="webdesign"
+                      icon={<DesignServicesIcon />}
+                    />
+                  </List>
+                </Collapse>
+                <MenuButton
+                  buttonProps={{ sx: { pl: 4 } }}
+                  label="Languages"
+                  name="languages"
+                  expandable
+                  icon={<DataObjectIcon />}
+                />
+                <Collapse
+                  in={isItemExpanded.languages}
+                  timeout="auto"
+                  unmountOnExit
+                >
+                  <List component="div" disablePadding>
+                    <MenuButton
+                      buttonProps={{ sx: { pl: 7 } }}
+                      label="Python, C, C++, Assembly, C#, JavaScript, Perl, PHP, Typescript, etc."
+                      name="languagelist"
+                      icon={<CodeIcon />}
+                    />
+                  </List>
+                </Collapse>
+                <MenuButton
+                  buttonProps={{ sx: { pl: 4 } }}
+                  label="Frameworks & Libraries"
+                  name="libs"
+                  expandable
+                  icon={<LibraryBooksIcon />}
+                />
+                <Collapse in={isItemExpanded.libs} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    <MenuButton
+                      buttonProps={{ sx: { pl: 7 } }}
+                      label="React, Angular, Vue, Next, Nuxt, etc."
+                      name="frontlibs"
+                      icon={<CodeIcon />}
+                    />
+                    <MenuButton
+                      buttonProps={{ sx: { pl: 7 } }}
+                      label="Microsoft, i.e, .NET, Azure"
+                      name="backlibs"
+                      icon={<CodeIcon />}
+                    />
+                  </List>
+                </Collapse>
+                <MenuButton
+                  buttonProps={{ sx: { pl: 4 } }}
+                  label="Agile/QA/Testing"
+                  name="testing"
+                  icon={<BugReportIcon />}
                 />
               </List>
             </Collapse>
