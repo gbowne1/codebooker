@@ -232,6 +232,7 @@ export default function Library() {
               <TableCell>Action</TableCell>
               <TableCell>Title</TableCell>
               <TableCell align="center">Author</TableCell>
+              <TableCell align="center">Category</TableCell>
               <TableCell align="center">Publisher</TableCell>
               <TableCell align="center">ISBN</TableCell>
               <TableCell align="center">Year</TableCell>
@@ -268,6 +269,7 @@ export default function Library() {
                   {row.name}
                 </TableCell>
                 <TableCell align="center">{row.author}</TableCell>
+                <TableCell align="center">{row.category}</TableCell>
                 <TableCell align="center">{row.publisher}</TableCell>
                 <TableCell align="center">{row.isbn}</TableCell>
                 <TableCell align="center">{row.year}</TableCell>
