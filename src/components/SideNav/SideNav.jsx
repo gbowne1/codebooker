@@ -62,13 +62,14 @@ export default function SideNav() {
       >
         <Box mt={1} textAlign="center" width="240px" component="div">
           <List>
-            <ListItemButton key="1" component="a">
-              <ListItemIcon>
-                <BookIcon />
-              </ListItemIcon>
-              <ListItemText primary="Library" />
-            </ListItemButton>
-
+            <MenuButton
+              buttonProps={{
+                key: "1",
+                component: "a",
+              }}
+              label="Library"
+              icon={<BookIcon />}
+            />
             <MenuButton
               buttonProps={{
                 key: "2",
