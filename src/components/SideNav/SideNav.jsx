@@ -42,7 +42,7 @@ export default function SideNav() {
   return (
     <Fragment>
       <IconButton
-        size="large"
+        size="lg"
         edge="start"
         color="inherit"
         aria-label="menu"
@@ -51,7 +51,7 @@ export default function SideNav() {
           setIsDrawerOpen(true);
         }}
       >
-        <MenuIcon />
+        <MenuIcon  />
       </IconButton>
       <Drawer
         anchor="left"

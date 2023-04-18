@@ -1,31 +1,33 @@
 /* .BookSearch-header {} */
 .search-window {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .search-input {
-    width: 300px;
-    padding: 10px;
-    font-size: 18px;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-right: 10px;
-  }
-  
-  .search-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    font-size: 18px;
-    cursor: pointer;
-  }
-  
-  .search-button:hover {
-    background-color: #0062cc;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-input {
+  width: 300px;
+  padding: 0.563rem;
+  font-size: 0.875rem;
+  border: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-right: 10px;
+  letter-spacing: 0.5px;
+}
+.search-input:focus {
+  outline: none;
+}
+
+.search-button {
+  background-color: #0062cc;
+  color: #fff;
+  border: none;
+  padding: 0.563rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+}
+
+.search-button:hover {
+  background-color: #0062cc;
+}
