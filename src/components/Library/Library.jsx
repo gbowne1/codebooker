@@ -39,6 +39,7 @@ import rows from "./data.json";
 import { Button, Modal, TextField } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import Snackbar, { SnackbarOrigin } from "@mui/material/Snackbar";
+import ISBN from "isbn-validate";
 // function createData(name, calories, fat, carbs, protein) {
 // 	return { name, calories, fat, carbs, protein };
 // }
@@ -65,6 +66,7 @@ export default function Library() {
   const [isbn, setIsbn] = useState("");
   const [year, setYear] = useState("");
   const [edition, setEdition] = useState("");
+  const [error, setError] = useState(false);
 
   //This state helps us for two way in input filed
   const[isAdded,handleIsAdded] = useState(false);
@@ -115,6 +117,31 @@ export default function Library() {
     boxShadow: 24,
     p: 4,
   };
+  //Check if publishing year is a four digit number
+  const handleYearChange = (event) => {
+    const value = event.target.value;
+    setYear(value);
+
+    if (value.length === 4 && !isNaN(value)) {
+      setError(false);
+    } else {
+      setError(true);
+    }
+  };
+
+  //Check if ISBN is valid
+  const handleISBNChange = (event) => {
+    const value = event.target.value;
+    setIsbn(value);
+
+    if (ISBN.Validate(value)) {
+      setError(false);
+    } else {
+      setError(true);
+    }
+  };
+
+
   return (
     <>
       <Snackbar
@@ -130,12 +157,12 @@ export default function Library() {
         onClose={closeSnackBar}
         message="Item Added Successfully"
       />
-      <Modal
-        open={showModal}
-        onClose={() => {
-          handleModalBox(false);
-        }}
-      >
+    <Modal
+      open={showModal}
+      onClose={() => {
+        handleModalBox(false);
+      }}
+    >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Add Item to table
@@ -152,58 +179,54 @@ export default function Library() {
               onChange={(e) => {
                 setName(e.target.value)
               }}
-			 
-			  defaultValue=""
+			        defaultValue=""
             />
             <TextField
               label="Enter Author Name"
-			  onChange={(e)=>{setAuthor(e.target.value)}}
+			        onChange={(e)=>{setAuthor(e.target.value)}}
               fullWidth
               style={{ marginTop: "10px" }}
 			 
             />
             <TextField
               label="Who is the publisher"
-			  onChange={(e)=>{setPublisher(e.target.value)}}
-
+			        onChange={(e)=>{setPublisher(e.target.value)}}
               fullWidth
               style={{ marginTop: "10px" }}
-			 
             />
             <TextField 
-			label="ISBN" 
-			onChange={(e)=>{setIsbn(e.target.value)}}
+              label="ISBN" 
+              onChange={handleISBNChange}
+              error={error}
+              helperText={error ? "Please enter a valid ISBN" : ""}
+              fullWidth style={{ marginTop: "10px" }} 
 
-			fullWidth style={{ marginTop: "10px" }} 
-
-			/>
+			      />
             <TextField
-              label="Year Of Published"
-			  onChange={(e)=>{setYear(e.target.value)}}
-
+              label="Year Published"
+			        onChange={handleYearChange}
               fullWidth
               style={{ marginTop: "10px" }}
-			  
+              error={error}
+              helperText={error ? "Please enter a valid year" : ""}
             />
             <TextField
               label="Edition"
-			  onChange={(e)=>{setEdition(e.target.value)}}
-
+			        onChange={(e)=>{setEdition(e.target.value)}}
               fullWidth
               style={{ marginTop: "10px" }}
-			  
             />
            {
 			isAdded ? <>
-			<Button
-              variant="contained"
-              color="warning"
-              style={{ marginTop: "10px" }}
-			  onClick = {()=>{handleModalBox(false); }}
-            >
-              Close Modal
+			  <Button
+          variant="contained"
+          color="warning"
+          style={{ marginTop: "10px" }}
+			    onClick = {()=>{handleModalBox(false); }}
+        >
+          Close Modal
 			
-            </Button>
+        </Button>
 			</>:<>
 			<Button
               type="submit"
