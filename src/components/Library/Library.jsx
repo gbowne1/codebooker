@@ -189,6 +189,13 @@ export default function Library() {
 			 
             />
             <TextField
+              label="Enter Category"
+			        onChange={(e)=>{setAuthor(e.target.value)}}
+              fullWidth
+              style={{ marginTop: "10px" }}
+			 
+            />
+            <TextField
               label="Who is the publisher"
 			        onChange={(e)=>{setPublisher(e.target.value)}}
               fullWidth
