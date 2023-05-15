@@ -71,7 +71,7 @@ export default function Library() {
   //This state helps us for two way in input filed
   const[isAdded,handleIsAdded] = useState(false);
   const removeBookByName = (row) => {
-    setRemovedItemName("removed " + row.name + "successfully");
+    setRemovedItemName("removed " + row.name + " successfully");
     myRows.splice(myRows.indexOf(row), 1);
 
     setMyRows([...myRows]);
