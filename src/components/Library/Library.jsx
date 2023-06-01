@@ -12,6 +12,7 @@ import TableFooter from '@mui/material/TableFooter';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TablePagination from '@mui/material/TablePagination';
+import StarIcon from '@mui/icons-material/Star';
 import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
 import FirstPageIcon from '@mui/icons-material/FirstPage';
@@ -32,6 +33,11 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 /* import { TableVirtuoso } from 'react-virtuoso'; */
 import './Library.css';
 import Classes from './Library.module.css';
@@ -75,6 +81,10 @@ export default function Library() {
 	const [bookName, setBookName] = useState('');
 	const [bookReview, setBookReview] = useState('');
 	const [rating, setRating] = useState(0);
+
+	//Book read review modal states
+	 const [enableReviewModal, setEnableReviewModal] = useState(false);
+	 const [book,setBook]=useState({})
 
 	//This state helps us for two way in input filed
 	const [isAdded, handleIsAdded] = useState(false);
@@ -177,6 +187,14 @@ export default function Library() {
 		setRating(value);
 	};
 
+	const starGenerator=(count)=>{
+		const stars=[];
+		for(let i=1;i<=count;i++){
+			stars.push(<StarIcon color="warning"/>)
+		}
+		return stars
+	}
+
 	return (
 		<>
 			<Snackbar
@@ -253,7 +271,53 @@ export default function Library() {
 					)}
 				</Box>
 			</Modal>
-			//book review modal end//
+			//book review modal end// 
+			
+			//book read review modal start//
+			<div>
+				<Dialog
+					open={enableReviewModal}
+					onClose={() => {
+						setEnableReviewModal(false);
+					}}
+					aria-labelledby='alert-dialog-title'
+					aria-describedby='alert-dialog-description'>
+					<DialogTitle align='center' id='alert-dialog-title'>
+						Reading reviews of {book?.name}
+					</DialogTitle>
+
+					<DialogContent dividers>
+						<DialogContentText id='alert-dialog-description'>
+							{book?.reviews?.length > 0 ? (
+								book?.reviews?.map((item, index) => {
+									return (
+										<div>
+											{starGenerator(item?.starRating)}
+											<Typography key={index} variant='h6'>
+												{item?.textReview}
+											</Typography>
+										</div>
+									);
+								})
+							) : (
+								<Typography variant='h6'>
+									There are no reviews yet for <strong>{book?.name}</strong>
+								</Typography>
+							)}
+						</DialogContentText>
+					</DialogContent>
+					<DialogActions>
+						<Button
+							onClick={() => {
+								setEnableReviewModal(false);
+							}}
+							autoFocus>
+							Close
+						</Button>
+					</DialogActions>
+				</Dialog>
+			</div>
+			//book read reviews modal end//
 			<Modal
 				open={showModal}
 				onClose={() => {
@@ -418,7 +482,12 @@ export default function Library() {
 										type='submit'
 										variant='contained'
 										color='success'
-										style={{ marginLeft: '10px', width: '80px' }}>
+										style={{ marginLeft: '10px', width: '80px' }}
+										onClick={() => {
+											setBook(row);
+											setEnableReviewModal(true);
+										}}>
+										{' '}
 										Read Reviews
 									</Button>
 								</TableCell>
