@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { orderBy } from 'lodash';
 import { alpha } from '@mui/material/styles';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -64,6 +65,10 @@ export default function Library() {
 	const [myRows, setMyRows] = useState(rows);
 	const [showSnackBar, handleSnackBar] = useState(false);
 	const [removedItemName, setRemovedItemName] = useState('');
+
+	//table sorting states
+	const [sortOrder,setSortOrder]=useState(false);
+	const [sortingColumn,setSortingColumn]=useState("")
 
 	//Modal states
 	const [showModal, handleModalBox] = useState(false);
@@ -149,6 +154,33 @@ export default function Library() {
 			setError(true);
 		}
 	};
+
+	// books table sort
+	const handleSort=(columnName,order)=>{
+		if (columnName == 'title') {
+			const sortedRows = orderBy(myRows, ['name'], [order]);
+			setMyRows(sortedRows);
+		} else if (columnName == 'author') {
+			const sortedRows = orderBy(myRows, ['author'], [order]);
+			setMyRows(sortedRows);
+		} else if (columnName == 'category') {
+			const sortedRows = orderBy(myRows, ['category'], [order]);
+			setMyRows(sortedRows);
+		} else if (columnName == 'publisher') {
+			const sortedRows = orderBy(myRows, ['publisher'], [order]);
+			setMyRows(sortedRows);
+		} else if (columnName == 'year') {
+			const sortedRows = orderBy(myRows, ['year'], [order]);
+			setMyRows(sortedRows);
+		} else if (columnName == 'isbn') {
+			const sortedRows = orderBy(myRows, ['isbn'], [order]);
+			setMyRows(sortedRows);
+		} else if (columnName == 'edition') {
+			const sortedRows = orderBy(myRows, ['edition'], [order]);
+			setMyRows(sortedRows);
+		} 
+	}
+
 
 	//Check if ISBN is valid
 	const handleISBNChange = (event) => {
@@ -271,9 +303,7 @@ export default function Library() {
 					)}
 				</Box>
 			</Modal>
-			//book review modal end// 
-			
-			//book read review modal start//
+			//book review modal end// //book read review modal start//
 			<div>
 				<Dialog
 					open={enableReviewModal}
@@ -423,13 +453,108 @@ export default function Library() {
 					<TableHead>
 						<TableRow>
 							<TableCell>Action</TableCell>
-							<TableCell>Title</TableCell>
-							<TableCell align='center'>Author</TableCell>
-							<TableCell align='center'>Category</TableCell>
-							<TableCell align='center'>Publisher</TableCell>
-							<TableCell align='center'>ISBN</TableCell>
-							<TableCell align='center'>Year</TableCell>
-							<TableCell align='center'>Edition</TableCell>
+							<TableCell align='center'>
+								<TableSortLabel
+									active={true}
+									direction={
+										sortingColumn == 'title' && sortOrder ? 'dsc' : 'asc'
+									}
+									onClick={() => {
+										setSortOrder(!sortOrder);
+										setSortingColumn('title');
+										handleSort('title', sortOrder ? 'asc' : 'desc');
+									}}>
+									Title
+								</TableSortLabel>
+							</TableCell>
+							<TableCell align='center'>
+								<TableSortLabel
+									active={true}
+									direction={
+										sortingColumn == 'author' && sortOrder ? 'dsc' : 'asc'
+									}
+									onClick={() => {
+										setSortOrder(!sortOrder);
+										setSortingColumn('author');
+										handleSort('author', sortOrder ? 'asc' : 'desc');
+									}}>
+									Author
+								</TableSortLabel>{' '}
+							</TableCell>
+							<TableCell align='center'>
+								{' '}
+								<TableSortLabel
+									active={true}
+									direction={
+										sortingColumn == 'category' && sortOrder ? 'dsc' : 'asc'
+									}
+									onClick={() => {
+										setSortOrder(!sortOrder);
+										setSortingColumn('category');
+										handleSort('category', sortOrder ? 'asc' : 'desc');
+									}}>
+									Category
+								</TableSortLabel>{' '}
+							</TableCell>
+							<TableCell align='center'>
+								{' '}
+								<TableSortLabel
+									active={true}
+									direction={
+										sortingColumn == 'publisher' && sortOrder ? 'dsc' : 'asc'
+									}
+									onClick={() => {
+										setSortOrder(!sortOrder);
+										setSortingColumn('publisher');
+										handleSort('publisher', sortOrder ? 'asc' : 'desc');
+									}}>
+									Publisher
+								</TableSortLabel>{' '}
+							</TableCell>
+							<TableCell align='center'>
+								{' '}
+								<TableSortLabel
+									active={true}
+									direction={
+										sortingColumn == 'isbn' && sortOrder ? 'dsc' : 'asc'
+									}
+									onClick={() => {
+										setSortOrder(!sortOrder);
+										setSortingColumn('isbn');
+										handleSort('isbn', sortOrder ? 'asc' : 'desc');
+									}}>
+									ISBN
+								</TableSortLabel>
+							</TableCell>
+							<TableCell align='center'>
+								{' '}
+								<TableSortLabel
+									active={true}
+									direction={
+										sortingColumn == 'year' && sortOrder ? 'dsc' : 'asc'
+									}
+									onClick={() => {
+										setSortOrder(!sortOrder);
+										setSortingColumn('year');
+										handleSort('year', sortOrder ? 'asc' : 'desc');
+									}}>
+									Year
+								</TableSortLabel>{' '}
+							</TableCell>
+							<TableCell align='center'>
+								<TableSortLabel
+									active={true}
+									direction={
+										sortingColumn == 'edition' && sortOrder ? 'dsc' : 'asc'
+									}
+									onClick={() => {
+										setSortOrder(!sortOrder);
+										setSortingColumn('edition');
+										handleSort('edition', sortOrder ? 'asc' : 'desc');
+									}}>
+									Edition
+								</TableSortLabel>
+							</TableCell>
 							<TableCell align='center'>Review</TableCell>
 						</TableRow>
 					</TableHead>
@@ -457,7 +582,7 @@ export default function Library() {
 										}}
 									/>
 								</TableCell>
-								<TableCell component='th' scope='row'>
+								<TableCell component='th' scope='row' align='center'>
 									{row.name}
 								</TableCell>
 								<TableCell align='center'>{row.author}</TableCell>
