@@ -32,6 +32,7 @@ import Switch from '@mui/material/Switch';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
+
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import Dialog from '@mui/material/Dialog';
@@ -61,10 +62,11 @@ import { Rating } from 'react-simple-star-rating';
 
 // ];
 
-export default function Library() {
+export default function Library({filter}) {
 	const [myRows, setMyRows] = useState(rows);
 	const [showSnackBar, handleSnackBar] = useState(false);
 	const [removedItemName, setRemovedItemName] = useState('');
+	
 
 	//table sorting states
 	const [sortOrder,setSortOrder]=useState(false);
@@ -79,6 +81,7 @@ export default function Library() {
 	const [year, setYear] = useState('');
 	const [edition, setEdition] = useState('');
 	const [error, setError] = useState(false);
+	const [blankEntry, setBlankEntry] = useState(false);
 
 	//Book review modal states
 	const [showReviewModal, handleReviewModal] = useState(false);
@@ -102,17 +105,43 @@ export default function Library() {
 	};
 	const addItemToTable = (e) => {
 		e.preventDefault();
+        if(name && author && publisher && isbn && year && edition) {
+            
+            let bookObj = { name, author, publisher, isbn, year, edition, reviews: [] };
+		    setMyRows([...myRows, bookObj]);
 
+		    handleIsAdded(true);
+			resetBookState();
+			handleModalBox(false);
+			
+
+		} else {
+			
+			setBlankEntry(true);
+			
+
+		}
 		console.log(name, author, publisher, isbn, year, edition);
-		let bookObj = { name, author, publisher, isbn, year, edition, reviews: [] };
-		setMyRows([...myRows, bookObj]);
-		handleIsAdded(true);
+		
 	};
+
+
+	const resetBookState = () => {
+
+
+		setName('');
+		setAuthor('');
+		setPublisher('');
+		setIsbn('');
+		setYear('');
+		setEdition('');
+	}
 
 	const closeSnackBar = () => {
 		handleSnackBar(false);
 		handleIsAdded(false);
 		handleReviewAdded(false);
+		setBlankEntry(false);
 	};
 	const action = (
 		<React.Fragment>
@@ -127,6 +156,8 @@ export default function Library() {
 		</React.Fragment>
 	);
 
+
+	
 	const style = {
 		position: 'absolute',
 		top: '50%',
@@ -157,25 +188,25 @@ export default function Library() {
 
 	// books table sort
 	const handleSort=(columnName,order)=>{
-		if (columnName == 'title') {
+		if (columnName === 'title') {
 			const sortedRows = orderBy(myRows, ['name'], [order]);
 			setMyRows(sortedRows);
-		} else if (columnName == 'author') {
+		} else if (columnName === 'author') {
 			const sortedRows = orderBy(myRows, ['author'], [order]);
 			setMyRows(sortedRows);
-		} else if (columnName == 'category') {
+		} else if (columnName === 'category') {
 			const sortedRows = orderBy(myRows, ['category'], [order]);
 			setMyRows(sortedRows);
-		} else if (columnName == 'publisher') {
+		} else if (columnName === 'publisher') {
 			const sortedRows = orderBy(myRows, ['publisher'], [order]);
 			setMyRows(sortedRows);
-		} else if (columnName == 'year') {
+		} else if (columnName === 'year') {
 			const sortedRows = orderBy(myRows, ['year'], [order]);
 			setMyRows(sortedRows);
-		} else if (columnName == 'isbn') {
+		} else if (columnName === 'isbn') {
 			const sortedRows = orderBy(myRows, ['isbn'], [order]);
 			setMyRows(sortedRows);
-		} else if (columnName == 'edition') {
+		} else if (columnName === 'edition') {
 			const sortedRows = orderBy(myRows, ['edition'], [order]);
 			setMyRows(sortedRows);
 		} 
@@ -227,27 +258,60 @@ export default function Library() {
 		return stars
 	}
 
+
+	React.useEffect(() => {
+
+
+		const filteredRow = () => {
+
+            if(filter){
+
+                const newRow = rows.filter(row => filter && row.name.includes(filter));
+			   if(newRow.length > 0){
+				
+				setMyRows(newRow);
+	  
+			   }
+			} else {
+
+				setMyRows(rows);
+			}
+			
+			
+	
+			
+		}
+	
+		
+		filteredRow();
+
+	}, [filter]);
+
 	return (
 		<>
 			<Snackbar
 				action={action}
 				open={showSnackBar}
+				autoHideDuration={3000}
 				onClose={closeSnackBar}
 				message={removedItemName}
 			/>
 			<Snackbar
 				action={action}
 				open={isAdded}
+				autoHideDuration={3000}
 				onClose={closeSnackBar}
 				message='Item Added Successfully'
 			/>
 			<Snackbar
 				action={action}
-				open={isReviewAdded}
+				open={blankEntry}
+				autoHideDuration={3000}
 				onClose={closeSnackBar}
-				message='Review Added Successfully'
+				message='Please enter the required credentials'
 			/>
-			//book review modal start//
+			
+			{/* //book review modal start// */}
 			<Modal
 				open={showReviewModal}
 				onClose={() => {
@@ -303,7 +367,7 @@ export default function Library() {
 					)}
 				</Box>
 			</Modal>
-			//book review modal end// //book read review modal start//
+			{/* //book review modal end// //book read review modal start// */}
 			<div>
 				<Dialog
 					open={enableReviewModal}
@@ -347,7 +411,7 @@ export default function Library() {
 					</DialogActions>
 				</Dialog>
 			</div>
-			//book read reviews modal end//
+			{/* //book read reviews modal end// */}
 			<Modal
 				open={showModal}
 				onClose={() => {
@@ -444,7 +508,7 @@ export default function Library() {
 					</form>
 				</Box>
 			</Modal>
-			<TableContainer style={{ marginTop: 80 }} component={Paper}>
+			<TableContainer style={{ marginTop: 80, marginInline: 10 }} component={Paper}>
 				<Table
 					sx={{ minWidth: 750 }}
 					size='medium'
@@ -457,7 +521,7 @@ export default function Library() {
 								<TableSortLabel
 									active={true}
 									direction={
-										sortingColumn == 'title' && sortOrder ? 'dsc' : 'asc'
+										sortingColumn === 'title' && sortOrder ? 'dsc' : 'asc'
 									}
 									onClick={() => {
 										setSortOrder(!sortOrder);
@@ -471,7 +535,7 @@ export default function Library() {
 								<TableSortLabel
 									active={true}
 									direction={
-										sortingColumn == 'author' && sortOrder ? 'dsc' : 'asc'
+										sortingColumn === 'author' && sortOrder ? 'dsc' : 'asc'
 									}
 									onClick={() => {
 										setSortOrder(!sortOrder);
@@ -486,7 +550,7 @@ export default function Library() {
 								<TableSortLabel
 									active={true}
 									direction={
-										sortingColumn == 'category' && sortOrder ? 'dsc' : 'asc'
+										sortingColumn === 'category' && sortOrder ? 'dsc' : 'asc'
 									}
 									onClick={() => {
 										setSortOrder(!sortOrder);
@@ -501,7 +565,7 @@ export default function Library() {
 								<TableSortLabel
 									active={true}
 									direction={
-										sortingColumn == 'publisher' && sortOrder ? 'dsc' : 'asc'
+										sortingColumn === 'publisher' && sortOrder ? 'dsc' : 'asc'
 									}
 									onClick={() => {
 										setSortOrder(!sortOrder);
@@ -516,7 +580,7 @@ export default function Library() {
 								<TableSortLabel
 									active={true}
 									direction={
-										sortingColumn == 'isbn' && sortOrder ? 'dsc' : 'asc'
+										sortingColumn === 'isbn' && sortOrder ? 'dsc' : 'asc'
 									}
 									onClick={() => {
 										setSortOrder(!sortOrder);
@@ -531,7 +595,7 @@ export default function Library() {
 								<TableSortLabel
 									active={true}
 									direction={
-										sortingColumn == 'year' && sortOrder ? 'dsc' : 'asc'
+										sortingColumn === 'year' && sortOrder ? 'dsc' : 'asc'
 									}
 									onClick={() => {
 										setSortOrder(!sortOrder);
@@ -545,7 +609,7 @@ export default function Library() {
 								<TableSortLabel
 									active={true}
 									direction={
-										sortingColumn == 'edition' && sortOrder ? 'dsc' : 'asc'
+										sortingColumn === 'edition' && sortOrder ? 'dsc' : 'asc'
 									}
 									onClick={() => {
 										setSortOrder(!sortOrder);
@@ -559,68 +623,71 @@ export default function Library() {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{myRows.map((row) => (
-							<TableRow
-								key={row.name}
-								sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-								<TableCell className={Classes.actions}>
-									{myRows.indexOf(row) === myRows.length - 1 ? (
-										<AddIcon
+						{myRows.map((row) => 
+
+							 
+								 (<TableRow
+									key={row.name}
+									sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+									<TableCell className={Classes.actions}>
+										{myRows.indexOf(row) === myRows.length - 1 ? (
+											<AddIcon
+												className={Classes.tableactionicon}
+												onClick={() => {
+													handleModalBox(true);
+												}}
+											/>
+										) : (
+											<></>
+										)}
+	
+										<RemoveIcon
 											className={Classes.tableactionicon}
-											onClick={() => {
-												handleModalBox(true);
+											onClick={(e) => {
+												removeBookByName(row);
 											}}
 										/>
-									) : (
-										<></>
-									)}
-
-									<RemoveIcon
-										className={Classes.tableactionicon}
-										onClick={(e) => {
-											removeBookByName(row);
-										}}
-									/>
-								</TableCell>
-								<TableCell component='th' scope='row' align='center'>
-									{row.name}
-								</TableCell>
-								<TableCell align='center'>{row.author}</TableCell>
-								<TableCell align='center'>{row.category}</TableCell>
-								<TableCell align='center'>{row.publisher}</TableCell>
-								<TableCell align='center'>{row.isbn}</TableCell>
-								<TableCell align='center'>{row.year}</TableCell>
-								<TableCell align='center'>{row.edition}</TableCell>
-								<TableCell align='center'>
-									<Button
-										type='submit'
-										variant='contained'
-										color='primary'
-										style={{ width: '80px' }}
-										onClick={() => {
-											setBookName(row.name);
-											handleReviewModal(true);
-										}}>
-										Review Book
-									</Button>
-									<Button
-										type='submit'
-										variant='contained'
-										color='success'
-										style={{ marginLeft: '10px', width: '80px' }}
-										onClick={() => {
-											setBook(row);
-											setEnableReviewModal(true);
-										}}>
-										{' '}
-										Read Reviews
-									</Button>
-								</TableCell>
-							</TableRow>
-						))}
+									</TableCell>
+									<TableCell component='th' scope='row' align='center'>
+										{row.name}
+									</TableCell>
+									<TableCell align='center'>{row.author}</TableCell>
+									<TableCell align='center'>{row.category}</TableCell>
+									<TableCell align='center'>{row.publisher}</TableCell>
+									<TableCell align='center'>{row.isbn}</TableCell>
+									<TableCell align='center'>{row.year}</TableCell>
+									<TableCell align='center'>{row.edition}</TableCell>
+									<TableCell align='center'>
+										<Button
+											type='submit'
+											variant='contained'
+											color='primary'
+											style={{ width: '80px' }}
+											onClick={() => {
+												setBookName(row.name);
+												handleReviewModal(true);
+											}}>
+											Review Book
+										</Button>
+										<Button
+											type='submit'
+											variant='contained'
+											color='success'
+											style={{ marginLeft: '10px', width: '80px' }}
+											onClick={() => {
+												setBook(row);
+												setEnableReviewModal(true);
+											}}>
+											{' '}
+											Read Reviews
+										</Button>
+									</TableCell>
+								</TableRow>
+							))}
 					</TableBody>
 				</Table>
 			</TableContainer>
 		</>
 	);
 }
+

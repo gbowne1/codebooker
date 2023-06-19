@@ -77,6 +77,11 @@ const darkTheme = createTheme({
 export default function App() {
   const [isDarkMode, setIsDarkMode] = React.useState(false);
 
+  const [filter, setFilter] = React.useState('');
+
+
+  console.log(filter)
+
   const handleToggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
   };
@@ -97,7 +102,7 @@ export default function App() {
                 CodeBooker
               </Typography>
 
-              <BookSearch />
+              <BookSearch filter={filter} setFilter={setFilter}/>
               <NotificationsIcon size="small" />
               <Switch
                 sx={{ marginLeft: "0.5rem" }}
@@ -114,7 +119,7 @@ export default function App() {
             </Toolbar>
           </AppBar>
         </Box>
-        <Library />
+        <Library filter={filter}/>
       </div>
     </ThemeProvider>
   );
