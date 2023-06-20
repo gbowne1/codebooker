@@ -115,7 +115,7 @@ export default function App() {
               {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" /> */}
               <Dropdown />
               {/* <SettingsIcon style={{marginLeft:20}} /> */}
-              <Setting />
+              {/* <Setting /> */}
             </Toolbar>
           </AppBar>
         </Box>
