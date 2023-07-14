@@ -92,18 +92,6 @@ export default function SideNav() {
             />
             <Collapse in={isItemExpanded.category} timeout="auto" unmountOnExit>
               <List component="div" disablePadding>
-                {/* <MenuButton
-                  buttonProps={{ sx: { pl: 4 } }}
-                  label="Educational"
-                  name="educational"
-                  icon={<SchoolIcon />}
-                /> */}
-                <MenuButton
-                  buttonProps={{ sx: { pl: 4 } }}
-                  label="Psychology"
-                  name="psychology"
-                  icon={<PsychologyIcon />}
-                />
                 <MenuButton
                   buttonProps={{ sx: { pl: 4 } }}
                   label="Web Development"
