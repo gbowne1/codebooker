@@ -46,6 +46,8 @@ export default function SideNav() {
     </ListItemButton>
   );
 
+  const languages=["Python","C", "C++", "Assembly", "C#", "JavaScript", "Perl", "PHP", "Typescript"];
+
   return (
     <Fragment>
       <IconButton
@@ -92,18 +94,6 @@ export default function SideNav() {
               <List component="div" disablePadding>
                 <MenuButton
                   buttonProps={{ sx: { pl: 4 } }}
-                  label="Educational"
-                  name="educational"
-                  icon={<SchoolIcon />}
-                />
-                <MenuButton
-                  buttonProps={{ sx: { pl: 4 } }}
-                  label="Psychology"
-                  name="psychology"
-                  icon={<PsychologyIcon />}
-                />
-                <MenuButton
-                  buttonProps={{ sx: { pl: 4 } }}
                   label="Web Development"
                   name="webdev"
                   expandable
@@ -142,12 +132,14 @@ export default function SideNav() {
                   unmountOnExit
                 >
                   <List component="div" disablePadding>
-                    <MenuButton
-                      buttonProps={{ sx: { pl: 7 } }}
-                      label="Python, C, C++, Assembly, C#, JavaScript, Perl, PHP, Typescript, etc."
-                      name="languagelist"
-                      icon={<CodeIcon />}
-                    />
+                    {languages && languages.map(ele=>
+                      <MenuButton
+                        buttonProps={{ sx: { pl: 7 } }}
+                        label={ele}
+                        name="languagelist"
+                        icon={<CodeIcon />}
+                      />
+                      )}
                   </List>
                 </Collapse>
                 <MenuButton
