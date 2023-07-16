@@ -80,7 +80,6 @@ export default function App() {
   const [filter, setFilter] = React.useState('');
 
 
-  console.log(filter)
 
   const handleToggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
@@ -93,7 +92,7 @@ export default function App() {
         <Box sx={{ flexGrow: 1 }}>
           <AppBar className="AppBar" position="fixed">
             <Toolbar>
-              <SideNav />
+              <SideNav setfilter={setFilter}/>
               <Typography
                 variant="h6"
                 component="div"

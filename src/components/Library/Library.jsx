@@ -67,7 +67,6 @@ export default function Library({filter}) {
 	const [showSnackBar, handleSnackBar] = useState(false);
 	const [removedItemName, setRemovedItemName] = useState('');
 	
-
 	//table sorting states
 	const [sortOrder,setSortOrder]=useState(false);
 	const [sortingColumn,setSortingColumn]=useState("")
@@ -261,25 +260,23 @@ export default function Library({filter}) {
 
 	React.useEffect(() => {
 
-
+		
 		const filteredRow = () => {
-
-            if(filter){
-
-                const newRow = rows.filter(row => filter && row.name.includes(filter));
-			   if(newRow.length > 0){
+			
+			if(filter){
 				
+				//searching can be improved
+				const newRow = rows.filter(row => (filter && row.name.includes(filter)) || (row.category &&row.category.includes(filter))|| row.author.includes(filter));
+				
+			   if(newRow.length > 0){
 				setMyRows(newRow);
-	  
+			   }else{	
+					setMyRows(rows);
 			   }
 			} else {
-
 				setMyRows(rows);
 			}
-			
-			
-	
-			
+
 		}
 	
 		
