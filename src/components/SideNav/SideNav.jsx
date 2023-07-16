@@ -24,7 +24,7 @@ import DataObjectIcon from "@mui/icons-material/DataObject";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import BugReportIcon from "@mui/icons-material/BugReport";
 
-export default function SideNav() {
+export default function SideNav({setfilter}) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isItemExpanded, setIsItemExpanded] = useState({});
 
@@ -45,6 +45,10 @@ export default function SideNav() {
       {expandable && (isItemExpanded[label] ? <ExpandMore /> : <ExpandLess />)}
     </ListItemButton>
   );
+  const setFilter=(val)=>{
+    setIsDrawerOpen(false);
+    setfilter(val)
+  }
 
   const languages=["Python","C", "C++", "Assembly", "C#", "JavaScript", "Perl", "PHP", "Typescript"];
 
@@ -93,7 +97,7 @@ export default function SideNav() {
             <Collapse in={isItemExpanded.category} timeout="auto" unmountOnExit>
               <List component="div" disablePadding>
                 <MenuButton
-                  buttonProps={{ sx: { pl: 4 } }}
+                  buttonProps={{ sx: { pl: 4 },}}
                   label="Web Development"
                   name="webdev"
                   expandable
@@ -106,13 +110,16 @@ export default function SideNav() {
                 >
                   <List component="div" disablePadding>
                     <MenuButton
-                      buttonProps={{ sx: { pl: 7 } }}
+                      buttonProps={{ sx: { pl: 7 }, 
+                      onClick:()=>{setFilter("Web Developement")}, }}
                       label="HTML, CSS, JavaScript, etc."
                       name="webstack"
                       icon={<LayersIcon />}
                     />
                     <MenuButton
-                      buttonProps={{ sx: { pl: 7 } }}
+                      buttonProps={{ sx: { pl: 7 },
+                      onClick:()=>{setFilter("Web Design")}
+                     }}
                       label="Web Design"
                       name="webdesign"
                       icon={<DesignServicesIcon />}
@@ -134,7 +141,8 @@ export default function SideNav() {
                   <List component="div" disablePadding>
                     {languages && languages.map(ele=>
                       <MenuButton
-                        buttonProps={{ sx: { pl: 7 } }}
+                        buttonProps={{ sx: { pl: 7 },
+                        onClick:()=>{setFilter(ele)} }}
                         label={ele}
                         name="languagelist"
                         icon={<CodeIcon />}
@@ -152,13 +160,15 @@ export default function SideNav() {
                 <Collapse in={isItemExpanded.libs} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
                     <MenuButton
-                      buttonProps={{ sx: { pl: 7 } }}
+                      buttonProps={{ sx: { pl: 7 },
+                      onClick:()=>{setFilter("React, Angular, Vue, Next, Nuxt, etc.")} }}
                       label="React, Angular, Vue, Next, Nuxt, etc."
                       name="frontlibs"
                       icon={<CodeIcon />}
                     />
                     <MenuButton
-                      buttonProps={{ sx: { pl: 7 } }}
+                      buttonProps={{ sx: { pl: 7 },
+                      onClick:()=>{setFilter("Microsoft, i.e, .NET, Azure")} }}
                       label="Microsoft, i.e, .NET, Azure"
                       name="backlibs"
                       icon={<CodeIcon />}
@@ -166,7 +176,8 @@ export default function SideNav() {
                   </List>
                 </Collapse>
                 <MenuButton
-                  buttonProps={{ sx: { pl: 4 } }}
+                  buttonProps={{ sx: { pl: 4 },
+                  onClick:()=>{setFilter("Agile/QA/Testing")} }}
                   label="Agile/QA/Testing"
                   name="testing"
                   icon={<BugReportIcon />}
