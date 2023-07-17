@@ -139,8 +139,9 @@ export default function SideNav({setfilter}) {
                   unmountOnExit
                 >
                   <List component="div" disablePadding>
-                    {languages && languages.map(ele=>
+                    {languages && languages.map((ele, index)=>
                       <MenuButton
+                        key={index}
                         buttonProps={{ sx: { pl: 7 },
                         onClick:()=>{setFilter(ele)} }}
                         label={ele}
