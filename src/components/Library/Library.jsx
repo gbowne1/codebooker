@@ -391,7 +391,7 @@ export default function Library({filter}) {
 									);
 								})
 							) : (
-								<Typography variant='h6'>
+								<Typography variant='p'>
 									There are no reviews yet for <strong>{book?.name}</strong>
 								</Typography>
 							)}
