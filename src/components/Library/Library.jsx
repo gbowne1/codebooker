@@ -518,7 +518,7 @@ export default function Library({filter}) {
 								<TableSortLabel
 									active={true}
 									direction={
-										sortingColumn === 'title' && sortOrder ? 'dsc' : 'asc'
+										sortingColumn === 'title' && sortOrder ? 'desc' : 'asc'
 									}
 									onClick={() => {
 										setSortOrder(!sortOrder);
@@ -532,7 +532,7 @@ export default function Library({filter}) {
 								<TableSortLabel
 									active={true}
 									direction={
-										sortingColumn === 'author' && sortOrder ? 'dsc' : 'asc'
+										sortingColumn === 'author' && sortOrder ? 'desc' : 'asc'
 									}
 									onClick={() => {
 										setSortOrder(!sortOrder);
@@ -547,7 +547,7 @@ export default function Library({filter}) {
 								<TableSortLabel
 									active={true}
 									direction={
-										sortingColumn === 'category' && sortOrder ? 'dsc' : 'asc'
+										sortingColumn === 'category' && sortOrder ? 'desc' : 'asc'
 									}
 									onClick={() => {
 										setSortOrder(!sortOrder);
@@ -562,7 +562,7 @@ export default function Library({filter}) {
 								<TableSortLabel
 									active={true}
 									direction={
-										sortingColumn === 'publisher' && sortOrder ? 'dsc' : 'asc'
+										sortingColumn === 'publisher' && sortOrder ? 'desc' : 'asc'
 									}
 									onClick={() => {
 										setSortOrder(!sortOrder);
@@ -577,7 +577,7 @@ export default function Library({filter}) {
 								<TableSortLabel
 									active={true}
 									direction={
-										sortingColumn === 'isbn' && sortOrder ? 'dsc' : 'asc'
+										sortingColumn === 'isbn' && sortOrder ? 'desc' : 'asc'
 									}
 									onClick={() => {
 										setSortOrder(!sortOrder);
@@ -592,7 +592,7 @@ export default function Library({filter}) {
 								<TableSortLabel
 									active={true}
 									direction={
-										sortingColumn === 'year' && sortOrder ? 'dsc' : 'asc'
+										sortingColumn === 'year' && sortOrder ? 'desc' : 'asc'
 									}
 									onClick={() => {
 										setSortOrder(!sortOrder);
@@ -606,7 +606,7 @@ export default function Library({filter}) {
 								<TableSortLabel
 									active={true}
 									direction={
-										sortingColumn === 'edition' && sortOrder ? 'dsc' : 'asc'
+										sortingColumn === 'edition' && sortOrder ? 'desc' : 'asc'
 									}
 									onClick={() => {
 										setSortOrder(!sortOrder);
