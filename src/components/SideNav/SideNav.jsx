@@ -51,6 +51,8 @@ export default function SideNav({setfilter}) {
   }
 
   const languages=["Python","C", "C++", "Assembly", "C#", "JavaScript", "Perl", "PHP", "Typescript"];
+  const frameworks = ["React", "Angular", "Vue", "Next", "Nuxt"];
+  const devOps = ["Microsoft", "i.e", ".NET", "Azure"];
 
   return (
     <Fragment>
@@ -160,20 +162,28 @@ export default function SideNav({setfilter}) {
                 />
                 <Collapse in={isItemExpanded.libs} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
-                    <MenuButton
-                      buttonProps={{ sx: { pl: 7 },
-                      onClick:()=>{setFilter("React, Angular, Vue, Next, Nuxt, etc.")} }}
-                      label="React, Angular, Vue, Next, Nuxt, etc."
-                      name="frontlibs"
-                      icon={<CodeIcon />}
-                    />
-                    <MenuButton
-                      buttonProps={{ sx: { pl: 7 },
-                      onClick:()=>{setFilter("Microsoft, i.e, .NET, Azure")} }}
-                      label="Microsoft, i.e, .NET, Azure"
-                      name="backlibs"
-                      icon={<CodeIcon />}
-                    />
+
+                  {frameworks && frameworks.map((ele, index)=>
+                      <MenuButton
+                        key={index}
+                        buttonProps={{ sx: { pl: 7 },
+                        onClick:()=>{setFilter(ele)} }}
+                        label={ele}
+                        name="languagelist"
+                        icon={<CodeIcon />}
+                      />
+                      )}
+                  {devOps && devOps.map((ele, index)=>
+                      <MenuButton
+                        key={index}
+                        buttonProps={{ sx: { pl: 7 },
+                        onClick:()=>{setFilter(ele)} }}
+                        label={ele}
+                        name="languagelist"
+                        icon={<CodeIcon />}
+                      />
+                      )}
+                    
                   </List>
                 </Collapse>
                 <MenuButton
