@@ -9,6 +9,7 @@ const cors=require("cors")
 
 //routes
 const userRoutes = require('./routes/userRoutes')
+const booksRoutes = require('./routes/booksRoutes')
 
 //initilizing
 dotenv.config()
@@ -29,11 +30,20 @@ mongoose.connect(process.env.MONGO_DB).then(() => {
 
 //default route
 app.get('/api/',(req,res)=>{
-    res.send("Backend Server Up")    ;
+    res.send("Backend Server Up");
 })
 
 //routes for user
 app.use('/api/user', userRoutes)
+
+//routes for books
+app.use('/api/books', booksRoutes)
+
+
+
+app.use('/api/*', (req,res)=>{
+    res.send("404 No routes found");
+})
 
 
 //listening port
