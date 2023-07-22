@@ -10,6 +10,7 @@ const cors=require("cors")
 //routes
 const userRoutes = require('./routes/userRoutes')
 const booksRoutes = require('./routes/booksRoutes')
+const reviewRoutes = require('./routes/reviewRoutes')
 
 //initilizing
 dotenv.config()
@@ -39,6 +40,8 @@ app.use('/api/user', userRoutes)
 //routes for books
 app.use('/api/books', booksRoutes)
 
+//routes for review
+app.use('/api/review', reviewRoutes)
 
 
 app.use('/api/*', (req,res)=>{
