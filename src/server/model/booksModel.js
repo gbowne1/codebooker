@@ -6,10 +6,10 @@ const bookSchema = new mongoose.Schema({
   description: { type: String },
   publisher: { type: String },
   rating: { type: Number },
-  ISBN: { type: Number, unique:  true },
+  ISBN: { type: Number, unique: true },
   edition: { type: Number },
   reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Review' }],
-  createdAt:{type:Date,default:Date.now}
+  createdAt: { type: Date, default: Date.now },
 });
 
 const Book = mongoose.model('Book', bookSchema);

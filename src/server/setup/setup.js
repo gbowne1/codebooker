@@ -1,8 +1,8 @@
-require('dotenv').config({ path: "../.env" });
-const bcrypt=require("bcryptjs")
+require('dotenv').config({ path: '../.env' });
+const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGO_DB);
-console.log( __dirname + '')
+console.log(__dirname + '');
 mongoose.Promise = global.Promise; // Tell Mongoose to use ES6 promises
 
 async function createUser() {
