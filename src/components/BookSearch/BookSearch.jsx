@@ -1,11 +1,27 @@
-import React from 'react';
-import './BookSearch.css';
+import React from "react";
+import "./BookSearch.css";
+import SearchIcon from "@mui/icons-material/Search";
+import PopperPopupState from "../SearchPopup/PopupState";
 
-function SearchWindow({filter, setFilter}) {
+function SearchWindow({ matches, filter, setFilter, isDarkMode }) {
   return (
     <div className="search-window">
-      <input type="text" placeholder="Search..." className="search-input" value={filter} onChange={(e) => setFilter(e.target.value)}/>
-      {/* <button className="search-button">Search</button> */}
+      {matches ? (
+        <PopperPopupState
+          isDarkMode={isDarkMode}
+          filter={filter}
+          setFilter={setFilter}
+          matches={matches}
+        />
+      ) : (
+        <input
+          type="text"
+          placeholder="Search..."
+          className={`search-input ${matches ? "small" : ""}`}
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+        />
+      )}
     </div>
   );
 }
