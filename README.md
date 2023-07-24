@@ -24,11 +24,11 @@ Bootstrapped with Create-React-App v5 aka react-scripts using `npx create-react-
 
 If you would like to contribute to this repository, please read our [Contributing](https://github.com/gbowne1/codebooker/blob/master/CONTRIBUTING.md) document. We welcome your pull requests here.
 
-This project is built from community contributions and community driven design. Submit a PR with your design for review along with a screenshot and we will look at it for possible merge. We have found that this process works the best.  Community members can also help imporove the design through issues and Pull Requests, see the contributing document.
+This project is built from community contributions and community driven design. Submit a PR with your design for review along with a screenshot and we will look at it for possible merge. We have found that this process works the best. Community members can also help imporove the design through issues and Pull Requests, see the contributing document.
 
-We recommend using this with Node 18.15.0, be sure and let us know.  We do not recommend using any other versions that are not currently on LTS.
+We recommend using this with Node 18.15.0, be sure and let us know. We do not recommend using any other versions that are not currently on LTS.
 
-You should already be familiar with React 17 and or 18, JavaScript ES5/ES6/ES7 and JSX.  If you are not there are several tutorials we recommend using before you get started with. To learn React, go here: <https://www.freecodecamp.org/news/free-react-course-2022/>
+You should already be familiar with React 17 and or 18, JavaScript ES5/ES6/ES7 and JSX. If you are not there are several tutorials we recommend using before you get started with. To learn React, go here: <https://www.freecodecamp.org/news/free-react-course-2022/>
 
 The backend of this project is currently under construction so please use the Create React App development server by running`npm start` inside the root of the project folder after installing with `npm i` or `npm install`.
 

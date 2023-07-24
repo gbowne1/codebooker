@@ -6,9 +6,9 @@
     /* padding-right: 20px; */
     margin-left: 15px;
     /* background-color: #f0f0f0; */
-  }
-  
-  .settings-sidebar {
+}
+
+.settings-sidebar {
     position: fixed;
     top: 0;
     right: -200px;
@@ -19,9 +19,8 @@
     background-color: #1976d2;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-out;
-  }
-  
-  .settings-sidebar.open {
+}
+
+.settings-sidebar.open {
     transform: translateX(-200px);
-  }
-  
+}

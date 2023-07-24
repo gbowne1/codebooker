@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Added
 
-- Initial Commit
+-   Initial Commit
 
 ### Fixed
 
@@ -19,12 +19,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 # [0.0.1] - 2023-04-09
 
-- Initial Commit
+-   Initial Commit
 
 ## Added
 
-- Initial Commit
-- Adding initial files and components.
+-   Initial Commit
+-   Adding initial files and components.
 
 ## Fixed
 

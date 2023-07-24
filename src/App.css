@@ -1,24 +1,25 @@
 .App {
-  
 }
 .search-window {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: background-color 0.3s, color 0.3s;
+    transition:
+        background-color 0.3s,
+        color 0.3s;
     padding: 0px 10px;
-  }
-  
-  .light {
+}
+
+.light {
     background-color: #f5f5f5;
     color: #333;
-  }
-  
-  .dark {
+}
+
+.dark {
     background-color: #333;
     color: #f5f5f5;
-  }
-  
-  .AppBar{
-    height:60px;
-  }
+}
+
+.AppBar {
+    height: 60px;
+}
