@@ -14,26 +14,25 @@ const reviewRoutes = require('./routes/reviewRoutes');
 // initilizing
 dotenv.config();
 const app = express();
-app
-  .use(express.json({ extended: true }))
-  .use(express.urlencoded({ extended: true }))
-  .use(cors())
-  .use(bodyParser.json())
-  .use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json({ extended: true }))
+    .use(express.urlencoded({ extended: true }))
+    .use(cors())
+    .use(bodyParser.json())
+    .use(bodyParser.urlencoded({ extended: true }));
 
 // db connection
 mongoose
-  .connect(process.env.MONGO_DB)
-  .then(() => {
-    console.log('Db connection open');
-  })
-  .catch((err) => {
-    console.log(err.message, 'oops err');
-  });
+    .connect(process.env.MONGO_DB)
+    .then(() => {
+        console.log('Db connection open');
+    })
+    .catch((err) => {
+        console.log(err.message, 'oops err');
+    });
 
 // default route
 app.get('/api/', (req, res) => {
-  res.send('Backend Server Up');
+    res.send('Backend Server Up');
 });
 
 // routes for user
@@ -46,12 +45,12 @@ app.use('/api/books', booksRoutes);
 app.use('/api/review', reviewRoutes);
 
 app.use('/api/*', (req, res) => {
-  res.send('404 No routes found');
+    res.send('404 No routes found');
 });
 
 // listening port
 // port
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
-  console.log(`Server is running at Port ${PORT}`);
+    console.log(`Server is running at Port ${PORT}`);
 });
