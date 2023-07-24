@@ -13,6 +13,7 @@ module.exports = {
         'plugin:prettier/recommended',
         'react-app',
         'react-app/jest',
+        'eslint:recommended',
     ],
     overrides: [
         {
