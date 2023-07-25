@@ -1,6 +1,6 @@
 import React from 'react';
 import './BookSearch.css';
-import SearchIcon from '@mui/icons-material/Search';
+import PropTypes from 'prop-types';
 import PopperPopupState from '../SearchPopup/PopupState';
 
 function SearchWindow({ matches, filter, setFilter, isDarkMode }) {
@@ -25,5 +25,12 @@ function SearchWindow({ matches, filter, setFilter, isDarkMode }) {
         </div>
     );
 }
+
+SearchWindow.propTypes = {
+    matches: PropTypes.bool,
+    filter: PropTypes.string,
+    setFilter: PropTypes.func,
+    isDarkMode: PropTypes.bool,
+};
 
 export default SearchWindow;
