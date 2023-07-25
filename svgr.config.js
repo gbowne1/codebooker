@@ -1,5 +1,5 @@
 // .svgrrc.js
 module.exports = {
-  icon: true,
-  expandProps: false,
+    icon: true,
+    expandProps: false,
 };
