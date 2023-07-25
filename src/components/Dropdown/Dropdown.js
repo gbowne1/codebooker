@@ -17,8 +17,8 @@ import MessageIcon from '@mui/icons-material/Message';
 export default function Dropdown() {
     const [anchorEl, setAnchorEl] = useState(null);
     const [loggedIn, setLoggedIn] = useState(true); // Change the state name to 'loggedIn'
-	const open = Boolean(anchorEl);
-	const navigate = useNavigate();
+    const open = Boolean(anchorEl);
+    const navigate = useNavigate();
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -29,10 +29,10 @@ export default function Dropdown() {
     };
 
     const handleAccount = () => {
-		setLoggedIn(!loggedIn); // Toggle the loggedIn state
-		if (!loggedIn) {
-			navigate('/login'); // Navigate to the login route
-		}
+        setLoggedIn(!loggedIn); // Toggle the loggedIn state
+        if (!loggedIn) {
+            navigate('/login'); // Navigate to the login route
+        }
     };
 
     return (
