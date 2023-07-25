@@ -1,38 +1,18 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { orderBy } from 'lodash';
-import { alpha } from '@mui/material/styles';
-import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Collapse from '@mui/material/Collapse';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-import TableFooter from '@mui/material/TableFooter';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import TablePagination from '@mui/material/TablePagination';
 import StarIcon from '@mui/icons-material/Star';
 import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
-import FirstPageIcon from '@mui/icons-material/FirstPage';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import LastPageIcon from '@mui/icons-material/LastPage';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import TableSortLabel from '@mui/material/TableSortLabel';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Checkbox from '@mui/material/Checkbox';
-import Tooltip from '@mui/material/Tooltip';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
-import DeleteIcon from '@mui/icons-material/Delete';
-import FilterListIcon from '@mui/icons-material/FilterList';
-import { visuallyHidden } from '@mui/utils';
-
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import Dialog from '@mui/material/Dialog';
@@ -46,7 +26,7 @@ import Classes from './Library.module.css';
 import rows from './data.json';
 import { Button, Modal, TextField } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
+import Snackbar from '@mui/material/Snackbar';
 import ISBN from 'isbn-validate';
 import { Rating } from 'react-simple-star-rating';
 // function createData(name, calories, fat, carbs, protein) {
@@ -386,7 +366,7 @@ export default function Library({ filter }) {
                             {book?.reviews?.length > 0 ? (
                                 book?.reviews?.map((item, index) => {
                                     return (
-                                        <div>
+                                        <div key={index}>
                                             {starGenerator(item?.starRating)}
                                             <Typography
                                                 key={index}
@@ -777,3 +757,7 @@ export default function Library({ filter }) {
         </>
     );
 }
+
+Library.propTypes = {
+    filter: PropTypes.string,
+};

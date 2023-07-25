@@ -1,4 +1,5 @@
 import { useCallback, useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 function BookDetails({ bookId }) {
     const [bookDetails, setBookDetails] = useState(null);
@@ -6,7 +7,7 @@ function BookDetails({ bookId }) {
     const getBookDetails = useCallback(async () => {
         try {
             // make API call to fetch book details
-            const response = await fetch(`/api/books/\${bookId}`);
+            const response = await fetch(`/api/books/${bookId}`);
             const data = await response.json();
             // set book details in state
             setBookDetails(data);
@@ -37,4 +38,7 @@ function BookDetails({ bookId }) {
     );
 }
 
+BookDetails.propTypes = {
+    bookId: PropTypes.number,
+};
 export default BookDetails;

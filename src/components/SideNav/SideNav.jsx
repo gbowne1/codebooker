@@ -12,10 +12,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
 import BookIcon from '@mui/icons-material/Book';
 import CategoryIcon from '@mui/icons-material/Category';
-import SchoolIcon from '@mui/icons-material/School';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import PsychologyIcon from '@mui/icons-material/Psychology';
 import WebIcon from '@mui/icons-material/Web';
 import LayersIcon from '@mui/icons-material/Layers';
 import DesignServicesIcon from '@mui/icons-material/DesignServices';
@@ -23,6 +21,7 @@ import CodeIcon from '@mui/icons-material/Code';
 import DataObjectIcon from '@mui/icons-material/DataObject';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import BugReportIcon from '@mui/icons-material/BugReport';
+import PropTypes from 'prop-types';
 
 export default function SideNav({ setfilter }) {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -46,6 +45,17 @@ export default function SideNav({ setfilter }) {
                 (isItemExpanded[label] ? <ExpandMore /> : <ExpandLess />)}
         </ListItemButton>
     );
+
+    MenuButton.propTypes = {
+        buttonProps: PropTypes.shape({
+            onClick: PropTypes.func,
+        }),
+        name: PropTypes.string,
+        label: PropTypes.string,
+        icon: PropTypes.object,
+        expandable: PropTypes.bool,
+    };
+
     const setFilter = (val) => {
         setIsDrawerOpen(false);
         setfilter(val);
@@ -246,3 +256,7 @@ export default function SideNav({ setfilter }) {
         </Fragment>
     );
 }
+
+SideNav.propTypes = {
+    setfilter: PropTypes.func,
+};

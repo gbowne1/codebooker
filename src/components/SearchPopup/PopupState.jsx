@@ -1,14 +1,11 @@
 import * as React from 'react';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import Popper from '@mui/material/Popper';
 import PopupState, { bindToggle, bindPopper } from 'material-ui-popup-state';
 import Fade from '@mui/material/Fade';
 import Paper from '@mui/material/Paper';
 import SearchIcon from '@mui/icons-material/Search';
-import { size } from 'lodash';
-import { Fullscreen } from '@mui/icons-material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import PropTypes from 'prop-types';
 
 export default function PopperPopupState({
     isDarkMode,
@@ -80,3 +77,10 @@ export default function PopperPopupState({
         </PopupState>
     );
 }
+
+PopperPopupState.propTypes = {
+    matches: PropTypes.bool,
+    filter: PropTypes.string,
+    setFilter: PropTypes.func,
+    isDarkMode: PropTypes.bool,
+};
