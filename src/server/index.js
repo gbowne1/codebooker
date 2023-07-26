@@ -5,11 +5,22 @@ const mongoose = require('mongoose');
 const path = require('path');
 const dotenv = require('dotenv');
 const cors = require('cors');
+const passport = require('passport');
+const session = require('express-session');
 
 // routes
 const userRoutes = require('./routes/userRoutes');
 const booksRoutes = require('./routes/booksRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
+
+//models
+const User = require('./model/userModel');
+
+const sessionConfig = {
+    secret: 'keyboard cat',
+    resave: false, // don't save session if unmodified
+    saveUninitialized: false, // don't create session until something stored
+};
 
 // initilizing
 dotenv.config();
@@ -18,7 +29,9 @@ app.use(express.json({ extended: true }))
     .use(express.urlencoded({ extended: true }))
     .use(cors())
     .use(bodyParser.json())
-    .use(bodyParser.urlencoded({ extended: true }));
+    .use(bodyParser.urlencoded({ extended: true }))
+    .use(session(sessionConfig))
+    .use(passport.session());
 
 // db connection
 mongoose
