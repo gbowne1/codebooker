@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
@@ -8,25 +9,32 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Settings from '@mui/icons-material/Settings';
-import Logout from '@mui/icons-material/Logout';
+import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
 import HelpIcon from '@mui/icons-material/Help';
 import MessageIcon from '@mui/icons-material/Message';
 
 export default function Dropdown() {
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const [logIn, setLogIn] = React.useState(true);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [loggedIn, setLoggedIn] = useState(true); // Change the state name to 'loggedIn'
     const open = Boolean(anchorEl);
+    const navigate = useNavigate();
+
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
+
     const handleClose = () => {
         setAnchorEl(null);
     };
 
     const handleAccount = () => {
-        logIn ? setLogIn(false) : setLogIn(true);
+        setLoggedIn(!loggedIn); // Toggle the loggedIn state
+        if (!loggedIn) {
+            navigate('/login'); // Navigate to the login route
+        }
     };
+
     return (
         <React.Fragment>
             <Box
@@ -98,10 +106,10 @@ export default function Dropdown() {
                     </ListItemIcon>
                     Settings
                 </MenuItem>
-                {logIn ? (
+                {loggedIn ? ( // Use the 'loggedIn' state to conditionally render the Logout/Login menu item
                     <MenuItem onClick={handleAccount}>
                         <ListItemIcon>
-                            <Logout fontSize='small' />
+                            <LogoutIcon fontSize='small' />
                         </ListItemIcon>
                         Logout
                     </MenuItem>
