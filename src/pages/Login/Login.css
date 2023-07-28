@@ -1,0 +1,42 @@
+.login-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Roboto', 'Open Sans', sans-serif;
+}
+
+.MuiFormControl-root {
+    margin-bottom: 15px;
+    /* Adjust margin between the fields */
+}
+
+.MuiInputBase-input {
+    font-family: 'Roboto', 'Open Sans', sans-serif;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    /* Adjust margin between the checkbox and the label */
+}
+
+.forgot-password {
+    margin-bottom: 5px;
+    /* Adjust margin below the "Forgot Password" link */
+}
+
+.login-button {
+    /* Adjust margin above the login button */
+    background-color: #1976d2;
+    /* Set primary color */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
