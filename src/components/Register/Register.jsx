@@ -55,6 +55,8 @@ const Register = () => {
             <TextField
                 label='Password'
                 type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 InputProps={{
                     endAdornment: (
                         <IconButton onClick={handleTogglePasswordVisibility}>
@@ -66,6 +68,8 @@ const Register = () => {
             <TextField
                 label='Confirm Password'
                 type={showConfirmPassword ? 'text' : 'password'}
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
                 InputProps={{
                     endAdornment: (
                         <IconButton

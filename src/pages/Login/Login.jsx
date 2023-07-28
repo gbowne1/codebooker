@@ -7,7 +7,7 @@ import {
     Typography,
 } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Login.css';
 
 function Login() {
@@ -75,11 +75,8 @@ function Login() {
                 Log In
             </button>
             <Typography variant='body2'>
-                Don't have an account? Please{' '}
-                <Link component={RouterLink} to='/register'>
-                    register here
-                </Link>
-                .
+                Don&apos;t have an account? Please{' '}
+                <Link to='/register'>register here</Link>
             </Typography>
         </div>
     );
