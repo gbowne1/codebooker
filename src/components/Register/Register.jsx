@@ -50,8 +50,17 @@ const Register = () => {
 
     return (
         <Container maxWidth='xs' className='register-container'>
-            <TextField label='Username' />
-            <TextField label='Email' type='email' />
+            <TextField
+                label='Username'
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+            />
+            <TextField
+                label='Email'
+                type='email'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+            />
             <TextField
                 label='Password'
                 type={showPassword ? 'text' : 'password'}
