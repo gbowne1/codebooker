@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { IconButton, InputAdornment, TextField } from '@mui/material';
+import {
+    IconButton,
+    InputAdornment,
+    TextField,
+    Typography,
+} from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
+import './Login.css';
 
 function Login() {
     const [usernameOrEmail, setUsernameOrEmail] = useState('');
@@ -17,7 +24,7 @@ function Login() {
                 rememberMe,
             });
             if (response.status === 200) {
-                window.location.href = '/'; // Redirect to the desired page
+                window.location.href = 'http://localhost:3000/home'; // Redirect to the desired page
             }
         } catch (error) {
             console.error(error);
@@ -25,7 +32,7 @@ function Login() {
     };
 
     return (
-        <div>
+        <div className='login-wrapper'>
             <TextField
                 label='Username or Email'
                 value={usernameOrEmail}
@@ -53,16 +60,24 @@ function Login() {
                     ),
                 }}
             />
-            <label>
+            <div className='checkbox-wrapper'>
                 <input
                     type='checkbox'
                     checked={rememberMe}
                     onChange={(e) => setRememberMe(e.target.checked)}
                 />
-                Remember Me
-            </label>
-            <a href='/forgot-password'>Forgot Password</a>
-            <button onClick={handleLogin}>Log In</button>
+                <label>Remember Me</label>
+            </div>
+            <a href='/forgot-password' className='forgot-password'>
+                Forgot Password
+            </a>
+            <button onClick={handleLogin} className='login-button'>
+                Log In
+            </button>
+            <Typography variant='body2'>
+                Don&apos;t have an account? Please{' '}
+                <Link to='/register'>register here</Link>
+            </Typography>
         </div>
     );
 }
