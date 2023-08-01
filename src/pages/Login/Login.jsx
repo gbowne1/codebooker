@@ -18,13 +18,24 @@ function Login() {
 
     const handleLogin = async () => {
         try {
-            const response = await axios.post('/api/login', {
-                usernameOrEmail,
-                password,
-                rememberMe,
-            });
-            if (response.status === 200) {
-                window.location.href = 'http://localhost:3000/home'; // Redirect to the desired page
+            const response = await axios.post(
+                'http://localhost:3001/api/user/login',
+                {
+                    username: usernameOrEmail,
+                    password,
+                    rememberMe,
+                }
+            );
+            if (response.status == 200) {
+                localStorage.setItem(
+                    'token',
+                    JSON.stringify(response.data.token)
+                );
+                localStorage.setItem(
+                    'user',
+                    JSON.stringify(response.data.user)
+                );
+                window.location.href = 'http://localhost:3000/'; // Redirect to the desired page
             }
         } catch (error) {
             console.error(error);

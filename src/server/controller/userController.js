@@ -2,6 +2,7 @@ const User = require('../model/userModel');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+var jwt = require('jsonwebtoken');
 
 //session passport
 passport.use(
@@ -14,7 +15,6 @@ passport.use(
                 ],
             });
             if (!user) {
-                console.log('on no user');
                 return done(null, false, {
                     message: 'Incorrect username or email.',
                 });
@@ -50,17 +50,17 @@ module.exports.signup = async (req, res) => {
             $or: [{ username: username }, { email: email }],
         });
         if (existinguser) {
-            return res.status(400).json('User already found..');
+            return res.status(400).json({
+                message:
+                    'User already found Try to provide different username/email...',
+            });
         }
         const hashPassword = await bcrypt.hash(password, 12);
         const newUser = new User({ email, username, password: hashPassword });
         await newUser.save();
-        req.login(newUser, (err) => {
-            if (err) res.status(500).json({ message: err });
-            res.status(200).json({
-                message: 'Successfully Created',
-                user: newUser,
-            });
+        res.status(200).json({
+            message: 'Successfully Created',
+            user: newUser,
         });
     } catch (err) {
         console.log(err.message);
@@ -68,12 +68,33 @@ module.exports.signup = async (req, res) => {
     }
 };
 
-module.exports.login = async (req, res) => {
-    res.status(200).json(req.user);
+module.exports.login = async (req, res, next) => {
+    let token = '';
+    passport.authenticate('local', (err, user, info) => {
+        if (err) {
+            return res.status(500).json({ message: err.message });
+        }
+        if (!user) {
+            return res.status(404).json(info);
+        }
+
+        req.logIn(user, (err) => {
+            if (err) {
+                return next(err);
+            }
+            if (req.body.rememberMe)
+                token = jwt.sign(
+                    { email: user.email, id: user._id },
+                    'codebooker',
+                    { expiresIn: '48h' }
+                );
+            return res.status(200).json({ user: req.user, token: token });
+        });
+    })(req, res, next);
 };
 
 module.exports.logout = async (req, res) => {
-    req.logout(function (err) {
+    req.logout((err) => {
         if (err) {
             return res.status(500).json(err);
         }
