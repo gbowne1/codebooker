@@ -10,6 +10,7 @@ async function createUser() {
         const User = require('../model/userModel');
         const passwordHash = await bcrypt.hash('test', 12);
         await new User({
+            username: 'test',
             email: 'test@gmail.com',
             password: passwordHash,
         }).save();
