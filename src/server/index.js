@@ -63,7 +63,7 @@ app.use('/api/*', (req, res) => {
 
 // listening port
 // port
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`Server is running at Port ${PORT}`);
 });

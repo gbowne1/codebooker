@@ -33,11 +33,14 @@ const Register = () => {
 
     const handleRegister = async () => {
         try {
-            const response = await axios.post('/api/register', {
-                username,
-                email,
-                password,
-            });
+            const response = await axios.post(
+                'http://localhost:3001/api/user/register',
+                {
+                    username,
+                    email,
+                    password,
+                }
+            );
             if (response.status === 200) {
                 // Registration successful, redirect to login page or desired location
                 window.location.href = '/login';
