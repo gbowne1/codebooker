@@ -3,40 +3,54 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 1.5rem;
     height: 100vh;
     font-family: 'Roboto', 'Open Sans', sans-serif;
 }
 
-.MuiFormControl-root {
-    margin-bottom: 15px;
-    /* Adjust margin between the fields */
+.login-wrapper-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
+.login-wrapper-input {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 35%;
+}
+
+
 
 .MuiInputBase-input {
     font-family: 'Roboto', 'Open Sans', sans-serif;
-    margin-top: 15px;
-    margin-bottom: 15px;
 }
 
-.checkbox-wrapper {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
-    /* Adjust margin between the checkbox and the label */
+
+.checkbox-wrapper input {
+    margin-right: .5rem;
 }
 
-.forgot-password {
-    margin-bottom: 5px;
-    /* Adjust margin below the "Forgot Password" link */
-}
+
 
 .login-button {
-    /* Adjust margin above the login button */
     background-color: #1976d2;
-    /* Set primary color */
     color: #fff;
-    padding: 10px 20px;
+    padding: .5rem 1.25rem;
     border: none;
-    border-radius: 4px;
+    font-weight: 700;
+    font-size: 1.25rem;
+    border-radius: .25rem;
     cursor: pointer;
+    width: 35%;
+}
+
+.login-wrapper-forgot-register {
+    display: flex;
+    width: 35%;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
 }
