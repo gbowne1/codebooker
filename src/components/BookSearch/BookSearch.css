@@ -11,16 +11,24 @@
     padding: 0.563rem;
     font-size: 0.875rem;
     border: none;
+    border-radius: 0.5rem;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin-right: 10px;
     letter-spacing: 0.5px;
+
+    &:focus,
+    &:active,
+    &:hover {
+        box-shadow: 2px 4px 16px rgba(28, 32, 36, 0.6);
+    }
 }
+
 .search-input:focus {
     outline: none;
 }
 
 .search-button {
-    background-color: #0062cc;
+    background-color: rgb(0, 98, 204);
     color: #fff;
     border: none;
     padding: 0.563rem;
