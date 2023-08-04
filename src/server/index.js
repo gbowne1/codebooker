@@ -2,7 +2,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const path = require('path');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const passport = require('passport');
@@ -12,9 +11,6 @@ const session = require('express-session');
 const userRoutes = require('./routes/userRoutes');
 const booksRoutes = require('./routes/booksRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
-
-//models
-const User = require('./model/userModel');
 
 const sessionConfig = {
     secret: 'keyboard cat',

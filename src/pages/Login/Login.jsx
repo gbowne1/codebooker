@@ -26,7 +26,7 @@ function Login() {
                     rememberMe,
                 }
             );
-            if (response.status == 200) {
+            if (response.status === 200) {
                 localStorage.setItem(
                     'token',
                     JSON.stringify(response.data.token)

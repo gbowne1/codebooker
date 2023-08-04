@@ -5,15 +5,18 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Login from './pages/Login/Login';
 import Profile from './pages/Profile/Profile';
 import Register from './components/Register/Register';
+import UserAuthenticated from './ProtectedRoute';
 
 export default function App() {
     return (
         <Router>
             <Routes>
-                <Route path='/' element={<Home />} />
+                <Route element={<UserAuthenticated />}>
+                    <Route path='/' element={<Home />} />
+                    <Route path='/profile/:uid' element={<Profile />} />
+                </Route>
                 <Route path='/login' element={<Login />} />
                 <Route path='/register' element={<Register />} />
-                <Route path='/profile/:uid' element={<Profile />} />
             </Routes>
         </Router>
     );

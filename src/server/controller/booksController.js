@@ -11,8 +11,7 @@ module.exports.getAllBooks = async (req, res) => {
 };
 
 module.exports.newBook = async (req, res) => {
-    const { title, author, category, publisher, ISBN, description, edition } =
-        req.body;
+    const { title, author, publisher, ISBN, description, edition } = req.body;
 
     try {
         const book = new Book({
