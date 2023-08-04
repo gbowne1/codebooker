@@ -211,7 +211,7 @@ export default function Library({ filter }) {
                         { starRating: rating, textReview: bookReview },
                     ],
                 };
-            } else if (book.name !== bookName) {
+            } else {
                 return { ...book };
             }
         });

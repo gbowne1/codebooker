@@ -82,12 +82,19 @@ module.exports.login = async (req, res, next) => {
             if (err) {
                 return next(err);
             }
-            if (req.body.rememberMe)
+            if (req.body.rememberMe) {
                 token = jwt.sign(
                     { email: user.email, id: user._id },
                     'codebooker',
                     { expiresIn: '48h' }
                 );
+            } else {
+                token = jwt.sign(
+                    { email: user.email, id: user._id },
+                    'codebooker',
+                    { expiresIn: '15m' } //15min
+                );
+            }
             return res.status(200).json({ user: req.user, token: token });
         });
     })(req, res, next);
