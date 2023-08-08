@@ -7,7 +7,7 @@ const UserAuthenticated = () => {
     console.log(decodedToken);
     // const user = JSON.parse(localStorage.getItem('user'));
     let isloggedin = false;
-    if (token.length !== 0) {
+    if (token && token.length !== 0) {
         isloggedin = !isExpired;
     }
     return <div>{isloggedin ? <Outlet /> : <Navigate to='/login' />}</div>;
