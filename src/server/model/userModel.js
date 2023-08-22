@@ -21,11 +21,6 @@ const userSchema = new Schema({
         type: Date,
         default: Date.now,
     },
-
-    resetPasswordToken: {
-        type: String,
-        required: true,
-    },
 });
 
 userSchema.plugin(passportLocalMongoose);
