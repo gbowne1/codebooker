@@ -43,6 +43,7 @@ const ResetPassword = () => {
             setLoading(true);
             if (password !== confirmPassword) {
                 console.log('Incorrect password');
+                setLoading(false);
                 return;
             }
 
