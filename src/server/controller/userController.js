@@ -2,9 +2,9 @@ const User = require('../model/userModel');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const nodemailer = require('nodemailer');
-
 const LocalStrategy = require('passport-local').Strategy;
 const jwt = require('jsonwebtoken');
+const Token = require('../model/tokenModel');
 
 //session passport
 passport.use(
@@ -122,34 +122,44 @@ module.exports.forgotPassword = async (req, res) => {
             });
         }
 
-        // Checks if resetPasswordToken exist in existinguser collection, delete it.
-        if (existinguser.resetPasswordToken) {
-            await User.updateOne(
-                { _id: existinguser._id },
-                { $unset: { resetPasswordToken: 1 } }
-            );
+        // delete token if it exist in db
+        const existingToken = await Token.findOne({userId:existinguser._id});
+
+        if(existingToken){
+            await existingToken.deleteOne();
+            console.log("found");
         }
-        // Create new token
+
+        // Create new reset token
         const resetToken = jwt.sign(
             { id: existinguser._id },
             'codebooker',
             { expiresIn: '30m' } //30min
         );
 
-    
-        //Update existing user collection with new reset token
-        await User.updateOne(
-            { _id: existinguser._id },
-            { $set: { resetPasswordToken: resetToken } }
-        );
+
+        // get token expiration time
+        const expiresIn = new Date(Date.now() + 30 * 60 * 1000);
+
+        // Save token to db
+       const newToken = new Token({
+            userId:existinguser._id,
+            token:resetToken,
+            created_on:Date.now(),
+            expires_in: expiresIn,
+        });
+
+        await newToken.save();
+
 
         // URL link
         const resetLink = `http://localhost:3000/reset-password/${resetToken}`;
-        
+
         // message to send user via nodemailer
         const message = `
             <h2>Hello ${existinguser.username}</h2>
             <p>Please use the url below to reset your password</p>
+            <p>This reset link is valid for ${expiresIn} minutes</p>
 
             <a href=http://localhost:3000/reset-password/${resetToken}>${resetLink}</a>
             <p>Regards</p>
@@ -189,22 +199,27 @@ module.exports.resetPassword = async (req, res) => {
     const { token } = { ...req.params };
 
     try {
-        
-        //Find user with this token in DB
-        const userWithResetToken = await User.findOne({
-            resetPasswordToken: token,
+        //Find token in DB
+        const userToken = await Token.findOne({
+            token: token,
+            expires_in:{$gt:Date.now()}
         });
-    
-        if (!userWithResetToken) {
+
+
+        if (!userToken) {
             return res.status(401).json({
                 message: 'Token expired or invalid',
             });
         }
 
-        // Hash new password
+        // Find user with that specific token
+        const userWithToken = await User.findOne({_id:userToken.userId});
+
+        // hash new password
         const hashPassword = await bcrypt.hash(password, 12);
-        userWithResetToken.password = hashPassword;
-        await userWithResetToken.save();
+        // update password & save
+        userWithToken.password = hashPassword;
+        await userWithToken.save();
 
         res.status(200).json({
             message: 'Password Reset Successful',
