@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+
 import {
     IconButton,
     InputAdornment,
@@ -9,7 +10,7 @@ import {
 import Avatar from '@mui/material/Avatar';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
 
 function Login() {
@@ -17,7 +18,7 @@ function Login() {
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [rememberMe, setRememberMe] = useState(false);
-
+    const navigate = useNavigate();
     const handleLogin = async () => {
         try {
             const response = await axios.post(
@@ -37,7 +38,7 @@ function Login() {
                     'user',
                     JSON.stringify(response.data.user)
                 );
-                window.location.href = 'http://localhost:3000/'; // Redirect to the desired page
+                navigate('/', { state: { loggin: 'true' } }); // Redirect to the desired page
             }
         } catch (error) {
             console.error(error);

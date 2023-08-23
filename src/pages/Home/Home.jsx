@@ -1,5 +1,5 @@
-import React from 'react';
-
+import React, { useEffect } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -13,7 +13,7 @@ import SideNav from '../../components/SideNav/SideNav';
 import BookSearch from '../../components/BookSearch/BookSearch';
 import Dropdown from '../../components/Dropdown/Dropdown';
 import useMediaQuery from '@mui/material/useMediaQuery';
-
+import { useLocation } from 'react-router';
 import './Home.css';
 
 const label = { inputProps: { 'aria-label': 'Color switch demo' } };
@@ -29,7 +29,6 @@ const lightTheme = createTheme({
         },
     },
 });
-
 const darkTheme = createTheme({
     palette: {
         mode: 'dark',
@@ -46,10 +45,17 @@ function Home() {
     const [isDarkMode, setIsDarkMode] = React.useState(false);
 
     const [filter, setFilter] = React.useState('');
-
+    const location = useLocation();
     const handleToggleDarkMode = () => {
         setIsDarkMode(!isDarkMode);
     };
+    const notify = (username) => toast.success('Welcome! ' + username);
+
+    useEffect(() => {
+        if (location.state.loggin && localStorage.getItem('user')) {
+            notify(JSON.parse(localStorage.getItem('user')).username);
+        }
+    }, []);
 
     const matches = useMediaQuery('(max-width:700px)');
     return (
@@ -95,6 +101,7 @@ function Home() {
                 </Box>
                 <Library filter={filter} />
             </div>
+            <Toaster />
         </ThemeProvider>
     );
 }
