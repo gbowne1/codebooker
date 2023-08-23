@@ -1,8 +1,10 @@
 const User = require('../model/userModel');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+const nodemailer = require('nodemailer');
 const LocalStrategy = require('passport-local').Strategy;
-var jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
+const Token = require('../model/tokenModel');
 
 //session passport
 passport.use(
@@ -107,4 +109,123 @@ module.exports.logout = async (req, res) => {
         }
         res.status(200).json('Successfully Logged Out');
     });
+};
+module.exports.forgotPassword = async (req, res) => {
+    const { email } = { ...req.body };
+    try {
+        const existinguser = await User.findOne({ email });
+
+        if (!existinguser) {
+            return res.status(404).json({
+                message:
+                    'Failed to load resource: the server responded with a status of 404 (Not Found)',
+            });
+        }
+
+        // delete token if it exist in db
+        const existingToken = await Token.findOne({userId:existinguser._id});
+
+        if(existingToken){
+            await existingToken.deleteOne();
+            console.log("found");
+        }
+
+        // Create new reset token
+        const resetToken = jwt.sign(
+            { id: existinguser._id },
+            'codebooker',
+            { expiresIn: '30m' } //30min
+        );
+
+
+        // get token expiration time
+        const expiresIn = new Date(Date.now() + 30 * 60 * 1000);
+
+        // Save token to db
+       const newToken = new Token({
+            userId:existinguser._id,
+            token:resetToken,
+            created_on:Date.now(),
+            expires_in: expiresIn,
+        });
+
+        await newToken.save();
+
+
+        // URL link
+        const resetLink = `http://localhost:3000/reset-password/${resetToken}`;
+
+        // message to send user via nodemailer
+        const message = `
+            <h2>Hello ${existinguser.username}</h2>
+            <p>Please use the url below to reset your password</p>
+            <p>This reset link is valid for ${expiresIn} minutes</p>
+
+            <a href=http://localhost:3000/reset-password/${resetToken}>${resetLink}</a>
+            <p>Regards</p>
+            <p>CodeBooker Team</p>
+        `;
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: process.env.MAIL_USERNAME,
+                pass: process.env.MAIL_PASSWORD,
+            },
+        });
+
+        const mailOptions = {
+            from: process.env.MAIL_USERNAME,
+            to: email,
+            subject: 'Password Reset Link',
+            html: message,
+        };
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.log(error);
+            } else {
+                res.status(200).json('Email sent!');
+                console.log('Email sent: ' + info.response);
+            }
+        });
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).json('Something went wrong...');
+    }
+};
+
+module.exports.resetPassword = async (req, res) => {
+    const { password } = { ...req.body };
+    const { token } = { ...req.params };
+
+    try {
+        //Find token in DB
+        const userToken = await Token.findOne({
+            token: token,
+            expires_in:{$gt:Date.now()}
+        });
+
+
+        if (!userToken) {
+            return res.status(401).json({
+                message: 'Token expired or invalid',
+            });
+        }
+
+        // Find user with that specific token
+        const userWithToken = await User.findOne({_id:userToken.userId});
+
+        // hash new password
+        const hashPassword = await bcrypt.hash(password, 12);
+        // update password & save
+        userWithToken.password = hashPassword;
+        await userWithToken.save();
+
+        res.status(200).json({
+            message: 'Password Reset Successful',
+        });
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).json('Something went wrong...');
+    }
 };
