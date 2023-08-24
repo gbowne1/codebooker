@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
@@ -13,10 +14,11 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
 import HelpIcon from '@mui/icons-material/Help';
 import MessageIcon from '@mui/icons-material/Message';
+import { useEffect } from 'react';
 
 export default function Dropdown() {
     const [anchorEl, setAnchorEl] = useState(null);
-    const [loggedIn, setLoggedIn] = useState(true); // Change the state name to 'loggedIn'
+    const [loggedIn, setLoggedIn] = useState(false); // Change the state name to 'loggedIn'
     const open = Boolean(anchorEl);
     const navigate = useNavigate();
 
@@ -24,16 +26,32 @@ export default function Dropdown() {
         setAnchorEl(event.currentTarget);
     };
 
+    useEffect(() => {
+        if (
+            localStorage.getItem('user') != null &&
+            localStorage.getItem('token') != null
+        ) {
+            setLoggedIn(true);
+        }
+    }, []);
+
     const handleClose = () => {
         setAnchorEl(null);
     };
 
-    const handleAccount = () => {
-        setLoggedIn(!loggedIn); // Toggle the loggedIn state
-        if (!loggedIn) {
-            navigate('/login'); // Navigate to the login route
-        }
+    const handleLogin = () => {
+        navigate('/login');
     };
+
+    function handleLogOut() {
+        toast.success('Logged out!!');
+        setTimeout(() => {
+            setLoggedIn(false); // Toggle the loggedIn state
+            localStorage.setItem('user', null);
+            localStorage.setItem('token', null);
+            navigate('/login');
+        }, 1500);
+    }
 
     return (
         <React.Fragment>
@@ -107,21 +125,22 @@ export default function Dropdown() {
                     Settings
                 </MenuItem>
                 {loggedIn ? ( // Use the 'loggedIn' state to conditionally render the Logout/Login menu item
-                    <MenuItem onClick={handleAccount}>
+                    <MenuItem onClick={handleLogOut}>
                         <ListItemIcon>
                             <LogoutIcon fontSize='small' />
                         </ListItemIcon>
                         Logout
                     </MenuItem>
                 ) : (
-                    <MenuItem onClick={handleAccount}>
+                    <MenuItem onClick={handleLogin}>
                         <ListItemIcon>
                             <LoginIcon fontSize='small' />
                         </ListItemIcon>
-                        LogIn
+                        Login
                     </MenuItem>
                 )}
             </Menu>
+            <Toaster />
         </React.Fragment>
     );
 }
