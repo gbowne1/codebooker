@@ -1,7 +1,69 @@
 .Library-header {
-    background-color: cadetblue;
+    background-color: #90caf9;
     margin-top: 66px;
     padding-top: 66px;
     margin-left: 255px;
     padding-left: 255px;
+}
+
+.Add-book-button {
+    position: fixed;
+    bottom: 35px;
+    height: 50px;
+    width: 50px;
+    z-index: 5;
+
+}
+
+.Add-book-button button {
+    width: 100%;
+    height: inherit;
+    background-color: rgb(8, 8, 251);
+    color: #fff;
+    border-radius: 50%;
+    outline: none;
+    border: none;
+}
+
+.more-container{
+    position: relative;
+}
+
+.more-horiz-icon {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    outline: none;
+    border: none;
+    background-color: inherit;
+}
+
+.more-horiz-icon:hover{
+    background-color: #f0f0f0;
+    color: #AEC6CF;
+    transition:300ms ease-in-out;
+    cursor: pointer;
+}
+
+.more-span{
+    background-color: #333333;
+    padding: 3px;
+    font-size: 12px;
+    position: absolute;
+    top: 32px;
+    z-index: 1;
+    border-radius: 2px;
+    line-height: 15px;
+    display: none;
+    
+    
+}
+
+.more-horiz-icon:hover ~ .more-span{
+    color: #AEC6CF;
+    display: block;
 }

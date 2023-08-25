@@ -14,12 +14,13 @@ import IconButton from '@mui/material/IconButton';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import Typography from '@mui/material/Typography';
 import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
+// import RemoveIcon from '@mui/icons-material/Remove';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 /* import { TableVirtuoso } from 'react-virtuoso'; */
 import './Library.css';
 import Classes from './Library.module.css';
@@ -45,7 +46,7 @@ import { Rating } from 'react-simple-star-rating';
 export default function Library({ filter }) {
     const [myRows, setMyRows] = useState(rows);
     const [showSnackBar, handleSnackBar] = useState(false);
-    const [removedItemName, setRemovedItemName] = useState('');
+    // const [removedItemName, setRemovedItemName] = useState('');
 
     //table sorting states
     const [sortOrder, setSortOrder] = useState(false);
@@ -75,32 +76,36 @@ export default function Library({ filter }) {
 
     //This state helps us for two way in input filed
     const [isAdded, handleIsAdded] = useState(false);
-    const removeBookByName = (row) => {
-        setRemovedItemName('removed ' + row.name + ' successfully');
-        myRows.splice(myRows.indexOf(row), 1);
+    // const removeBookByName = (row) => {
+    //     setRemovedItemName('removed ' + row.name + ' successfully');
+    //     myRows.splice(myRows.indexOf(row), 1);
 
-        setMyRows([...myRows]);
-        handleSnackBar(true);
-    };
+    //     setMyRows([...myRows]);
+    //     handleSnackBar(true);
+    // };
     const addItemToTable = (e) => {
         e.preventDefault();
-        if (name && author && publisher && isbn && year && edition) {
-            let bookObj = {
-                name,
-                author,
-                publisher,
-                isbn,
-                year,
-                edition,
-                reviews: [],
-            };
-            setMyRows([...myRows, bookObj]);
 
-            handleIsAdded(true);
-            resetBookState();
-            handleModalBox(false);
-        } else {
-            setBlankEntry(true);
+        try {
+            if (name && author && publisher && isbn && year && edition) {
+                let bookObj = {
+                    name,
+                    author,
+                    publisher,
+                    isbn,
+                    year,
+                    edition,
+                    reviews: [],
+                };
+                setMyRows([...myRows, bookObj]);
+                handleIsAdded(true);
+                resetBookState();
+                handleModalBox(false);
+            } else {
+                setBlankEntry(true);
+            }
+        } catch (err) {
+            console.log(err.message);
         }
         console.log(name, author, publisher, isbn, year, edition);
     };
@@ -264,7 +269,7 @@ export default function Library({ filter }) {
                 open={showSnackBar}
                 autoHideDuration={3000}
                 onClose={closeSnackBar}
-                message={removedItemName}
+                // message={removedItemName}
             />
             <Snackbar
                 action={action}
@@ -669,6 +674,17 @@ export default function Library({ filter }) {
                         </TableRow>
                     </TableHead>
                     <TableBody>
+                        
+                            <div className="Add-book-button">
+                                 <button>
+                                        <AddIcon
+                                            className={Classes.tableactionicon}
+                                            onClick={() => {
+                                                handleModalBox(true);
+                                            }}
+                                        />
+                                </button>
+                            </div>
                         {myRows.map((row) => (
                             <TableRow
                                 key={row.name}
@@ -679,7 +695,7 @@ export default function Library({ filter }) {
                                 }}
                             >
                                 <TableCell className={Classes.actions}>
-                                    {myRows.indexOf(row) ===
+                                    {/* {myRows.indexOf(row) ===
                                     myRows.length - 1 ? (
                                         <AddIcon
                                             className={Classes.tableactionicon}
@@ -689,14 +705,22 @@ export default function Library({ filter }) {
                                         />
                                     ) : (
                                         <></>
-                                    )}
+                                    )} */}
+                                    <div className='more-container'>
 
-                                    <RemoveIcon
+                                    <button className='more-horiz-icon'>
+
+                                    <MoreHorizIcon/>
+                                    </button>
+                                    <span className='more-span'>More</span>
+                                    </div>
+
+                                    {/* <RemoveIcon
                                         className={Classes.tableactionicon}
                                         onClick={(e) => {
                                             removeBookByName(row);
                                         }}
-                                    />
+                                    /> */}
                                 </TableCell>
                                 <TableCell
                                     component='th'
