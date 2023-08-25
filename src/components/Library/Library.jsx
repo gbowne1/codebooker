@@ -56,6 +56,7 @@ export default function Library({ filter }) {
     const [showModal, handleModalBox] = useState(false);
     const [name, setName] = useState('');
     const [author, setAuthor] = useState('');
+    const [category, setCategory] = useState('');
     const [publisher, setPublisher] = useState('');
     const [isbn, setIsbn] = useState('');
     const [year, setYear] = useState('');
@@ -85,12 +86,21 @@ export default function Library({ filter }) {
     // };
     const addItemToTable = (e) => {
         e.preventDefault();
-
+        
         try {
-            if (name && author && publisher && isbn && year && edition) {
+            if (
+                name &&
+                author &&
+                category &&
+                publisher &&
+                isbn &&
+                year &&
+                edition
+            ) {
                 let bookObj = {
                     name,
                     author,
+                    category,
                     publisher,
                     isbn,
                     year,
@@ -98,21 +108,24 @@ export default function Library({ filter }) {
                     reviews: [],
                 };
                 setMyRows([...myRows, bookObj]);
-                handleIsAdded(true);
-                resetBookState();
-                handleModalBox(false);
-            } else {
-                setBlankEntry(true);
-            }
-        } catch (err) {
-            console.log(err.message);
+                    handleIsAdded(true);
+                    resetBookState();
+                    handleModalBox(false);
+                } else {
+                    setBlankEntry(true);
+                }
+            
+            console.log(name, author, category, publisher, isbn, year, edition);
+        } catch (error) {
+            
         }
-        console.log(name, author, publisher, isbn, year, edition);
     };
+            
 
     const resetBookState = () => {
         setName('');
         setAuthor('');
+        setCategory('');
         setPublisher('');
         setIsbn('');
         setYear('');
@@ -442,7 +455,7 @@ export default function Library({ filter }) {
                         <TextField
                             label='Enter Category'
                             onChange={(e) => {
-                                setAuthor(e.target.value);
+                                setCategory(e.target.value);
                             }}
                             fullWidth
                             style={{ marginTop: '10px' }}

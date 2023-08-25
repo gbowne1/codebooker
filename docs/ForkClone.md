@@ -1,6 +1,6 @@
-# Fork and Clone 
+# Fork and Clone
 
-## Steps to fork the repo: 
+## Steps to fork the repo:
 
 ### Step 1
 
@@ -10,7 +10,7 @@ Go to the main GitHub page of the repo:
 
 ### Step 2
 
-Once you are on the main GitHub page of the repo, click the Fork button at the top right of the page. 
+Once you are on the main GitHub page of the repo, click the Fork button at the top right of the page.
 
 ![](fork.png)
 
@@ -38,7 +38,7 @@ You will now have a forked version of the original repo that is up to date with 
 ### Step 1
 
 Clone this repo to your local machine using (https://github.com/gbowne1/codebooker.git)
- 
+
 ### Step 2
 
 Create your feature branch using git checkout -b my-feature
