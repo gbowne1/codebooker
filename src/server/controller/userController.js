@@ -123,11 +123,11 @@ module.exports.forgotPassword = async (req, res) => {
         }
 
         // delete token if it exist in db
-        const existingToken = await Token.findOne({userId:existinguser._id});
+        const existingToken = await Token.findOne({ userId: existinguser._id });
 
-        if(existingToken){
+        if (existingToken) {
             await existingToken.deleteOne();
-            console.log("found");
+            console.log('found');
         }
 
         // Create new reset token
@@ -137,20 +137,18 @@ module.exports.forgotPassword = async (req, res) => {
             { expiresIn: '30m' } //30min
         );
 
-
         // get token expiration time
         const expiresIn = new Date(Date.now() + 30 * 60 * 1000);
 
         // Save token to db
-       const newToken = new Token({
-            userId:existinguser._id,
-            token:resetToken,
-            created_on:Date.now(),
+        const newToken = new Token({
+            userId: existinguser._id,
+            token: resetToken,
+            created_on: Date.now(),
             expires_in: expiresIn,
         });
 
         await newToken.save();
-
 
         // URL link
         const resetLink = `http://localhost:3000/reset-password/${resetToken}`;
@@ -202,9 +200,8 @@ module.exports.resetPassword = async (req, res) => {
         //Find token in DB
         const userToken = await Token.findOne({
             token: token,
-            expires_in:{$gt:Date.now()}
+            expires_in: { $gt: Date.now() },
         });
-
 
         if (!userToken) {
             return res.status(401).json({
@@ -213,7 +210,7 @@ module.exports.resetPassword = async (req, res) => {
         }
 
         // Find user with that specific token
-        const userWithToken = await User.findOne({_id:userToken.userId});
+        const userWithToken = await User.findOne({ _id: userToken.userId });
 
         // hash new password
         const hashPassword = await bcrypt.hash(password, 12);
