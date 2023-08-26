@@ -15,7 +15,7 @@ export default function App() {
             <Routes>
                 <Route element={<UserAuthenticated />}>
                     <Route path='/' element={<Home />} />
-                    <Route path='/profile/:uid' element={<Profile />} />
+                    <Route path='/profile' element={<Profile />} />
                 </Route>
                 <Route path='/login' element={<Login />} />
                 <Route path='/register' element={<Register />} />

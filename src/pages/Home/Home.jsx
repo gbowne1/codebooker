@@ -52,7 +52,7 @@ function Home() {
     const notify = (username) => toast.success('Welcome! ' + username);
 
     useEffect(() => {
-        if (location.state.loggin && localStorage.getItem('user')) {
+        if (location?.state?.loggin || localStorage.getItem('user')) {
             notify(JSON.parse(localStorage.getItem('user')).username);
         }
     }, []);
