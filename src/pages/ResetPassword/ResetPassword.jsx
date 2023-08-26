@@ -158,7 +158,13 @@ const ResetPassword = () => {
                             variant='contained'
                             sx={{ mt: 3, mb: 2 }}
                         >
-                            {loading && <CircularProgress size={15} sx={{mr:'10px'}} color="inherit" />}
+                            {loading && (
+                                <CircularProgress
+                                    size={15}
+                                    sx={{ mr: '10px' }}
+                                    color='inherit'
+                                />
+                            )}
                             Reset password
                         </Button>
                     </Box>

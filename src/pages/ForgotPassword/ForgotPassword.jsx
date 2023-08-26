@@ -22,12 +22,8 @@ const ForgotPassword = () => {
             console.error(error);
         }
 
-       
         setLoading(false);
-    }
-
-
-
+    };
 
     return (
         <div className='forgotpassword-wrapper'>
@@ -39,9 +35,9 @@ const ForgotPassword = () => {
                     Update your password
                 </Typography>
                 <div>
-                <Typography component='p' variant='p' mt={2}>
-                Enter your email address and click SEND EMAIL.
-                </Typography>
+                    <Typography component='p' variant='p' mt={2}>
+                        Enter your email address and click SEND EMAIL.
+                    </Typography>
                 </div>
             </div>
             <div className='forgotpassword-wrapper-input'>
@@ -52,13 +48,22 @@ const ForgotPassword = () => {
                 />
             </div>
 
-            <button  onClick={handleForgotPassword} className='forgotpassword-button'>
-            {loading && <CircularProgress size={15} sx={{mr:'10px'}} color="inherit" />}
-            SEND EMAIL
+            <button
+                onClick={handleForgotPassword}
+                className='forgotpassword-button'
+            >
+                {loading && (
+                    <CircularProgress
+                        size={15}
+                        sx={{ mr: '10px' }}
+                        color='inherit'
+                    />
+                )}
+                SEND EMAIL
             </button>
             <div className='forgotpassword-wrapper-cancel'>
                 <Typography variant='body2'>
-                    <Link to='/login'>Cancel</Link> 
+                    <Link to='/login'>Cancel</Link>
                 </Typography>
             </div>
         </div>
