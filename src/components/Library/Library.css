@@ -6,24 +6,12 @@
     padding-left: 255px;
 }
 
-.Add-book-button {
+.Add-book-button-container {
     position: fixed;
     bottom: 35px;
-    height: 50px;
-    width: 50px;
     z-index: 5;
-
 }
 
-.Add-book-button button {
-    width: 100%;
-    height: inherit;
-    background-color: rgb(8, 8, 251);
-    color: #fff;
-    border-radius: 50%;
-    outline: none;
-    border: none;
-}
 
 .more-container{
     position: relative;
@@ -66,4 +54,12 @@
 .more-horiz-icon:hover ~ .more-span{
     color: #AEC6CF;
     display: block;
+}
+
+.skeleton{
+   width: 100%;
+   height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
