@@ -86,7 +86,8 @@ export default function Library({ filter }) {
     const [book, setBook] = useState({});
     //get loggedIn user email to send with bookObj for userId on new book entry
     const userEmail = JSON.parse(localStorage.getItem('user')).email;
-
+    //get loggedIn user id to match with book userId
+    const userId = JSON.parse(localStorage.getItem('user'))._id;
     //This state helps us for two way in input filed
     const [isAdded, handleIsAdded] = useState(false);
     const removeBookByName = async (row) => {
@@ -802,138 +803,153 @@ export default function Library({ filter }) {
                                         },
                                     }}
                                 >
-                                    <TableCell
-                                        className={Classes.actions}
-                                        sx={{
-                                            position: 'relative',
-                                        }}
-                                    >
-                                        <div
-                                            className='more-container'
-                                            onClick={() => handleShowMore(idx)}
-                                        >
-                                            <Box className='more-horiz-icon'>
-                                                <MoreHorizIcon />
-                                            </Box>
-                                            <span className='more-span'>
-                                                More
-                                            </span>
-                                        </div>
-
-                                        <Box
-                                            position={style.position}
+                                    {userId === row.userId ? (
+                                        <TableCell
+                                            className={Classes.actions}
                                             sx={{
-                                                bottom: '20px',
-                                                width: '200px',
-                                                backgroundColor: style.bgcolor,
-                                                display:
-                                                    visibleContent === idx
-                                                        ? 'block'
-                                                        : 'none',
-                                                borderRadius: '5px',
-                                                padding: '5px',
-                                                border: '1px solid #222',
-                                                zIndex: 1,
+                                                position: 'relative',
                                             }}
                                         >
-                                            <Typography
-                                                borderBottom='1px solid #333'
-                                                fontSize='10px'
-                                                marginBottom='10px'
-                                                display={style.display}
-                                                alignItems={style.alignItems}
-                                                sx={{
-                                                    '&:hover': {
-                                                        color: '#b3cfff',
-                                                        cursor: 'pointer',
-                                                    },
-                                                }}
+                                            <div
+                                                className='more-container'
                                                 onClick={() =>
-                                                    setVisibleContent(-1)
+                                                    handleShowMore(idx)
                                                 }
                                             >
-                                                Close
-                                                <CloseIcon
-                                                    sx={{
-                                                        fontSize: '14px',
-                                                        marginLeft: '5px',
-                                                    }}
-                                                />
-                                            </Typography>
-                                            <Typography
-                                                display={style.display}
-                                                alignItems={style.alignItems}
-                                                justifyContent={
-                                                    style.justifyContent
-                                                }
-                                                fontSize='14px'
+                                                <Box className='more-horiz-icon'>
+                                                    <MoreHorizIcon />
+                                                </Box>
+                                                <span className='more-span'>
+                                                    More
+                                                </span>
+                                            </div>
+                                            <Box
+                                                position={style.position}
                                                 sx={{
-                                                    '&:hover': {
-                                                        color: '#b3cfff',
-                                                        cursor: 'pointer',
-                                                    },
-                                                }}
-                                                onClick={(e) => {
-                                                    removeBookByName(row);
+                                                    bottom: '20px',
+                                                    width: '200px',
+                                                    backgroundColor:
+                                                        style.bgcolor,
+                                                    display:
+                                                        visibleContent === idx
+                                                            ? 'block'
+                                                            : 'none',
+                                                    borderRadius: '5px',
+                                                    padding: '5px',
+                                                    border: '1px solid #222',
+                                                    zIndex: 1,
                                                 }}
                                             >
-                                                Delete
-                                                {loading ? (
-                                                    <CircularProgress
-                                                        size={16}
+                                                <Typography
+                                                    borderBottom='1px solid #333'
+                                                    fontSize='10px'
+                                                    marginBottom='10px'
+                                                    display={style.display}
+                                                    alignItems={
+                                                        style.alignItems
+                                                    }
+                                                    sx={{
+                                                        '&:hover': {
+                                                            color: '#b3cfff',
+                                                            cursor: 'pointer',
+                                                        },
+                                                    }}
+                                                    onClick={() =>
+                                                        setVisibleContent(-1)
+                                                    }
+                                                >
+                                                    Close
+                                                    <CloseIcon
+                                                        sx={{
+                                                            fontSize: '14px',
+                                                            marginLeft: '5px',
+                                                        }}
                                                     />
-                                                ) : (
-                                                    <DeleteIcon
+                                                </Typography>
+                                                <Typography
+                                                    display={style.display}
+                                                    alignItems={
+                                                        style.alignItems
+                                                    }
+                                                    justifyContent={
+                                                        style.justifyContent
+                                                    }
+                                                    fontSize='14px'
+                                                    sx={{
+                                                        '&:hover': {
+                                                            color: '#b3cfff',
+                                                            cursor: 'pointer',
+                                                        },
+                                                    }}
+                                                    onClick={(e) => {
+                                                        removeBookByName(row);
+                                                    }}
+                                                >
+                                                    Delete
+                                                    {loading ? (
+                                                        <CircularProgress
+                                                            size={16}
+                                                        />
+                                                    ) : (
+                                                        <DeleteIcon
+                                                            sx={{
+                                                                fontSize:
+                                                                    '16px',
+                                                            }}
+                                                        />
+                                                    )}
+                                                </Typography>
+                                                <Typography
+                                                    display={style.display}
+                                                    alignItems={
+                                                        style.alignItems
+                                                    }
+                                                    justifyContent={
+                                                        style.justifyContent
+                                                    }
+                                                    fontSize='14px'
+                                                    sx={{
+                                                        '&:hover': {
+                                                            color: '#b3cfff',
+                                                            cursor: 'pointer',
+                                                        },
+                                                    }}
+                                                >
+                                                    Edit
+                                                    <EditIcon
                                                         sx={{
                                                             fontSize: '16px',
                                                         }}
                                                     />
-                                                )}
-                                            </Typography>
-                                            <Typography
-                                                display={style.display}
-                                                alignItems={style.alignItems}
-                                                justifyContent={
-                                                    style.justifyContent
-                                                }
-                                                fontSize='14px'
-                                                sx={{
-                                                    '&:hover': {
-                                                        color: '#b3cfff',
-                                                        cursor: 'pointer',
-                                                    },
-                                                }}
-                                            >
-                                                Edit
-                                                <EditIcon
+                                                </Typography>
+                                                <Typography
+                                                    display={style.display}
+                                                    alignItems={
+                                                        style.alignItems
+                                                    }
+                                                    justifyContent={
+                                                        style.justifyContent
+                                                    }
+                                                    fontSize='14px'
                                                     sx={{
-                                                        fontSize: '16px',
+                                                        '&:hover': {
+                                                            color: '#b3cfff',
+                                                            cursor: 'pointer',
+                                                        },
                                                     }}
-                                                />
-                                            </Typography>
-                                            <Typography
-                                                display={style.display}
-                                                alignItems={style.alignItems}
-                                                justifyContent={
-                                                    style.justifyContent
-                                                }
-                                                fontSize='14px'
-                                                sx={{
-                                                    '&:hover': {
-                                                        color: '#b3cfff',
-                                                        cursor: 'pointer',
-                                                    },
-                                                }}
-                                            >
-                                                Share
-                                                <ShareIcon
-                                                    sx={{
-                                                        fontSize: '16px',
-                                                    }}
-                                                />
-                                            </Typography>
-                                        </Box>
-                                    </TableCell>
+                                                >
+                                                    Share
+                                                    <ShareIcon
+                                                        sx={{
+                                                            fontSize: '16px',
+                                                        }}
+                                                    />
+                                                </Typography>
+                                            </Box>
+                                        </TableCell>
+                                    ) : (
+                                        <TableCell></TableCell>
+                                    )}
                                     <TableCell
                                         component='th'
                                         scope='row'
