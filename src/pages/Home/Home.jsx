@@ -53,9 +53,6 @@ function Home() {
 
     useEffect(() => {
         if (location?.state?.loggin || localStorage.getItem('user')) {
-<<<<<<< HEAD
-            notify(JSON.parse(localStorage.getItem('user')).username);
-=======
             if (
                 location.state &&
                 location.state.loggin &&
@@ -63,7 +60,6 @@ function Home() {
             ) {
                 notify(JSON.parse(localStorage.getItem('user')).username);
             }
->>>>>>> origin/master
         }
     }, []);
 
