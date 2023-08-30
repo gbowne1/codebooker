@@ -8,11 +8,7 @@ import Register from './components/Register/Register';
 import UserAuthenticated from './ProtectedRoute';
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
 import ResetPassword from './pages/ResetPassword/ResetPassword';
-<<<<<<< HEAD
-import UserDetails from './pages/userDetails/UserDetails';
-=======
 import PrivacyPolicy from './pages/PrivacyPolicy/PrivacyPolicy';
->>>>>>> origin/master
 
 export default function App() {
     return (
@@ -25,7 +21,6 @@ export default function App() {
                 </Route>
                 <Route path='/login' element={<Login />} />
                 <Route path='/register' element={<Register />} />
-                <Route path='/details' element={<UserDetails />} />
                 <Route path='/forgot-password' element={<ForgotPassword />} />
                 <Route
                     path='/reset-password/:token'
