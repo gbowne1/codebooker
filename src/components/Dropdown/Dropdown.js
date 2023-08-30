@@ -130,7 +130,7 @@ export default function Dropdown() {
                     Settings
                 </MenuItem>
                 {loggedIn ? ( // Use the 'loggedIn' state to conditionally render the Logout/Login menu item
-                    <>
+                    <div>
                         <MenuItem onClick={navigateToProfile}>
                             <ListItemIcon>
                                 <ManageAccountsIcon fontSize='small' />
@@ -143,7 +143,7 @@ export default function Dropdown() {
                             </ListItemIcon>
                             Logout
                         </MenuItem>
-                    </>
+                    </div>
                 ) : (
                     <MenuItem onClick={handleLogin}>
                         <ListItemIcon>
