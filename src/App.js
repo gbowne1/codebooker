@@ -8,7 +8,11 @@ import Register from './components/Register/Register';
 import UserAuthenticated from './ProtectedRoute';
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
 import ResetPassword from './pages/ResetPassword/ResetPassword';
+<<<<<<< HEAD
 import UserDetails from './pages/userDetails/UserDetails';
+=======
+import PrivacyPolicy from './pages/PrivacyPolicy/PrivacyPolicy';
+>>>>>>> origin/master
 
 export default function App() {
     return (
@@ -17,6 +21,7 @@ export default function App() {
                 <Route element={<UserAuthenticated />}>
                     <Route path='/' element={<Home />} />
                     <Route path='/profile' element={<Profile />} />
+                    <Route path='/privacy-policy' element={<PrivacyPolicy />} />
                 </Route>
                 <Route path='/login' element={<Login />} />
                 <Route path='/register' element={<Register />} />

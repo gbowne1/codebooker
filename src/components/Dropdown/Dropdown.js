@@ -14,6 +14,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
 import HelpIcon from '@mui/icons-material/Help';
 import MessageIcon from '@mui/icons-material/Message';
+import PolicyIcon from '@mui/icons-material/Policy';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import { useEffect } from 'react';
 
@@ -56,6 +57,9 @@ export default function Dropdown() {
 
     function navigateToProfile() {
         navigate('/profile');
+    }
+    function navigateToPrivacyPolicy() {
+        navigate('/privacy-policy');
     }
 
     return (
@@ -121,6 +125,10 @@ export default function Dropdown() {
                 <MenuItem>
                     <MessageIcon fontSize='large' />
                     &nbsp; Feedback
+                </MenuItem>
+                <MenuItem onClick={navigateToPrivacyPolicy}>
+                    <PolicyIcon fontSize='large' />
+                    &nbsp; Privacy Policy
                 </MenuItem>
                 <Divider />
                 <MenuItem>
