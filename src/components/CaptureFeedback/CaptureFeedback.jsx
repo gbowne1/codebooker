@@ -8,7 +8,6 @@ export function CaptureFeedback({ isActive, onClose }) {
             <button className='close-button' onClick={onClose}>
                 X
             </button>
-            <p>TEST TEXT HERE</p>
         </div>
     );
 }

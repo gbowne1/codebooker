@@ -1,12 +1,21 @@
 .feedback-panel {
   position: fixed;
+  padding: 10px;
   top: -100%; /* Initial position outside the viewport */
   right: 0;
   width: 400px;
   height: 100%;
-  background-color: white;
+  background-color: rgb(225, 219, 219);
   box-shadow: -2px 0px 4px rgba(0, 0, 0, 0.2);
   transition: top 0.3s ease-in-out;
+}
+
+.close-button {
+  border: none;
+  font-weight: bold;
+  background-color: rgb(225, 219, 219);
+  font-size: 1.2em; /* Adjust as needed */
+  cursor: pointer;
 }
 
 .feedback-panel.active {
