@@ -49,7 +49,7 @@ import axios from 'axios';
 
 // ];
 
-export default function Library({ filter }) {
+export default function Library({ filter, setFilter }) {
     const [myRows, setMyRows] = useState([]);
     const [visibleContent, setVisibleContent] = useState(-1);
     const [showSnackBar, handleSnackBar] = useState(false);
@@ -332,8 +332,11 @@ export default function Library({ filter }) {
                 setMyRows(myRows);
             }
         };
-
         filteredRow();
+        return () => {
+            setMyRows([]);
+            setFilter('');
+        };
     }, [filter, myRows]);
 
     useEffect(() => {
@@ -1021,4 +1024,5 @@ export default function Library({ filter }) {
 
 Library.propTypes = {
     filter: PropTypes.string,
+    setFilter: PropTypes.func,
 };
