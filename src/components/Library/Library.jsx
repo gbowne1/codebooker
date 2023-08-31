@@ -334,7 +334,7 @@ export default function Library({ filter }) {
         };
 
         filteredRow();
-    }, [filter]);
+    }, [filter, myRows]);
 
     useEffect(() => {
         fetchBooksFromDB();
