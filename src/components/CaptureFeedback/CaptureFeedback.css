@@ -2,7 +2,7 @@
   position: fixed;
   top: -100%; /* Initial position outside the viewport */
   right: 0;
-  width: 300px;
+  width: 400px;
   height: 100%;
   background-color: white;
   box-shadow: -2px 0px 4px rgba(0, 0, 0, 0.2);
