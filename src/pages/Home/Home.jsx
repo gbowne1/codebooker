@@ -103,7 +103,7 @@ function Home() {
                         </Toolbar>
                     </AppBar>
                 </Box>
-                <Library filter={filter} />
+                <Library filter={filter} setFilter={setFilter} />
             </div>
             <Toaster />
         </ThemeProvider>
