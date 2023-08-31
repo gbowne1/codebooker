@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
@@ -15,11 +15,12 @@ import LoginIcon from '@mui/icons-material/Login';
 import HelpIcon from '@mui/icons-material/Help';
 import MessageIcon from '@mui/icons-material/Message';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
-import { useEffect } from 'react';
+import { CaptureFeedback } from '../CaptureFeedback/CaptureFeedback'; //
 
 export default function Dropdown() {
     const [anchorEl, setAnchorEl] = useState(null);
     const [loggedIn, setLoggedIn] = useState(false); // Change the state name to 'loggedIn'
+    const [feedbackVisible, setFeedbackVisible] = useState(false); // Toggle visibility of feedback panel
     const open = Boolean(anchorEl);
     const navigate = useNavigate();
 
@@ -58,6 +59,11 @@ export default function Dropdown() {
         navigate('/profile');
     }
 
+    function toggleFeedback() {
+        setFeedbackVisible((prevFeedbackVisible) => !prevFeedbackVisible);
+        handleClose();
+    }
+
     return (
         <React.Fragment>
             <Box
@@ -84,7 +90,6 @@ export default function Dropdown() {
                 id='account-menu'
                 open={open}
                 onClose={handleClose}
-                onClick={handleClose}
                 PaperProps={{
                     elevation: 0,
                     sx: {
@@ -118,7 +123,7 @@ export default function Dropdown() {
                     <HelpIcon fontSize='large' />
                     &nbsp; Help
                 </MenuItem>
-                <MenuItem>
+                <MenuItem onClick={toggleFeedback}>
                     <MessageIcon fontSize='large' />
                     &nbsp; Feedback
                 </MenuItem>
@@ -154,6 +159,12 @@ export default function Dropdown() {
                 )}
             </Menu>
             <Toaster />
+            {feedbackVisible && (
+                <CaptureFeedback
+                    isActive={feedbackVisible}
+                    onClose={toggleFeedback}
+                />
+            )}
         </React.Fragment>
     );
 }
