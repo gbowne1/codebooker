@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import { Rating } from 'react-simple-star-rating';
 import './CaptureFeedback.css';
 
 // Bind modal to your app
@@ -21,9 +22,15 @@ const emailValidationSchema = Yup.object({
 
 export function CaptureFeedback({ isActive, onClose }) {
     const [formToShow, setFormToShow] = useState('initial');
+    const [rating, setRating] = useState(0);
 
     const handleFormSwitch = (formType) => {
+        setRating(0);
         setFormToShow(formType);
+    };
+
+    const onPointerMove = (value, index) => {
+        setRating(value);
     };
 
     return (
@@ -70,11 +77,9 @@ export function CaptureFeedback({ isActive, onClose }) {
                                     name='feedback'
                                     className='feedback-textarea'
                                 />
-                                <Field
-                                    name='rating'
-                                    type='number'
-                                    min='1'
-                                    max='5'
+                                <Rating
+                                    onPointerMove={onPointerMove}
+                                    initialValue={rating}
                                 />
                                 <div className='button-group'>
                                     <button
@@ -119,14 +124,11 @@ export function CaptureFeedback({ isActive, onClose }) {
                                     min='1'
                                     max='5'
                                 />
+                                <Rating
+                                    onPointerMove={onPointerMove}
+                                    initialValue={rating}
+                                />
                                 <div className='button-group'>
-                                    <button
-                                        type='submit'
-                                        disabled={isSubmitting}
-                                        className='submit-button'
-                                    >
-                                        Submit Email
-                                    </button>
                                     <button
                                         type='button'
                                         onClick={() =>
@@ -135,6 +137,13 @@ export function CaptureFeedback({ isActive, onClose }) {
                                         className='back-button'
                                     >
                                         Back
+                                    </button>
+                                    <button
+                                        type='submit'
+                                        disabled={isSubmitting}
+                                        className='submit-button'
+                                    >
+                                        Submit Email
                                     </button>
                                 </div>
                             </Form>
