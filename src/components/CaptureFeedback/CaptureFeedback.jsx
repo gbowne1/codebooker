@@ -50,7 +50,7 @@ export function CaptureFeedback({ isActive, onClose }) {
                     how we can improve.
                 </h2>
                 {formToShow === 'initial' && (
-                    <div>
+                    <div className='button-group'>
                         <button onClick={() => handleFormSwitch('feedback')}>
                             Leave us a message
                         </button>
@@ -59,6 +59,7 @@ export function CaptureFeedback({ isActive, onClose }) {
                         </button>
                     </div>
                 )}
+                {/* DIRECT FEEDBACK FORM */}
                 {formToShow === 'feedback' && (
                     <Formik
                         initialValues={{ feedback: '', rating: '' }}
@@ -77,10 +78,12 @@ export function CaptureFeedback({ isActive, onClose }) {
                                     name='feedback'
                                     className='feedback-textarea'
                                 />
-                                <Rating
-                                    onPointerMove={onPointerMove}
-                                    initialValue={rating}
-                                />
+                                <div className='rating-container'>
+                                    <Rating
+                                        onPointerMove={onPointerMove}
+                                        initialValue={rating}
+                                    />
+                                </div>
                                 <div className='button-group'>
                                     <button
                                         type='button'
@@ -103,6 +106,7 @@ export function CaptureFeedback({ isActive, onClose }) {
                         )}
                     </Formik>
                 )}
+                {/* EMAIL FEEDBACK FORM */}
                 {formToShow === 'email' && (
                     <Formik
                         initialValues={{ email: '', message: '', rating: '' }}
@@ -116,18 +120,17 @@ export function CaptureFeedback({ isActive, onClose }) {
                     >
                         {({ isSubmitting }) => (
                             <Form>
-                                <Field name='email' type='email' />
-                                <Field as='textarea' name='message' />
                                 <Field
-                                    name='rating'
-                                    type='number'
-                                    min='1'
-                                    max='5'
+                                    as='textarea'
+                                    name='message'
+                                    className='feedback-textarea'
                                 />
-                                <Rating
-                                    onPointerMove={onPointerMove}
-                                    initialValue={rating}
-                                />
+                                <div className='rating-container'>
+                                    <Rating
+                                        onPointerMove={onPointerMove}
+                                        initialValue={rating}
+                                    />
+                                </div>
                                 <div className='button-group'>
                                     <button
                                         type='button'
