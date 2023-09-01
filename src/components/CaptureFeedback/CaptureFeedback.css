@@ -1,23 +1,28 @@
-.feedback-panel {
+.overlay {
   position: fixed;
-  padding: 10px;
-  top: -100%; /* Initial position outside the viewport */
+  top: 0;
+  left: 0;
   right: 0;
-  width: 400px;
-  height: 100%;
-  background-color: rgb(225, 219, 219);
-  box-shadow: -2px 0px 4px rgba(0, 0, 0, 0.2);
-  transition: top 0.3s ease-in-out;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.feedback-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 75%;
+  height: 75%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 4px;
 }
 
 .close-button {
   border: none;
   font-weight: bold;
-  background-color: rgb(225, 219, 219);
-  font-size: 1.2em; /* Adjust as needed */
+  font-size: 1.5em;
   cursor: pointer;
-}
-
-.feedback-panel.active {
-  top: 0; /* Slide the panel into view */
+  background: none;
 }

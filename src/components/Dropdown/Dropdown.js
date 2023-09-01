@@ -20,7 +20,7 @@ import { CaptureFeedback } from '../CaptureFeedback/CaptureFeedback'; //
 export default function Dropdown() {
     const [anchorEl, setAnchorEl] = useState(null);
     const [loggedIn, setLoggedIn] = useState(false); // Change the state name to 'loggedIn'
-    const [feedbackVisible, setFeedbackVisible] = useState(false); // Toggle visibility of feedback panel
+    const [feedbackVisible, setFeedbackVisible] = useState(false); // Toggle visibility of feedback modal
     const open = Boolean(anchorEl);
     const navigate = useNavigate();
 
