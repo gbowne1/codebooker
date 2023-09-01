@@ -29,6 +29,17 @@
 }
 
 /* Form Styling */
+
+.modal-form {
+  width: 100%;
+  height: 100%;
+  padding: 10%;
+}
+
+.feedback-modal h2 {
+  text-align: center;
+}
+
 .feedback-textarea {
   width: 100%;
   height: 100px;
@@ -37,6 +48,8 @@
   border-radius: 5px;
   border: 1px solid #ccc;
 }
+
+
 
 .button-group {
   display: flex;
