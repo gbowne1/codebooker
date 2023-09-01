@@ -59,6 +59,7 @@ export default function Dropdown() {
         navigate('/profile');
     }
 
+    // Toggle CaptureFeedback modal component visibility
     function toggleFeedback() {
         setFeedbackVisible((prevFeedbackVisible) => !prevFeedbackVisible);
         handleClose();
@@ -159,6 +160,7 @@ export default function Dropdown() {
                 )}
             </Menu>
             <Toaster />
+            {/* Conditionally render CaptureFeedback modal component */}
             {feedbackVisible && (
                 <CaptureFeedback
                     isActive={feedbackVisible}

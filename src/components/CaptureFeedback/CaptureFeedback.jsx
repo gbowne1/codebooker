@@ -6,14 +6,16 @@ import * as Yup from 'yup';
 import { Rating } from 'react-simple-star-rating';
 import './CaptureFeedback.css';
 
-// Bind modal to your app
+// Bind modal to app
 Modal.setAppElement('#root');
 
+// Validate direct feedback
 const feedbackValidationSchema = Yup.object({
     feedback: Yup.string().required('Feedback is required'),
     rating: Yup.number().required('Rating is required'),
 });
 
+// Validate email feedback
 const emailValidationSchema = Yup.object({
     email: Yup.string().email('Invalid email address').required('Required'),
     message: Yup.string().required('Message is required'),
@@ -21,14 +23,16 @@ const emailValidationSchema = Yup.object({
 });
 
 export function CaptureFeedback({ isActive, onClose }) {
-    const [formToShow, setFormToShow] = useState('initial');
-    const [rating, setRating] = useState(0);
+    const [formToShow, setFormToShow] = useState('initial'); // State for which form to render
+    const [rating, setRating] = useState(0); // State for rating
 
+    // Switches form state
     const handleFormSwitch = (formType) => {
         setRating(0);
         setFormToShow(formType);
     };
 
+    // Handle hover over rating component
     const onPointerMove = (value, index) => {
         setRating(value);
     };
@@ -41,6 +45,7 @@ export function CaptureFeedback({ isActive, onClose }) {
             className='feedback-modal'
             overlayClassName='overlay'
         >
+            {/* Modal close button */}
             <button className='close-button' onClick={onClose}>
                 X
             </button>
@@ -49,6 +54,7 @@ export function CaptureFeedback({ isActive, onClose }) {
                     We appreciate your feedback. <br></br> Please let us know
                     how we can improve.
                 </h2>
+                {/* INITIAL FORM */}
                 {formToShow === 'initial' && (
                     <div className='button-group'>
                         <button onClick={() => handleFormSwitch('feedback')}>
@@ -65,7 +71,7 @@ export function CaptureFeedback({ isActive, onClose }) {
                         initialValues={{ feedback: '', rating: '' }}
                         validationSchema={feedbackValidationSchema}
                         onSubmit={(values, { setSubmitting }) => {
-                            // Send feedback to backend here
+                            // Feedback to backend here
 
                             setSubmitting(false);
                             onClose();
@@ -112,7 +118,7 @@ export function CaptureFeedback({ isActive, onClose }) {
                         initialValues={{ email: '', message: '', rating: '' }}
                         validationSchema={emailValidationSchema}
                         onSubmit={(values, { setSubmitting }) => {
-                            // Send email to backend here
+                            // Send email here
 
                             setSubmitting(false);
                             onClose();
