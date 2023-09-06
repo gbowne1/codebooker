@@ -73,7 +73,7 @@ export function CaptureFeedback({ isActive, onClose }) {
                 {/* DIRECT FEEDBACK FORM */}
                 {formToShow === 'feedback' && (
                     <Formik
-                        initialValues={{ feedback: '', rating: '' }}
+                        initialValues={{ feedback: '', rating: rating }}
                         validationSchema={feedbackValidationSchema}
                         onSubmit={(values, { setSubmitting }) => {
                             fetch('/feedback/new', {
@@ -120,6 +120,7 @@ export function CaptureFeedback({ isActive, onClose }) {
                                 />
                                 <div className='rating-container'>
                                     <Rating
+                                        onClick={(value) => setRating(value)}
                                         onPointerMove={onPointerMove}
                                         initialValue={rating}
                                     />
