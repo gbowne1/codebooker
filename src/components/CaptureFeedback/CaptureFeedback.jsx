@@ -10,14 +10,19 @@ import './CaptureFeedback.css';
 Modal.setAppElement('#root');
 
 // Validate direct feedback
-const feedbackValidationSchema = Yup.object({
-    feedback: Yup.string().required('Feedback is required'),
-    rating: Yup.number().required('Rating is required'),
+const feedbackValidationSchema = Yup.object().shape({
+    feedback: Yup.string()
+        .trim()
+        .required('Feedback is required')
+        .max(2000, 'Feedback should not exceed 1000 characters'),
+    rating: Yup.number()
+        .required('Rating is required')
+        .min(1, 'Rating should be at least 1')
+        .max(5, 'Rating should not exceed 5'),
 });
 
 // Validate email feedback
 const emailValidationSchema = Yup.object({
-    email: Yup.string().email('Invalid email address').required('Required'),
     message: Yup.string().required('Message is required'),
     rating: Yup.number().required('Rating is required'),
 });
