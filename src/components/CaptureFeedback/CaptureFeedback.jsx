@@ -17,7 +17,7 @@ const feedbackValidationSchema = Yup.object().shape({
         .max(2000, 'Feedback should not exceed 2000 characters'),
     rating: Yup.number()
         .required('Rating is required')
-        .min(1, 'Rating should be at least 1')
+        .min(0, 'Rating should be at least 0')
         .max(5, 'Rating should not exceed 5'),
 });
 
@@ -29,7 +29,7 @@ const emailValidationSchema = Yup.object({
 
 export function CaptureFeedback({ isActive, onClose }) {
     const [formToShow, setFormToShow] = useState('initial'); // State for which form to render
-    const [rating, setRating] = useState(0); // State for rating
+    const [rating, setRating] = useState(0); // State for feedback rating
 
     // Switches form state
     const handleFormSwitch = (formType) => {
@@ -76,7 +76,9 @@ export function CaptureFeedback({ isActive, onClose }) {
                         initialValues={{ feedback: '', rating: rating }}
                         validationSchema={feedbackValidationSchema}
                         onSubmit={(values, { setSubmitting }) => {
-                            fetch('/feedback/new', {
+                            console.log('Submitting'); //TEST CONSOLE.LOG
+                            // Directly send feedback without fetching userId
+                            fetch('/api/user/feedback/new', {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json',
@@ -84,11 +86,9 @@ export function CaptureFeedback({ isActive, onClose }) {
                                 body: JSON.stringify({
                                     feedback: values.feedback,
                                     rating: values.rating,
-                                    // ADD USER ID HERE
-                                    // author:
+                                    // Author will be set in backend
                                 }),
                             })
-                                // Handle response
                                 .then((response) => {
                                     if (!response.ok) {
                                         throw new Error(
@@ -101,7 +101,6 @@ export function CaptureFeedback({ isActive, onClose }) {
                                     setSubmitting(false);
                                     onClose();
                                 })
-                                // Catch-all error
                                 .catch((error) => {
                                     console.error(
                                         'There was an error submitting the feedback',
