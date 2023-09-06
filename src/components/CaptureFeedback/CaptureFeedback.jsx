@@ -82,10 +82,21 @@ export function CaptureFeedback({ isActive, onClose }) {
                                     // ADD USER ID HERE
                                     // author:
                                 }),
-                            });
-
-                            setSubmitting(false);
-                            onClose();
+                            })
+                                // Handle response
+                                .then((response) => response.json())
+                                .then((data) => {
+                                    setSubmitting(false);
+                                    onClose();
+                                })
+                                // Catch-all error
+                                .catch((error) => {
+                                    console.error(
+                                        'There was an error submitting the feedback',
+                                        error
+                                    );
+                                    setSubmitting(false);
+                                });
                         }}
                     >
                         {({ isSubmitting }) => (
