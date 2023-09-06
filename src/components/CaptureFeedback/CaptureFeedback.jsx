@@ -14,7 +14,7 @@ const feedbackValidationSchema = Yup.object().shape({
     feedback: Yup.string()
         .trim()
         .required('Feedback is required')
-        .max(2000, 'Feedback should not exceed 1000 characters'),
+        .max(2000, 'Feedback should not exceed 2000 characters'),
     rating: Yup.number()
         .required('Rating is required')
         .min(1, 'Rating should be at least 1')
@@ -89,7 +89,14 @@ export function CaptureFeedback({ isActive, onClose }) {
                                 }),
                             })
                                 // Handle response
-                                .then((response) => response.json())
+                                .then((response) => {
+                                    if (!response.ok) {
+                                        throw new Error(
+                                            'Network response was not ok'
+                                        );
+                                    }
+                                    return response.json();
+                                })
                                 .then((data) => {
                                     setSubmitting(false);
                                     onClose();
