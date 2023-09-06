@@ -71,7 +71,18 @@ export function CaptureFeedback({ isActive, onClose }) {
                         initialValues={{ feedback: '', rating: '' }}
                         validationSchema={feedbackValidationSchema}
                         onSubmit={(values, { setSubmitting }) => {
-                            // Feedback to backend here
+                            fetch('/feedback/new', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({
+                                    feedback: values.feedback,
+                                    rating: values.rating,
+                                    // ADD USER ID HERE
+                                    // author:
+                                }),
+                            });
 
                             setSubmitting(false);
                             onClose();
