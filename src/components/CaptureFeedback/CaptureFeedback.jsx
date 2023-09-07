@@ -5,6 +5,7 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Rating } from 'react-simple-star-rating';
 import './CaptureFeedback.css';
+import axios from 'axios';
 
 // Bind modal to app
 Modal.setAppElement('#root');
@@ -76,38 +77,48 @@ export function CaptureFeedback({ isActive, onClose }) {
                         initialValues={{ feedback: '', rating: rating }}
                         validationSchema={feedbackValidationSchema}
                         onSubmit={(values, { setSubmitting }) => {
-                            console.log('Submitting'); //TEST CONSOLE.LOG
-                            // Directly send feedback without fetching userId
-                            fetch('/api/user/feedback/new', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
-                                body: JSON.stringify({
-                                    feedback: values.feedback,
-                                    rating: values.rating,
-                                    // Author will be set in backend
-                                }),
-                            })
-                                .then((response) => {
-                                    if (!response.ok) {
-                                        throw new Error(
-                                            'Network response was not ok'
+                            //Get token and user info
+                            const token = localStorage.getItem('token');
+                            const user = JSON.parse(
+                                localStorage.getItem('user')
+                            );
+
+                            if (token && user) {
+                                // User logged in and user details are available
+                                const userId = user._id;
+                                axios
+                                    .post(
+                                        'http://localhost:3001/api/user/feedback/new',
+                                        {
+                                            feedback: values.feedback,
+                                            rating: values.rating,
+                                            author: userId,
+                                        },
+                                        {
+                                            headers: {
+                                                'Content-Type':
+                                                    'application/json',
+                                                Authorization: `Bearer ${token}`,
+                                            },
+                                        }
+                                    )
+                                    .then((response) => {
+                                        setSubmitting(false);
+                                        onClose();
+                                    })
+                                    .catch((error) => {
+                                        console.error(
+                                            'There was an error submitting the feedback',
+                                            error
                                         );
-                                    }
-                                    return response.json();
-                                })
-                                .then((data) => {
-                                    setSubmitting(false);
-                                    onClose();
-                                })
-                                .catch((error) => {
-                                    console.error(
-                                        'There was an error submitting the feedback',
-                                        error
-                                    );
-                                    setSubmitting(false);
-                                });
+                                        setSubmitting(false);
+                                    });
+                            } else {
+                                // User is not logged in or user details are not available
+                                console.error(
+                                    'User is not authenticated or user details are missing.'
+                                );
+                            }
                         }}
                     >
                         {({ isSubmitting }) => (
