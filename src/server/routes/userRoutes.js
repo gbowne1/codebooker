@@ -7,15 +7,10 @@ const {
     forgotPassword,
     resetPassword,
 } = require('../controller/userController');
-const { allfeedback, addfeedback } = require('../controller/feedBackController');
-
-// Ensure user is logged in.
-function requireLogin(req, res, next) {
-  if (!req.session.userId) {
-      return res.status(401).send('You must be logged in.');
-  }
-  next();
-}
+const {
+    allfeedback,
+    addfeedback,
+} = require('../controller/feedBackController');
 
 //auth
 router.post('/login', login);
@@ -28,6 +23,6 @@ router.put('/reset-password/:token', resetPassword);
 
 //feedback routes
 router.get('/feedback/all', allfeedback);
-router.post('/feedback/new', requireLogin, addfeedback);
+router.post('/feedback/new', addfeedback);
 
 module.exports = router;
