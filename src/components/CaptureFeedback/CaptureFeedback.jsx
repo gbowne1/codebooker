@@ -22,12 +22,6 @@ const feedbackValidationSchema = Yup.object().shape({
         .max(5, 'Rating should not exceed 5'),
 });
 
-// Validate email feedback
-const emailValidationSchema = Yup.object({
-    message: Yup.string().required('Message is required'),
-    rating: Yup.number().required('Rating is required'),
-});
-
 export function CaptureFeedback({ isActive, onClose }) {
     const [formToShow, setFormToShow] = useState('initial'); // State for which form to render
     const [rating, setRating] = useState(0); // State for feedback rating
@@ -166,7 +160,7 @@ export function CaptureFeedback({ isActive, onClose }) {
                 {formToShow === 'email' && (
                     <Formik
                         initialValues={{ email: '', feedback: '', rating: '' }}
-                        validationSchema={emailValidationSchema}
+                        validationSchema={feedbackValidationSchema}
                         onSubmit={(values, { setSubmitting }) => {
                             const token = localStorage.getItem('token');
                             const user = JSON.parse(
@@ -222,7 +216,7 @@ export function CaptureFeedback({ isActive, onClose }) {
                             <Form>
                                 <Field
                                     as='textarea'
-                                    name='message'
+                                    name='feedback'
                                     className='feedback-textarea'
                                 />
                                 <div className='rating-container'>

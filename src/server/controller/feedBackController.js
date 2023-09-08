@@ -14,10 +14,7 @@ module.exports.addfeedback = async (req, res) => {
 };
 
 // TO DO:
-// - user._id not being sent
-// - feedback being sent as undefined
 // - feedback module reopens once server successfully sends the email?
-// - add ability to attach screenshots to email
 
 module.exports.emailFeedback = async (req, res) => {
     try {
