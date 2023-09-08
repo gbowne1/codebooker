@@ -10,6 +10,7 @@ const {
 const {
     allfeedback,
     addfeedback,
+    emailFeedback,
 } = require('../controller/feedBackController');
 
 //auth
@@ -24,5 +25,6 @@ router.put('/reset-password/:token', resetPassword);
 //feedback routes
 router.get('/feedback/all', allfeedback);
 router.post('/feedback/new', addfeedback);
+router.post('/feedback/mail', emailFeedback);
 
 module.exports = router;
