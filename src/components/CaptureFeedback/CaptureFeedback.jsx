@@ -168,7 +168,46 @@ export function CaptureFeedback({ isActive, onClose }) {
                         initialValues={{ email: '', message: '', rating: '' }}
                         validationSchema={emailValidationSchema}
                         onSubmit={(values, { setSubmitting }) => {
-                            // Send email here
+                            const token = localStorage.getItem('token');
+                            const user = JSON.parse(
+                                localStorage.getItem('user')
+                            );
+
+                            if (token && user) {
+                                // User logged in and user details are available
+                                axios
+                                    .post(
+                                        'http://localhost:3001/api/user/feedback/mail',
+                                        {
+                                            feedback: values.feedback,
+                                            rating: values.rating,
+                                            user: user,
+                                        },
+                                        {
+                                            headers: {
+                                                'Content-Type':
+                                                    'application/json',
+                                                Authorization: `Bearer ${token}`,
+                                            },
+                                        }
+                                    )
+                                    .then((response) => {
+                                        setSubmitting(false);
+                                        onClose();
+                                    })
+                                    .catch((error) => {
+                                        console.error(
+                                            'There was an error submitting the feedback',
+                                            error
+                                        );
+                                        setSubmitting(false);
+                                    });
+                            } else {
+                                // User is not logged in or user details are not available
+                                console.error(
+                                    'User is not authenticated or user details are missing.'
+                                );
+                            }
 
                             setSubmitting(false);
                             onClose();
