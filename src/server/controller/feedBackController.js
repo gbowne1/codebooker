@@ -1,3 +1,4 @@
+const nodemailer = require('nodemailer');
 const FeedBack = require('../model/feedBackModel');
 
 module.exports.addfeedback = async (req, res) => {
@@ -9,6 +10,50 @@ module.exports.addfeedback = async (req, res) => {
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Server Error' });
+    }
+};
+
+module.exports.emailFeedback = async (req, res) => {
+    try {
+        // Add try block
+        const { user, feedback, rating } = req.body;
+
+        // create reusable transporter object using the default SMTP transport
+        // message to send user via nodemailer
+        const message = `
+      <h2> ${user.username} has submitted some feedback.</h2>
+      <p>User email: ${user.email}</p>
+      <p>Feedback: ${feedback}</p>
+      <p>Rating: ${rating}</p>
+    `;
+
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: process.env.MAIL_USERNAME,
+                pass: process.env.MAIL_PASSWORD,
+            },
+        });
+
+        const mailOptions = {
+            from: process.env.MAIL_USERNAME,
+            to: process.env.MAIL_USERNAME,
+            subject: 'New Feedback Received',
+            html: message,
+        };
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.log(error);
+            } else {
+                res.status(200).json('Email sent!');
+                console.log('Email sent: ' + info.response);
+            }
+        });
+    } catch (err) {
+        // Add catch block to handle exceptions
+        console.log(err.message);
+        res.status(500).json('Something went wrong...');
     }
 };
 
