@@ -174,7 +174,7 @@ export function CaptureFeedback({ isActive, onClose }) {
                             onClose();
                         }}
                     >
-                        {({ isSubmitting }) => (
+                        {({ isSubmitting, setFieldValue }) => (
                             <Form>
                                 <Field
                                     as='textarea'
@@ -183,6 +183,10 @@ export function CaptureFeedback({ isActive, onClose }) {
                                 />
                                 <div className='rating-container'>
                                     <Rating
+                                        onClick={(value) => {
+                                            setRating(value);
+                                            setFieldValue('rating', value);
+                                        }}
                                         onPointerMove={onPointerMove}
                                         initialValue={rating}
                                     />
