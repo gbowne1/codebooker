@@ -17,17 +17,17 @@ module.exports.addfeedback = async (req, res) => {
 // - user._id not being sent
 // - feedback being sent as undefined
 // - feedback module reopens once server successfully sends the email?
+// - add ability to attach screenshots to email
 
 module.exports.emailFeedback = async (req, res) => {
     try {
-        // Add try block
-        const { user, feedback, rating } = req.body;
+        const { username, userId, userEmail, feedback, rating } = req.body;
 
         // message to send
         const message = `
-      <h2> ${user.username} has submitted some feedback.</h2>
-      <p><userId: ${user._id}</p>
-      <p>User email: ${user.email}</p>
+      <h2> ${username} has submitted some feedback.</h2>
+      <p>userId: ${userId}</p>
+      <p>User email: ${userEmail}</p>
       <p>Feedback: ${feedback}</p> 
       <p>Rating: ${rating}</p>
     `;

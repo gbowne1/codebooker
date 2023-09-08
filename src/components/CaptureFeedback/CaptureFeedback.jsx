@@ -165,13 +165,16 @@ export function CaptureFeedback({ isActive, onClose }) {
                 {/* EMAIL FEEDBACK FORM */}
                 {formToShow === 'email' && (
                     <Formik
-                        initialValues={{ email: '', message: '', rating: '' }}
+                        initialValues={{ email: '', feedback: '', rating: '' }}
                         validationSchema={emailValidationSchema}
                         onSubmit={(values, { setSubmitting }) => {
                             const token = localStorage.getItem('token');
                             const user = JSON.parse(
                                 localStorage.getItem('user')
                             );
+                            const userId = user._id;
+                            const userEmail = user.email;
+                            const username = user.username;
 
                             if (token && user) {
                                 // User logged in and user details are available
@@ -181,7 +184,9 @@ export function CaptureFeedback({ isActive, onClose }) {
                                         {
                                             feedback: values.feedback,
                                             rating: values.rating,
-                                            user: user,
+                                            userId: userId,
+                                            userEmail: userEmail,
+                                            username: username,
                                         },
                                         {
                                             headers: {
