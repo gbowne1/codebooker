@@ -13,17 +13,22 @@ module.exports.addfeedback = async (req, res) => {
     }
 };
 
+// TO DO:
+// - user._id not being sent
+// - feedback being sent as undefined
+// - feedback module reopens once server successfully sends the email?
+
 module.exports.emailFeedback = async (req, res) => {
     try {
         // Add try block
         const { user, feedback, rating } = req.body;
 
-        // create reusable transporter object using the default SMTP transport
-        // message to send user via nodemailer
+        // message to send
         const message = `
       <h2> ${user.username} has submitted some feedback.</h2>
+      <p><userId: ${user._id}</p>
       <p>User email: ${user.email}</p>
-      <p>Feedback: ${feedback}</p>
+      <p>Feedback: ${feedback}</p> 
       <p>Rating: ${rating}</p>
     `;
 
@@ -38,7 +43,7 @@ module.exports.emailFeedback = async (req, res) => {
         const mailOptions = {
             from: process.env.MAIL_USERNAME,
             to: process.env.MAIL_USERNAME,
-            subject: 'New Feedback Received',
+            subject: 'CodeBooker: New Feedback Received',
             html: message,
         };
 
