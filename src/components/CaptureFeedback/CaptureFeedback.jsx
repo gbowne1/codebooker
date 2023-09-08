@@ -97,6 +97,9 @@ export function CaptureFeedback({ isActive, onClose }) {
                                         }
                                     )
                                     .then((response) => {
+                                        // HANDLE SUCCESSFUL NOTIFICATION HERE
+                                    })
+                                    .then(() => {
                                         setSubmitting(false);
                                         onClose();
                                     })
@@ -105,7 +108,6 @@ export function CaptureFeedback({ isActive, onClose }) {
                                             'There was an error submitting the feedback',
                                             error
                                         );
-                                        setSubmitting(false);
                                     });
                             } else {
                                 // User is not logged in or user details are not available
@@ -191,6 +193,9 @@ export function CaptureFeedback({ isActive, onClose }) {
                                         }
                                     )
                                     .then((response) => {
+                                        // HANDLE SUCCESS NOTIFICATION HERE
+                                    })
+                                    .then(() => {
                                         setSubmitting(false);
                                         onClose();
                                     })
@@ -199,7 +204,6 @@ export function CaptureFeedback({ isActive, onClose }) {
                                             'There was an error submitting the feedback',
                                             error
                                         );
-                                        setSubmitting(false);
                                     });
                             } else {
                                 // User is not logged in or user details are not available
@@ -207,9 +211,6 @@ export function CaptureFeedback({ isActive, onClose }) {
                                     'User is not authenticated or user details are missing.'
                                 );
                             }
-
-                            setSubmitting(false);
-                            onClose();
                         }}
                     >
                         {({ isSubmitting, setFieldValue }) => (
