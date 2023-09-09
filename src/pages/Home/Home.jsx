@@ -52,12 +52,14 @@ function Home() {
     const notify = (username) => toast.success('Welcome! ' + username);
 
     useEffect(() => {
-        if (
-            location.state &&
-            location.state.loggin &&
-            localStorage.getItem('user')
-        ) {
-            notify(JSON.parse(localStorage.getItem('user')).username);
+        if (location?.state?.loggin || localStorage.getItem('user')) {
+            if (
+                location.state &&
+                location.state.loggin &&
+                localStorage.getItem('user')
+            ) {
+                notify(JSON.parse(localStorage.getItem('user')).username);
+            }
         }
     }, []);
 
@@ -103,7 +105,7 @@ function Home() {
                         </Toolbar>
                     </AppBar>
                 </Box>
-                <Library filter={filter} />
+                <Library filter={filter} setFilter={setFilter} />
             </div>
             <Toaster />
         </ThemeProvider>

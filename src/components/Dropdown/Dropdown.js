@@ -14,6 +14,8 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
 import HelpIcon from '@mui/icons-material/Help';
 import MessageIcon from '@mui/icons-material/Message';
+import PolicyIcon from '@mui/icons-material/Policy';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import { useEffect } from 'react';
 
 export default function Dropdown() {
@@ -51,6 +53,13 @@ export default function Dropdown() {
             localStorage.setItem('token', null);
             navigate('/login');
         }, 1500);
+    }
+
+    function navigateToProfile() {
+        navigate('/profile');
+    }
+    function navigateToPrivacyPolicy() {
+        navigate('/privacy-policy');
     }
 
     return (
@@ -117,6 +126,10 @@ export default function Dropdown() {
                     <MessageIcon fontSize='large' />
                     &nbsp; Feedback
                 </MenuItem>
+                <MenuItem onClick={navigateToPrivacyPolicy}>
+                    <PolicyIcon fontSize='large' />
+                    &nbsp; Privacy Policy
+                </MenuItem>
                 <Divider />
                 <MenuItem>
                     <ListItemIcon>
@@ -125,12 +138,20 @@ export default function Dropdown() {
                     Settings
                 </MenuItem>
                 {loggedIn ? ( // Use the 'loggedIn' state to conditionally render the Logout/Login menu item
-                    <MenuItem onClick={handleLogOut}>
-                        <ListItemIcon>
-                            <LogoutIcon fontSize='small' />
-                        </ListItemIcon>
-                        Logout
-                    </MenuItem>
+                    <div>
+                        <MenuItem onClick={navigateToProfile}>
+                            <ListItemIcon>
+                                <ManageAccountsIcon fontSize='small' />
+                            </ListItemIcon>
+                            Profile
+                        </MenuItem>
+                        <MenuItem onClick={handleLogOut}>
+                            <ListItemIcon>
+                                <LogoutIcon fontSize='small' />
+                            </ListItemIcon>
+                            Logout
+                        </MenuItem>
+                    </div>
                 ) : (
                     <MenuItem onClick={handleLogin}>
                         <ListItemIcon>

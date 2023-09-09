@@ -9,15 +9,16 @@ import UserAuthenticated from './ProtectedRoute';
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
 import ResetPassword from './pages/ResetPassword/ResetPassword';
 import Support from './pages/Support/Support';
-
+import PrivacyPolicy from './pages/PrivacyPolicy/PrivacyPolicy';
 export default function App() {
     return (
         <Router>
             <Routes>
                 <Route element={<UserAuthenticated />}>
                     <Route path='/' element={<Home />} />
-                    <Route path='/profile/:uid' element={<Profile />} />
                     <Route path='/support' element={<Support />} />
+                    <Route path='/profile' element={<Profile />} />
+                    <Route path='/privacy-policy' element={<PrivacyPolicy />} />
                 </Route>
                 <Route path='/login' element={<Login />} />
                 <Route path='/register' element={<Register />} />
