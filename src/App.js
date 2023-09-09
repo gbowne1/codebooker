@@ -8,6 +8,7 @@ import Register from './components/Register/Register';
 import UserAuthenticated from './ProtectedRoute';
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
 import ResetPassword from './pages/ResetPassword/ResetPassword';
+import Support from './pages/Support/Support';
 
 export default function App() {
     return (
@@ -16,6 +17,7 @@ export default function App() {
                 <Route element={<UserAuthenticated />}>
                     <Route path='/' element={<Home />} />
                     <Route path='/profile/:uid' element={<Profile />} />
+                    <Route path='/support' element={<Support />} />
                 </Route>
                 <Route path='/login' element={<Login />} />
                 <Route path='/register' element={<Register />} />
