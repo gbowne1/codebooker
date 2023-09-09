@@ -4,6 +4,7 @@ import Modal from 'react-modal';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Rating } from 'react-simple-star-rating';
+import toast, { Toaster } from 'react-hot-toast';
 import './CaptureFeedback.css';
 import axios from 'axios';
 
@@ -38,95 +39,207 @@ export function CaptureFeedback({ isActive, onClose }) {
     };
 
     return (
-        <Modal
-            isOpen={isActive}
-            onRequestClose={onClose}
-            contentLabel='Feedback Modal'
-            className='feedback-modal'
-            overlayClassName='overlay'
-        >
-            {/* Modal close button */}
-            <button className='close-button' onClick={onClose}>
-                X
-            </button>
-            <div className='modal-form'>
-                <h2>
-                    We appreciate your feedback. <br></br> Please let us know
-                    how we can improve.
-                </h2>
-                {/* INITIAL FORM */}
-                {formToShow === 'initial' && (
-                    <div className='button-group'>
-                        <button onClick={() => handleFormSwitch('feedback')}>
-                            Leave us a message
-                        </button>
-                        <button onClick={() => handleFormSwitch('email')}>
-                            Send us an email
-                        </button>
-                    </div>
-                )}
-                {/* DIRECT FEEDBACK FORM */}
-                {formToShow === 'feedback' && (
-                    <Formik
-                        initialValues={{ feedback: '', rating: rating }}
-                        validationSchema={feedbackValidationSchema}
-                        onSubmit={(values, { setSubmitting }) => {
-                            //Get token and user info
-                            const token = localStorage.getItem('token');
-                            const user = JSON.parse(
-                                localStorage.getItem('user')
-                            );
-
-                            if (token && user) {
-                                // User logged in and user details are available
-                                const userId = user._id;
-                                axios
-                                    .post(
-                                        'http://localhost:3001/api/user/feedback/new',
-                                        {
-                                            feedback: values.feedback,
-                                            rating: values.rating,
-                                            author: userId,
-                                        },
-                                        {
-                                            headers: {
-                                                'Content-Type':
-                                                    'application/json',
-                                                Authorization: `Bearer ${token}`,
-                                            },
-                                        }
-                                    )
-                                    .then((response) => {
-                                        // HANDLE SUCCESSFUL NOTIFICATION HERE
-                                    })
-                                    .then(() => {
-                                        setSubmitting(false);
-                                        onClose();
-                                    })
-                                    .catch((error) => {
-                                        console.error(
-                                            'There was an error submitting the feedback',
-                                            error
-                                        );
-                                    });
-                            } else {
-                                // User is not logged in or user details are not available
-                                console.error(
-                                    'User is not authenticated or user details are missing.'
+        <>
+            <Modal
+                isOpen={isActive}
+                onRequestClose={onClose}
+                contentLabel='Feedback Modal'
+                className='feedback-modal'
+                overlayClassName='overlay'
+            >
+                {/* Modal close button */}
+                <button className='close-button' onClick={onClose}>
+                    X
+                </button>
+                <div className='modal-form'>
+                    <h2>
+                        We appreciate your feedback. <br></br> Please let us
+                        know how we can improve.
+                    </h2>
+                    {/* INITIAL FORM */}
+                    {formToShow === 'initial' && (
+                        <div className='button-group'>
+                            <button
+                                onClick={() => handleFormSwitch('feedback')}
+                            >
+                                Leave us a message
+                            </button>
+                            <button onClick={() => handleFormSwitch('email')}>
+                                Send us an email
+                            </button>
+                        </div>
+                    )}
+                    {/* DIRECT FEEDBACK FORM */}
+                    {formToShow === 'feedback' && (
+                        <Formik
+                            initialValues={{ feedback: '', rating: rating }}
+                            validationSchema={feedbackValidationSchema}
+                            onSubmit={(values, { setSubmitting }) => {
+                                //Get token and user info
+                                const token = localStorage.getItem('token');
+                                const user = JSON.parse(
+                                    localStorage.getItem('user')
                                 );
-                            }
-                        }}
-                    >
-                        {({ isSubmitting, setFieldValue }) => (
-                            <Form>
-                                <Field
-                                    as='textarea'
-                                    name='feedback'
-                                    className='feedback-textarea'
-                                />
-                                <div className='rating-container'>
+
+                                if (token && user) {
+                                    // User logged in and user details are available
+                                    const userId = user._id;
+                                    axios
+                                        .post(
+                                            'http://localhost:3001/api/user/feedback/new',
+                                            {
+                                                feedback: values.feedback,
+                                                rating: values.rating,
+                                                author: userId,
+                                            },
+                                            {
+                                                headers: {
+                                                    'Content-Type':
+                                                        'application/json',
+                                                    Authorization: `Bearer ${token}`,
+                                                },
+                                            }
+                                        )
+                                        .then((response) => {})
+                                        .then(() => {
+                                            setSubmitting(false);
+                                            onClose();
+                                            toast.success(
+                                                'Thank you, your feedback has been submitted!'
+                                            );
+                                        })
+                                        .catch((error) => {
+                                            console.error(
+                                                'There was an error submitting the feedback',
+                                                error
+                                            );
+                                        });
+                                } else {
+                                    // User is not logged in or user details are not available
+                                    console.error(
+                                        'User is not authenticated or user details are missing.'
+                                    );
+                                }
+                            }}
+                        >
+                            {({ isSubmitting, setFieldValue }) => (
+                                <Form>
+                                    <Field
+                                        as='textarea'
+                                        name='feedback'
+                                        disabled={isSubmitting}
+                                        className='feedback-textarea'
+                                    />
+                                    <div className='rating-container'>
+                                        <div className='rating-container'>
+                                            <Rating
+                                                disabled={isSubmitting}
+                                                onClick={(value) => {
+                                                    setRating(value);
+                                                    setFieldValue(
+                                                        'rating',
+                                                        value
+                                                    );
+                                                }}
+                                                onPointerMove={onPointerMove}
+                                                initialValue={rating}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className='button-group'>
+                                        <button
+                                            type='button'
+                                            disabled={isSubmitting}
+                                            onClick={() =>
+                                                handleFormSwitch('initial')
+                                            }
+                                            className='back-button'
+                                        >
+                                            Back
+                                        </button>
+                                        <button
+                                            type='submit'
+                                            disabled={isSubmitting}
+                                            className='submit-button'
+                                        >
+                                            Submit Feedback
+                                        </button>
+                                    </div>
+                                </Form>
+                            )}
+                        </Formik>
+                    )}
+                    {/* EMAIL FEEDBACK FORM */}
+                    {formToShow === 'email' && (
+                        <Formik
+                            initialValues={{
+                                email: '',
+                                feedback: '',
+                                rating: '',
+                            }}
+                            validationSchema={feedbackValidationSchema}
+                            onSubmit={(values, { setSubmitting }) => {
+                                const token = localStorage.getItem('token');
+                                const user = JSON.parse(
+                                    localStorage.getItem('user')
+                                );
+                                const userId = user._id;
+                                const userEmail = user.email;
+                                const username = user.username;
+
+                                if (token && user) {
+                                    // User logged in and user details are available
+                                    axios
+                                        .post(
+                                            'http://localhost:3001/api/user/feedback/mail',
+                                            {
+                                                feedback: values.feedback,
+                                                rating: values.rating,
+                                                userId: userId,
+                                                userEmail: userEmail,
+                                                username: username,
+                                            },
+                                            {
+                                                headers: {
+                                                    'Content-Type':
+                                                        'application/json',
+                                                    Authorization: `Bearer ${token}`,
+                                                },
+                                            }
+                                        )
+                                        .then((response) => {})
+                                        .then(() => {
+                                            setSubmitting(false);
+                                            onClose();
+                                            toast.success(
+                                                'Thank you, your feedback has been submitted!'
+                                            );
+                                        })
+                                        .catch((error) => {
+                                            console.error(
+                                                'There was an error submitting the feedback',
+                                                error
+                                            );
+                                        });
+                                } else {
+                                    // User is not logged in or user details are not available
+                                    console.error(
+                                        'User is not authenticated or user details are missing.'
+                                    );
+                                }
+                            }}
+                        >
+                            {({ isSubmitting, setFieldValue }) => (
+                                <Form>
+                                    <Field
+                                        as='textarea'
+                                        name='feedback'
+                                        disabled={isSubmitting}
+                                        className='feedback-textarea'
+                                    />
                                     <div className='rating-container'>
                                         <Rating
+                                            disabled={isSubmitting}
                                             onClick={(value) => {
                                                 setRating(value);
                                                 setFieldValue('rating', value);
@@ -135,125 +248,33 @@ export function CaptureFeedback({ isActive, onClose }) {
                                             initialValue={rating}
                                         />
                                     </div>
-                                </div>
-                                <div className='button-group'>
-                                    <button
-                                        type='button'
-                                        onClick={() =>
-                                            handleFormSwitch('initial')
-                                        }
-                                        className='back-button'
-                                    >
-                                        Back
-                                    </button>
-                                    <button
-                                        type='submit'
-                                        disabled={isSubmitting}
-                                        className='submit-button'
-                                    >
-                                        Submit Feedback
-                                    </button>
-                                </div>
-                            </Form>
-                        )}
-                    </Formik>
-                )}
-                {/* EMAIL FEEDBACK FORM */}
-                {formToShow === 'email' && (
-                    <Formik
-                        initialValues={{ email: '', feedback: '', rating: '' }}
-                        validationSchema={feedbackValidationSchema}
-                        onSubmit={(values, { setSubmitting }) => {
-                            const token = localStorage.getItem('token');
-                            const user = JSON.parse(
-                                localStorage.getItem('user')
-                            );
-                            const userId = user._id;
-                            const userEmail = user.email;
-                            const username = user.username;
-
-                            if (token && user) {
-                                // User logged in and user details are available
-                                axios
-                                    .post(
-                                        'http://localhost:3001/api/user/feedback/mail',
-                                        {
-                                            feedback: values.feedback,
-                                            rating: values.rating,
-                                            userId: userId,
-                                            userEmail: userEmail,
-                                            username: username,
-                                        },
-                                        {
-                                            headers: {
-                                                'Content-Type':
-                                                    'application/json',
-                                                Authorization: `Bearer ${token}`,
-                                            },
-                                        }
-                                    )
-                                    .then((response) => {
-                                        // HANDLE SUCCESS NOTIFICATION HERE
-                                    })
-                                    .then(() => {
-                                        setSubmitting(false);
-                                        onClose();
-                                    })
-                                    .catch((error) => {
-                                        console.error(
-                                            'There was an error submitting the feedback',
-                                            error
-                                        );
-                                    });
-                            } else {
-                                // User is not logged in or user details are not available
-                                console.error(
-                                    'User is not authenticated or user details are missing.'
-                                );
-                            }
-                        }}
-                    >
-                        {({ isSubmitting, setFieldValue }) => (
-                            <Form>
-                                <Field
-                                    as='textarea'
-                                    name='feedback'
-                                    className='feedback-textarea'
-                                />
-                                <div className='rating-container'>
-                                    <Rating
-                                        onClick={(value) => {
-                                            setRating(value);
-                                            setFieldValue('rating', value);
-                                        }}
-                                        onPointerMove={onPointerMove}
-                                        initialValue={rating}
-                                    />
-                                </div>
-                                <div className='button-group'>
-                                    <button
-                                        type='button'
-                                        onClick={() =>
-                                            handleFormSwitch('initial')
-                                        }
-                                        className='back-button'
-                                    >
-                                        Back
-                                    </button>
-                                    <button
-                                        type='submit'
-                                        disabled={isSubmitting}
-                                        className='submit-button'
-                                    >
-                                        Submit Email
-                                    </button>
-                                </div>
-                            </Form>
-                        )}
-                    </Formik>
-                )}
-            </div>
-        </Modal>
+                                    <div className='button-group'>
+                                        <button
+                                            type='button'
+                                            disabled={isSubmitting}
+                                            onClick={() =>
+                                                handleFormSwitch('initial')
+                                            }
+                                            className='back-button'
+                                        >
+                                            Back
+                                        </button>
+                                        <button
+                                            type='submit'
+                                            disabled={isSubmitting}
+                                            className='submit-button'
+                                        >
+                                            Submit Email
+                                        </button>
+                                    </div>
+                                </Form>
+                            )}
+                        </Formik>
+                    )}
+                </div>
+            </Modal>
+            <Toaster />
+        </>
     );
 }
 
