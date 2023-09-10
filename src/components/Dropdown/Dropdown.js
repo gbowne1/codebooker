@@ -15,7 +15,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import HelpIcon from '@mui/icons-material/Help';
 import MessageIcon from '@mui/icons-material/Message';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
-import { CaptureFeedback } from '../CaptureFeedback/CaptureFeedback'; //
+import { CaptureFeedback } from '../Feedback/CaptureFeedback'; //
 
 export default function Dropdown() {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -60,7 +60,7 @@ export default function Dropdown() {
     }
 
     // Toggle CaptureFeedback modal component visibility
-    function toggleFeedback() {
+    function toggleFeedbackModal() {
         setFeedbackVisible((prevFeedbackVisible) => !prevFeedbackVisible);
         handleClose();
     }
@@ -124,7 +124,7 @@ export default function Dropdown() {
                     <HelpIcon fontSize='large' />
                     &nbsp; Help
                 </MenuItem>
-                <MenuItem onClick={toggleFeedback}>
+                <MenuItem onClick={toggleFeedbackModal}>
                     <MessageIcon fontSize='large' />
                     &nbsp; Feedback
                 </MenuItem>
@@ -164,7 +164,7 @@ export default function Dropdown() {
             {feedbackVisible && (
                 <CaptureFeedback
                     isActive={feedbackVisible}
-                    onClose={toggleFeedback}
+                    onClose={toggleFeedbackModal}
                 />
             )}
         </React.Fragment>
