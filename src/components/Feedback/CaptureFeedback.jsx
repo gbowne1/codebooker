@@ -26,42 +26,48 @@ export function CaptureFeedback({ isActive, onClose }) {
                 isOpen={isActive}
                 onRequestClose={onClose}
                 contentLabel='Feedback Modal'
+                className='feedback-modal'
+                overlayClassName='overlay'
             >
                 <button className='close-button' onClick={onClose}>
                     X
                 </button>
-                <h2>
-                    We appreciate your feedback. Please let us know how we can
-                    improve.
-                </h2>
-                {formToShow === 'initial' && (
-                    <div className='button-group'>
-                        <button onClick={() => handleFormSwitch('feedback')}>
-                            Leave us a message
-                        </button>
-                        <button onClick={() => handleFormSwitch('email')}>
-                            Send us an email
-                        </button>
-                    </div>
-                )}
-                {formToShow === 'feedback' && (
-                    <DirectFeedback
-                        handleFormSwitch={handleFormSwitch}
-                        rating={rating}
-                        onPointerMove={onPointerMove}
-                        setRating={setRating}
-                        onClose={onClose}
-                    />
-                )}
-                {formToShow === 'email' && (
-                    <EmailFeedback
-                        handleFormSwitch={handleFormSwitch}
-                        rating={rating}
-                        onPointerMove={onPointerMove}
-                        setRating={setRating}
-                        onClose={onClose}
-                    />
-                )}
+                <div className='modal-form'>
+                    <h2>
+                        We appreciate your feedback. <br />
+                        Please let us know how we can improve.
+                    </h2>
+                    {formToShow === 'initial' && (
+                        <div className='button-group'>
+                            <button
+                                onClick={() => handleFormSwitch('feedback')}
+                            >
+                                Leave us a message
+                            </button>
+                            <button onClick={() => handleFormSwitch('email')}>
+                                Send us an email
+                            </button>
+                        </div>
+                    )}
+                    {formToShow === 'feedback' && (
+                        <DirectFeedback
+                            handleFormSwitch={handleFormSwitch}
+                            rating={rating}
+                            onPointerMove={onPointerMove}
+                            setRating={setRating}
+                            onClose={onClose}
+                        />
+                    )}
+                    {formToShow === 'email' && (
+                        <EmailFeedback
+                            handleFormSwitch={handleFormSwitch}
+                            rating={rating}
+                            onPointerMove={onPointerMove}
+                            setRating={setRating}
+                            onClose={onClose}
+                        />
+                    )}
+                </div>
             </Modal>
             <Toaster />
         </React.Fragment>
