@@ -118,7 +118,7 @@ export default function Dropdown() {
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-                <MenuItem>
+                <MenuItem onClick={() => navigate('/support')}>
                     <HelpIcon fontSize='large' />
                     &nbsp; Help
                 </MenuItem>
