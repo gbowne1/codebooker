@@ -30,18 +30,20 @@
 
 /* FORM Styling */
 .modal-form {
-  width: 100%;
-  height: 100%;
-  padding: 4%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 90%;
 }
 
 .feedback-header {
   text-align: center;
+  font-weight: bold;
 }
 
 .feedback-textarea {
   width: 100%;
-  height: 100px;
+  height: 120px;
   margin-bottom: 10px;
   padding: 10px;
   border-radius: 5px;
@@ -52,6 +54,22 @@
 .button-group {
   display: flex;
   justify-content: space-around;
+  margin-top: auto;
+}
+
+.button-group button {
+  border-radius: 3px;
+  color: white;
+  background-color: rgb(46, 125, 50);
+  font-weight: bold;
+  font-size: 1em;
+  padding: 0.5em;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+.button-group button:hover {
+  background-color: rgb(36, 110, 40);
 }
 
 .feedback-textarea {

@@ -44,6 +44,8 @@ export function CaptureFeedback({ isActive, onClose }) {
                             flexGrow: 1,
                             letterSpacing: '0.009em',
                             marginTop: '1%',
+                            marginBottom: '6%',
+                            fontWeight: 'bold',
                         }}
                     >
                         We appreciate your feedback. <br />
@@ -52,6 +54,7 @@ export function CaptureFeedback({ isActive, onClose }) {
                     {formToShow === 'initialPrompt' && (
                         <div className='button-group'>
                             <button
+                                className='feedback-button'
                                 onClick={() =>
                                     handleFormSwitch('directFeedback')
                                 }
@@ -59,6 +62,7 @@ export function CaptureFeedback({ isActive, onClose }) {
                                 Leave us a message
                             </button>
                             <button
+                                className='feedback-button'
                                 onClick={() =>
                                     handleFormSwitch('emailFeedback')
                                 }
