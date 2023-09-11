@@ -100,7 +100,9 @@ export default function DirectFeedback({
                             <button
                                 type='button'
                                 disabled={isSubmitting}
-                                onClick={() => handleFormSwitch('initial')}
+                                onClick={() =>
+                                    handleFormSwitch('initialPrompt')
+                                }
                                 className='back-button'
                             >
                                 Back
