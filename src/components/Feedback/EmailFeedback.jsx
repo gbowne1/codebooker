@@ -14,7 +14,7 @@ const feedbackValidationSchema = Yup.object().shape({
         .max(2000, 'Feedback should not exceed 2000 characters'),
     rating: Yup.number()
         .required('Rating is required')
-        .min(0, 'Rating should be at least 0')
+        .min(1, 'Rating should be at least 1')
         .max(5, 'Rating should not exceed 5'),
 });
 
@@ -97,7 +97,12 @@ export default function EmailFeedback({
                                     setRating(value);
                                     setFieldValue('rating', value);
                                 }}
-                                onPointerMove={onPointerMove}
+                                onPointerMove={(value) => {
+                                    if (!isSubmitting) {
+                                        //IF statement should prevent rating state change when submitting but not working?
+                                        onPointerMove(value);
+                                    }
+                                }}
                                 initialValue={rating}
                             />
                         </div>

@@ -8,7 +8,7 @@ import EmailFeedback from './EmailFeedback';
 Modal.setAppElement('#root');
 
 export function CaptureFeedback({ isActive, onClose }) {
-    const [formToShow, setFormToShow] = useState('initial');
+    const [formToShow, setFormToShow] = useState('initialPrompt');
     const [rating, setRating] = useState(0);
 
     const handleFormSwitch = (formType) => {
@@ -17,7 +17,9 @@ export function CaptureFeedback({ isActive, onClose }) {
     };
 
     const onPointerMove = (value) => {
-        setRating(value);
+        if (rating === 0) {
+            setRating(value);
+        }
     };
 
     return (
@@ -37,19 +39,25 @@ export function CaptureFeedback({ isActive, onClose }) {
                         We appreciate your feedback. <br />
                         Please let us know how we can improve.
                     </h2>
-                    {formToShow === 'initial' && (
+                    {formToShow === 'initialPrompt' && (
                         <div className='button-group'>
                             <button
-                                onClick={() => handleFormSwitch('feedback')}
+                                onClick={() =>
+                                    handleFormSwitch('directFeedback')
+                                }
                             >
                                 Leave us a message
                             </button>
-                            <button onClick={() => handleFormSwitch('email')}>
+                            <button
+                                onClick={() =>
+                                    handleFormSwitch('emailFeedback')
+                                }
+                            >
                                 Send us an email
                             </button>
                         </div>
                     )}
-                    {formToShow === 'feedback' && (
+                    {formToShow === 'directFeedback' && (
                         <DirectFeedback
                             handleFormSwitch={handleFormSwitch}
                             rating={rating}
@@ -58,7 +66,7 @@ export function CaptureFeedback({ isActive, onClose }) {
                             onClose={onClose}
                         />
                     )}
-                    {formToShow === 'email' && (
+                    {formToShow === 'emailFeedback' && (
                         <EmailFeedback
                             handleFormSwitch={handleFormSwitch}
                             rating={rating}
