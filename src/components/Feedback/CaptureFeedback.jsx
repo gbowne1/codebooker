@@ -39,7 +39,12 @@ export function CaptureFeedback({ isActive, onClose }) {
                     <Typography
                         variant={'h4'}
                         component='div'
-                        sx={{ flexGrow: 1, letterSpacing: '0.009em' }}
+                        className='feedback-header'
+                        sx={{
+                            flexGrow: 1,
+                            letterSpacing: '0.009em',
+                            marginTop: '1%',
+                        }}
                     >
                         We appreciate your feedback. <br />
                         Please let us know how we can improve.
