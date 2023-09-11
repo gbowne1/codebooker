@@ -12,8 +12,8 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 50%;
-  height: 55%;
+  width: 55%;
+  height: 60%;
   transform: translate(-50%, -50%);
   background: white;
   padding: 20px;
@@ -21,9 +21,11 @@
 }
 
 .close-button {
+  position: relative;
+  z-index: 9999;
   border: none;
   font-weight: bold;
-  font-size: 1.5em;
+  font-size: 1.6vw;
   cursor: pointer;
   background: none;
 }
@@ -32,13 +34,14 @@
 .modal-form {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 90%;
+  justify-content: space-around;
+  height: 80%;
 }
 
 .feedback-header {
   text-align: center;
   font-weight: bold;
+  font-size: 2vw;
 }
 
 .feedback-textarea {

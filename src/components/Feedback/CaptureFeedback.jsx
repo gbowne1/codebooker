@@ -37,7 +37,7 @@ export function CaptureFeedback({ isActive, onClose }) {
                 </button>
                 <div className='modal-form'>
                     <Typography
-                        variant={'h4'}
+                        variant={'p'}
                         component='div'
                         className='feedback-header'
                         sx={{
