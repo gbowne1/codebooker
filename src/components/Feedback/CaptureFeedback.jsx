@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Toaster } from 'react-hot-toast';
 import DirectFeedback from './DirectFeedback';
 import EmailFeedback from './EmailFeedback';
+import Typography from '@mui/material/Typography';
 
 Modal.setAppElement('#root');
 
@@ -35,10 +36,14 @@ export function CaptureFeedback({ isActive, onClose }) {
                     X
                 </button>
                 <div className='modal-form'>
-                    <h2>
+                    <Typography
+                        variant={'h4'}
+                        component='div'
+                        sx={{ flexGrow: 1, letterSpacing: '0.009em' }}
+                    >
                         We appreciate your feedback. <br />
                         Please let us know how we can improve.
-                    </h2>
+                    </Typography>
                     {formToShow === 'initialPrompt' && (
                         <div className='button-group'>
                             <button
