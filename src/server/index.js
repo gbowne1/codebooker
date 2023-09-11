@@ -11,6 +11,7 @@ const session = require('express-session');
 const userRoutes = require('./routes/userRoutes');
 const booksRoutes = require('./routes/booksRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
+const supportRoutes = require('./routes/supportRoutes');
 
 const sessionConfig = {
     secret: 'keyboard cat',
@@ -52,6 +53,9 @@ app.use('/api/books', booksRoutes);
 
 // routes for review
 app.use('/api/review', reviewRoutes);
+
+// routes for support/help
+app.use('/api/support', supportRoutes);
 
 app.use('/api/*', (req, res) => {
     res.send('404 No routes found');

@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { orderBy } from 'lodash';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
+import CircularProgress from '@mui/material/CircularProgress';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
@@ -14,21 +15,27 @@ import IconButton from '@mui/material/IconButton';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import Typography from '@mui/material/Typography';
 import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
+import DeleteIcon from '@mui/icons-material/Delete';
+// import RemoveIcon from '@mui/icons-material/Remove';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import EditIcon from '@mui/icons-material/Edit';
+import ShareIcon from '@mui/icons-material/Share';
 /* import { TableVirtuoso } from 'react-virtuoso'; */
 import './Library.css';
 import Classes from './Library.module.css';
-import rows from './data.json';
+// import rows from './data.json';
 import { Button, Modal, TextField } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import Snackbar from '@mui/material/Snackbar';
 import ISBN from 'isbn-validate';
 import { Rating } from 'react-simple-star-rating';
+import axios from 'axios';
+
 // function createData(name, calories, fat, carbs, protein) {
 // 	return { name, calories, fat, carbs, protein };
 // }
@@ -42,9 +49,11 @@ import { Rating } from 'react-simple-star-rating';
 
 // ];
 
-export default function Library({ filter }) {
-    const [myRows, setMyRows] = useState(rows);
+export default function Library({ filter, setFilter }) {
+    const [myRows, setMyRows] = useState([]);
+    const [visibleContent, setVisibleContent] = useState(-1);
     const [showSnackBar, handleSnackBar] = useState(false);
+    const [isDeleted, setIsDeleted] = useState(false);
     const [removedItemName, setRemovedItemName] = useState('');
 
     //table sorting states
@@ -53,6 +62,8 @@ export default function Library({ filter }) {
 
     //Modal states
     const [showModal, handleModalBox] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [bookUploadError, setBookUploadError] = useState('');
     const [name, setName] = useState('');
     const [author, setAuthor] = useState('');
     const [category, setCategory] = useState('');
@@ -73,48 +84,104 @@ export default function Library({ filter }) {
     //Book read review modal states
     const [enableReviewModal, setEnableReviewModal] = useState(false);
     const [book, setBook] = useState({});
-
+    //get loggedIn user email to send with bookObj for userId on new book entry
+    const userEmail = JSON.parse(localStorage.getItem('user')).email;
+    //get loggedIn user id to match with book userId
+    const userId = JSON.parse(localStorage.getItem('user'))._id;
     //This state helps us for two way in input filed
     const [isAdded, handleIsAdded] = useState(false);
-    const removeBookByName = (row) => {
-        setRemovedItemName('removed ' + row.name + ' successfully');
-        myRows.splice(myRows.indexOf(row), 1);
-
-        setMyRows([...myRows]);
-        handleSnackBar(true);
-    };
-    const addItemToTable = (e) => {
-        e.preventDefault();
-        if (
-            name &&
-            author &&
-            category &&
-            publisher &&
-            isbn &&
-            year &&
-            edition
-        ) {
-            let bookObj = {
-                name,
-                author,
-                category,
-                publisher,
-                isbn,
-                year,
-                edition,
-                reviews: [],
-            };
-            setMyRows([...myRows, bookObj]);
-
-            handleIsAdded(true);
-            resetBookState();
-            handleModalBox(false);
-        } else {
-            setBlankEntry(true);
+    const removeBookByName = async (row) => {
+        try {
+            setLoading(true);
+            const response = await axios.delete(
+                `http://localhost:3001/api/books/${row._id}`,
+                {
+                    data: {
+                        bookId: row._id,
+                        userId: row.userId,
+                        userEmail,
+                    },
+                }
+            );
+            if (response.status === 200) {
+                setRemovedItemName('removed ' + row.title + ' successfully');
+                setVisibleContent(-1);
+                fetchBooksFromDB();
+                setIsDeleted(true);
+            }
+            // You can also update your state here to reflect the changes
+        } catch (err) {
+            setLoading(false);
+            const errorMsg = err.response.data.message;
+            setBookUploadError(errorMsg);
+            handleSnackBar(true);
         }
-        console.log(name, author, category, publisher, isbn, year, edition);
+
+        setLoading(false);
     };
 
+    const addItemToTable = async (e) => {
+        e.preventDefault();
+        try {
+            setLoading(true);
+            if (
+                name &&
+                author &&
+                category &&
+                publisher &&
+                isbn &&
+                year &&
+                edition
+            ) {
+                let bookObj = {
+                    name,
+                    author,
+                    category,
+                    publisher,
+                    isbn,
+                    year,
+                    edition,
+                    reviews: [],
+                    userEmail,
+                };
+
+                const response = await axios.post(
+                    'http://localhost:3001/api/books/newbook',
+                    { bookObj }
+                );
+
+                if (response.status === 200) {
+                    handleIsAdded(true);
+                    resetBookState();
+                    handleModalBox(false);
+                    fetchBooksFromDB();
+                }
+            } else {
+                setBlankEntry(true);
+            }
+        } catch (err) {
+            const errorMsg = err.response.data.message;
+            setBookUploadError(errorMsg);
+            handleSnackBar(true);
+        }
+        setLoading(false);
+    };
+
+    // fectch book from db
+    const fetchBooksFromDB = async () => {
+        try {
+            setLoading(true);
+            const response = await axios.get(
+                'http://localhost:3001/api/books/getall'
+            );
+            const books = response.data;
+            setMyRows([...books]);
+        } catch (error) {
+            // Handle error
+            console.error('Error fetching books:', error);
+        }
+        setLoading(false);
+    };
     const resetBookState = () => {
         setName('');
         setAuthor('');
@@ -130,6 +197,7 @@ export default function Library({ filter }) {
         handleIsAdded(false);
         handleReviewAdded(false);
         setBlankEntry(false);
+        setIsDeleted(false);
     };
     const action = (
         <React.Fragment>
@@ -176,7 +244,7 @@ export default function Library({ filter }) {
     // books table sort
     const handleSort = (columnName, order) => {
         if (columnName === 'title') {
-            const sortedRows = orderBy(myRows, ['name'], [order]);
+            const sortedRows = orderBy(myRows, ['title'], [order]);
             setMyRows(sortedRows);
         } else if (columnName === 'author') {
             const sortedRows = orderBy(myRows, ['author'], [order]);
@@ -190,8 +258,8 @@ export default function Library({ filter }) {
         } else if (columnName === 'year') {
             const sortedRows = orderBy(myRows, ['year'], [order]);
             setMyRows(sortedRows);
-        } else if (columnName === 'isbn') {
-            const sortedRows = orderBy(myRows, ['isbn'], [order]);
+        } else if (columnName === 'ISBN') {
+            const sortedRows = orderBy(myRows, ['ISBN'], [order]);
             setMyRows(sortedRows);
         } else if (columnName === 'edition') {
             const sortedRows = orderBy(myRows, ['edition'], [order]);
@@ -248,9 +316,9 @@ export default function Library({ filter }) {
         const filteredRow = () => {
             if (filter) {
                 //searching can be improved
-                const newRow = rows.filter(
+                const newRow = myRows.filter(
                     (row) =>
-                        (filter && row.name.includes(filter)) ||
+                        (filter && row.title.includes(filter)) ||
                         (row.category && row.category.includes(filter)) ||
                         row.author.includes(filter)
                 );
@@ -258,21 +326,33 @@ export default function Library({ filter }) {
                 if (newRow.length > 0) {
                     setMyRows(newRow);
                 } else {
-                    setMyRows(rows);
+                    setMyRows(myRows);
                 }
             } else {
-                setMyRows(rows);
+                setMyRows(myRows);
             }
         };
-
         filteredRow();
-    }, [filter]);
+        return () => {
+            setMyRows([]);
+            setFilter('');
+        };
+    }, [filter, myRows]);
+
+    useEffect(() => {
+        fetchBooksFromDB();
+    }, []);
+
+    // open hidden content when ellipsis icon is clicked
+    const handleShowMore = (index) => {
+        setVisibleContent((prevIndex) => (prevIndex === index ? -1 : index));
+    };
 
     return (
         <>
             <Snackbar
                 action={action}
-                open={showSnackBar}
+                open={isDeleted}
                 autoHideDuration={3000}
                 onClose={closeSnackBar}
                 message={removedItemName}
@@ -291,7 +371,13 @@ export default function Library({ filter }) {
                 onClose={closeSnackBar}
                 message='Please enter the required credentials'
             />
-
+            <Snackbar
+                action={action}
+                open={showSnackBar}
+                autoHideDuration={3000}
+                onClose={closeSnackBar}
+                message={bookUploadError}
+            />
             {/* //book review modal start// */}
             <Modal
                 open={showReviewModal}
@@ -510,6 +596,13 @@ export default function Library({ filter }) {
                                     color='success'
                                     style={{ marginTop: '10px' }}
                                 >
+                                    {loading && (
+                                        <CircularProgress
+                                            size={15}
+                                            sx={{ mr: '10px' }}
+                                            color='inherit'
+                                        />
+                                    )}
                                     Add Book
                                 </Button>
                             </>
@@ -517,258 +610,419 @@ export default function Library({ filter }) {
                     </form>
                 </Box>
             </Modal>
-            <TableContainer
-                style={{ marginTop: 80, marginInline: 10 }}
-                component={Paper}
-            >
-                <Table
-                    sx={{ minWidth: 750 }}
-                    size='medium'
-                    aria-label='simple table'
-                    style={{ marginLeft: 20 }}
+            {myRows.length > 0 ? (
+                <TableContainer
+                    style={{ marginTop: 80, marginInline: 10 }}
+                    component={Paper}
                 >
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Action</TableCell>
-                            <TableCell align='center'>
-                                <TableSortLabel
-                                    active={true}
-                                    direction={
-                                        sortingColumn === 'title' && sortOrder
-                                            ? 'desc'
-                                            : 'asc'
-                                    }
-                                    onClick={() => {
-                                        setSortOrder(!sortOrder);
-                                        setSortingColumn('title');
-                                        handleSort(
-                                            'title',
-                                            sortOrder ? 'asc' : 'desc'
-                                        );
-                                    }}
-                                >
-                                    Title
-                                </TableSortLabel>
-                            </TableCell>
-                            <TableCell align='center'>
-                                <TableSortLabel
-                                    active={true}
-                                    direction={
-                                        sortingColumn === 'author' && sortOrder
-                                            ? 'desc'
-                                            : 'asc'
-                                    }
-                                    onClick={() => {
-                                        setSortOrder(!sortOrder);
-                                        setSortingColumn('author');
-                                        handleSort(
-                                            'author',
-                                            sortOrder ? 'asc' : 'desc'
-                                        );
-                                    }}
-                                >
-                                    Author
-                                </TableSortLabel>{' '}
-                            </TableCell>
-                            <TableCell align='center'>
-                                {' '}
-                                <TableSortLabel
-                                    active={true}
-                                    direction={
-                                        sortingColumn === 'category' &&
-                                        sortOrder
-                                            ? 'desc'
-                                            : 'asc'
-                                    }
-                                    onClick={() => {
-                                        setSortOrder(!sortOrder);
-                                        setSortingColumn('category');
-                                        handleSort(
-                                            'category',
-                                            sortOrder ? 'asc' : 'desc'
-                                        );
-                                    }}
-                                >
-                                    Category
-                                </TableSortLabel>{' '}
-                            </TableCell>
-                            <TableCell align='center'>
-                                {' '}
-                                <TableSortLabel
-                                    active={true}
-                                    direction={
-                                        sortingColumn === 'publisher' &&
-                                        sortOrder
-                                            ? 'desc'
-                                            : 'asc'
-                                    }
-                                    onClick={() => {
-                                        setSortOrder(!sortOrder);
-                                        setSortingColumn('publisher');
-                                        handleSort(
-                                            'publisher',
-                                            sortOrder ? 'asc' : 'desc'
-                                        );
-                                    }}
-                                >
-                                    Publisher
-                                </TableSortLabel>{' '}
-                            </TableCell>
-                            <TableCell align='center'>
-                                {' '}
-                                <TableSortLabel
-                                    active={true}
-                                    direction={
-                                        sortingColumn === 'isbn' && sortOrder
-                                            ? 'desc'
-                                            : 'asc'
-                                    }
-                                    onClick={() => {
-                                        setSortOrder(!sortOrder);
-                                        setSortingColumn('isbn');
-                                        handleSort(
-                                            'isbn',
-                                            sortOrder ? 'asc' : 'desc'
-                                        );
-                                    }}
-                                >
-                                    ISBN
-                                </TableSortLabel>
-                            </TableCell>
-                            <TableCell align='center'>
-                                {' '}
-                                <TableSortLabel
-                                    active={true}
-                                    direction={
-                                        sortingColumn === 'year' && sortOrder
-                                            ? 'desc'
-                                            : 'asc'
-                                    }
-                                    onClick={() => {
-                                        setSortOrder(!sortOrder);
-                                        setSortingColumn('year');
-                                        handleSort(
-                                            'year',
-                                            sortOrder ? 'asc' : 'desc'
-                                        );
-                                    }}
-                                >
-                                    Year
-                                </TableSortLabel>{' '}
-                            </TableCell>
-                            <TableCell align='center'>
-                                <TableSortLabel
-                                    active={true}
-                                    direction={
-                                        sortingColumn === 'edition' && sortOrder
-                                            ? 'desc'
-                                            : 'asc'
-                                    }
-                                    onClick={() => {
-                                        setSortOrder(!sortOrder);
-                                        setSortingColumn('edition');
-                                        handleSort(
-                                            'edition',
-                                            sortOrder ? 'asc' : 'desc'
-                                        );
-                                    }}
-                                >
-                                    Edition
-                                </TableSortLabel>
-                            </TableCell>
-                            <TableCell align='center'>Review</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {myRows.map((row) => (
-                            <TableRow
-                                key={row.name}
-                                sx={{
-                                    '&:last-child td, &:last-child th': {
-                                        border: 0,
-                                    },
-                                }}
-                            >
-                                <TableCell className={Classes.actions}>
-                                    {myRows.indexOf(row) ===
-                                    myRows.length - 1 ? (
+                    <Table
+                        sx={{ minWidth: 750 }}
+                        size='medium'
+                        aria-label='simple table'
+                        style={{ marginLeft: 20 }}
+                    >
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Action</TableCell>
+                                <TableCell align='center'>
+                                    <TableSortLabel
+                                        active={true}
+                                        direction={
+                                            sortingColumn === 'title' &&
+                                            sortOrder
+                                                ? 'desc'
+                                                : 'asc'
+                                        }
+                                        onClick={() => {
+                                            setSortOrder(!sortOrder);
+                                            setSortingColumn('title');
+                                            handleSort(
+                                                'title',
+                                                sortOrder ? 'asc' : 'desc'
+                                            );
+                                        }}
+                                    >
+                                        Title
+                                    </TableSortLabel>
+                                </TableCell>
+                                <TableCell align='center'>
+                                    <TableSortLabel
+                                        active={true}
+                                        direction={
+                                            sortingColumn === 'author' &&
+                                            sortOrder
+                                                ? 'desc'
+                                                : 'asc'
+                                        }
+                                        onClick={() => {
+                                            setSortOrder(!sortOrder);
+                                            setSortingColumn('author');
+                                            handleSort(
+                                                'author',
+                                                sortOrder ? 'asc' : 'desc'
+                                            );
+                                        }}
+                                    >
+                                        Author
+                                    </TableSortLabel>{' '}
+                                </TableCell>
+                                <TableCell align='center'>
+                                    {' '}
+                                    <TableSortLabel
+                                        active={true}
+                                        direction={
+                                            sortingColumn === 'category' &&
+                                            sortOrder
+                                                ? 'desc'
+                                                : 'asc'
+                                        }
+                                        onClick={() => {
+                                            setSortOrder(!sortOrder);
+                                            setSortingColumn('category');
+                                            handleSort(
+                                                'category',
+                                                sortOrder ? 'asc' : 'desc'
+                                            );
+                                        }}
+                                    >
+                                        Category
+                                    </TableSortLabel>{' '}
+                                </TableCell>
+                                <TableCell align='center'>
+                                    {' '}
+                                    <TableSortLabel
+                                        active={true}
+                                        direction={
+                                            sortingColumn === 'publisher' &&
+                                            sortOrder
+                                                ? 'desc'
+                                                : 'asc'
+                                        }
+                                        onClick={() => {
+                                            setSortOrder(!sortOrder);
+                                            setSortingColumn('publisher');
+                                            handleSort(
+                                                'publisher',
+                                                sortOrder ? 'asc' : 'desc'
+                                            );
+                                        }}
+                                    >
+                                        Publisher
+                                    </TableSortLabel>{' '}
+                                </TableCell>
+                                <TableCell align='center'>
+                                    {' '}
+                                    <TableSortLabel
+                                        active={true}
+                                        direction={
+                                            sortingColumn === 'ISBN' &&
+                                            sortOrder
+                                                ? 'desc'
+                                                : 'asc'
+                                        }
+                                        onClick={() => {
+                                            setSortOrder(!sortOrder);
+                                            setSortingColumn('ISBN');
+                                            handleSort(
+                                                'ISBN',
+                                                sortOrder ? 'asc' : 'desc'
+                                            );
+                                        }}
+                                    >
+                                        ISBN
+                                    </TableSortLabel>
+                                </TableCell>
+                                <TableCell align='center'>
+                                    {' '}
+                                    <TableSortLabel
+                                        active={true}
+                                        direction={
+                                            sortingColumn === 'year' &&
+                                            sortOrder
+                                                ? 'desc'
+                                                : 'asc'
+                                        }
+                                        onClick={() => {
+                                            setSortOrder(!sortOrder);
+                                            setSortingColumn('year');
+                                            handleSort(
+                                                'year',
+                                                sortOrder ? 'asc' : 'desc'
+                                            );
+                                        }}
+                                    >
+                                        Year
+                                    </TableSortLabel>{' '}
+                                </TableCell>
+                                <TableCell align='center'>
+                                    <TableSortLabel
+                                        active={true}
+                                        direction={
+                                            sortingColumn === 'edition' &&
+                                            sortOrder
+                                                ? 'desc'
+                                                : 'asc'
+                                        }
+                                        onClick={() => {
+                                            setSortOrder(!sortOrder);
+                                            setSortingColumn('edition');
+                                            handleSort(
+                                                'edition',
+                                                sortOrder ? 'asc' : 'desc'
+                                            );
+                                        }}
+                                    >
+                                        Edition
+                                    </TableSortLabel>
+                                </TableCell>
+                                <TableCell align='center'>Review</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            <TableRow className='Add-book-button-container'>
+                                <TableCell sx={{ border: 0 }}>
+                                    <Button
+                                        variant='contained'
+                                        sx={{
+                                            borderRadius: '50%',
+                                            height: '60px',
+                                        }}
+                                    >
                                         <AddIcon
                                             className={Classes.tableactionicon}
                                             onClick={() => {
                                                 handleModalBox(true);
                                             }}
                                         />
-                                    ) : (
-                                        <></>
-                                    )}
-
-                                    <RemoveIcon
-                                        className={Classes.tableactionicon}
-                                        onClick={(e) => {
-                                            removeBookByName(row);
-                                        }}
-                                    />
-                                </TableCell>
-                                <TableCell
-                                    component='th'
-                                    scope='row'
-                                    align='center'
-                                >
-                                    {row.name}
-                                </TableCell>
-                                <TableCell align='center'>
-                                    {row.author}
-                                </TableCell>
-                                <TableCell align='center'>
-                                    {row.category}
-                                </TableCell>
-                                <TableCell align='center'>
-                                    {row.publisher}
-                                </TableCell>
-                                <TableCell align='center'>{row.isbn}</TableCell>
-                                <TableCell align='center'>{row.year}</TableCell>
-                                <TableCell align='center'>
-                                    {row.edition}
-                                </TableCell>
-                                <TableCell align='center'>
-                                    <Button
-                                        type='submit'
-                                        variant='contained'
-                                        color='primary'
-                                        style={{ width: '80px' }}
-                                        onClick={() => {
-                                            setBookName(row.name);
-                                            handleReviewModal(true);
-                                        }}
-                                    >
-                                        Review Book
-                                    </Button>
-                                    <Button
-                                        type='submit'
-                                        variant='contained'
-                                        color='success'
-                                        style={{
-                                            marginLeft: '10px',
-                                            width: '80px',
-                                        }}
-                                        onClick={() => {
-                                            setBook(row);
-                                            setEnableReviewModal(true);
-                                        }}
-                                    >
-                                        {' '}
-                                        Read Reviews
                                     </Button>
                                 </TableCell>
                             </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+                            {myRows.map((row, idx) => (
+                                <TableRow
+                                    key={row.title}
+                                    sx={{
+                                        '&:last-child td, &:last-child th': {
+                                            border: 0,
+                                        },
+                                    }}
+                                >
+                                    {userId === row.userId ? (
+                                        <TableCell
+                                            className={Classes.actions}
+                                            sx={{
+                                                position: 'relative',
+                                            }}
+                                        >
+                                            <div
+                                                className='more-container'
+                                                onClick={() =>
+                                                    handleShowMore(idx)
+                                                }
+                                            >
+                                                <Box className='more-horiz-icon'>
+                                                    <MoreHorizIcon />
+                                                </Box>
+                                                <span className='more-span'>
+                                                    More
+                                                </span>
+                                            </div>
+                                            <Box
+                                                position={style.position}
+                                                sx={{
+                                                    bottom: '20px',
+                                                    width: '200px',
+                                                    backgroundColor:
+                                                        style.bgcolor,
+                                                    display:
+                                                        visibleContent === idx
+                                                            ? 'block'
+                                                            : 'none',
+                                                    borderRadius: '5px',
+                                                    padding: '5px',
+                                                    border: '1px solid #222',
+                                                    zIndex: 1,
+                                                }}
+                                            >
+                                                <Typography
+                                                    borderBottom='1px solid #333'
+                                                    fontSize='10px'
+                                                    marginBottom='10px'
+                                                    display={style.display}
+                                                    alignItems={
+                                                        style.alignItems
+                                                    }
+                                                    sx={{
+                                                        '&:hover': {
+                                                            color: '#b3cfff',
+                                                            cursor: 'pointer',
+                                                        },
+                                                    }}
+                                                    onClick={() =>
+                                                        setVisibleContent(-1)
+                                                    }
+                                                >
+                                                    Close
+                                                    <CloseIcon
+                                                        sx={{
+                                                            fontSize: '14px',
+                                                            marginLeft: '5px',
+                                                        }}
+                                                    />
+                                                </Typography>
+                                                <Typography
+                                                    display={style.display}
+                                                    alignItems={
+                                                        style.alignItems
+                                                    }
+                                                    justifyContent={
+                                                        style.justifyContent
+                                                    }
+                                                    fontSize='14px'
+                                                    sx={{
+                                                        '&:hover': {
+                                                            color: '#b3cfff',
+                                                            cursor: 'pointer',
+                                                        },
+                                                    }}
+                                                    onClick={(e) => {
+                                                        removeBookByName(row);
+                                                    }}
+                                                >
+                                                    Delete
+                                                    {loading ? (
+                                                        <CircularProgress
+                                                            size={16}
+                                                        />
+                                                    ) : (
+                                                        <DeleteIcon
+                                                            sx={{
+                                                                fontSize:
+                                                                    '16px',
+                                                            }}
+                                                        />
+                                                    )}
+                                                </Typography>
+                                                <Typography
+                                                    display={style.display}
+                                                    alignItems={
+                                                        style.alignItems
+                                                    }
+                                                    justifyContent={
+                                                        style.justifyContent
+                                                    }
+                                                    fontSize='14px'
+                                                    sx={{
+                                                        '&:hover': {
+                                                            color: '#b3cfff',
+                                                            cursor: 'pointer',
+                                                        },
+                                                    }}
+                                                >
+                                                    Edit
+                                                    <EditIcon
+                                                        sx={{
+                                                            fontSize: '16px',
+                                                        }}
+                                                    />
+                                                </Typography>
+                                                <Typography
+                                                    display={style.display}
+                                                    alignItems={
+                                                        style.alignItems
+                                                    }
+                                                    justifyContent={
+                                                        style.justifyContent
+                                                    }
+                                                    fontSize='14px'
+                                                    sx={{
+                                                        '&:hover': {
+                                                            color: '#b3cfff',
+                                                            cursor: 'pointer',
+                                                        },
+                                                    }}
+                                                >
+                                                    Share
+                                                    <ShareIcon
+                                                        sx={{
+                                                            fontSize: '16px',
+                                                        }}
+                                                    />
+                                                </Typography>
+                                            </Box>
+                                        </TableCell>
+                                    ) : (
+                                        <TableCell></TableCell>
+                                    )}
+                                    <TableCell
+                                        component='th'
+                                        scope='row'
+                                        align='center'
+                                    >
+                                        {row.title}
+                                    </TableCell>
+                                    <TableCell align='center'>
+                                        {row.author}
+                                    </TableCell>
+                                    <TableCell align='center'>
+                                        {row.category}
+                                    </TableCell>
+                                    <TableCell align='center'>
+                                        {row.publisher}
+                                    </TableCell>
+                                    <TableCell align='center'>
+                                        {row.ISBN}
+                                    </TableCell>
+                                    <TableCell align='center'>
+                                        {row.year}
+                                    </TableCell>
+                                    <TableCell align='center'>
+                                        {row.edition + ' Edition'}
+                                    </TableCell>
+                                    <TableCell align='center'>
+                                        <Button
+                                            type='submit'
+                                            variant='contained'
+                                            color='primary'
+                                            style={{ width: '80px' }}
+                                            onClick={() => {
+                                                setBookName(row.name);
+                                                handleReviewModal(true);
+                                            }}
+                                        >
+                                            Review Book
+                                        </Button>
+                                        <Button
+                                            type='submit'
+                                            variant='contained'
+                                            color='success'
+                                            style={{
+                                                marginLeft: '10px',
+                                                width: '80px',
+                                            }}
+                                            onClick={() => {
+                                                setBook(row);
+                                                setEnableReviewModal(true);
+                                            }}
+                                        >
+                                            {' '}
+                                            Read Reviews
+                                        </Button>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            ) : (
+                <div className='skeleton'>
+                    <CircularProgress />
+                </div>
+            )}
         </>
     );
 }
 
 Library.propTypes = {
     filter: PropTypes.string,
+    setFilter: PropTypes.func,
 };
