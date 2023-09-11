@@ -14,6 +14,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
 import HelpIcon from '@mui/icons-material/Help';
 import MessageIcon from '@mui/icons-material/Message';
+import PolicyIcon from '@mui/icons-material/Policy';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import { CaptureFeedback } from '../Feedback/CaptureFeedback'; //
 
@@ -57,6 +58,9 @@ export default function Dropdown() {
 
     function navigateToProfile() {
         navigate('/profile');
+    }
+    function navigateToPrivacyPolicy() {
+        navigate('/privacy-policy');
     }
 
     // Toggle CaptureFeedback modal component visibility
@@ -120,13 +124,17 @@ export default function Dropdown() {
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-                <MenuItem>
+                <MenuItem onClick={() => navigate('/support')}>
                     <HelpIcon fontSize='large' />
                     &nbsp; Help
                 </MenuItem>
                 <MenuItem onClick={toggleFeedbackModal}>
                     <MessageIcon fontSize='large' />
                     &nbsp; Feedback
+                </MenuItem>
+                <MenuItem onClick={navigateToPrivacyPolicy}>
+                    <PolicyIcon fontSize='large' />
+                    &nbsp; Privacy Policy
                 </MenuItem>
                 <Divider />
                 <MenuItem>
@@ -136,7 +144,7 @@ export default function Dropdown() {
                     Settings
                 </MenuItem>
                 {loggedIn ? ( // Use the 'loggedIn' state to conditionally render the Logout/Login menu item
-                    <>
+                    <div>
                         <MenuItem onClick={navigateToProfile}>
                             <ListItemIcon>
                                 <ManageAccountsIcon fontSize='small' />
@@ -149,7 +157,7 @@ export default function Dropdown() {
                             </ListItemIcon>
                             Logout
                         </MenuItem>
-                    </>
+                    </div>
                 ) : (
                     <MenuItem onClick={handleLogin}>
                         <ListItemIcon>
