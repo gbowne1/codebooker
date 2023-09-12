@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
@@ -16,11 +16,12 @@ import HelpIcon from '@mui/icons-material/Help';
 import MessageIcon from '@mui/icons-material/Message';
 import PolicyIcon from '@mui/icons-material/Policy';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
-import { useEffect } from 'react';
+import { CaptureFeedback } from '../Feedback/CaptureFeedback'; //
 
 export default function Dropdown() {
     const [anchorEl, setAnchorEl] = useState(null);
     const [loggedIn, setLoggedIn] = useState(false); // Change the state name to 'loggedIn'
+    const [feedbackVisible, setFeedbackVisible] = useState(false); // Toggle visibility of feedback modal
     const open = Boolean(anchorEl);
     const navigate = useNavigate();
 
@@ -62,6 +63,12 @@ export default function Dropdown() {
         navigate('/privacy-policy');
     }
 
+    // Toggle CaptureFeedback modal component visibility
+    function toggleFeedbackModal() {
+        setFeedbackVisible((prevFeedbackVisible) => !prevFeedbackVisible);
+        handleClose();
+    }
+
     return (
         <React.Fragment>
             <Box
@@ -88,7 +95,6 @@ export default function Dropdown() {
                 id='account-menu'
                 open={open}
                 onClose={handleClose}
-                onClick={handleClose}
                 PaperProps={{
                     elevation: 0,
                     sx: {
@@ -122,7 +128,7 @@ export default function Dropdown() {
                     <HelpIcon fontSize='large' />
                     &nbsp; Help
                 </MenuItem>
-                <MenuItem>
+                <MenuItem onClick={toggleFeedbackModal}>
                     <MessageIcon fontSize='large' />
                     &nbsp; Feedback
                 </MenuItem>
@@ -162,6 +168,13 @@ export default function Dropdown() {
                 )}
             </Menu>
             <Toaster />
+            {/* Conditionally render CaptureFeedback modal component */}
+            {feedbackVisible && (
+                <CaptureFeedback
+                    isActive={feedbackVisible}
+                    onClose={toggleFeedbackModal}
+                />
+            )}
         </React.Fragment>
     );
 }
