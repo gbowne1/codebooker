@@ -16,12 +16,14 @@
     margin-right: 10px;
     letter-spacing: 0.5px;
 
-    &:focus,
-    &:active,
-    &:hover {
-        box-shadow: 2px 4px 16px rgba(28, 32, 36, 0.6);
-    }
+   
 }
+.search-input:focus,
+.search-input:active,
+.search-input:hover {
+    box-shadow: 2px 4px 16px rgba(28, 32, 36, 0.6);
+}
+
 
 .search-input:focus {
     outline: none;
