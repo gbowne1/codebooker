@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
@@ -51,15 +51,20 @@ function Home() {
     };
     const notify = (username) => toast.success('Welcome! ' + username);
 
+    const hasRun = useRef(false); //Prevent useEffect from running twice because of <React.StrictMode> wrapper in index.js
+
     useEffect(() => {
-        if (location?.state?.loggin || localStorage.getItem('user')) {
-            if (
-                location.state &&
-                location.state.loggin &&
-                localStorage.getItem('user')
-            ) {
-                notify(JSON.parse(localStorage.getItem('user')).username);
+        if (!hasRun.current) {
+            if (location?.state?.loggin || localStorage.getItem('user')) {
+                if (
+                    location.state &&
+                    location.state.loggin &&
+                    localStorage.getItem('user')
+                ) {
+                    notify(JSON.parse(localStorage.getItem('user')).username);
+                }
             }
+            hasRun.current = true;
         }
     }, []);
 
