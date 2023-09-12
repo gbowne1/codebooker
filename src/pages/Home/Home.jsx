@@ -51,7 +51,7 @@ function Home() {
     };
     const notify = (username) => toast.success('Welcome! ' + username);
 
-    const hasRun = useRef(false); //Prevent useEffect from running twice because of <React.StrictMode> wrapper in index.js
+    const hasRun = useRef(false); // Hook used to track whether useEffect has run
 
     useEffect(() => {
         if (!hasRun.current) {
@@ -64,7 +64,7 @@ function Home() {
                     notify(JSON.parse(localStorage.getItem('user')).username);
                 }
             }
-            hasRun.current = true;
+            hasRun.current = true; //Toggle hasRun to true to prevent useEffect from running twice
         }
     }, []);
 
