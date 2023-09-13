@@ -19,7 +19,8 @@ function Login() {
     const [showPassword, setShowPassword] = useState(false);
     const [rememberMe, setRememberMe] = useState(false);
     const navigate = useNavigate();
-    const handleLogin = async () => {
+    const handleLogin = async (event) => {
+        event.preventDefault(); // Prevent default form submission behavior
         try {
             const response = await axios.post(
                 'http://localhost:3001/api/user/login',
@@ -46,7 +47,7 @@ function Login() {
     };
 
     return (
-        <div className='login-wrapper'>
+        <form className='login-wrapper' onSubmit={handleLogin}>
             <div className='login-wrapper-icon'>
                 <Avatar sx={{ bgcolor: 'secondary.main' }}>
                     <LockOutlinedIcon />
@@ -95,7 +96,7 @@ function Login() {
                 </div>
             </div>
 
-            <button onClick={handleLogin} className='login-button'>
+            <button type='submit' className='login-button'>
                 Sign In
             </button>
             <div className='login-wrapper-forgot-register'>
@@ -107,7 +108,7 @@ function Login() {
                     <Link to='/register'>register here</Link>
                 </Typography>
             </div>
-        </div>
+        </form>
     );
 }
 
