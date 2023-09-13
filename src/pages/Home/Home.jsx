@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
-import toast, { Toaster } from 'react-hot-toast';
+import React, { useEffect, useRef } from 'react';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -49,17 +50,31 @@ function Home() {
     const handleToggleDarkMode = () => {
         setIsDarkMode(!isDarkMode);
     };
-    const notify = (username) => toast.success('Welcome! ' + username);
+
+    // Manage Snackbar state and setup notify function
+    const [openSnackbar, setOpenSnackbar] = React.useState(false);
+    const [snackbarMessage, setSnackbarMessage] = React.useState('');
+
+    const notify = (username) => {
+        setSnackbarMessage('Welcome! ' + username);
+        setOpenSnackbar(true);
+    };
+
+    // Hook used to track whether useEffect has run
+    const hasRun = useRef(false);
 
     useEffect(() => {
-        if (location?.state?.loggin || localStorage.getItem('user')) {
-            if (
-                location.state &&
-                location.state.loggin &&
-                localStorage.getItem('user')
-            ) {
-                notify(JSON.parse(localStorage.getItem('user')).username);
+        if (!hasRun.current) {
+            if (location?.state?.loggin || localStorage.getItem('user')) {
+                if (
+                    location.state &&
+                    location.state.loggin &&
+                    localStorage.getItem('user')
+                ) {
+                    notify(JSON.parse(localStorage.getItem('user')).username);
+                }
             }
+            hasRun.current = true; //Toggle hasRun to true to prevent useEffect from running twice
         }
     }, []);
 
@@ -107,7 +122,19 @@ function Home() {
                 </Box>
                 <Library filter={filter} setFilter={setFilter} />
             </div>
-            <Toaster />
+            <Snackbar
+                open={openSnackbar}
+                autoHideDuration={6000}
+                onClose={() => setOpenSnackbar(false)}
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+            >
+                <Alert
+                    onClose={() => setOpenSnackbar(false)}
+                    severity='success'
+                >
+                    {snackbarMessage}
+                </Alert>
+            </Snackbar>
         </ThemeProvider>
     );
 }
