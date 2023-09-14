@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { StyledEngineProvider } from '@mui/styled-engine';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <App />
+        <StyledEngineProvider injectFirst>
+            <App />
+        </StyledEngineProvider>
     </React.StrictMode>
 );
 
