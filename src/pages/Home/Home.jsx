@@ -76,7 +76,7 @@ function Home() {
             }
             hasRun.current = true; //Toggle hasRun to true to prevent useEffect from running twice
         }
-    }, []);
+    }, [location.state]);
 
     const matches = useMediaQuery('(max-width:700px)');
     return (
