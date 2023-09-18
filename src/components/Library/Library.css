@@ -12,8 +12,7 @@
     z-index: 5;
 }
 
-
-.more-container{
+.more-container {
     position: relative;
 }
 
@@ -30,14 +29,14 @@
     background-color: inherit;
 }
 
-.more-horiz-icon:hover{
+.more-horiz-icon:hover {
     background-color: #f0f0f0;
-    color: #AEC6CF;
-    transition:300ms ease-in-out;
+    color: #aec6cf;
+    transition: 300ms ease-in-out;
     cursor: pointer;
 }
 
-.more-span{
+.more-span {
     background-color: #333333;
     padding: 3px;
     font-size: 12px;
@@ -47,19 +46,17 @@
     border-radius: 2px;
     line-height: 15px;
     display: none;
-    
-    
 }
 
-.more-horiz-icon:hover ~ .more-span{
-    color: #AEC6CF;
+.more-horiz-icon:hover ~ .more-span {
+    color: #aec6cf;
     display: block;
 }
 
-.skeleton{
-   width: 100%;
-   height: 100vh;
-   display: flex;
-   justify-content: center;
-   align-items: center;
+.skeleton {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

@@ -18,7 +18,7 @@ module.exports.newSupport = async (req, res) => {
         const newSupport = new Support({
             userId: submittingUser._id,
             description,
-            status : 'In Progress',
+            status: 'In Progress',
             createdAt: Date.now(),
         });
 

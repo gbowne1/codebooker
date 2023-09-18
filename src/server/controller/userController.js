@@ -84,7 +84,7 @@ module.exports.login = async (req, res, next) => {
             if (err) {
                 return next(err);
             }
-            req.session.userId = user._id;    //Save userId to session for feedback submission
+            req.session.userId = user._id; //Save userId to session for feedback submission
             if (req.body.rememberMe) {
                 token = jwt.sign(
                     { email: user.email, id: user._id },

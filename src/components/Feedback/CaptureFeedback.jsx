@@ -6,9 +6,8 @@ import DirectFeedback from './DirectFeedback';
 import EmailFeedback from './EmailFeedback';
 import Typography from '@mui/material/Typography';
 
-Modal.setAppElement('#root');
-
 export function CaptureFeedback({ isActive, onClose }) {
+    Modal.setAppElement('#root');
     const [formToShow, setFormToShow] = useState('initialPrompt');
     const [rating, setRating] = useState(0);
 
