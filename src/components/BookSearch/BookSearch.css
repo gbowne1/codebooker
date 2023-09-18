@@ -15,15 +15,12 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin-right: 10px;
     letter-spacing: 0.5px;
-
-   
 }
 .search-input:focus,
 .search-input:active,
 .search-input:hover {
     box-shadow: 2px 4px 16px rgba(28, 32, 36, 0.6);
 }
-
 
 .search-input:focus {
     outline: none;
