@@ -45,30 +45,42 @@ passport.deserializeUser(async (id, done) => {
     }
 });
 module.exports.signup = async (req, res) => {
-    const { username, email, password } = { ...req.body };
+  const { username, email, password } = req.body;
 
-    try {
-        const existinguser = await User.findOne({
-            $or: [{ username: username }, { email: email }],
-        });
-        if (existinguser) {
-            return res.status(400).json({
-                message:
-                    'User already found Try to provide different username/email...',
-            });
-        }
-        const hashPassword = await bcrypt.hash(password, 12);
-        const newUser = new User({ email, username, password: hashPassword });
-        await newUser.save();
-        res.status(200).json({
-            message: 'Successfully Created',
-            user: newUser,
-        });
-    } catch (err) {
-        console.log(err.message);
-        res.status(500).json('Something went worng...');
-    }
+  try {
+      const existingUser = await User.findOne({
+          $or: [{ username: username }, { email: email }],
+      });
+
+      if (existingUser) {
+          return res.status(400).json({
+              message: 'User already found. Try to provide a different username/email.',
+          });
+      }
+
+      const hashedPassword = await bcrypt.hash(password, 12);
+      const newUser = new User({ email, username, password: hashedPassword });
+      await newUser.save();
+
+      // Generate JWT token for the newly registered user
+      const token = jwt.sign(
+          { email: newUser.email, id: newUser._id },
+          'codebooker',
+          { expiresIn: '15m' }
+      );
+
+      res.status(200).json({
+          message: 'Successfully Created',
+          user: newUser,
+          token: token
+      });
+
+  } catch (err) {
+      console.log(err.message);
+      res.status(500).json('Something went wrong.');
+  }
 };
+
 
 module.exports.login = async (req, res, next) => {
     let token = '';
