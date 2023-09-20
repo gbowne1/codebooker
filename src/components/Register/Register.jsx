@@ -51,9 +51,21 @@ const Register = () => {
                     password,
                 }
             );
+            // Registration successfull
             if (response.status === 200) {
-                // Registration successful, redirect to login page or desired location
-                navigate('/');
+                // Save token in local storage
+                localStorage.setItem(
+                    'token',
+                    JSON.stringify(response.data.token)
+                );
+                // Save user in local storage
+                localStorage.setItem(
+                    'user',
+                    JSON.stringify(response.data.user)
+                );
+
+                // Redirect to home route
+                navigate('/', { state: { loggin: 'true' } });
             }
         } catch (error) {
             console.error(error);
