@@ -45,42 +45,70 @@ passport.deserializeUser(async (id, done) => {
     }
 });
 module.exports.signup = async (req, res) => {
-  const { username, email, password } = req.body;
+    const { username, email, password } = req.body;
 
-  try {
-      const existingUser = await User.findOne({
-          $or: [{ username: username }, { email: email }],
-      });
+    const message = `
+  <h2> Welcome, ${username}!</h2>
+  <p>Thank you for signing up for CodeBooker.</p>
+  `;
 
-      if (existingUser) {
-          return res.status(400).json({
-              message: 'User already found. Try to provide a different username/email.',
-          });
-      }
+    try {
+        const existingUser = await User.findOne({
+            $or: [{ username: username }, { email: email }],
+        });
 
-      const hashedPassword = await bcrypt.hash(password, 12);
-      const newUser = new User({ email, username, password: hashedPassword });
-      await newUser.save();
+        if (existingUser) {
+            return res.status(400).json({
+                message:
+                    'User already found. Try to provide a different username/email.',
+            });
+        }
 
-      // Generate JWT token for the newly registered user
-      const token = jwt.sign(
-          { email: newUser.email, id: newUser._id },
-          'codebooker',
-          { expiresIn: '15m' }
-      );
+        const hashedPassword = await bcrypt.hash(password, 12);
+        const newUser = new User({ email, username, password: hashedPassword });
+        await newUser.save();
 
-      res.status(200).json({
-          message: 'Successfully Created',
-          user: newUser,
-          token: token
-      });
+        // Generate JWT token for the newly registered user
+        const token = jwt.sign(
+            { email: newUser.email, id: newUser._id },
+            'codebooker',
+            { expiresIn: '15m' }
+        );
 
-  } catch (err) {
-      console.log(err.message);
-      res.status(500).json('Something went wrong.');
-  }
+        res.status(200).json({
+            message: 'Successfully Created',
+            user: newUser,
+            token: token,
+        });
+
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: process.env.MAIL_USERNAME,
+                pass: process.env.MAIL_PASSWORD,
+            },
+        });
+
+        const mailOptions = {
+            from: process.env.MAIL_USERNAME,
+            to: email,
+            subject: 'CodeBooker - Registration Confirmation',
+            html: message,
+        };
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.log(error);
+            } else {
+                res.status(200).json('Email sent!');
+                console.log('Email sent: ' + info.response);
+            }
+        });
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).json('Something went wrong.');
+    }
 };
-
 
 module.exports.login = async (req, res, next) => {
     let token = '';
@@ -96,7 +124,7 @@ module.exports.login = async (req, res, next) => {
             if (err) {
                 return next(err);
             }
-            req.session.userId = user._id;    //Save userId to session for feedback submission
+            req.session.userId = user._id; //Save userId to session for feedback submission
             if (req.body.rememberMe) {
                 token = jwt.sign(
                     { email: user.email, id: user._id },
