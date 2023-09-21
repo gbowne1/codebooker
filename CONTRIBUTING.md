@@ -1,6 +1,6 @@
 # Contributing to CodeBooker development
 
-This project is open to contributions from the developer community to help improve its codebase by identifying shortcomings in the project, highlighting bugs and issues in the documentation.
+This project welcomes contributions from the developer community to help improve its codebase by identifying shortcomings in the project, highlighting bugs and issues in the documentation.
 
 ## What to contribute
 
@@ -11,28 +11,32 @@ Some areas requiring contribution:
 
 <!-- scan through the issues tab of this project's repository to see if this complaint has been made, if not, create an issue and lodge this complain. -->
 
-- **Documentation**: Do you have strong documentation skills, and believe you can help elevate this projects' documentation even better? 
+- **Documentation**: Possess strong documentation skills, and believe you can help elevate this projects' documentation even better? 
 
-- **Code contribution**: Are you a techie that identified a bug in this app or even thought of a new feature that could plunge this app to a new dimension? 
+- **Code contribution**: Identify a bug in this app or thought of a new feature that could plunge this app to a new dimension? 
 
 ## How to contribute
 
-Developers often derive more convenience in seeking permission from the project to contribute, however these next headlines will get you started in no time contributing.
+Developers often derive more convenience in seeking permission from the project to contribute, so these next headings will get you started in no time contributing.
 
-## Picking an issue to handle
+## Pick an issue to handle
 
-If you are not sure what to work on, review the issues list. There are also TODO's that listed in the included [TODO.md](./TODO.md) file. @gbowne1 and other project maintainers will assign users to issues on a first come, first serve basis. If you would like to work on an issue, please let us know.
+If you are not sure what to work on, review the issues list first. There are also TODO's listed in the included [TODO.md](./TODO.md) file. 
+@gbowne1 and other project maintainers will assign users to issues on a first come, first serve basis. If you would like to work on an issue, feel free to indicate by tagging the mentioned persons.
 
-## Creating an issue
+## Create an issue
 
-If you notice a typo, slight bug in the code and there are no lodged complaints on this yet, simply click on the issues icon and on the right side of the page select new issues and lodge your complain.
+If you notice a typo, slight bug in the code and there are no lodged complaints on this yet, click on the issues icon at the top, and on the right side of the next page select new issues and lodge your complain.
 
 ## Fork this repository
 
-After choosing want to work on, move to setup your workspace to start contributing
-On the project's repository page, look to the right side of the page to identify a fork setting, click on this icon and this would redirect you to a new page with further instructions. If you have certified withe the suggested project name click on create fork, and this automatcically creates your workspace.
+After choosing what to work on, move to setup your workspace.
 
-## Development Environment / Editor & IDE
+On the project's repository page, look to the right side of the page to locate a fork tab, click on this icon, and this would redirect you to a new page with further instructions. 
+
+On this next page, If you are satisfied with the suggested project name click on create fork, and this automatcically creates your workspace.
+
+## Editor & IDE
 
 The repository contains folders with project appropriate settings and configurations for Visual Studio and Visual Studio code but beyond that, We are tool and editor/IDE agnostic so you can use whatever editor or IDE or you like.
 
@@ -44,7 +48,7 @@ Please also make sure you use accessibility (A11y) with themes and styles paying
 
 You should already be familiar with React 17 and or 18, JavaScript ES5/ES6/ES7.
 
-## Making Pull Request
+## Pull Request
 
 When you do a PR on GitHub, make sure to complete the section on the right. Which include: 
 Assignees, Reviewers, Labels, Projects, Milestone(s) and Development before you submit the PR.
