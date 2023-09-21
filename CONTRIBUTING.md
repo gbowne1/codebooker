@@ -4,12 +4,10 @@ This project welcomes contributions from the developer community to help improve
 
 ## What to contribute
 
-Anyone with basic programming skills down to grammer skills can contribute significantly to this project.
-Some areas requiring contribution:
+Anyone with basic programming skills down to grammer skills can contribute immensely to this project.
+Areas requiring contribution includes:
 
 - **Error checks**: Identify any mispellings or errors in documentation? 
-
-<!-- scan through the issues tab of this project's repository to see if this complaint has been made, if not, create an issue and lodge this complain. -->
 
 - **Documentation**: Possess strong documentation skills, and believe you can help elevate this projects' documentation even better? 
 
@@ -38,7 +36,13 @@ On this next page, If you are satisfied with the suggested project name click on
 
 ## Editor & IDE
 
-The repository contains folders with project appropriate settings and configurations for Visual Studio and Visual Studio code but beyond that, We are tool and editor/IDE agnostic so you can use whatever editor or IDE or you like.
+The repository contains folders with project appropriate settings and configurations for Visual Studio code, but beyond that, we are tool and editor/IDE agnostic so you can use whatever editor or IDE or you like.
+
+Follow the instructions in the [DEVSETUP](/docs/DEVSETUP.md) to setup your IDE workspace.
+
+## Prerequisites to use Database for programmers
+
+Adequate knowledge in the Reach programming language.
 
 React gives us built-in hooks such as useEffect, useSelector, useRef, useHook, useCallback, useContext, useMemo, useForm, useHistory, etc. Please make sure to make the most use of these provided React built-ins.
 
