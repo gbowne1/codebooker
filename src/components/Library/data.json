@@ -161,5 +161,32 @@
         "year": "2011",
         "edition": "",
         "reviews": []
+    },
+    {
+        "name": "Game Engine Architecture",
+        "author": "Jason Gregory",
+        "publisher": "A K Peters/CRC Press",
+        "isbn": "978-1138035454",
+        "year": "2018",
+        "edition": "Third",
+        "reviews": []
+    },
+    {
+        "name": "Digital Audio Theory: A Practical Guide",
+        "author": "Christopher L. Bennett",
+        "publisher": "Focal Press",
+        "isbn": "978-0367276553",
+        "year": "2020",
+        "edition": "First",
+        "reviews": []
+    },
+    {
+        "name": "Game Physics Cookbook",
+        "author": "Gabor Szauer",
+        "publisher": "Packt Publishing",
+        "isbn": "978-1787123663",
+        "year": "2017",
+        "edition": "First",
+        "reviews": []
     }
 ]
