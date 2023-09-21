@@ -20,21 +20,34 @@ Some areas requiring contribution:
  <!-- yes anyone can contribute to this. You spot an error in the documentation? you can scan through for any opene issues and if there isnt create an issue to notify the project of thia sbug or typi. -->
 
 
-<!-- We welcome Pull Requests (PR's) as well as having people working on fixing it's current issues. If you are coming to this project new.
-If you notice an issue with this app, please feel free to open an issue. -->
+
 
 Developers often derive more convenience in seeking permission from the project to contribute, however these few steps will get you started in no time contributing.
 
-### Creating an issues tab
+### Picking an issue to handle
 
-This comes in handy when the complaint balls down to a typo, slight bug in the code and there are no lodged complaints on this yet. Simply click on the issues icon and on the right side of the page selct new issues and lodge your complain.
+If you are not sure what to work on, review the issues list. There are also TODO's that listed in the included [TODO.md](./TODO.md) file. @gbowne1 and other project maintainers will assign users to issues on a first come, first serve basis. If you would like to work on an issue, please let us know.
+
+### Creating an issue
+
+If you notice a typo, slight bug in the code and there are no lodged complaints on this yet, simply click on the issues icon and on the right side of the page select new issues and lodge your complain.
 
 ### Fork this repository
 
-This comes in handy when a large contribution or change is to be made.
-On, the project's repository page, look to the right side of the page to identify a fork setting, click on this icon and this would redirect you to a new page with further instructions. If you have certified withe the suggested project name click on create fork, and this automatcically creates your workspace.
+After choosing want to work on, move to setup your workspace to start contributing
+On the project's repository page, look to the right side of the page to identify a fork setting, click on this icon and this would redirect you to a new page with further instructions. If you have certified withe the suggested project name click on create fork, and this automatcically creates your workspace.
 
-so code away!!!
+### Development Environment / Editor & IDE
+
+The repository contains folders with project appropriate settings and configurations for Visual Studio and Visual Studio code but beyond that, We are tool and editor/IDE agnostic so you can use whatever editor or IDE or you like.
+
+React gives us built-in hooks such as useEffect, useSelector, useRef, useHook, useCallback, useContext, useMemo, useForm, useHistory, etc. Please make sure to make the most use of these provided React built-ins.
+
+The browser also gives us things like localStorage, IndexedDB, Session Storage, Cookies and Cache Storage. Please make use of them for
+
+Please also make sure you use accessibility (A11y) with themes and styles paying attention to focus styling, contrast and keyboard-accesibility.
+
+You should already be familiar with React 17 and or 18, JavaScript ES5/ES6/ES7.
 
 ### Making Pull Request
 
@@ -52,43 +65,15 @@ Keep in mind that Blank issues and especially PR's without a description of the 
 
 
 
-<!-- the project also encourgaes a fast forward means of forking thisproject and working on a possible development amd creating a pull request whuc would be emrged if the development feels feasible and in-line with the projects visioon.
 
-likewise, devs can also scan through issues and notify the project to contribute and would be assigned to an issue to help rectify. -->
 
-<!-- A lot of developers prefer asking if they could contribute or be assigned a task as a reply to a reported issue in the Issues tab. This is great. -->
-
-however, if assigned to an issue an dyou later change your mind or cant figure it out please notify the team so that the issue can be reassigned to another for fast development and rectification.
-
-<!-- Typically, if you think it will take you longer than 72 hours after having been assigned to the issue you will work on to submit a PR, please
-let us know that way issues do not go stale. -->
-
+> Note: If assigned to an issue an dyou later change your mind or cant figure it out please notify the team so that the issue can be reassigned to another for fast development and rectification.
 it is importamt to note that some tasks tagged good first issue may not be as simplified and basic to you as it might sound so it is advsiable to look through th eissue thoroughly before signifying asitance.
 
-Lik was said in the beginning, anyone can work on this project, so even as a beginner there are little basic task you could find interest that could fit your capabilities perfetly.
-
-<!-- Some tasks may not be beginner friendly even if tagged `good first issue`.. so try and judge the task accordingly.
-If you are a beginner, there are smaller tasks a beginner can work on such as style issues. -->
-
-You should already be familiar with React 17 and or 18, JavaScript ES5/ES6/ES7.
 
 ## Style
 
 An pfficial style guide has not been created yet. There is also no figma or layout. This is open to contribution, anyone willing to contribute his/her skills to create this style gide is more than welcome, just create a discussion and lets kick-start from there.
-
-<!-- I have not created an official style guide yet. I also have not created a Figma or layout. If anyone would like to create a style guide for us. Create a Discussion. I have typically let the community help -->
-
-## Development
-
-If you are not sure what to work on, review the issues list. There are also TODO's that listed in the included [TODO.md](./TODO.md) file.
-
-React gives us built-in hooks such as useEffect, useSelector, useRef, useHook, useCallback, useContext, useMemo, useForm, useHistory, etc. Please make sure to make the most use of these provided React built-ins.
-
-The browser also gives us things like localStorage, IndexedDB, Session Storage, Cookies and Cache Storage. Please make use of them for
-
-Please also make sure you use accessibility (A11y) with themes and styles paying attention to focus styling, contrast and keyboard-accesibility.
-
-### PR's
 
 
 ## Versioning
@@ -96,14 +81,6 @@ Please also make sure you use accessibility (A11y) with themes and styles paying
 We generally follow SemVer for this application. We also have a CHANGELOG.md provided to us by keepachangelog.com
 Please use the changelog document accordingly.
 
-### Issues
-
-@gbowne1 and other project maintainers will assign users to issues on a first come, first serve basis.
-If you would like to work on an issue, please let us know.
-
-## Editor & IDE
-
-The repository contains folders with project appropriate settings and configurations for Visual Studio and Visual Studio code but beyond that, We are tool and editor/IDE agnostic so you can use whatever editor or IDE or you like.
 
 ## Settings & Configuration
 
