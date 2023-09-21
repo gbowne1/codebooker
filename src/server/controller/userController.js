@@ -44,29 +44,75 @@ passport.deserializeUser(async (id, done) => {
         done(error);
     }
 });
+
 module.exports.signup = async (req, res) => {
-    const { username, email, password } = { ...req.body };
+    const { username, email, password } = req.body;
+
+    // Registration confirmation email 
+    const message = `
+  <h2> Welcome, ${username}!</h2>
+  <p>Thank you for signing up for CodeBooker.</p>
+  `;
 
     try {
-        const existinguser = await User.findOne({
+        const existingUser = await User.findOne({
             $or: [{ username: username }, { email: email }],
         });
-        if (existinguser) {
+
+        if (existingUser) {
             return res.status(400).json({
                 message:
-                    'User already found Try to provide different username/email...',
+                    'User already found. Try to provide a different username/email.',
             });
         }
-        const hashPassword = await bcrypt.hash(password, 12);
-        const newUser = new User({ email, username, password: hashPassword });
+
+        const hashedPassword = await bcrypt.hash(password, 12);
+        const newUser = new User({ email, username, password: hashedPassword });
         await newUser.save();
+
+        // Generate JWT token for the newly registered user
+        const token = jwt.sign(
+            { email: newUser.email, id: newUser._id },
+            'codebooker',
+            { expiresIn: '15m' }
+        );
+        
+        // Send user info and token to front end
         res.status(200).json({
             message: 'Successfully Created',
             user: newUser,
+            token: token,
+        });
+
+        // Sender account details
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: process.env.MAIL_USERNAME,
+                pass: process.env.MAIL_PASSWORD,
+            },
+        });
+
+        // Email details
+        const mailOptions = {
+            from: process.env.MAIL_USERNAME,
+            to: email,
+            subject: 'CodeBooker - Registration Confirmation',
+            html: message,
+        };
+
+        // Send email
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.log(error);
+            } else {
+                res.status(200).json('Email sent!');
+                console.log('Email sent: ' + info.response);
+            }
         });
     } catch (err) {
         console.log(err.message);
-        res.status(500).json('Something went worng...');
+        res.status(500).json('Something went wrong.');
     }
 };
 

@@ -13,8 +13,6 @@ module.exports.addfeedback = async (req, res) => {
     }
 };
 
-// TO DO:
-// - feedback module reopens once server successfully sends the email?
 
 module.exports.emailFeedback = async (req, res) => {
     try {
