@@ -17,27 +17,22 @@ Some areas requiring contribution:
 
 ## How to contribute
 
- <!-- yes anyone can contribute to this. You spot an error in the documentation? you can scan through for any opene issues and if there isnt create an issue to notify the project of thia sbug or typi. -->
+Developers often derive more convenience in seeking permission from the project to contribute, however these next headlines will get you started in no time contributing.
 
-
-
-
-Developers often derive more convenience in seeking permission from the project to contribute, however these few steps will get you started in no time contributing.
-
-### Picking an issue to handle
+## Picking an issue to handle
 
 If you are not sure what to work on, review the issues list. There are also TODO's that listed in the included [TODO.md](./TODO.md) file. @gbowne1 and other project maintainers will assign users to issues on a first come, first serve basis. If you would like to work on an issue, please let us know.
 
-### Creating an issue
+## Creating an issue
 
 If you notice a typo, slight bug in the code and there are no lodged complaints on this yet, simply click on the issues icon and on the right side of the page select new issues and lodge your complain.
 
-### Fork this repository
+## Fork this repository
 
 After choosing want to work on, move to setup your workspace to start contributing
 On the project's repository page, look to the right side of the page to identify a fork setting, click on this icon and this would redirect you to a new page with further instructions. If you have certified withe the suggested project name click on create fork, and this automatcically creates your workspace.
 
-### Development Environment / Editor & IDE
+## Development Environment / Editor & IDE
 
 The repository contains folders with project appropriate settings and configurations for Visual Studio and Visual Studio code but beyond that, We are tool and editor/IDE agnostic so you can use whatever editor or IDE or you like.
 
@@ -49,7 +44,7 @@ Please also make sure you use accessibility (A11y) with themes and styles paying
 
 You should already be familiar with React 17 and or 18, JavaScript ES5/ES6/ES7.
 
-### Making Pull Request
+## Making Pull Request
 
 When you do a PR on GitHub, make sure to complete the section on the right. Which include: 
 Assignees, Reviewers, Labels, Projects, Milestone(s) and Development before you submit the PR.
