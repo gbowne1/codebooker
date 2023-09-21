@@ -5,13 +5,15 @@ This project is open to contributions from the developer community to help impro
 ## What to contribute
 
 Anyone with basic programming skills down to grammer skills can contribute significantly to this project.
-Following areas requiring contribution:
+Some areas requiring contribution:
 
-- **Error-checks**: Identify any mispellings or errors in documentation? scan through the issues tab of this project's repository to see if this complaint has been made, if not, create an issue and lodge this complain.
+- **Error checks**: Identify any mispellings or errors in documentation? 
 
-- **Documentation**: Do you have strong documentation skills, and believe you can help elevate this projects' documentation even better? fork this repository and branch out to start working on this.
+<!-- scan through the issues tab of this project's repository to see if this complaint has been made, if not, create an issue and lodge this complain. -->
 
-- **Code contribution**: Are you a techie that identified a bug in this app or even thought of a new feature that could plunge this app to a new dimension? branch out and start working or tag any foumder to this idea.
+- **Documentation**: Do you have strong documentation skills, and believe you can help elevate this projects' documentation even better? 
+
+- **Code contribution**: Are you a techie that identified a bug in this app or even thought of a new feature that could plunge this app to a new dimension? 
 
 ## How to contribute
 
