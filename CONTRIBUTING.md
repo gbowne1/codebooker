@@ -25,23 +25,23 @@ If you notice an issue with this app, please feel free to open an issue. -->
 
 Developers often derive more convenience in seeking permission from the project to contribute, however these few steps will get you started in no time contributing.
 
-### Creating an issues tab:
+### Creating an issues tab
 
-   This comes in handy when the complaint balls down to a typo, slight bug in the code and there are no lodged complaints on this yet. Simply click on the issues icon and on the right side of the page selct new issues and lodge your complain.
+This comes in handy when the complaint balls down to a typo, slight bug in the code and there are no lodged complaints on this yet. Simply click on the issues icon and on the right side of the page selct new issues and lodge your complain.
 
-### Fork this repository:
+### Fork this repository
 
-    This comes in handy when a large contribution or change is to be made.
-    On, the project's repository page, look to the right side of the page to identify a fork setting, click on this icon and this would redirect you to a new page with further instructions. If you have certified withe the suggested project name click on create fork, and this automatcically creates your workspace.
+This comes in handy when a large contribution or change is to be made.
+On, the project's repository page, look to the right side of the page to identify a fork setting, click on this icon and this would redirect you to a new page with further instructions. If you have certified withe the suggested project name click on create fork, and this automatcically creates your workspace.
 
-    so code away!!!
+so code away!!!
 
-### Making Pull Request:
+### Making Pull Request
 
-    When you do a PR on GitHub, make sure to complete the section on the right. Which include: 
-    Assignees, Reviewers, Labels, Projects, Milestone(s) and Development before you submit the PR.
-    Also share a screenshot or show the working fix in the Pull Request message and a brief description of what you fixed.
-    Keep in mind that Blank issues and especially PR's without a description of the changes you made may not get merged.
+When you do a PR on GitHub, make sure to complete the section on the right. Which include: 
+Assignees, Reviewers, Labels, Projects, Milestone(s) and Development before you submit the PR.
+Also share a screenshot or show the working fix in the Pull Request message and a brief description of what you fixed.
+Keep in mind that Blank issues and especially PR's without a description of the changes you made may not get merged.
 
 -   Link an issue to Development that the PR will close
 -   Make sure that you tag a reviewer i.e. @gbowne1
