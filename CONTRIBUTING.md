@@ -23,9 +23,38 @@ Some areas requiring contribution:
 <!-- We welcome Pull Requests (PR's) as well as having people working on fixing it's current issues. If you are coming to this project new.
 If you notice an issue with this app, please feel free to open an issue. -->
 
-Developers often derive more convenience in seeking permission from the project to contribute to help build and develop this project, however the project also encourgaes a fast forward means of forking thisproject and working on a possible development amd creating a pull request whuc would be emrged if the development feels feasible and in-line with the projects visioon.
+Developers often derive more convenience in seeking permission from the project to contribute, however these few steps will get you started in no time contributing.
 
-likewise, devs can also scan through issues and notify the project to contribute and would be assigned to an issue to help rectify.
+### Creating an issues tab:
+
+   This comes in handy when the complaint balls down to a typo, slight bug in the code and there are no lodged complaints on this yet. Simply click on the issues icon and on the right side of the page selct new issues and lodge your complain.
+
+### Fork this repository:
+
+    This comes in handy when a large contribution or change is to be made.
+    On, the project's repository page, look to the right side of the page to identify a fork setting, click on this icon and this would redirect you to a new page with further instructions. If you have certified withe the suggested project name click on create fork, and this automatcically creates your workspace.
+
+    so code away!!!
+
+### Making Pull Request:
+
+    When you do a PR on GitHub, make sure to complete the section on the right. Which include: 
+    Assignees, Reviewers, Labels, Projects, Milestone(s) and Development before you submit the PR.
+    Also share a screenshot or show the working fix in the Pull Request message and a brief description of what you fixed.
+    Keep in mind that Blank issues and especially PR's without a description of the changes you made may not get merged.
+
+-   Link an issue to Development that the PR will close
+-   Make sure that you tag a reviewer i.e. @gbowne1
+-   Pick appropriate labels from Labels
+-   Make sure you are the assignee to the PR.
+-   Milestone, choose Frontend or Backend (more may come later on)
+
+
+
+
+<!-- the project also encourgaes a fast forward means of forking thisproject and working on a possible development amd creating a pull request whuc would be emrged if the development feels feasible and in-line with the projects visioon.
+
+likewise, devs can also scan through issues and notify the project to contribute and would be assigned to an issue to help rectify. -->
 
 <!-- A lot of developers prefer asking if they could contribute or be assigned a task as a reply to a reported issue in the Issues tab. This is great. -->
 
@@ -61,16 +90,6 @@ Please also make sure you use accessibility (A11y) with themes and styles paying
 
 ### PR's
 
-When you do a PR on GitHub, make sure to complete the section on the right. Which include: 
-Assignees, Reviewers, Labels, Projects, Milestone(s) and Development before you submit the PR.
-Also share a screenshot or show the working fix in the Pull Request message and a brief description of what you fixed.
-Keep in mind that Blank issues and especially PR's without a description of the changes you made may not get merged.
-
--   Link an issue to Development that the PR will close
--   Make sure that you tag a reviewer i.e. @gbowne1
--   Pick appropriate labels from Labels
--   Make sure you are the assignee to the PR.
--   Milestone, choose Frontend or Backend (more may come later on)
 
 ## Versioning
 
