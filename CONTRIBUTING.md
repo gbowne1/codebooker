@@ -39,7 +39,7 @@ On this next page, If you are satisfied with the suggested project name click on
 
 The repository contains folders with project appropriate settings and configurations for Visual Studio code, but beyond that, we are tool and editor/IDE agnostic so you can use whatever editor or IDE or you like.
 
-Follow the instructions in the [DEVSETUP](/docs/DEVSETUP.md) to setup your IDE workspace.
+Follow the instructions in [DEVSETUP](/docs/DEVSETUP.md) to setup your IDE workspace.
 
 ## Prerequisites to use Database for programmers
 
@@ -53,14 +53,16 @@ Lastly, the browser gives us things like localStorage, IndexedDB, Session Storag
 
 
 > Note: If assigned an issue and along the line you change your mind or can't figure it out, ensure to notify the team so that the issue can be reassigned to another. <br>
-it is importamt to note that some tasks tagged good first issue may not be as simplified and basic to you as it might sound so it is advsiable to look through th issue thoroughly before volunteering.
+it is importamt to note that some tasks tagged good first issue may not be as simplified and basic to you as it might sound, so it is advisable to look through the issue thoroughly before volunteering.
 
 ## Pull Request
 
-When you do a PR on GitHub, make sure to complete the section on the right. Which include: 
+Once you are finished working on an issue move to create a Pull Request (PR).
+When you do a PR on GitHub, make sure to complete the section on the right which includes: 
 Assignees, Reviewers, Labels, Projects, Milestone(s) and Development before you submit the PR.
-Also share a screenshot or show the working fix in the Pull Request message and a brief description of what you fixed.
-Keep in mind that Blank issues and especially PR's without a description of the changes you made may not get merged.
+
+Also, share a screenshot or show the working fix in the Pull Request message and a brief description of what you fixed.
+Keep in mind that Blank issues and PR's without a description of the changes you made may not get merged.
 
 -   Link an issue to Development that the PR will close
 -   Make sure that you tag a reviewer i.e. @gbowne1
@@ -69,41 +71,34 @@ Keep in mind that Blank issues and especially PR's without a description of the 
 -   Milestone, choose Frontend or Backend (more may come later on)
 
 
-
-
-
-
 ## Style
 
-An pfficial style guide has not been created yet. There is also no figma or layout. This is open to contribution, anyone willing to contribute his/her skills to create this style gide is more than welcome, just create a discussion and lets kick-start from there.
+An official style guide is yet to be released. There is also no figma or layout. This is open to contribution, anyone willing to contribute to create this style guide is more than welcome, just create a discussion and lets kick-start from there.
 
 
 ## Versioning
 
-We generally follow SemVer for this application. We also have a CHANGELOG.md provided to us by keepachangelog.com
-Please use the changelog document accordingly.
+This project runs its application using Semantic Versioning (SemVer). [Keep a changelog](keepachangelog.com) also provides a CHANGELOG.md for the project; use the changelog document accordingly.
 
 
 ## Settings & Configuration
 
 The included workspaces, settings, configurations and plugins are for:
 
-Babel
-Webpack
-ESLint
-Prettier
-VSCode (.vscode)
-GitHub (.github)
+- Babel
+- Webpack
+- ESLint
+- Prettier
+- VSCode (.vscode)
+- GitHub (.github)
 
 These may not be 100% correct, so if you can contribute to them to make them more accurate for React development it is welcomed.
 
-We understand it is not a good idea to contribute the configuration to the project, however this will greatly improve the new user experience getting
-started working with our code base.
+We understand it is not a good idea to contribute the configuration to the project, however this will greatly improve the new user experience getting started working with our code base.
 
 ## Tech Stack
 
-This project was bootstrapped with Create React App.
-This application is built with:
+This project was bootstrapped with Create React App and built with:
 
 -   React 18.2
 -   JavaScript (ES5/ES6/ES7/ES2015/etc.)
