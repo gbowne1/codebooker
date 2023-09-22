@@ -104,7 +104,7 @@ The included workspaces, settings, configurations and plugins are for:
 - VSCode (.vscode)
 - GitHub (.github)
 
-These may not be 100% correct, so we welcome any contribution to make them more accurate for React development, as we believe this will greatly improve the new user experience getting started working with our code base.
+These may not be 100% correct, so we welcome any contribution to make them more accurate for React development, as we believe this will improve the new user first-hand experience working with our code base.
 
 ## Tech Stack
 
