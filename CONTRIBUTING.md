@@ -20,6 +20,7 @@ Developers often derive more convenience in seeking permission from the project 
 ## Pick an issue to handle
 
 If you are not sure what to work on, review the issues list first. There are also TODO's listed in the included [TODO.md](./TODO.md) file. 
+
 @gbowne1 and other project maintainers will assign users to issues on a first come, first serve basis. If you would like to work on an issue, feel free to indicate by tagging the mentioned persons.
 
 ## Create an issue
@@ -42,15 +43,17 @@ Follow the instructions in the [DEVSETUP](/docs/DEVSETUP.md) to setup your IDE w
 
 ## Prerequisites to use Database for programmers
 
-Adequate knowledge in the Reach programming language.
+Adequate knowledge and familiarity with React 17 and or 18, JavaScript ES5/ES6/ES7.
 
-React gives us built-in hooks such as useEffect, useSelector, useRef, useHook, useCallback, useContext, useMemo, useForm, useHistory, etc. Please make sure to make the most use of these provided React built-ins.
+React gives us built-in hooks such as useEffect, useSelector, useRef, useHook, useCallback, useContext, useMemo, useForm, useHistory, etc. Ensure to make the most of these provided React built-ins.
 
-The browser also gives us things like localStorage, IndexedDB, Session Storage, Cookies and Cache Storage. Please make use of them for
+Also, use accessibility (A11y) with themes and styles paying attention to focus styling, contrast and keyboard-accesibility.
 
-Please also make sure you use accessibility (A11y) with themes and styles paying attention to focus styling, contrast and keyboard-accesibility.
+Lastly, the browser gives us things like localStorage, IndexedDB, Session Storage, Cookies and Cache Storage.
 
-You should already be familiar with React 17 and or 18, JavaScript ES5/ES6/ES7.
+
+> Note: If assigned an issue and along the line you change your mind or can't figure it out, ensure to notify the team so that the issue can be reassigned to another. <br>
+it is importamt to note that some tasks tagged good first issue may not be as simplified and basic to you as it might sound so it is advsiable to look through th issue thoroughly before volunteering.
 
 ## Pull Request
 
@@ -68,10 +71,6 @@ Keep in mind that Blank issues and especially PR's without a description of the 
 
 
 
-
-
-> Note: If assigned to an issue an dyou later change your mind or cant figure it out please notify the team so that the issue can be reassigned to another for fast development and rectification.
-it is importamt to note that some tasks tagged good first issue may not be as simplified and basic to you as it might sound so it is advsiable to look through th eissue thoroughly before signifying asitance.
 
 
 ## Style
