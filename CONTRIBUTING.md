@@ -17,7 +17,7 @@ Areas requiring contribution includes:
 
 Developers often derive more convenience in seeking permission from the project to contribute, so these next headings will get you started in no time contributing.
 
-## Pick an issue to handle
+## Select an issue
 
 If you are not sure what to work on, review the issues list first. There are also TODO's listed in the included [TODO.md](./TODO.md) file. 
 
@@ -59,7 +59,7 @@ it is important to note that some tasks tagged good first issue may not be as si
 
 Once you are finished working on an issue move to create a Pull Request (PR).
 
-When you do a PR on GitHub, make sure to complete the section on the right which includes: 
+When you create a PR on GitHub, make sure to complete the section on the right which includes: 
 Assignees, Reviewers, Labels, Projects, Milestone(s) and Development before you submit the PR.
 
 Also, write a brief description of what you fixed. Keep in mind that Blank issues and PR's without a description of the changes you made may not get merged.
@@ -73,7 +73,7 @@ Also, write a brief description of what you fixed. Keep in mind that Blank issue
 
 ## Style
 
-An official style guide is yet to be released. There is also no existing figma or layout, this is open to contribution, anyone willing to contribute to create this style guide is more than welcome, simply create a discussion and lets kick-start from there.
+An official style guide is yet to be released. There is also no existing figma or layout, this is open to contribution, anyone willing to contribute to create this style guide is more than welcome, simply create a discussion and lets kickoff from there.
 
 
 ## Versioning
