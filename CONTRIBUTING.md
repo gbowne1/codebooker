@@ -32,6 +32,7 @@ If you notice a typo, slight bug in the code and there are no lodged complaints 
 After choosing what to work on, move to fork and setup your own repository.
 
 On the project's repository page, look to the right side of the page to locate a fork tab, click on this icon, and this would redirect you to a new page with further instructions. 
+
 ![](./docs/fork.png)
 
 On this next page, if satisfied with the suggested project name click on create fork.
