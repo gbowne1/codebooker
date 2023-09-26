@@ -4,7 +4,7 @@ This is a book recommendation app created with React 18.2 and MUI.
 
 It is not a bookstore eCommerce application.
 
-It is targeted specifically for coders/programmers that are looking for recommendations for programming/coding books to read.
+It is targeted specifically for coders/programmers who are looking for recommendations for programming/coding books to read.
 
 It allows users to organize, recommend and review any book on coding or programming.
 
@@ -32,6 +32,6 @@ You should already be familiar with React 17 and or 18, JavaScript ES5/ES6/ES7 a
 
 The backend of this project is currently under construction so please use the Create React App development server by running`npm start` inside the root of the project folder after installing with `npm i` or `npm install`.
 
-This is not hosted anywhere yet and is not yet production ready.
+This is not hosted anywhere yet and is not yet production-ready.
 
 If you would like something to work on, there are plenty of TODO's here <https://github.com/gbowne1/codebooker/blob/master/TODO.md>
