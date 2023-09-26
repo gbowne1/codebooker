@@ -15,7 +15,7 @@ Areas requiring contribution includes:
 
 ## How to contribute
 
-Developers often derive more convenience in seeking permission from the project to contribute, so these next headings will get you started in no time contributing.
+These next subheadings will get you started on making your contributions to this project.
 
 ## Select an issue
 
