@@ -66,7 +66,7 @@ This would automatically create your workspace/repository.
 
 The repository contains folders with project appropriate settings and configurations for Visual Studio code, but beyond that, we are tool and editor/IDE agnostic so you can use whatever editor or IDE or you like.
 
-The [DEVSETUP](/docs/DEVSETUP.md) file contains instructions for developers, programmers, coders on how to:
+The [DEVSETUP](/docs/DEVSETUP.md) file contains instructions for developers on how to:
 
 - Clone or Fork the project,
 - Set up the project in their IDE or editor,
