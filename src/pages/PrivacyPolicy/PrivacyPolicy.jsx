@@ -69,20 +69,22 @@ const PrivacyPolicy = () => {
                 <h1>Your rights:</h1>
                 <p>
                     If you are a European resident, you have the following
-                    rights related to your personal data:{' '}
-                    <ul>
-                        <li>The right to be informed.</li>
-                        <li>The right of access.</li>
-                        <li>The right to rectification.</li>
-                        <li>The right to erasure.</li>
-                        <li>The right to restrict processing.</li>
-                        <li> The right to data portability.</li>
-                        <li>The right to object.</li>
-                        <li>
-                            Rights in relation to automated decision-making and
-                            profiling.
-                        </li>
-                    </ul>{' '}
+                    rights related to your personal data:
+                </p>
+                <ul>
+                    <li>The right to be informed.</li>
+                    <li>The right of access.</li>
+                    <li>The right to rectification.</li>
+                    <li>The right to erasure.</li>
+                    <li>The right to restrict processing.</li>
+                    <li> The right to data portability.</li>
+                    <li>The right to object.</li>
+                    <li>
+                        Rights in relation to automated decision-making and
+                        profiling.
+                    </li>
+                </ul>{' '}
+                <p>
                     If you would like to exercise this right, please contact us
                     through the contact information below. <br /> <br />{' '}
                     Additionally, if you are a European resident, we note that
