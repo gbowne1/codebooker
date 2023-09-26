@@ -19,7 +19,7 @@ const sessionConfig = {
     saveUninitialized: false, // don't create session until something stored
 };
 
-// initilizing
+// initialization
 dotenv.config();
 const app = express();
 app.use(express.json({ extended: true }))
