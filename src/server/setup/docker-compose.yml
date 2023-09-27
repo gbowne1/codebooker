@@ -10,5 +10,5 @@ services:
             - 27123:27017
         environment:
             MONGO_INITDB_DATABASE: test
-            MONGO_INITDB_ROOT_USERNAME: test
-            MONGO_INITDB_ROOT_PASSWORD: test
+            MONGO_INITDB_ROOT_USERNAME: test # MongoDB username
+            MONGO_INITDB_ROOT_PASSWORD: test # MongoDB password
