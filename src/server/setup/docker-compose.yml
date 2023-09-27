@@ -12,5 +12,3 @@ services:
             MONGO_INITDB_DATABASE: test
             MONGO_INITDB_ROOT_USERNAME: test
             MONGO_INITDB_ROOT_PASSWORD: test
-        volumes:
-            - ../db/data/db:/data/db
