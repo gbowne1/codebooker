@@ -2,9 +2,40 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Get your project started in your ide, any IDE is preferable. I woudl be using vs code as a template to run threough this setup.
+
+Some may like to make theri edits through the github workspace, but its more conducive, faster, seamless and easier to make changes to this repository using the terminal through git commands.
+
+Now to get this to your local repository you would need to performthese few steps
+
+# Clone this repository
+this simply is a means to making an exact photocopy of this repostiroty in your computer.
+this step is to be taken after you have firked the repository and you have the exact copy of the repository on your github profile.
+
+navigate to the left side of your screen where this is a green drop dpwn menu with code is located and click on this, this will immediately bring out a small dialog box, make no changes to tis box and simply copy the url provided for you on this box.
+
+
+next, move down to your system and create a new folder in your desktop/ document folder or any placd of your choice and name this codebooker. open your IDE and navigate to open folders and select the folder you just created and click open.
+
+this imediately opens up a worksace for you. NOw in this IDE navigate to your terminal and type in the `git init` command. this initializes the repository and gets it set for the next course of action.
+
+with your already copied url from github type in `git remote add origin <paste your copied url like this>` and paste . this command immediatley kickstarts the cloning process and replicates all the files from the main reposiry into your local repository. And you have finally setupo your working environment.
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Available Scripts
 
-In the project directory, you can run: yessssssssss
+In the project directory, you can run:
 
 ### `npm start`
 
