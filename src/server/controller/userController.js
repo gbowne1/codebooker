@@ -48,7 +48,7 @@ passport.deserializeUser(async (id, done) => {
 module.exports.signup = async (req, res) => {
     const { username, email, password } = req.body;
 
-    // Registration confirmation email 
+    // Registration confirmation email
     const message = `
   <h2> Welcome, ${username}!</h2>
   <p>Thank you for signing up for CodeBooker.</p>
@@ -76,7 +76,7 @@ module.exports.signup = async (req, res) => {
             'codebooker',
             { expiresIn: '15m' }
         );
-        
+
         // Send user info and token to front end
         res.status(200).json({
             message: 'Successfully Created',

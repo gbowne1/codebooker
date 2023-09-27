@@ -88,11 +88,12 @@ function Login() {
                 />
                 <div className='checkbox-wrapper'>
                     <input
+                        id='Remember Me'
                         type='checkbox'
                         checked={rememberMe}
                         onChange={(e) => setRememberMe(e.target.checked)}
                     />
-                    <label>Remember Me</label>
+                    <label htmlFor='Remember Me'>Remember Me</label>
                 </div>
             </div>
 

@@ -146,6 +146,9 @@ const Register = () => {
                                             </IconButton>
                                         ),
                                     }}
+                                    inputProps={{
+                                        'data-testid': 'Password',
+                                    }}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -176,6 +179,9 @@ const Register = () => {
                                                 )}
                                             </IconButton>
                                         ),
+                                    }}
+                                    inputProps={{
+                                        'data-testid': 'Confirm Password',
                                     }}
                                 />
                             </Grid>
