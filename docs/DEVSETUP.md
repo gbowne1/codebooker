@@ -1,9 +1,9 @@
 # Developer Environment Setup
 
 This project was bootstrapped with [Create React App (CRA)](https://github.com/facebook/create-react-app). 
-This CRA allows developers to see the application in a web browser, make changes to the code, and see those changes reflected immediately without having to manually refresh the page. This feature is known as "hot/live reloading".
+This CRA allows developers to view the application in a web browser, make changes to the code, and see those changes reflected immediately without having to manually refresh the page. This feature is known as "hot/live reloading".
 
-This section will contain information that will help you:
+The following sections will contain information that will help you:
 
 - [Clone the project](#clone),
 - Set up the project in their IDE or editor,
@@ -15,7 +15,7 @@ This section will contain information that will help you:
 
 
 
-# Getting Started with Create React App
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -25,13 +25,13 @@ Some may like to make theri edits through the github workspace, but its more con
 
 Now to get this to your local repository you would need to performthese few steps
 
-# Clone this repository <a name="clone"></a>
+## Clone this repository <a name="clone"></a>
 this simply is a means to making an exact photocopy of this repostiroty in your computer.
 this step is to be taken after you have firked the repository and you have the exact copy of the repository on your github profile.
 
 navigate to the left side of your screen where this is a green drop dpwn menu with code is located and click on this, this will immediately bring out a small dialog box, make no changes to tis box and simply copy the url provided for you on this box.
 
-# Setup In your IDE
+## Setup In your IDE
 
 next, move down to your system and create a new folder in your desktop/ document folder or any placd of your choice and name this codebooker. open your IDE and navigate to open folders and select the folder you just created and click open.
 
@@ -41,7 +41,7 @@ with your already copied url from github type in `git remote add origin <paste y
 
 
 
-# Setup the project
+## Setup the project
 
 Now to fully integrate the repository in your local application you would need to integrate some environment variables and dependencies to be able to setup this project properly to work with
 
