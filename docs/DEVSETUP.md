@@ -1,3 +1,17 @@
+# Developer Environment Setup
+
+This section will contain informatiom on 
+
+- [Clone or Fork the project](#clone),
+- Set up the project in their IDE or editor,
+- Set up their environment to work in the project, including any environment variables, yarn/npm/pnpm package(s), editor extensions or plugins needed,
+- Setting up the connection to the database,
+- Setting up the local development database, MongoDB.
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -8,7 +22,7 @@ Some may like to make theri edits through the github workspace, but its more con
 
 Now to get this to your local repository you would need to performthese few steps
 
-# Clone this repository
+# Clone this repository <a name="clone"></a>
 this simply is a means to making an exact photocopy of this repostiroty in your computer.
 this step is to be taken after you have firked the repository and you have the exact copy of the repository on your github profile.
 
