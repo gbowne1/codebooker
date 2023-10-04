@@ -2,7 +2,7 @@
 
 This section contains information that will help you:
 
-- [Clone the project](#clone),
+- [Clone this project](#clone),
 - Set up this project in your IDE or editor,
 - Set up your working environment, including any environment variables, yarn/npm/pnpm package(s), editor extensions or plugins needed,
 - Setting up the connection to the database,
@@ -11,11 +11,11 @@ This section contains information that will help you:
 ## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App (CRA)](https://github.com/facebook/create-react-app). 
-This CRA allows developers to view the application in a web browser, make changes to the code, and see those changes reflected immediately without having to manually refresh the page. This feature is known as "hot/live reloading".
+This CRA allows developers to view the application in a web browser, make changes to the code, and see those changes reflected immediately without having to manually refresh the page. This feature is known as "hot reloading".
 
 You can learn more in the [Create React App documentation](https://create-react-app.dev/docs/getting-started/).
 
-To learn React, check out the [React documentation](https://react.dev/). To delve deeper into React, you can skip to this [section](#react-development)
+To learn React, check out the [React documentation](https://react.dev/), and to delve deeper into React, you can skip to this [section](#react-development)
 
 ## Setting Up
 
