@@ -2,10 +2,10 @@
 
 This section contains information that will help you:
 
-- [Clone this project](#clone),
-- Set up this project in your IDE or editor,
-- Set up your working environment, including any environment variables, yarn/npm/pnpm package(s), editor extensions or plugins needed,
-- Setting up the connection to the database,
+- [Clone this project](#clone);
+- Set up this project in your IDE or editor;
+- Set up your working environment, including any environment variables, yarn/npm/pnpm package(s), editor extensions or plugins needed;
+- Setting up the connection to the database;
 - Setting up the local development database, MongoDB.
 
 ## Getting Started with Create React App
@@ -15,13 +15,15 @@ This CRA allows developers to view the application in a web browser, make change
 
 You can learn more in the [Create React App documentation](https://create-react-app.dev/docs/getting-started/).
 
-To learn React, check out the [React documentation](https://react.dev/), and to delve deeper into React, you can skip to this [section](#react-development)
+To learn React, check out the [React documentation](https://react.dev/), and to delve deeper even deeper,skip to this [section](#react-development)
 
 ## Setting Up
 
-Get your project started in your ide, any IDE is preferable. I woudl be using vs code as a template to run threough this setup.
-Some may like to make ther edits through the github workspace, but its more conducive, faster, seamless and easier to make changes to this repository using the terminal through git commands.
-Now to get this to your local repository you would need to performthese few steps
+Some developers prefer making their changes directly through the github workspace, it is however advisable to use an IDE with a terminal, as this makes it more conducive, faster, and easier to make changes to this project using git commands.
+
+In this guide, VS code would be used as the IDE template to setup and work on this project. However, you can use any IDE of your choice. 
+
+Now to get this to your local repository you would need to perform these few steps:
 
 ## Clone this repository <a name="clone"></a>
 this simply is a means to making an exact photocopy of this repostiroty in your computer.
