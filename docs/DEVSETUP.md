@@ -26,7 +26,9 @@ In this guide, VS code would be used as the IDE template to setup and work on th
 Now to setup your local repository in your IDE you would need to perform these next steps.
 
 ## Clone this repository <a name="clone"></a>
-this simply is a means to making an exact photocopy of this repostiroty in your computer.
+This simply means replicating the files in this repostiroty in your IDE.
+
+### Step 1
 this step is to be taken after you have firked the repository and you have the exact copy of the repository on your github profile.
 
 navigate to the left side of your screen where this is a green drop dpwn menu with code is located and click on this, this will immediately bring out a small dialog box, make no changes to tis box and simply copy the url provided for you on this box.
