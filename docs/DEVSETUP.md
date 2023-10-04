@@ -1,8 +1,11 @@
 # Developer Environment Setup
 
-This section will contain informatiom on 
+This project was bootstrapped with [Create React App (CRA)](https://github.com/facebook/create-react-app). 
+This CRA allows developers to see the application in a web browser, make changes to the code, and see those changes reflected immediately without having to manually refresh the page. This feature is known as "hot/live reloading".
 
-- [Clone or Fork the project](#clone),
+This section will contain information that will help you:
+
+- [Clone the project](#clone),
 - Set up the project in their IDE or editor,
 - Set up their environment to work in the project, including any environment variables, yarn/npm/pnpm package(s), editor extensions or plugins needed,
 - Setting up the connection to the database,
