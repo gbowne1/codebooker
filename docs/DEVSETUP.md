@@ -1,9 +1,6 @@
 # Developer Environment Setup
 
-This project was bootstrapped with [Create React App (CRA)](https://github.com/facebook/create-react-app). 
-This CRA allows developers to view the application in a web browser, make changes to the code, and see those changes reflected immediately without having to manually refresh the page. This feature is known as "hot/live reloading".
-
-The following sections will contain information that will help you:
+This section will contain information that will help you:
 
 - [Clone the project](#clone),
 - Set up the project in their IDE or editor,
@@ -12,17 +9,13 @@ The following sections will contain information that will help you:
 - Setting up the local development database, MongoDB.
 
 
-
-
-
 ## Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App (CRA)](https://github.com/facebook/create-react-app). 
+This CRA allows developers to view the application in a web browser, make changes to the code, and see those changes reflected immediately without having to manually refresh the page. This feature is known as "hot/live reloading".
 
-Get your project started in your ide, any IDE is preferable. I woudl be using vs code as a template to run threough this setup.
-
-Some may like to make theri edits through the github workspace, but its more conducive, faster, seamless and easier to make changes to this repository using the terminal through git commands.
-
+> Get your project started in your ide, any IDE is preferable. I woudl be using vs code as a template to run threough this setup.
+Some may like to make ther edits through the github workspace, but its more conducive, faster, seamless and easier to make changes to this repository using the terminal through git commands.
 Now to get this to your local repository you would need to performthese few steps
 
 ## Clone this repository <a name="clone"></a>
