@@ -14,6 +14,7 @@ this step is to be taken after you have firked the repository and you have the e
 
 navigate to the left side of your screen where this is a green drop dpwn menu with code is located and click on this, this will immediately bring out a small dialog box, make no changes to tis box and simply copy the url provided for you on this box.
 
+# Setup In your IDE
 
 next, move down to your system and create a new folder in your desktop/ document folder or any placd of your choice and name this codebooker. open your IDE and navigate to open folders and select the folder you just created and click open.
 
@@ -23,7 +24,9 @@ with your already copied url from github type in `git remote add origin <paste y
 
 
 
+# Setup the project
 
+Now to fully integrate the repository in your local application you would need to integrate some environment variables and dependencies to be able to setup this project properly to work with
 
 
 
