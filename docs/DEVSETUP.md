@@ -19,11 +19,11 @@ To learn React, check out the [React documentation](https://react.dev/), and to 
 
 ## Setting Up
 
-Some developers prefer making their changes directly through the github workspace, it is however advisable to use an IDE with a terminal, as this makes it more conducive, faster, and easier to make changes to this project using git commands.
+It is advisable to work on this project using an IDE rather than through the github repository workspace, as this makes it more conducive, faster, and easier to make changes to this project using git commands.
 
 In this guide, VS code would be used as the IDE template to setup and work on this project. However, you can use any IDE of your choice. 
 
-Now to get this to your local repository you would need to perform these few steps:
+Now to setup your local repository in your IDE you would need to perform these next steps.
 
 ## Clone this repository <a name="clone"></a>
 this simply is a means to making an exact photocopy of this repostiroty in your computer.
