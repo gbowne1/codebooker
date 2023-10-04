@@ -19,7 +19,7 @@ To learn React, check out the [React documentation](https://react.dev/), and to 
 
 ## Setting Up
 
-It is advisable to work on this project using an IDE rather than through the github repository workspace, as this makes it more conducive, faster, and easier to make changes to this project using git commands.
+It is advisable to work on this project using an IDE rather than through the github repository workspace; as this makes it easier to make changes to this project using git commands.
 
 In this guide, VS code would be used as the IDE template to setup and work on this project. However, you can use any IDE of your choice. 
 
@@ -29,9 +29,30 @@ Now to setup your local repository in your IDE you would need to perform these n
 This simply means replicating the files in this repostiroty in your IDE.
 
 ### Step 1
-this step is to be taken after you have firked the repository and you have the exact copy of the repository on your github profile.
 
-navigate to the left side of your screen where this is a green drop dpwn menu with code is located and click on this, this will immediately bring out a small dialog box, make no changes to tis box and simply copy the url provided for you on this box.
+Navigate to your forked repository, on the left side of your screen locate a green drop down menu with "code" written on it and click on it. This will bring out a small dialog box; make no changes to this box and simply copy the url provided for you on this box.
+
+![](./Clone.png)
+
+
+### Step 2
+
+Create your feature branch using git checkout -b my-feature
+
+### Step 3
+
+Commit your changes using git commit -m 'feat: My new feature';
+
+### Step 4
+
+Push to the branch using git push origin my-feature;
+
+### Step 5
+
+Create a new [pull request] (SubmitPR.md)
+After your Pull Request is merged, can you delete your feature branch.
+
+
 
 ## Setup In your IDE
 
