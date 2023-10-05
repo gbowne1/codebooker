@@ -41,11 +41,11 @@ Create a folder on your computer open this folder in your IDE. Open the terminal
 
 Run the command
 
-`git init`
+```git init```
 
 To clone the remote repository to your desktop repository
 
-`git clone "paste the link you copied from the remote repository"`
+```git clone "paste the link you copied from the remote repository"```
 
 for example,
 `git clone https://github.com/Chizobaonorh/codebooker.git`
