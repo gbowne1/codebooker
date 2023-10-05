@@ -5,8 +5,8 @@ This section contains information that will help you:
 - [Clone this project](#clone);
 - Set up this project in your IDE or editor;
 - Set up your working environment, including any environment variables, yarn/npm/pnpm package(s), editor extensions or plugins needed;
-- Setting up the connection to the database;
-- Setting up the local development database, MongoDB.
+- Set up the connection to the database;
+- Set up the local development database, MongoDB.
 
 ## Getting Started with Create React App
 
@@ -36,6 +36,16 @@ Navigate to your forked repository, on the left side of your screen click on the
 
 
 ### Step 2
+
+Create a folder on your computer that would house this repository amd oopen this folder in your IDE. Open the terminal in your IDE.
+
+Run the command
+
+`git init`
+
+To clone the remote repository to your desktop repository
+
+`git remote add origin "paste the link you copied from the remote repository"`
 
 
 Create your feature branch using git checkout -b my-feature
