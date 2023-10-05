@@ -41,7 +41,9 @@ Create a folder on your computer open this folder in your IDE. Open the terminal
 
 Run the command
 
-```git init```
+```
+git init
+```
 
 To clone the remote repository to your desktop repository
 
