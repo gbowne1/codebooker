@@ -3,7 +3,6 @@
 This section contains information that will help you:
 
 - [Clone this project](#clone);
-- Set up this project in your IDE or editor;
 - Set up your working environment, including any environment variables, yarn/npm/pnpm package(s), editor extensions or plugins needed;
 - Set up the connection to the database;
 - Set up the local development database, MongoDB.
@@ -37,24 +36,99 @@ Navigate to your forked repository, on the left side of your screen click on the
 
 ### Step 2
 
-Create a folder on your computer open this folder in your IDE. Open the terminal in your IDE.
+Create a folder on your computer open this folder in your IDE. Open the terminal in your IDE and cd into this folder
 
 Run the command
 
 ```
 git init
+
 ```
 
-To clone the remote repository to your desktop repository
+To clone the remote repository to your desktop repository,
 
-```git clone "paste the link you copied from the remote repository"```
+```
+git clone "paste the link you copied from the remote repository"
+
+```
 
 for example,
-```git clone https://github.com/Chizobaonorh/codebooker.git```
+```
+git clone https://github.com/Chizobaonorh/codebooker.git
 
+```
 
+## Setup up working environment
 
-Create your feature branch using git checkout -b my-feature
+Now we have cloned this project, we need to install create our feature branch where our changes would be commited to before merging to the mian brach. we will also need to set up the environment dependencies to make this project effectively.
+
+### Step 1
+
+Create your feature branch using
+
+```
+git checkout -b "feature-branch"
+
+```
+
+### Step 2
+
+ Install dependencies by running
+
+ ```
+ npm i
+
+ ```
+
+In the project directory run:
+
+```
+npm start
+```
+
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
+
+Next,
+
+```
+npm test
+```
+
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+Next, 
+
+```
+npm run build
+```
+
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+Finally,
+
+```
+npm run eject
+```
+
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+
 
 ### Step 3
 
@@ -71,67 +145,9 @@ After your Pull Request is merged, can you delete your feature branch.
 
 
 
-## Setup In your IDE
+## React Development <a name="react-development"></a>
 
-next, move down to your system and create a new folder in your desktop/ document folder or any placd of your choice and name this codebooker. open your IDE and navigate to open folders and select the folder you just created and click open.
-
-this imediately opens up a worksace for you. NOw in this IDE navigate to your terminal and type in the `git init` command. this initializes the repository and gets it set for the next course of action.
-
-with your already copied url from github type in `git remote add origin <paste your copied url like this>` and paste . this command immediatley kickstarts the cloning process and replicates all the files from the main reposiry into your local repository. And you have finally setupo your working environment.
-
-
-## Setup the project
-
-Now to fully integrate the repository in your local application you would need to integrate some environment variables and dependencies to be able to setup this project properly to work with
-
-
-
-
-
-
-
-
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More about React Development <a name="react-development"></a>
-
-
+Learn More about React development.
 
 ### Code Splitting
 
