@@ -30,12 +30,13 @@ This simply means replicating the files in this repostiroty in your IDE.
 
 ### Step 1
 
-Navigate to your forked repository, on the left side of your screen locate a green drop down menu with "code" written on it and click on it. This will bring out a small dialog box; make no changes to this box and simply copy the url provided for you on this box.
+Navigate to your forked repository, on the left side of your screen click on the drop down with "code" written on it. This will bring out a small dialog box; make no changes to this box but simply copy the url.
 
 ![](./Clone.png)
 
 
 ### Step 2
+
 
 Create your feature branch using git checkout -b my-feature
 
