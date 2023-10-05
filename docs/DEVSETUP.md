@@ -48,7 +48,7 @@ To clone the remote repository to your desktop repository
 ```git clone "paste the link you copied from the remote repository"```
 
 for example,
-`git clone https://github.com/Chizobaonorh/codebooker.git`
+```git clone https://github.com/Chizobaonorh/codebooker.git```
 
 
 
