@@ -2,10 +2,9 @@
 
 This section contains information that will help you:
 
-- [Clone this project](#clone);
-- Set up your working environment, including any environment variables, yarn/npm/pnpm package(s), editor extensions or plugins needed;
-- Set up the connection to the database;
-- Set up the local development database, MongoDB.
+- [Clone this project](#clone),
+- [Set up your working environment](#env),
+- [Set up the local development and connection to the database, MongoDB](#database).
 
 ## Getting Started with Create React App
 
@@ -55,7 +54,7 @@ for example,
 git clone https://github.com/Chizobaonorh/codebooker.git
 ```
 
-## Setup up working environment
+## Setup up working environment<a name="env"></a>
 
 Now we have cloned this project, we need to install create our feature branch where our changes would be commited to before merging to the mian brach. we will also need to set up the environment dependencies to make this project effectively.
 
@@ -119,18 +118,17 @@ Instead, it will copy all the configuration files and the transitive dependencie
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
 
-### Step 3
+## Setup Database and Connection <a name="database"></a>
 
-Commit your changes using git commit -m 'feat: My new feature';
-
-### Step 4
-
-Push to the branch using git push origin my-feature;
-
-### Step 5
-
-Create a new [pull request] (SubmitPR.md)
-After your Pull Request is merged, can you delete your feature branch.
+Local environment requirements are MongoDb,Node:
+1 :You Need to create Mongo db local/atlas
+2 :Create .env and copy the data in .variable.env and paste it in .env file
+3 :Put the Port number and mongo url
+4 :Run setup.js file inside setup folder to create a dummy user
+User created (email: "test@gmail.com" password: "test")
+5 :Run the index.js to run the server
+3:25
+You can login in the website with this (email: "test@gmail.com" password: "test")
 
 
 
@@ -161,3 +159,18 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+### Step 3
+
+Commit your changes using git commit -m 'feat: My new feature';
+
+### Step 4
+
+Push to the branch using git push origin my-feature;
+
+### Step 5
+
+Create a new [pull request] (SubmitPR.md)
+After your Pull Request is merged, can you delete your feature branch.
