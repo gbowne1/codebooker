@@ -19,12 +19,10 @@ To learn React, check out the [React documentation](https://react.dev/), and to 
 
 It is advisable to work on this project using an IDE rather than through the github repository workspace; as this makes it easier to make changes to this project using git commands.
 
-In this guide, VS code would be used as the IDE template to setup and work on this project. However, you can use any IDE of your choice. 
-
-Now to setup your local repository in your IDE you would need to perform these next steps.
+Now to setup your local repository in your IDE perform these next steps.
 
 ## Clone this repository <a name="clone"></a>
-This simply means replicating the files in this repostiroty in your IDE.
+This simply means replicating the files in this repository in your IDE workspace.
 
 ### Step 1
 
@@ -35,7 +33,7 @@ Navigate to your forked repository, on the left side of your screen click on the
 
 ### Step 2
 
-Create a folder on your computer open this folder in your IDE. Open the terminal in your IDE and cd into this folder
+Create a folder on your computer and open this folder in your IDE. Open the terminal in your IDE and cd into this folder
 
 Run the command
 
@@ -56,7 +54,7 @@ git clone https://github.com/Chizobaonorh/codebooker.git
 
 ## Setup up working environment<a name="env"></a>
 
-Now we have cloned this project, we need to install create our feature branch where our changes would be commited to before merging to the mian brach. we will also need to set up the environment dependencies to make this project effectively.
+After cloning this repository, create your feature branch where you commit changes you make before merging into the main branch.
 
 ### Step 1
 
@@ -68,21 +66,21 @@ git checkout -b "feature-branch"
 
 ### Step 2
 
- Install dependencies by running
+ After this, install dependencies by running
 
  ```
  npm i
 
  ```
 
-In the project directory run:
+In the project directory run
 
 ```
 npm start
 ```
 
-Runs the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-The page will reload when you make changes. You may also see any lint errors in the console.
+Runs the app in the development mode. 
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser. The page will reload when you make changes. You may also see any lint errors in the console.
 
 Next,
 
@@ -113,19 +111,15 @@ npm run eject
 
 If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them.
 
 
 ## Setup Database and Connection <a name="database"></a>
 
-Sure, here's a step-by-step explanation for a user trying to set up MongoDB and a Node.js application locally:
-
-**Local Environment Requirements:** MongoDB and Node.js
+Local Environment Requirements: MongoDB and Node.js
 
 1. **Install MongoDB:**
-   - First, you need to install MongoDB either locally or use MongoDB Atlas (MongoDB's cloud-based service).
+   - Install MongoDB either locally or use MongoDB Atlas (MongoDB's cloud-based service).
    - If installing locally, visit the MongoDB website (https://www.mongodb.com/try/download/community) and download the appropriate version for your operating system.
    - Follow the installation instructions for your OS to set up MongoDB.
 
