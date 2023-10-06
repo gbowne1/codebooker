@@ -35,13 +35,7 @@ Navigate to your forked repository, on the left side of your screen click on the
 
 Create a folder on your computer and open this folder in your IDE. Open the terminal in your IDE and cd into this folder
 
-Run the command
-
-```
-git init
-```
-
-To clone the remote repository to your desktop repository, run
+To clone the remote repository to your desktop repository, run the command
 
 ```
 git clone "paste-the-link-you-copied-from-the-forked-repository"
