@@ -147,7 +147,7 @@ Local Environment Requirements: MongoDB and Node.js
 
 With these steps completed, you should have MongoDB set up, environment variables configured, a dummy user created, and your Node.js server running. You can now start developing and testing your application locally.
 
-You can login in the website with this (email: "test@gmail.com" password: "test")
+You can login in the website with this ( username: "test" email: "test@gmail.com" password: "test")
 
 
 
