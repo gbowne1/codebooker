@@ -13,7 +13,7 @@ This CRA allows developers to view the application in a web browser, make change
 
 You can learn more in the [Create React App documentation](https://create-react-app.dev/docs/getting-started/).
 
-To learn React, check out the [React documentation](https://react.dev/), and to delve deeper even deeper, check out this [section](#react-development)
+To learn more about React, check out the [React documentation](https://react.dev/).
 
 ## Setting Up
 
@@ -150,32 +150,4 @@ With these steps completed, you should have MongoDB set up, environment variable
 You can login in the website with this ( username: "test" email: "test@gmail.com" password: "test")
 
 
-
-## React Development <a name="react-development"></a>
-
-Learn More about React development.
-
-### Code Splitting
-
-[https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-[https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-[https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-[https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-[https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### "npm run build" fails to minify
-
-[https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
