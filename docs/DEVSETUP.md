@@ -2,9 +2,9 @@
 
 This section contains information that will help you:
 
-- [Clone this project](#clone),
-- [Set up your working environment](#env),
-- [Set up the local development and connection to the database, MongoDB](#database).
+- [Clone this project](#clone)
+- [Set up your working environment](#env)
+- [Set up the local development and connection to the database, MongoDB](#database)
 
 ## Getting Started with Create React App
 
@@ -120,14 +120,39 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 
 ## Setup Database and Connection <a name="database"></a>
 
-Local environment requirements are MongoDb,Node:
-1 :You Need to create Mongo db local/atlas
-2 :Create .env and copy the data in .variable.env and paste it in .env file
-3 :Put the Port number and mongo url
-4 :Run setup.js file inside setup folder to create a dummy user
-User created (email: "test@gmail.com" password: "test")
-5 :Run the index.js to run the server
-3:25
+Sure, here's a step-by-step explanation for a user trying to set up MongoDB and a Node.js application locally:
+
+**Local Environment Requirements:** MongoDB and Node.js
+
+1. **Install MongoDB:**
+   - First, you need to install MongoDB either locally or use MongoDB Atlas (MongoDB's cloud-based service).
+   - If installing locally, visit the MongoDB website (https://www.mongodb.com/try/download/community) and download the appropriate version for your operating system.
+   - Follow the installation instructions for your OS to set up MongoDB.
+
+2. **Create an Environment File:**
+   - Create a file named `.env` in the root directory of your Node.js application.
+   - Open the `.variable.env` file, copy its contents, and paste them into your newly created `.env` file.
+
+3. **Configure the Environment Variables:**
+   - In the `.env` file, you'll find configuration variables. Make sure to set the following:
+     - `PORT`: This should be the port number where your Node.js application will run (e.g., `3000`).
+     - `MONGODB_URI`: This should be the URL for your MongoDB instance. If you're using MongoDB locally, it might look like `mongodb://localhost:27017/your-database-name`.
+
+4. **Run the Setup Script:**
+   - Inside your project folder, you may have a folder named `setup`.
+   - Run the `setup.js` file located in that folder. This script is responsible for creating a dummy user in your MongoDB database.
+   - After running the setup script, it should display a message like "User created (email: 'test@gmail.com' password: 'test')."
+
+5. **Start the Node.js Server:**
+   - Now that you have MongoDB set up and the dummy user created, you can start your Node.js server.
+   - Run the `index.js` file or the main entry point of your Node.js application to start the server. You can do this using the `node` command.
+     ```
+     node index.js
+     ```
+   - Your Node.js server should now be running, and it will connect to the MongoDB database using the URL and credentials specified in your `.env` file.
+
+With these steps completed, you should have MongoDB set up, environment variables configured, a dummy user created, and your Node.js server running. You can now start developing and testing your application locally.
+
 You can login in the website with this (email: "test@gmail.com" password: "test")
 
 
@@ -156,21 +181,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/a
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+### "npm run build" fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-
-
-### Step 3
-
-Commit your changes using git commit -m 'feat: My new feature';
-
-### Step 4
-
-Push to the branch using git push origin my-feature;
-
-### Step 5
-
-Create a new [pull request] (SubmitPR.md)
-After your Pull Request is merged, can you delete your feature branch.
