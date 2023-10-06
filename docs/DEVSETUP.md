@@ -13,20 +13,20 @@ This CRA allows developers to view the application in a web browser, make change
 
 You can learn more in the [Create React App documentation](https://create-react-app.dev/docs/getting-started/).
 
-To learn React, check out the [React documentation](https://react.dev/), and to delve deeper even deeper,skip to this [section](#react-development)
+To learn React, check out the [React documentation](https://react.dev/), and to delve deeper even deeper, check out this [section](#react-development)
 
 ## Setting Up
 
 It is advisable to work on this project using an IDE rather than through the github repository workspace; as this makes it easier to make changes to this project using git commands.
 
-Now to setup your local repository in your IDE perform these next steps.
+Follow these next steps to setup your local repository in your IDE.
 
 ## Clone this repository <a name="clone"></a>
-This simply means replicating the files in this repository in your IDE workspace.
+This simply means replicating the files in this project in your IDE workspace.
 
 ### Step 1
 
-Navigate to your forked repository, on the left side of your screen click on the drop down with "code" written on it. This will bring out a small dialog box; make no changes to this box but simply copy the url.
+Navigate to your forked repository, on the left side of your screen click on the drop down with "code" written on it. This will pop up a small dialog box; make no changes to this box but simply copy the url.
 
 ![](./Clone.png)
 
@@ -41,7 +41,7 @@ Run the command
 git init
 ```
 
-To clone the remote repository to your desktop repository,
+To clone the remote repository to your desktop repository, run
 
 ```
 git clone "paste-the-link-you-copied-from-the-forked-repository"
@@ -73,7 +73,7 @@ git checkout -b "feature-branch"
 
  ```
 
-In the project directory run
+Next run,
 
 ```
 npm start
@@ -90,7 +90,7 @@ npm test
 
 Launches the test runner in the interactive watch mode. See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-Next, 
+Then, 
 
 ```
 npm run build
@@ -157,25 +157,25 @@ Learn More about React development.
 
 ### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+[https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
 ### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+[https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
 ### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+[https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
 ### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+[https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
 ### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+[https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
 ### "npm run build" fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
