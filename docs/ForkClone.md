@@ -38,4 +38,3 @@ You will now have a forked version of the original repo that is up to date with 
 ### Step 1
 
 Clone this repo to your local machine using (https://github.com/gbowne1/codebooker.git)
-

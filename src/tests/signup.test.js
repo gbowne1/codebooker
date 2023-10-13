@@ -85,16 +85,18 @@ describe('Register Component', () => {
     it('renders PrivacyPolicy page on clicking Privacy Policy link', () => {
         // Render the Register component within a MemoryRouter
         render(
-          <MemoryRouter>
-            <Register />
-          </MemoryRouter>
+            <MemoryRouter>
+                <Register />
+            </MemoryRouter>
         );
-    
+
         // Find the "Privacy Policy" link and click it
-        const privacyPolicyLink = screen.getByRole('link', { name: /privacy policy/i });
+        const privacyPolicyLink = screen.getByRole('link', {
+            name: /privacy policy/i,
+        });
         fireEvent.click(privacyPolicyLink);
-    
+
         expect(privacyPolicyLink).toHaveAttribute('target', '_blank');
         expect(privacyPolicyLink).toHaveAttribute('href', '/privacy-policy');
-      });
+    });
 });
