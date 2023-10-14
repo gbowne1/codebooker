@@ -1,0 +1,44 @@
+.flex {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.input-field-cta{
+    width: 560px;
+}
+
+.img-cta {
+    width: 300px;
+    width: 300px;
+}
+
+.img-cta .img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.sub-menu {
+    position: absolute;
+    right: 50px;
+    width: 250px;
+    z-index: 10;
+    top: 50px;
+    padding: 10px;
+    background-color: red;
+    
+}
+
+
+@media screen and (max-width: 1024px) {
+    .flex {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+    
+    .input-field-cta{
+        width: auto;
+    }
+}

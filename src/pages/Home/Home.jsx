@@ -16,6 +16,7 @@ import Dropdown from '../../components/Dropdown/Dropdown';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useLocation } from 'react-router';
 import './Home.css';
+import CreateProfileAlert from '../Profile/CreateProfileAlert';
 
 const label = { inputProps: { 'aria-label': 'Color switch demo' } };
 
@@ -44,7 +45,6 @@ const darkTheme = createTheme({
 
 function Home() {
     const [isDarkMode, setIsDarkMode] = React.useState(false);
-
     const [filter, setFilter] = React.useState('');
     const location = useLocation();
     const handleToggleDarkMode = () => {
@@ -54,15 +54,13 @@ function Home() {
     // Manage Snackbar state and setup notify function
     const [openSnackbar, setOpenSnackbar] = React.useState(false);
     const [snackbarMessage, setSnackbarMessage] = React.useState('');
-
+    const [createProfileNotice, setCreateProfileNotice] = React.useState(false);
     const notify = (username) => {
         setSnackbarMessage('Welcome! ' + username);
         setOpenSnackbar(true);
     };
-
     // Hook used to track whether useEffect has run
     const hasRun = useRef(false);
-
     useEffect(() => {
         if (!hasRun.current) {
             if (location?.state?.loggin || localStorage.getItem('user')) {
@@ -77,7 +75,15 @@ function Home() {
             hasRun.current = true; //Toggle hasRun to true to prevent useEffect from running twice
         }
     }, []);
-
+    useEffect(() => {
+        const hasProfileDataStatus = localStorage.getItem('hasProfileData');
+        // Check if data doesn't exist in local storage (returns null)
+        if (hasProfileDataStatus === null) {
+            setTimeout(() => {
+                setCreateProfileNotice(true);
+            }, 5000);
+        }
+    }, [setCreateProfileNotice]);
     const matches = useMediaQuery('(max-width:700px)');
     return (
         <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
@@ -135,6 +141,7 @@ function Home() {
                     {snackbarMessage}
                 </Alert>
             </Snackbar>
+            {createProfileNotice && <CreateProfileAlert />}
         </ThemeProvider>
     );
 }
