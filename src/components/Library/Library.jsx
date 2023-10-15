@@ -1,40 +1,41 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import { orderBy } from 'lodash';
+import AddIcon from '@mui/icons-material/Add';
+import DeleteIcon from '@mui/icons-material/Delete';
+import StarIcon from '@mui/icons-material/Star';
 import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
+import IconButton from '@mui/material/IconButton';
+import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import CircularProgress from '@mui/material/CircularProgress';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import StarIcon from '@mui/icons-material/Star';
-import Paper from '@mui/material/Paper';
-import IconButton from '@mui/material/IconButton';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import Typography from '@mui/material/Typography';
-import AddIcon from '@mui/icons-material/Add';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { orderBy } from 'lodash';
+import PropTypes from 'prop-types';
+import React, { useMemo, useState } from 'react';
 // import RemoveIcon from '@mui/icons-material/Remove';
+import EditIcon from '@mui/icons-material/Edit';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
+import ShareIcon from '@mui/icons-material/Share';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import EditIcon from '@mui/icons-material/Edit';
-import ShareIcon from '@mui/icons-material/Share';
 /* import { TableVirtuoso } from 'react-virtuoso'; */
 import './Library.css';
 import Classes from './Library.module.css';
 // import rows from './data.json';
-import { Button, Modal, TextField } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import { Button, Modal, TextField } from '@mui/material';
 import Snackbar from '@mui/material/Snackbar';
+import axios from 'axios';
 import ISBN from 'isbn-validate';
 import { Rating } from 'react-simple-star-rating';
-import axios from 'axios';
 
 // function createData(name, calories, fat, carbs, protein) {
 // 	return { name, calories, fat, carbs, protein };
@@ -51,6 +52,7 @@ import axios from 'axios';
 
 export default function Library({ filter, setFilter }) {
     const [myRows, setMyRows] = useState([]);
+    const [dbError, setDBError] = useState(false);
     const [visibleContent, setVisibleContent] = useState(-1);
     const [showSnackBar, handleSnackBar] = useState(false);
     const [isDeleted, setIsDeleted] = useState(false);
@@ -88,6 +90,7 @@ export default function Library({ filter, setFilter }) {
     const userEmail = JSON.parse(localStorage.getItem('user')).email;
     //get loggedIn user id to match with book userId
     const userId = JSON.parse(localStorage.getItem('user'))._id;
+    const userName = JSON.parse(localStorage.getItem('user')).username;
     //This state helps us for two way in input filed
     const [isAdded, handleIsAdded] = useState(false);
     const removeBookByName = async (row) => {
@@ -174,10 +177,13 @@ export default function Library({ filter, setFilter }) {
             const response = await axios.get(
                 'http://localhost:3001/api/books/getall'
             );
-            const books = response.data;
-            setMyRows([...books]);
+            if (response.status === 200) {
+                const books = response.data;
+                setMyRows([...books]);
+            }
         } catch (error) {
             // Handle error
+            setDBError(true);
             console.error('Error fetching books:', error);
         }
         setLoading(false);
@@ -339,7 +345,7 @@ export default function Library({ filter, setFilter }) {
         };
     }, [setFilter, filter, myRows]);
 
-    useEffect(() => {
+    useMemo(() => {
         fetchBooksFromDB();
     }, []);
 
@@ -610,7 +616,15 @@ export default function Library({ filter, setFilter }) {
                     </form>
                 </Box>
             </Modal>
-            {myRows.length > 0 ? (
+            {loading ? (
+                <div className='skeleton'>
+                    <CircularProgress />
+                </div>
+            ) : dbError ? (
+                <Box style={{ marginTop: 80, marginInline: 10 }}>
+                    books from data.json file
+                </Box>
+            ) : myRows?.length > 0 ? (
                 <TableContainer
                     style={{ marginTop: 80, marginInline: 10 }}
                     component={Paper}
@@ -1014,9 +1028,38 @@ export default function Library({ filter, setFilter }) {
                     </Table>
                 </TableContainer>
             ) : (
-                <div className='skeleton'>
-                    <CircularProgress />
-                </div>
+                <>
+                    <Box className='msg-box'>
+                        <SentimentVeryDissatisfiedIcon
+                            sx={{
+                                fontSize: '120px',
+                            }}
+                        />
+                        <Typography>Hi, {userName}</Typography>
+                        <Typography>
+                            The database is currently empty.To add a book,
+                            please click the button below.
+                        </Typography>
+                    </Box>
+                    <Box className='Add-book-button-container'>
+                        <TableCell sx={{ border: 0 }}>
+                            <Button
+                                variant='contained'
+                                sx={{
+                                    borderRadius: '50%',
+                                    height: '60px',
+                                }}
+                            >
+                                <AddIcon
+                                    className={Classes.tableactionicon}
+                                    onClick={() => {
+                                        handleModalBox(true);
+                                    }}
+                                />
+                            </Button>
+                        </TableCell>
+                    </Box>
+                </>
             )}
         </>
     );
