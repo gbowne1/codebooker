@@ -1,5 +1,7 @@
 const Book = require('../model/booksModel');
 const User = require('../model/userModel');
+const fs = require('fs');
+const path = require('path');
 
 module.exports.getAllBooks = async (req, res) => {
     try {
@@ -10,7 +12,31 @@ module.exports.getAllBooks = async (req, res) => {
         res.status(500).json({ message: 'Server Error' });
     }
 };
+module.exports.getAllFromFile = async (req, res) => {
+    const filePath = path.join(
+        '..',
+        '..',
+        'src',
+        'components',
+        'Library',
+        'data.json'
+    );
 
+    fs.readFile(filePath, 'utf8', (err, data) => {
+        if (err) {
+            console.error(err);
+            res.status(500).send('Error reading data.json');
+        } else {
+            try {
+                const jsonData = JSON.parse(data);
+                res.status(200).json(jsonData);
+            } catch (parseError) {
+                console.error(parseError);
+                res.status(500).send('Error parsing data.json');
+            }
+        }
+    });
+};
 module.exports.newBook = async (req, res) => {
     const { bookObj } = { ...req.body };
     const {
