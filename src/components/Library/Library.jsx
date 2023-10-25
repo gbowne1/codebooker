@@ -166,22 +166,96 @@ export default function Library({ filter, setFilter }) {
         }
         setLoading(false);
     };
+    const addBooksToDB = async (fileBooks) => {
+        try {
+            const userData = JSON.parse(localStorage.getItem('user'));
 
-    // fectch book from db
+            // Check if userData is not null before accessing its properties
+            if (userData) {
+                // Iterate through each book in the file
+                for (const bookObj of fileBooks) {
+                    const userId = userData._id;
+                    const userEmail = userData.email;
+
+                    const {
+                        title,
+                        author,
+                        category,
+                        publisher,
+                        ISBN,
+                        year,
+                        edition,
+                    } = bookObj;
+                    console.log('Adding book', bookObj);
+
+                    // Send a request to add the book to the backend
+                    await axios.post(
+                        'http://localhost:3001/api/books/newbook',
+                        {
+                            bookObj: {
+                                userId,
+                                userEmail,
+                                name: title,
+                                author,
+                                category,
+                                publisher,
+                                isbn: ISBN,
+                                year,
+                                edition,
+                                reviews: [],
+                            },
+                        }
+                    );
+
+                    // // Introduce a delay (e.g., 500 milliseconds) between requests
+                    // await new Promise((resolve) => setTimeout(resolve, 500));
+                }
+
+                // After adding all books, fetch books from the backend
+                fetchBooksFromDB();
+            } else {
+                console.error('Error adding books from file:', error);
+            }
+        } catch (error) {
+            // Handle error
+            console.error('Error adding books from file:', error);
+        }
+    };
+
     const fetchBooksFromDB = async () => {
         try {
             setLoading(true);
+
+            // Fetch data from the database
             const response = await axios.get(
                 'http://localhost:3001/api/books/getall'
             );
             const books = response.data;
-            setMyRows([...books]);
+
+            // If the database has no books, fetch data from the file
+            if (books.length === 0) {
+                const fileResponse = await axios.get(
+                    'http://localhost:3001/api/books/filedata'
+                );
+                const fileBooks = fileResponse.data;
+
+                // Assuming fileBooks is an array of books from the file
+                setMyRows([...fileBooks]);
+
+                // Add books to the database
+                await addBooksToDB(fileBooks);
+            } else {
+                // Database has books, use them
+                setMyRows([...books]);
+            }
         } catch (error) {
             // Handle error
             console.error('Error fetching books:', error);
+        } finally {
+            setLoading(false);
         }
-        setLoading(false);
     };
+
     const resetBookState = () => {
         setName('');
         setAuthor('');
