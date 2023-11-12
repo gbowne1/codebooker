@@ -1,6 +1,5 @@
 import AddAPhotoOutlinedIcon from '@mui/icons-material/AddAPhotoOutlined';
 import CloseIcon from '@mui/icons-material/Close';
-import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import {
     Box,
     Button,
@@ -30,18 +29,23 @@ import programingSkillOptions from './programingSkillOptions';
 
 const CreateProfileForm = () => {
     const [loading, setLoading] = useState(false);
+    const [city, setCity] = useState('');
+    const [bio, setBio] = useState('');
+    const [bioCharError, setBioCharError] = useState('');
+    const [charsRemaining, setCharsRemaining] = useState(0);
+    const [userCountry, setUserCountry] = useState('');
     const [showSnackBar, setShowSnackBar] = useState(false);
     const [createProfileError, setCreateProfileError] = useState('');
-    const [showCity, setShowCity] = useState(null);
     const [showError, setShowError] = useState(false);
     const [selectedFile, setSelectedFile] = useState(null);
+    const userEmail = JSON.parse(localStorage.getItem('user')).email;
     const navigate = useNavigate();
     const fileRef = useRef(null);
     const initialValue = {
         name: '',
         alias: '',
+        // bio: '',
         location: '',
-        city: showCity || '',
         age: '',
         education: '',
         occupation: '',
@@ -59,16 +63,33 @@ const CreateProfileForm = () => {
     const validationSchema = Yup.object({
         name: Yup.string().required('This field is required'),
         alias: Yup.string().required('This field is required'),
-        location: Yup.string().required('This field is required'),
-        city: Yup.string().required('This field is required'),
         age: Yup.string().required('This field is required'),
     });
+    const handleBioChange = (e) => {
+        if (bioCharError) setBioCharError('');
+        if (e.target.value.length > 250) {
+            setBioCharError('You have exceded the number of characters');
+            return;
+        }
+        setBio(e.target.value);
+        if (charsRemaining > e.target.value.length) {
+            setCharsRemaining(250 - e.target.value.length);
+        }
+        setCharsRemaining(0 + e.target.value.length);
+    };
+    const handleCityChange = (e) => {
+        setCity(e.target.value);
+    };
     const getUserLocationDetails = async () => {
         const request = await fetch(
             'https://ipinfo.io/json?token=d6500264fdf697'
         );
-        const { city } = await request.json();
-        setShowCity(city);
+        const { city, country } = await request.json();
+        const getCountryByCode = locationOptions.find(
+            (item) => item['countryCode'] === country
+        );
+        setUserCountry(getCountryByCode.value);
+        setCity(city);
     };
     const handleSubmit = async (values, onSubmitProps) => {
         try {
@@ -76,14 +97,22 @@ const CreateProfileForm = () => {
             const response = await axios.post(
                 'http://localhost:3001/api/profile/new-profile',
                 {
-                    values,
+                    ...values,
+                    location: values.location ? values.location : userCountry,
                     selectedFile,
+                    city,
+                    bio,
+                    userEmail,
                 }
             );
             if (response.status === 200) {
                 setShowSnackBar(true);
                 setSelectedFile(null);
                 onSubmitProps.resetForm();
+                setBio('');
+                setTimeout(() => {
+                    navigate('/');
+                }, 2000);
             }
         } catch (err) {
             const errorMsg = err.response.data.message;
@@ -104,8 +133,14 @@ const CreateProfileForm = () => {
     const handleFileInputChange = (e) => {
         const file = e.target.files[0];
         if (!file) return;
-        const src = URL.createObjectURL(file);
-        setSelectedFile(src);
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            setSelectedFile(reader.result);
+        };
+        reader.onerror = (error) => {
+            console.log('Error:', error);
+        };
     };
     const action = (
         <React.Fragment>
@@ -114,7 +149,7 @@ const CreateProfileForm = () => {
                 aria-label='close'
                 color='inherit'
                 onClick={closeSnackBar}
-                autoHideDuration={4000}
+                autohideduration={4000}
             >
                 <CloseIcon fontSize='small' />
             </IconButton>
@@ -129,14 +164,14 @@ const CreateProfileForm = () => {
             <Snackbar
                 action={action}
                 open={showSnackBar}
-                autoHideDuration={3000}
+                autohideduration={3000}
                 onClose={closeSnackBar}
-                message='Support Query Successfully Submitted'
+                message='Profile Created Successfully'
             />
             <Snackbar
                 action={action}
                 open={showError}
-                autoHideDuration={3000}
+                autohideduration={3000}
                 onClose={closeSnackBar}
                 message={createProfileError}
             />
@@ -148,7 +183,7 @@ const CreateProfileForm = () => {
                             width: '90%',
                         }}
                     >
-                        <Box m={5} p={mobileDisplay ? 1 : 3}>
+                        <Box m={5} p={mobileDisplay ? 1 : 5}>
                             <Formik
                                 initialValues={initialValue}
                                 validationSchema={validationSchema}
@@ -166,7 +201,6 @@ const CreateProfileForm = () => {
                                         alias,
                                         location,
                                         age,
-                                        city,
                                         showAge,
                                         education,
                                         occupation,
@@ -183,17 +217,6 @@ const CreateProfileForm = () => {
                                     return (
                                         <Form>
                                             <>
-                                                <KeyboardBackspaceIcon
-                                                    onClick={() =>
-                                                        navigate('/')
-                                                    }
-                                                    sx={{
-                                                        position: 'absolute',
-                                                        top: '10px',
-                                                        left: '20px',
-                                                        cursor: 'pointer',
-                                                    }}
-                                                />
                                                 <Box>
                                                     <Typography
                                                         variant='h5'
@@ -213,7 +236,7 @@ const CreateProfileForm = () => {
                                                         Basic Information
                                                     </Typography>
                                                     <Box className='flex'>
-                                                        <Box>
+                                                        <Box className='textarea-profile-pic-cta'>
                                                             <Box
                                                                 sx={{
                                                                     position:
@@ -230,49 +253,99 @@ const CreateProfileForm = () => {
                                                                                 : '/Assets/Avatar.webp'
                                                                         }
                                                                     />
-                                                                </Box>
-                                                                <Box
-                                                                    sx={{
-                                                                        backgroundColor:
-                                                                            '#171c259c',
-                                                                        position:
-                                                                            'absolute',
-                                                                        top: '50%',
-                                                                        left: '50%',
-                                                                        transform:
-                                                                            'translate(-50%, -50%)',
-                                                                        cursor: 'pointer',
-                                                                        display:
-                                                                            'flex',
-                                                                        justifyContent:
-                                                                            'center',
-                                                                        alignItems:
-                                                                            'center',
-                                                                        padding:
-                                                                            '10px',
-                                                                        borderRadius:
-                                                                            '50%',
-                                                                    }}
-                                                                >
-                                                                    <input
-                                                                        hidden
-                                                                        ref={
-                                                                            fileRef
-                                                                        }
-                                                                        type='file'
-                                                                        accept='image/*'
-                                                                        onChange={
-                                                                            handleFileInputChange
-                                                                        }
-                                                                    />
-                                                                    <AddAPhotoOutlinedIcon
-                                                                        onClick={
-                                                                            selectImage
-                                                                        }
+                                                                    <Box
                                                                         sx={{
-                                                                            color: 'white',
+                                                                            backgroundColor:
+                                                                                '#171c259c',
+                                                                            position:
+                                                                                'absolute',
+                                                                            top: '50%',
+                                                                            left: '50%',
+                                                                            transform:
+                                                                                'translate(-50%,    -50%)',
+                                                                            cursor: 'pointer',
+                                                                            display:
+                                                                                'flex',
+                                                                            justifyContent:
+                                                                                'center',
+                                                                            alignItems:
+                                                                                'center',
+                                                                            padding:
+                                                                                '10px',
+                                                                            borderRadius:
+                                                                                '50%',
                                                                         }}
+                                                                    >
+                                                                        <input
+                                                                            hidden
+                                                                            ref={
+                                                                                fileRef
+                                                                            }
+                                                                            type='file'
+                                                                            accept='image/*'
+                                                                            onChange={
+                                                                                handleFileInputChange
+                                                                            }
+                                                                        />
+                                                                        <AddAPhotoOutlinedIcon
+                                                                            onClick={
+                                                                                selectImage
+                                                                            }
+                                                                            sx={{
+                                                                                color: 'white',
+                                                                            }}
+                                                                        />
+                                                                    </Box>
+                                                                </Box>
+                                                                <Box className='bio-cta'>
+                                                                    <Field
+                                                                        as={
+                                                                            TextField
+                                                                        }
+                                                                        label='Write a short bio'
+                                                                        type='text'
+                                                                        name='bio'
+                                                                        fullWidth
+                                                                        multiline
+                                                                        value={
+                                                                            bio
+                                                                        }
+                                                                        onChange={
+                                                                            handleBioChange
+                                                                        }
+                                                                        margin='dense'
+                                                                        variant='outlined'
+                                                                        InputProps={{
+                                                                            inputComponent:
+                                                                                'textarea',
+                                                                            rows: 5,
+                                                                        }}
+                                                                        helperText={
+                                                                            <ErrorMessage name='bio' />
+                                                                        }
+                                                                        error={
+                                                                            errors.bio &&
+                                                                            touched.bio
+                                                                        }
+                                                                        required
                                                                     />
+                                                                    <Typography className='char-remaining'>
+                                                                        {
+                                                                            charsRemaining
+                                                                        }{' '}
+                                                                        / 250
+                                                                    </Typography>
+                                                                    <Typography
+                                                                        sx={{
+                                                                            fontSize:
+                                                                                '11px',
+                                                                            color: 'red',
+                                                                        }}
+                                                                    >
+                                                                        {
+                                                                            bioCharError
+                                                                        }
+                                                                    </Typography>
                                                                 </Box>
                                                             </Box>
                                                         </Box>
@@ -389,41 +462,37 @@ const CreateProfileForm = () => {
                                                                 </InputLabel>
                                                                 <SelectInputField
                                                                     name='location'
+                                                                    value={
+                                                                        location
+                                                                            ? location
+                                                                            : userCountry
+                                                                    }
                                                                     options={{
                                                                         value: location,
                                                                         onChange:
                                                                             handleChange,
                                                                         onBlur: handleBlur,
                                                                         items: locationOptions,
-                                                                        error:
-                                                                            touched.location &&
-                                                                            errors.location,
                                                                     }}
                                                                 />
                                                             </Box>
-                                                            <TextField
-                                                                label='City'
-                                                                name='city'
-                                                                placeholder='New York'
-                                                                fullWidth
-                                                                variant='outlined'
-                                                                margin='dense'
-                                                                value={city}
-                                                                onChange={
-                                                                    handleChange
-                                                                }
-                                                                onBlur={
-                                                                    handleBlur
-                                                                }
-                                                                helperText={
-                                                                    <ErrorMessage name='city' />
-                                                                }
-                                                                error={
-                                                                    errors.city &&
-                                                                    touched.city
-                                                                }
-                                                                required
-                                                            />
+                                                            <Box className='control-group'>
+                                                                <label htmlFor='city'>
+                                                                    <span>
+                                                                        City
+                                                                    </span>
+                                                                </label>
+                                                                <input
+                                                                    type='text'
+                                                                    name='city'
+                                                                    value={city}
+                                                                    placeholder='eg. New York'
+                                                                    onChange={
+                                                                        handleCityChange
+                                                                    }
+                                                                    required
+                                                                />
+                                                            </Box>
                                                         </Box>
                                                     </Box>
                                                 </Box>
@@ -543,13 +612,20 @@ const CreateProfileForm = () => {
                                                                     handleBlur
                                                                 }
                                                             />
-                                                            <Box>
+                                                            <Box
+                                                                sx={{
+                                                                    mt: '20px',
+                                                                }}
+                                                            >
                                                                 <InputLabel htmlFor='operatingSystem'>
                                                                     Operating
                                                                     System
                                                                 </InputLabel>
                                                                 <SelectInputField
                                                                     name='operatingSystem'
+                                                                    value={
+                                                                        operatingSystem
+                                                                    }
                                                                     options={{
                                                                         name: 'operatingSystem',
                                                                         value: operatingSystem,
@@ -567,6 +643,9 @@ const CreateProfileForm = () => {
                                                                 </InputLabel>
                                                                 <SelectInputField
                                                                     name='programingSkills'
+                                                                    value={
+                                                                        programingSkills
+                                                                    }
                                                                     options={{
                                                                         value: programingSkills,
                                                                         onChange:
@@ -583,6 +662,9 @@ const CreateProfileForm = () => {
                                                                 </InputLabel>
                                                                 <SelectInputField
                                                                     name='favoriteEditor'
+                                                                    value={
+                                                                        favoriteEditor
+                                                                    }
                                                                     options={{
                                                                         value: favoriteEditor,
                                                                         onChange:
@@ -611,12 +693,16 @@ const CreateProfileForm = () => {
                                                                 sx={{
                                                                     paddingRight:
                                                                         '30px',
+                                                                    display:
+                                                                        mobileDisplay
+                                                                            ? 'none'
+                                                                            : 'unset',
                                                                 }}
                                                             >
                                                                 <Typography
                                                                     sx={{
                                                                         fontSize:
-                                                                            '14px',
+                                                                            '16px',
                                                                     }}
                                                                 >
                                                                     Include
@@ -758,8 +844,8 @@ const CreateProfileForm = () => {
                                                     </Box>
                                                 </Box>
                                                 <Button
-                                                    variant='contained'
                                                     type='submit'
+                                                    variant='contained'
                                                     color='primary'
                                                     disabled={loading}
                                                 >
