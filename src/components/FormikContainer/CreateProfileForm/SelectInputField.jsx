@@ -1,12 +1,12 @@
 import { FormControl, FormHelperText, MenuItem, Select } from '@mui/material';
 import PropTypes from 'prop-types';
 import React from 'react';
-const SelectInputField = ({ name, options }) => {
+const SelectInputField = ({ name, value, options }) => {
     return (
         <FormControl variant='outlined' error={!!options.error} fullWidth>
             <Select
                 name={name}
-                value={options.value}
+                value={value}
                 onChange={options.onChange}
                 onBlur={options.onBlur}
                 fullWidth
@@ -23,6 +23,7 @@ const SelectInputField = ({ name, options }) => {
 };
 SelectInputField.propTypes = {
     name: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
     options: PropTypes.shape({
         value: PropTypes.string.isRequired,
         onChange: PropTypes.func.isRequired,
