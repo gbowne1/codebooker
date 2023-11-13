@@ -71,7 +71,7 @@ function Home() {
             if (error?.response?.status === 404) {
                 setTimeout(() => {
                     setCreateProfileNotice(true);
-                }, 5000);
+                }, 2000);
             }
             console.error('Error fetching user profile:', error);
         }
