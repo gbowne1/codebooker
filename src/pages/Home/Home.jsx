@@ -1,22 +1,23 @@
-import React, { useEffect, useRef } from 'react';
-import Snackbar from '@mui/material/Snackbar';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 import Alert from '@mui/material/Alert';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
+import CssBaseline from '@mui/material/CssBaseline';
+import Snackbar from '@mui/material/Snackbar';
+import Switch from '@mui/material/Switch';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Switch from '@mui/material/Switch';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import CssBaseline from '@mui/material/CssBaseline';
-import Library from '../../components/Library/Library';
-import SideNav from '../../components/SideNav/SideNav';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import axios from 'axios';
+import React, { useEffect, useRef } from 'react';
+import { useLocation } from 'react-router';
 import BookSearch from '../../components/BookSearch/BookSearch';
 import Dropdown from '../../components/Dropdown/Dropdown';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { useLocation } from 'react-router';
-import './Home.css';
+import Library from '../../components/Library/Library';
+import SideNav from '../../components/SideNav/SideNav';
 import CreateProfileAlert from '../Profile/CreateProfileAlert';
+import './Home.css';
 
 const label = { inputProps: { 'aria-label': 'Color switch demo' } };
 
@@ -59,6 +60,22 @@ function Home() {
         setSnackbarMessage('Welcome! ' + username);
         setOpenSnackbar(true);
     };
+    const checkProfileExistenceInDB = async () => {
+        try {
+            const response = await axios.get(
+                'http://localhost:3001/api/profile/get-profile'
+            );
+            if (response.status === 200) return;
+        } catch (error) {
+            // Handle error
+            if (error?.response?.status === 404) {
+                setTimeout(() => {
+                    setCreateProfileNotice(true);
+                }, 5000);
+            }
+            console.error('Error fetching user profile:', error);
+        }
+    };
     // Hook used to track whether useEffect has run
     const hasRun = useRef(false);
     useEffect(() => {
@@ -76,14 +93,8 @@ function Home() {
         }
     }, []);
     useEffect(() => {
-        const hasProfileDataStatus = localStorage.getItem('hasProfileData');
-        // Check if data doesn't exist in local storage (returns null)
-        if (hasProfileDataStatus === null) {
-            setTimeout(() => {
-                setCreateProfileNotice(true);
-            }, 5000);
-        }
-    }, [setCreateProfileNotice]);
+        checkProfileExistenceInDB();
+    }, []);
     const matches = useMediaQuery('(max-width:700px)');
     return (
         <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
