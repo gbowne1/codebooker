@@ -2,7 +2,7 @@ import CreateIcon from '@mui/icons-material/Create';
 import { Box, Button, Modal, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
-import './NewProfile.css';
+import './CreateProfileAlert.css';
 const CreateProfileAlert = () => {
     const [openModal, setOpenModal] = useState(true);
     const navigate = useNavigate();
