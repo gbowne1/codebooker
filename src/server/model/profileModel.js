@@ -1,13 +1,17 @@
 const mongoose = require('mongoose');
 
 const profileSchema = new mongoose.Schema({
-    user: {
+    userId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'User',
     },
-    profile_pricture: {
+    profile_picture: {
         type: String,
+    },
+    bio:{
+        type:String,
+        required: true,
     },
     name:{
         type:String,
@@ -24,32 +28,9 @@ const profileSchema = new mongoose.Schema({
     city:{
         type: String,
     },
-    education:[
-        {
-            school:{
-                type: String,
-            },
-            degree:{
-                type: String,
-            },
-            fieldofstudy:{
-                type: String,
-            },
-            from:{
-                type: Date,
-            },
-            to:{
-                type: Date,
-            },
-            current:{
-                type: Boolean,
-                default: false,
-            },
-            description:{
-                type: String,
-            },
-        }
-    ],
+    education:{
+        type: String,
+    },
     age: {
         type: Number,
         default: null,
@@ -73,22 +54,20 @@ const profileSchema = new mongoose.Schema({
     portfolio_link: {
         type: String,
     },
-    socials: {
-        youtube:{
-            type: String,
-        },
-        twitter:{
-            type: String,
-        },
-        linkedin:{
-            type: String,
-        },
-        github: {
-            type: String,
-        },
-        gitlab: {
-            type: String,
-        },
+    youtube:{
+        type: String,
+    },
+    twitter:{
+        type: String,
+    },
+    linkedIn:{
+        type: String,
+    },
+    github: {
+        type: String,
+    },
+    gitlab: {
+        type: String,
     },
     created_at: {
         type: Date,
