@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+    mongo:
+        image: mongo
+        container_name: db-mongo-server
+        restart: always
+        ports:
+            # <use this port number in your .env file>:<mongodb default port number>
+            - 27123:27017
+        environment:
+            MONGO_INITDB_DATABASE: test
+            MONGO_INITDB_ROOT_USERNAME: test # MongoDB username
+            MONGO_INITDB_ROOT_PASSWORD: test # MongoDB password

@@ -38,20 +38,3 @@ You will now have a forked version of the original repo that is up to date with 
 ### Step 1
 
 Clone this repo to your local machine using (https://github.com/gbowne1/codebooker.git)
-
-### Step 2
-
-Create your feature branch using git checkout -b my-feature
-
-### Step 3
-
-Commit your changes using git commit -m 'feat: My new feature';
-
-### Step 4
-
-Push to the branch using git push origin my-feature;
-
-### Step 5
-
-Create a new [pull request] (SubmitPR.md)
-After your Pull Request is merged, can you delete your feature branch.

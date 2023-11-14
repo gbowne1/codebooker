@@ -1,38 +1,97 @@
 # Contributing to CodeBooker development
 
-We welcome Pull Requests (PR's) as well as having people working on fixing it's current issues. If you are coming to this project new.
-If you notice an issue with this app, please feel free to open an issue.
+This project welcomes contributors to help improve its codebase by identifying shortcomings in the project, highlighting bugs, and issues in the documentation.
 
-A lot of developers prefer asking if they could contribute or be assigned a task as a reply to a reported issue in the Issues tab. This is great.
+## What to contribute
 
-Typically, if you think it will take you longer than 72 hours after having been assigned to the issue you will work on to submit a PR, please
-let us know that way issues do not go stale.
+Anyone with basic programming skills down to grammer skills can contribute immensely to this project.
+Areas requiring contribution includes:
 
-Some tasks may not be beginner friendly even if tagged `good first issue`.. so try and judge the task accordingly.
-If you are a beginner, there are smaller tasks a beginner can work on such as style issues.
+-   **Error checks**: Identify any mispellings or errors in documentation?
 
-You should already be familiar with React 17 and or 18, JavaScript ES5/ES6/ES7.
+-   **Documentation**: Possess good documentation skills: Good spelling, punctuation, knowledge of Markdown and grammar checker tool, and you believe you can help elevate this projects' documentation even better?
 
-## Style
+-   **Code contribution**: Identify a bug in this app or thought of a new feature that could plunge this app to a new dimension?
 
-I have not created an official style guide yet. I also have not created a Figma or layout. If anyone would like to create a style guide for us. Create a Discussion. I have typically let the community help
+## How to contribute
 
-## Development
+These next subheadings will get you started on making your contributions to this project.
 
-If you are not sure what to work on, review the issues list. There are also TODO's that will listed in the included [TODO.md](./TODO.md) file.
+## Select an issue
 
-React gives us built in hooks such as useEffect, useSelector, useRef, useHook, useCallback, useContext, useMemo, useForm, useHistory, etc. Please make sure that we make the most use of what React gives us.
+If you are not sure what to work on, review the issues list first. There are also TODO's listed in the included [TODO.md](./TODO.md) file.
 
-The browser also gives us things like localStorage, IndexedDB, Session Storage, Cookies and Cache Storage. Please make use of them for
+@gbowne1 and other project maintainers will assign users to issues on a first come, first serve basis. If you would like to work on an issue, feel free to indicate by tagging the mentioned persons.
 
-Please also make sure you use accessibility (A11y) with themes and styles paying attention to focus styling, contrast and keyboard-accesibility.
+> Note: If assigned an issue and along the line you change your mind or can't figure it out, ensure to notify the team so it can be reassigned to another. <br><br>
+> it is important to note that some tasks tagged good first issue may not be as simplified and basic to you as it might sound, so it is advisable to look through the issue thoroughly before volunteering.
 
-### PR's
+## Create an issue
 
-When you do a PR on GitHub, Please make sure you complete the section on the right.
+Have you noticed a feature that did not look or work right in our applicaton, or a typographical error, wrong syntax, grammar, spelling or other issue?
+
+Check to see if an issue has been created for this in https://github.com/gbowne1/codebooker/issues
+
+If none has been created, Click on the green [New Issue] button.
+
+Describe your issue as well as you can:
+
+-   Include code snippits where the issue lies.
+-   Include screenshots (optional).
+-   Include a short video (optional).
+
+If the issue appears to be a browser, operating system, device specific issue, let us know what those are.
+
+## Fork this repository
+
+After choosing what to work on, move to fork and setup your own repository.
+
+On the project's repository page, look to the right side of the page to locate a fork tab, click on this icon, and this would redirect you to a new page with further instructions.
+
+![](./docs/fork.png)
+
+On this next page, if satisfied with the suggested project name click on create fork.
+
+![](./docs/CreateFork.png)
+
+Next,
+
+![](./docs/CreateForkBtn.png)
+
+This would automatically create your workspace/repository.
+
+![](./docs/ForkedBranch.png)
+
+## Editor & IDE
+
+The repository contains folders with project appropriate settings and configurations for Visual Studio code, but beyond that, we are tool and editor/IDE agnostic so you can use whatever editor or IDE or you like.
+
+The [DEVSETUP](/docs/DEVSETUP.md) file contains instructions for developers on how to:
+
+-   Clone or Fork the project,
+-   Set up the project in their IDE or editor,
+-   Set up their environment to work in the project, including any environment variables, yarn/npm/pnpm package(s), editor extensions or plugins needed,
+-   Setting up the connection to the database,
+-   Setting up the local development database, MongoDB.
+
+## Prerequisites to use Database for programmers
+
+Adequate knowledge and familiarity with React 17 and or 18, JavaScript ES5/ES6/ES7.
+
+React gives us built-in hooks such as useEffect, useSelector, useRef, useHook, useCallback, useContext, useMemo, useForm, useHistory, etc. Ensure to make the most of these provided React built-ins.
+
+Also, use accessibility (A11y) with themes and styles paying attention to focus styling, contrast and keyboard-accesibility.
+
+Lastly, the browser gives us things like localStorage, IndexedDB, Session Storage, Cookies and Cache Storage.
+
+## Pull Request
+
+Once you are finished working on an issue move to create a Pull Request (PR).
+
+When you create a PR on GitHub, make sure to complete the section on the right which includes:
 Assignees, Reviewers, Labels, Projects, Milestone(s) and Development before you submit the PR.
-Please also share a screenshot or show the working fix in the Pull Request message and a brief description of what you fixed.
-Please keep in mind that Blank issues and especially PR's without a description of the changes you made may not get merged.
+
+Also, write a brief description of what you fixed. Keep in mind that Blank issues and PR's without a description of the changes you made may not get merged.
 
 -   Link an issue to Development that the PR will close
 -   Make sure that you tag a reviewer i.e. @gbowne1
@@ -40,40 +99,30 @@ Please keep in mind that Blank issues and especially PR's without a description 
 -   Make sure you are the assignee to the PR.
 -   Milestone, choose Frontend or Backend (more may come later on)
 
+## Style
+
+An official style guide is yet to be released. There is also no existing figma or layout, this is open to contribution, anyone willing to contribute to create this style guide is more than welcome, simply create a discussion and lets kickoff from there.
+
 ## Versioning
 
-We generally follow SemVer for this application. We also have a CHANGELOG.md provided to us by keepachangelog.com
-Please use the changelog document accordingly.
-
-### Issues
-
-@gbowne1 and other project maintainers will assign users to issues on a first come, first serve basis.
-If you would like to work on an issue, please let us know.
-
-## Editor & IDE
-
-The repository contains folders with project appropriate settings and configurations for Visual Studio and Visual Studio code but beyond that, We are tool and editor/IDE agnostic so you can use whatever editor or IDE or you like.
+This project runs its application using Semantic Versioning (SemVer). [Keep a changelog](keepachangelog.com) also provides a CHANGELOG.md for the project; use the changelog document accordingly.
 
 ## Settings & Configuration
 
 The included workspaces, settings, configurations and plugins are for:
 
-Babel
-Webpack
-ESLint
-Prettier
-VSCode (.vscode)
-GitHub (.github)
+-   Babel
+-   Webpack
+-   ESLint
+-   Prettier
+-   VSCode (.vscode)
+-   GitHub (.github)
 
-These may not be 100% correct, so if you can contribute to them to make them more accurate for React development it is welcomed.
-
-We understand it is not a good idea to contribute the configuration to the project, however this will greatly improve the new user experience getting
-started working with our code base.
+These may not be 100% correct, so we welcome any contribution to make them more accurate for React development, as we believe this will improve the new user first-hand experience working with our code base.
 
 ## Tech Stack
 
-This project was bootstrapped with Create React App.
-This application is built with:
+This project was bootstrapped with Create React App and built with:
 
 -   React 18.2
 -   JavaScript (ES5/ES6/ES7/ES2015/etc.)

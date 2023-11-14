@@ -17,6 +17,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import './Register.css';
 
 const Register = () => {
@@ -26,6 +27,8 @@ const Register = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+    const navigate = useNavigate();
 
     const handleTogglePasswordVisibility = () => {
         setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -37,7 +40,8 @@ const Register = () => {
         );
     };
 
-    const handleRegister = async () => {
+    const handleRegister = async (event) => {
+        event.preventDefault();
         try {
             const response = await axios.post(
                 'http://localhost:3001/api/user/register',
@@ -47,9 +51,21 @@ const Register = () => {
                     password,
                 }
             );
+            // Registration successfull
             if (response.status === 200) {
-                // Registration successful, redirect to login page or desired location
-                window.location.href = '/login';
+                // Save token in local storage
+                localStorage.setItem(
+                    'token',
+                    JSON.stringify(response.data.token)
+                );
+                // Save user in local storage
+                localStorage.setItem(
+                    'user',
+                    JSON.stringify(response.data.user)
+                );
+
+                // Redirect to home route
+                navigate('/', { state: { loggin: 'true' } });
             }
         } catch (error) {
             console.error(error);
@@ -130,6 +146,9 @@ const Register = () => {
                                             </IconButton>
                                         ),
                                     }}
+                                    inputProps={{
+                                        'data-testid': 'Password',
+                                    }}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -160,6 +179,9 @@ const Register = () => {
                                                 )}
                                             </IconButton>
                                         ),
+                                    }}
+                                    inputProps={{
+                                        'data-testid': 'Confirm Password',
                                     }}
                                 />
                             </Grid>
