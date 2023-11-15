@@ -12,6 +12,7 @@ const userRoutes = require('./routes/userRoutes');
 const booksRoutes = require('./routes/booksRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
 const supportRoutes = require('./routes/supportRoutes');
+const profileRoutes = require('./routes/profileRoutes');
 
 const sessionConfig = {
     secret: 'keyboard cat',
@@ -56,6 +57,9 @@ app.use('/api/review', reviewRoutes);
 
 // routes for support/help
 app.use('/api/support', supportRoutes);
+
+// routes for profile
+app.use('/api/profile', profileRoutes);
 
 app.use('/api/*', (req, res) => {
     res.send('404 No routes found');

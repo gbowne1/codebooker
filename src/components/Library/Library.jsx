@@ -231,7 +231,7 @@ export default function Library({ filter, setFilter }) {
                 'http://localhost:3001/api/books/getall'
             );
             const books = response.data;
-
+            console.log(books);
             // If the database has no books, fetch data from the file
             if (books.length === 0) {
                 const fileResponse = await axios.get(
@@ -411,7 +411,8 @@ export default function Library({ filter, setFilter }) {
             setMyRows([]);
             setFilter('');
         };
-    }, [setFilter, filter, myRows]);
+    }, [filter, setFilter, myRows]);
+
 
     useEffect(() => {
         fetchBooksFromDB();
