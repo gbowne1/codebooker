@@ -1,26 +1,68 @@
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Roboto&display=swap');
 
 body {
     background-color: #f5f5f5;
     color: #333;
     font-family: 'Josefin Sans', sans-serif;
-
-    font-family: 'Roboto', sans-serif;
 }
 
 h1 {
     font-weight: bold;
 }
 
-@media screen and (max-width: 1530px) {
+/* @media screen and (max-width: 1530px) {
     h1 {
         display: flex;
         align-items: center;
         justify-content: center;
     }
-}
+} */
 
 .privacy-wrapper {
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding-bottom: 5rem;
+}
+
+.privacy-title {
+    padding-top: 9rem;
+}
+
+.mt-spacing {
+    margin-top: 4.5rem;
+    display: flex;
+    gap: 3rem;
+}
+
+.update-info {
+    padding-top: .3rem;
+    border-top: .5rem solid #5c5c5c;
+    width: 360px;
+}
+
+.main-text {
+    flex-wrap: wrap;
+    max-width: 760px;
+}
+
+.list{
+    font-size: 16px;
+}
+
+@media screen and (max-width: 991px){
+    .mt-spacing{
+        flex-direction: column;
+    }
+
+    .main-text{
+        max-width: unset;
+    }
+    .update-info {
+        width: auto;
+    }
+
+    .privacy-wrapper {
+        margin-left: 25px;
+        margin-right: 25px;
+    }
 }
