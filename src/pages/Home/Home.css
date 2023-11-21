@@ -19,5 +19,54 @@
 }
 
 .AppBar {
-    height: 60px;
+    min-height: 70px;
+}
+
+.codebooker-logo{
+    position: relative;
+    height: 192px;
+    width: 192px;
+}
+
+.codebooker-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.animate{
+    top: 53%;
+    position: absolute;
+    height: 17px;
+    width: 190px;
+    background: #333;
+    overflow: hidden;
+    border-radius: 5px;
+    z-index: -1;
+}
+
+.animate::before{
+    content: '';
+    position: absolute;
+    inset: -5px;
+    background: linear-gradient(315deg, #00ccff, #d400d4);
+    transition: .5s;
+    animation: circle-text-animation 4s linear infinite;
+}
+
+.animate::after{
+    content: '';
+    position: absolute;
+    inset: 2px;
+    background: linear-gradient(315deg, #00ccff, #d400d4);
+    border-radius: 5px;
+}
+
+@keyframes circle-text-animation {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
 }
