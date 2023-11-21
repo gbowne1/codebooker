@@ -110,9 +110,17 @@ function Home() {
                             <Typography
                                 variant={`${matches ? 'h7' : 'h5'}`}
                                 component='div'
-                                sx={{ flexGrow: 1, letterSpacing: '0.009em' }}
+                                sx={{
+                                    flexGrow: 1,
+                                }}
                             >
-                                CodeBooker
+                                <div className='codebooker-logo'>
+                                    <img
+                                        src='Assets/codebooker-logo.png'
+                                        alt='CodeBooker logo'
+                                    />
+                                    <div className='animate'></div>
+                                </div>
                             </Typography>
 
                             <BookSearch
