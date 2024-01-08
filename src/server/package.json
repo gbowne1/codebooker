@@ -4,7 +4,8 @@
     "description": "Backend Server for the CodeBooker",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "server": "nodemon src/server/index.js"
     },
     "proxy": "http://localhost:3001",
     "repository": {
