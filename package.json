@@ -11,11 +11,13 @@
         "@testing-library/react": "^14.0.0",
         "@testing-library/user-event": "^14.4.3",
         "axios": "^1.4.0",
+        "concurrently": "^8.2.2",
         "dotenv": "^16.3.1",
         "formik": "^2.4.3",
         "isbn-validate": "^1.0.3",
         "lodash": "^4.17.21",
         "material-ui-popup-state": "^5.0.9",
+        "nodemon": "^3.0.2",
         "prop-types": "^15.8.1",
         "react": "^18.2.0",
         "react-barcode-reader": "^0.0.2",
@@ -33,6 +35,8 @@
     },
     "scripts": {
         "start": "react-scripts start",
+        "server": "npm run server --prefix src/server",
+        "dev": "concurrently \"npm run server\" \"npm start\"",
         "build": "react-scripts build",
         "test": "react-scripts test --transformIgnorePatterns '/(?!node_modules)/'",
         "eject": "react-scripts eject"
@@ -61,6 +65,7 @@
     "author": "Gregory K Bowne",
     "license": "MIT",
     "devDependencies": {
+        "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
         "eslint": "^8.45.0",
         "eslint-config-prettier": "^8.8.0",
         "eslint-config-react-app": "^7.0.1",
