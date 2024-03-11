@@ -1,3 +1,11 @@
 .tableactionicon:hover {
     cursor: pointer;
 }
+
+.addToGlobalLibrarySuccess {
+    color: green;
+}
+
+.addToGlobalLibraryError {
+    color: red
+}
