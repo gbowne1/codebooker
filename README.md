@@ -39,6 +39,8 @@ npm install
 # To run the backend server separately
 npm run server
 
+#### [CodeBooker API documentation](https://bmacarini.github.io/codebooker-documentation/)
+
 # To run the frontend separately
 npm start
 

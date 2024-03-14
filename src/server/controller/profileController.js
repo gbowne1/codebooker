@@ -36,6 +36,7 @@ module.exports.newProfile = async (req, res) => {
         // Save profile to db
         const newProfile = new Profile({
             userId: user._id,
+            email: userEmail,
             profile_picture: selectedFile,
             name,
             bio,
