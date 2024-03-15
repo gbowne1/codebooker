@@ -22,15 +22,14 @@ module.exports.newProfile = async (req, res) => {
         showAge,
         selectedFile,
         city,
-        userEmail
+        userEmail,
     } = req.body;
     try {
         // find user
-        const user = await User.findOne({ email:userEmail });
+        const user = await User.findOne({ email: userEmail });
         if (!user) {
             return res.status(404).json({
-                message:
-                    'Sorry no user with that email exist(USER NOT FOUND)',
+                message: 'Sorry no user with that email exist(USER NOT FOUND)',
             });
         }
         // Save profile to db
@@ -69,12 +68,10 @@ module.exports.newProfile = async (req, res) => {
 };
 
 module.exports.getProfile = async (req, res) => {
-    const {
-        userEmail
-    } = req.body;
+    const { userEmail } = req.body;
     try {
         // Find the user profile by email
-        const userProfile = await Profile.findOne({ email:userEmail });
+        const userProfile = await Profile.findOne({ email: userEmail });
         if (!userProfile) {
             return res.status(404).json({
                 message:

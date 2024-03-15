@@ -1,0 +1,956 @@
+openapi: '3.0.2'
+
+info:
+  title: CodeBooker
+  description: "Book recommendation app that enables users to organize, recommend, and review any book on coding or programming. <br><br>
+  
+    Users can: 
+    
+      - Log in
+
+      - Create a profile
+
+      - Add books
+    
+      - Write book review 
+    
+      - Rate and provide feedback about an author 
+    
+      - Request app support<br><br>
+
+
+    Data available in JSON.<br><br><br>
+  
+    **Notes:**
+
+      - It's a development environment using `localhost:3001`;
+
+      - There's no connected database in the development environment. You must connect your MongoDB database.<br><br>
+
+
+    **Useful links:**
+  
+      - [Getting started](https://github.com/gbowne1/codebooker)"
+    
+  version: '1.0'
+
+  license:
+    name: MIT license
+    url: https://github.com/gbowne1/codebooker?tab=MIT-1-ov-file
+
+externalDocs:
+  description: Code of conduct
+  url: https://github.com/gbowne1/codebooker?tab=coc-ov-file
+
+servers:
+  - url: http://localhost:3001
+
+paths:
+  /api:
+    get:
+      tags:
+      - Server
+      summary: "Server opened"
+      responses:
+        '200':
+          description: "Server opened"
+          content:
+            application/html:
+              schema:
+                type: string
+                example: "Backend Server Up"
+
+        '404':
+          description: "Route not found"
+          content:
+            application/html:
+              schema:
+                type: string
+                example: "404 No routes found"
+
+  /api/user/register:
+    post:
+      tags:
+      - User
+      summary: "Signin"
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+                    
+      responses:
+        '200':
+          description: "User successfully created"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Successfully Created"
+
+                  user:
+                    type: object
+                    $ref: "#/components/schemas/User"
+
+                  token:
+                    type: string
+
+        '400':
+          description: "User already exists"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "User already found. Try to provide a different username/email."
+  
+  /api/user/login:
+    post:
+      tags:
+        - User
+      summary: "Login"
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+
+      responses:
+        '200':
+          description: "User successfully login"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    type: object
+                    $ref: "#/components/schemas/User"
+
+                  token:
+                    type: string
+
+        '404':
+          description: "User not found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Incorrect username or email."
+                    
+
+        '500':
+          description: "Internal server error"
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Internal server error"
+
+  /api/user/logout:
+    post:
+      tags:
+        - User
+      summary: "Logout"
+      responses:
+        '200':
+          description: "User successfully login"
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Successfully Logged Out"
+                    
+        '500':
+          description: "Internal server error"
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Internal server error"
+
+  /api/user/forgot-password:
+    post:
+      tags:
+        - User
+      summary: "Forgot password"
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: johndoe@email.com
+
+      responses:
+        '200':
+          description: Email sent
+          content:
+            application/json:
+              schema:
+                type: string 
+                example: "Email sent!"
+        '404':
+          description: "User not found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Failed to load resource: the server responded with a status of 404 (Not Found)"
+
+        '500':
+          description: "Internal server error"
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Something went wrong..."
+
+  /api/books/getall:
+      get:
+        tags:
+        - Books
+        summary: "Get all books"
+
+        responses:
+          '200':
+            description: "Show books list"
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                  $ref: "#/components/schemas/Book"
+
+          '500':
+            description: "Internal server error"
+            content:
+              application/json:
+                schema:
+                  type: string
+                  example: "Internal server error"
+
+  /api/books/newbook:
+    post:
+      tags:
+        - Books
+      summary: "Add a new book"
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: "Javascript 101"
+                
+                author:
+                  type: string
+                  example: "John Doe"
+                
+                category:
+                  type: string
+                  example: "Begginer"
+                
+                ISBN:
+                  type: string
+                  example: "123-456-789"
+                
+                userId:
+                  $ref: "#/components/schemas/ID"
+
+      responses:
+        '200':
+          description: "Book added successfully"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Book added successfully"
+
+        '400':
+          description: "Book already exists"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Book already exists in db"
+
+        '500':
+          description: "Internal server error"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Server error"
+
+  /api/books/{bookId}:
+    delete:
+      tags:
+      - Books
+      summary: "Delete a book"
+
+      parameters:
+        - name: bookId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: hexadecimal
+            description: Book ID
+            readOnly: true
+        
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                bookId:
+                  type: string
+                  format: hexadecimal
+
+                userEmail:
+                  type: string
+                  example: johndoe@email.com
+
+      responses:
+        '200':
+          description: "Book successfully deleted"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Book deleted successfully"
+
+        '400':
+          description: "Book can only be deleted by owner"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Book can only be deleted by owner"
+
+        '500':
+          description: "Internal server error"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Server error"
+
+  /api/books/filedata:
+    get:
+        tags:
+        - Books
+        summary: "Get books from file 'data.json'"
+
+        responses:
+          '200':
+            description: "Show books list"
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      title:
+                        type: string
+
+                      author:
+                        type: string
+
+                      publisher:
+                        type: string
+
+                      ISBN:
+                        type: string
+
+                      category:
+                        type: string
+
+                      year:
+                        type: string
+
+                      edition:
+                        type: string
+                      
+                      reviews:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                          $ref: "#/components/schemas/Review"
+
+          '500':
+            description: "Error reading or parsing file 'data.json'"
+            content:
+              application/json:
+                schema:
+                  type: string
+                  example: "Internal Server Error"
+
+  /api/user/feedback/all:
+    get:
+      tags:
+        - Feedback
+      summary: "Get all feedbacks"
+
+      responses:
+        '200':
+          description: "Show feedbacks list"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                $ref: "#/components/schemas/Feedback"
+
+        '500':
+          description: "Internal server error"
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Internal server error"
+
+  /api/user/feedback/new:
+    post:
+      tags:
+        - Feedback
+      summary: "Create a new feedback"
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Feedback"
+
+
+      responses:
+        '200':
+          description: "Feedback successfully created"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                $ref: "#/components/schemas/Feedback"
+
+        '500':
+          description: "Internal server error"
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Internal server error"
+
+  /api/user/feedback/mail:
+    post:
+      tags:
+        - Feedback
+      summary: "Send mail about feedback"
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Feedback"
+
+
+      responses:
+        '200':
+          description: "Email successfully sent"
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Email sent!"
+
+        '500':
+          description: "Internal server error"
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Internal server error"
+
+  /api/review/newreview:
+    post:
+      tags:
+        - Review
+      summary: "Add a new book review"
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+
+                rating:
+                  type: number
+                  default: 0
+
+                id:
+                  type: string
+                  format: hexadecimal
+                  description: "Book Id"
+
+      responses:
+        '200':
+          description: "Review added successfully"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Book"
+
+        '500':
+          description: "Internal server error"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Server error"
+
+  /api/profile/new-profile:
+    post:
+      tags:
+        - Profile
+      summary: "Add an user profile"
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Profile"
+
+      responses:
+        '200':
+          description: "Profile created successfully"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Profile Created Successful"
+
+        '404':
+          description: "User not found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Sorry no user with that email exist(USER NOT FOUND)"
+
+        '500':
+          description: "Internal server error"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Server error"
+
+  /api/profile/get-profile:
+    get:
+      tags:
+        - Profile
+      summary: "Get an user profile"
+
+      parameters:
+        - name: userEmail
+          in: path
+          required: true
+          schema:
+            type: string
+            description: User email
+            readOnly: true
+
+      responses:
+        '200':
+          description: "Profile created successfully"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                $ref: "#/components/schemas/Profile"
+
+        '404':
+          description: "User not found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Sorry no user with that profile exist(USER NOT FOUND)"
+
+        '500':
+          description: "Internal server error"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Server error"
+
+  /api/support/newsupport:
+    post:
+      tags:
+        - Support
+      summary: "Send a new support message"
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: "John Doe"
+                  
+                  email:
+                    type: string
+                    example: johndoe@email.com
+                  
+                  description:
+                    type: string
+                    example: "A description for a new support request"
+
+      responses:
+        '200':
+          description: "Support email sent successfully"
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Email sent!"
+
+        '404':
+          description: "Email not found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Please use your Codebooker email address or verify your email address (NOT FOUND)"
+
+        '500':
+          description: "Internal server error"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Server error"
+
+components:
+  schemas:
+
+    User:
+      type: object
+      properties:
+        username:
+          type: string
+          uniqueItems: true
+          example: johndoe
+
+        email:
+          type: string
+          uniqueItems: true
+          example: johndoe@email.com
+
+        password:
+          type: string
+          
+        created_on:
+          type: string
+          format: date
+          example: 2024-03-01
+          readOnly: true   
+
+      required:
+        - username
+        - email
+        - password
+
+    Profile:
+      type: object
+      properties:
+        userId:
+          $ref: "#/components/schemas/ID"
+
+        userEmail:
+          type: string
+          uniqueItems: true
+
+        profile_picture:
+          type: string
+
+        bio:
+          type: string
+
+        name:
+          type: string
+
+        alias:
+          type: string
+          uniqueItems: true
+
+        location:
+          type: string
+
+        city:
+          type: string
+
+        education:
+          type: string
+
+        age:
+          type: number
+          default: null
+
+        display_age:
+          type: boolean
+
+        occupation:
+          type: string
+
+        skills:
+          type: string
+
+        text_editor:
+          type: string
+
+        operation_system:
+          type: string
+
+        portfolio_link:
+          type: string
+
+        youtube:
+          type: string
+
+        twitter:
+          type: string
+
+        linkedIn:
+          type: string
+
+        github:
+          type: string
+
+        gitlab:
+          type: string
+
+        created_at:
+          type: string
+          format: date
+          readOnly: true
+
+      required:
+        - userEmail
+        - bio
+        - name
+        - alias
+        - age
+
+    Book:
+      type: object
+      properties:
+        title:
+          type: string
+
+        author:
+          type: string
+
+        category:
+          type: string
+
+        description:
+          type: string
+
+        publisher:
+          type: string
+
+        rating:
+          type: number
+
+        ISBN:
+          type: string
+          uniqueItems: true
+        
+        year:
+          type: number
+
+        edition:
+          type: number
+
+        reviews:
+          type: array
+          items:
+            $ref: "#/components/schemas/Review"
+
+        createdAt:
+          type: string
+          format: date
+          readOnly: true
+
+      required:
+        - title
+        - author
+        - category
+        - userID
+
+    Review:
+      type: object
+      properties:
+        description:
+          type: string
+
+        rating:
+          type: number
+          default: 0
+
+        createdAt:
+          type: string
+          format: date
+          readOnly: true
+
+      required:
+        - description
+
+    Feedback:
+      type: object
+      properties:
+        rating:
+          type: number
+          example: 8
+
+        author:
+          type: object
+          $ref: "#/components/schemas/ID"
+
+        feedback:
+          type: string
+          example: "Example of a feedback description"
+        
+        _id:
+          type: string
+          format: hexadecimal
+          description: Feedback ID
+          readOnly: true
+
+        createdAt:
+          type: string
+          format: date
+          readOnly: true
+
+      required:
+        - rating
+        - author
+        - feedback
+
+    ID:
+      type: string
+      format: hexadecimal
+      description: User ID
+      example: "65e7212d0c675c9dccd14005"
+
+    Support:
+      type: object
+      properties:
+        userID:
+          type: object
+          $ref: "#/components/schemas/ID"
+
+        description:
+          type: string
+          uniqueItems: true
+
+        status:
+          type: string
+          enum:
+            - "Open"
+            - "In Progress"
+            - "Resolved"
+          default: "In Progress"
+
+        createdAt:
+          type: string
+          format: date
+          default: "Date of the day"
+          readOnly: true
+
+      required:
+        - userID
+        - description
