@@ -1,6 +1,6 @@
 const Book = require('../model/booksModel');
 const User = require('../model/userModel');
-const GlobalLibraryBook = require('../model/globalLibraryBooksModel');
+const UserBooksLibraryModel = require('../model/UserBooksLibraryModel');
 
 const fs = require('fs');
 const path = require('path');
@@ -15,7 +15,7 @@ module.exports.getAllBooks = async (req, res) => {
     }
 };
 
-module.exports.addBookToGlobalLibrary = async (req, res) => {
+module.exports.addBookPersonalLibrary = async (req, res) => {
     const {
         _id,
         title,
@@ -32,12 +32,14 @@ module.exports.addBookToGlobalLibrary = async (req, res) => {
     } = req.body.book;
 
     try {
-        const bookPayload = await GlobalLibraryBook.findOne({ title: title });
+        const bookPayload = await UserBooksLibraryModel.findOne({
+            title: title,
+        });
 
         if (bookPayload) {
             return res.status(200).json({ payload: false });
         } else {
-            const newGlobalBook = new GlobalLibraryBook({
+            const newGlobalBook = new UserBooksLibraryModel({
                 userId,
                 title,
                 author,

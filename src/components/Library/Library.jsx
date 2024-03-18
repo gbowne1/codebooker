@@ -172,10 +172,10 @@ export default function Library({ filter, setFilter }) {
         setLoading(false);
     };
 
-    const addBookToGlobalLibrary = async (book) => {
+    const addBookToPersonalLibrary = async (book) => {
         try {
             const response = await axios.post(
-                'http://localhost:3001/api/books/add-book-to-global-library',
+                'http://localhost:3001/api/books/add-book-to-personal-library',
                 { book }
             );
 
@@ -721,7 +721,7 @@ export default function Library({ filter, setFilter }) {
                         component='h2'
                         className={addToGlobalLibraryMessage ?`${Classes.addToGlobalLibrarySuccess}`:`${Classes.addToGlobalLibraryError}`}
                     >
-                      { addToGlobalLibraryMessage? 'Book successfully added to global library':'Book already exist in  global library'  }
+                      { addToGlobalLibraryMessage? 'Book successfully added to personal library':'Book already exist in  personal library'  }
                       <Box
                        display={'flex'}
                        justifyContent={'center'}
@@ -1146,7 +1146,7 @@ export default function Library({ filter, setFilter }) {
                                                 width: '80px',
                                             }}
                                             onClick={() => {
-                                                addBookToGlobalLibrary(row);
+                                                addBookToPersonalLibrary(row);
                                             }}
                                         >
                                             Add to library

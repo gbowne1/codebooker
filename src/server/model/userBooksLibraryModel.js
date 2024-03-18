@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const globalLibraryBookSchema = new mongoose.Schema({
+const userLibraryBookSchema = new mongoose.Schema({
     title: { type: String, required: true },
     author: { type: String, required: true },
     category: { type: String, required: true },
@@ -19,9 +19,9 @@ const globalLibraryBookSchema = new mongoose.Schema({
     createdAt: { type: Date, default: Date.now },
 });
 
-const GlobalLibraryBook = mongoose.model(
-    'GlobalLibraryBook',
-    globalLibraryBookSchema
+const UserBooksLibraryModel = mongoose.model(
+    'UserBooksLibraryModel',
+    userLibraryBookSchema
 );
 
-module.exports = GlobalLibraryBook;
+module.exports = UserBooksLibraryModel;
