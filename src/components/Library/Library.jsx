@@ -93,7 +93,7 @@ export default function Library({ filter, setFilter }) {
     //Add to library modal
     const [isLibraryModalOpen, setIsLibraryModalOpen] = useState(false);
     // prettier-ignore
-    const [addToGlobalLibraryMessage, setAddToGlobalLibraryMessage] = useState(null);
+    const [addToPersonalLibraryMessage, setAddToPersonalLibraryMessage] = useState(null);
 
     const removeBookByName = async (row) => {
         try {
@@ -179,7 +179,7 @@ export default function Library({ filter, setFilter }) {
                 { book }
             );
 
-            setAddToGlobalLibraryMessage(response.data.payload);
+            setAddToPersonalLibraryMessage(response.data.payload);
             setIsLibraryModalOpen(true);
         } catch (error) {
             console.log(error);
@@ -719,9 +719,9 @@ export default function Library({ filter, setFilter }) {
                         id='modal-modal-title'
                         variant='h6'
                         component='h2'
-                        className={addToGlobalLibraryMessage ?`${Classes.addToGlobalLibrarySuccess}`:`${Classes.addToGlobalLibraryError}`}
+                        className={addToPersonalLibraryMessage ?`${Classes.addToGlobalLibrarySuccess}`:`${Classes.addToGlobalLibraryError}`}
                     >
-                      { addToGlobalLibraryMessage? 'Book successfully added to personal library':'Book already exist in  personal library'  }
+                      { addToPersonalLibraryMessage? 'Book successfully added to personal library':'Book already exist in  personal library'  }
                       <Box
                        display={'flex'}
                        justifyContent={'center'}
