@@ -90,6 +90,11 @@ export default function Library({ filter, setFilter }) {
     const userId = JSON.parse(localStorage.getItem('user'))._id;
     //This state helps us for two way in input filed
     const [isAdded, handleIsAdded] = useState(false);
+    //Add to library modal
+    const [isLibraryModalOpen, setIsLibraryModalOpen] = useState(false);
+    // prettier-ignore
+    const [addToPersonalLibraryMessage, setAddToPersonalLibraryMessage] = useState(null);
+
     const removeBookByName = async (row) => {
         try {
             setLoading(true);
@@ -166,6 +171,21 @@ export default function Library({ filter, setFilter }) {
         }
         setLoading(false);
     };
+
+    const addBookToPersonalLibrary = async (book) => {
+        try {
+            const response = await axios.post(
+                'http://localhost:3001/api/books/add-book-to-personal-library',
+                { book }
+            );
+
+            setAddToPersonalLibraryMessage(response.data.payload);
+            setIsLibraryModalOpen(true);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     const addBooksToDB = async (fileBooks) => {
         try {
             const userData = JSON.parse(localStorage.getItem('user'));
@@ -684,6 +704,43 @@ export default function Library({ filter, setFilter }) {
                     </form>
                 </Box>
             </Modal>
+            {/* Add to Library modal */}
+            <Modal
+                open={isLibraryModalOpen}
+                onClose={() => {
+                    setIsLibraryModalOpen(false);
+                }}
+            >
+                {/* prettier-ignore */}
+                <Box
+                  sx={style}
+                  style={{ width: '40%' }}>
+                    <Typography
+                        id='modal-modal-title'
+                        variant='h6'
+                        component='h2'
+                        className={addToPersonalLibraryMessage ?`${Classes.addToGlobalLibrarySuccess}`:`${Classes.addToGlobalLibraryError}`}
+                    >
+                      { addToPersonalLibraryMessage? 'Book successfully added to personal library':'Book already exist in  personal library'  }
+                      <Box
+                       display={'flex'}
+                       justifyContent={'center'}
+
+                      >
+                      <Button
+                            color='info'
+                            style={{ marginTop: '10px' }}
+                            onClick={() => {
+                                setIsLibraryModalOpen(false);
+                            }}
+                            autoFocus
+                            >
+                            Close
+                        </Button>
+                         </Box>
+                    </Typography>
+                </Box>
+            </Modal>
             {myRows.length > 0 ? (
                 <TableContainer
                     style={{ marginTop: 80, marginInline: 10 }}
@@ -1078,8 +1135,21 @@ export default function Library({ filter, setFilter }) {
                                                 setEnableReviewModal(true);
                                             }}
                                         >
-                                            {' '}
                                             Read Reviews
+                                        </Button>
+                                        <Button
+                                            type='submit'
+                                            variant='contained'
+                                            color='secondary'
+                                            style={{
+                                                marginLeft: '10px',
+                                                width: '80px',
+                                            }}
+                                            onClick={() => {
+                                                addBookToPersonalLibrary(row);
+                                            }}
+                                        >
+                                            Add to library
                                         </Button>
                                     </TableCell>
                                 </TableRow>

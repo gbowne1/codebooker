@@ -1,5 +1,7 @@
 const Book = require('../model/booksModel');
 const User = require('../model/userModel');
+const UserBooksLibraryModel = require('../model/UserBooksLibraryModel');
+
 const fs = require('fs');
 const path = require('path');
 
@@ -12,6 +14,51 @@ module.exports.getAllBooks = async (req, res) => {
         res.status(500).json({ message: 'Server Error' });
     }
 };
+
+module.exports.addBookPersonalLibrary = async (req, res) => {
+    const {
+        _id,
+        title,
+        author,
+        category,
+        publisher,
+        ISBN,
+        year,
+        edition,
+        reviews,
+        userId,
+        createdAt,
+        __v,
+    } = req.body.book;
+
+    try {
+        const bookPayload = await UserBooksLibraryModel.findOne({
+            title: title,
+        });
+
+        if (bookPayload) {
+            return res.status(200).json({ payload: false });
+        } else {
+            const newGlobalBook = new UserBooksLibraryModel({
+                userId,
+                title,
+                author,
+                category,
+                year,
+                publisher,
+                ISBN,
+                edition,
+                reviews,
+            });
+
+            await newGlobalBook.save();
+            return res.status(200).json({ payload: true });
+        }
+    } catch (err) {
+        return res.status(500).json({ message: 'Server Error' });
+    }
+};
+
 module.exports.getAllFromFile = async (req, res) => {
     const filePath = path.join(
         '..',
