@@ -433,9 +433,10 @@ export default function Library({ filter, setFilter }) {
         };
     }, [filter, setFilter, myRows]);
 
+    //remove the empty dependency array
     useEffect(() => {
         fetchBooksFromDB();
-    }, []);
+    });
 
     // open hidden content when ellipsis icon is clicked
     const handleShowMore = (index) => {
