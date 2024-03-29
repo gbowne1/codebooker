@@ -1,0 +1,85 @@
+.button{
+    position: relative;
+    background-color: #d2d2d2;
+    width:50px;
+    height: 21px;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.button::before{
+    position: absolute;
+    content: '';
+    background-color: #fff;
+    width: 18px;
+    height: 18px;
+    border-radius: 100px;
+    margin: .1em;
+    transition: 0.2s;
+}
+#check, #reviews, 
+#recommendation, 
+#updates, #tips,
+#suggestions{
+    display: none;
+}
+input:checked + .button{
+    background-color: #1976d2;
+}
+input:checked + .button::before{
+    transform: translateX(28px);
+}
+
+.select-btn{
+    cursor: pointer;
+    display: flex;
+    height: 55px;
+    font-size: 22px;
+    padding: 0 20px;
+    justify-content: space-between;
+    background-color: #d2d2d2;
+    align-items: center;
+}
+
+.select-btn .inner-text p{
+    line-height: 5px;
+}
+
+.select-btn .inner-text p:first-child{
+    font-size: 14px;
+}
+.inner-text .default-lang{
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.content{
+    top: 80%;
+    position: absolute;
+    width: 100%;
+    background-color: #f5f3f3;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 
+                0 8px 16px rgba(0, 0, 0, 0.05);
+    z-index: 1;
+}
+
+.content-list{
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.content-list ul {
+    padding: 0px;
+    list-style: none;
+}
+
+.content-list ul li {
+    height: 50px;
+    padding: 15px 0px 0px 20px;
+}
+.content-list ul li:hover {
+    cursor: pointer;
+    background: #e9e3e3;
+    color: #1976d2;
+}

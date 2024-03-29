@@ -1,14 +1,11 @@
 import ArrowCircleDownRoundedIcon from '@mui/icons-material/ArrowCircleDownRounded';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import EditIcon from '@mui/icons-material/Edit';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import LocationOnRoundedIcon from '@mui/icons-material/LocationOnRounded';
-import CssBaseline from '@mui/material/CssBaseline';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import YouTubeIcon from '@mui/icons-material/YouTube';
-import Switch from '@mui/material/Switch';
-import Toolbar from '@mui/material/Toolbar';
 import {
     AppBar,
     Box,
@@ -17,15 +14,19 @@ import {
     Typography,
     useMediaQuery,
 } from '@mui/material';
-import axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react';
+import CssBaseline from '@mui/material/CssBaseline';
+import Switch from '@mui/material/Switch';
+import Toolbar from '@mui/material/Toolbar';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
-import CreateProfileForm from '../../components/FormikContainer/CreateProfileForm/CreateProfileForm';
 import BookSearch from '../../components/BookSearch/BookSearch';
-import './Profile.css';
-import SideNav from '../../components/SideNav/SideNav';
 import Dropdown from '../../components/Dropdown/Dropdown';
+import CreateProfileForm from '../../components/FormikContainer/CreateProfileForm/CreateProfileForm';
+import useProfileData from '../../components/Hooks/useProfileData';
+import SideNav from '../../components/SideNav/SideNav';
+import './Profile.css';
+import { useTranslation } from 'react-i18next';
 const label = { inputProps: { 'aria-label': 'Color switch demo' } };
 const lightTheme = createTheme({
     palette: {
@@ -52,8 +53,6 @@ const darkTheme = createTheme({
 
 function Profile() {
     const [isDarkMode, setIsDarkMode] = useState(false);
-    const [profileData, setProfileData] = useState(null);
-    const [loading, setLoading] = useState(false);
     const [filter, setFilter] = useState('');
     const [createdOn, setCreatedOn] = useState();
     const [selectedFile, setSelectedFile] = useState(() => {
@@ -62,6 +61,8 @@ function Profile() {
     });
     const fileRef = useRef(null);
     const navigate = useNavigate();
+    const { loading, profileData } = useProfileData();
+    const { t } = useTranslation();
     const userAccountCreationDate = JSON.parse(
         localStorage.getItem('user')
     ).created_on.slice(0, 7);
@@ -93,25 +94,6 @@ function Profile() {
         // Save the string in local storage
         localStorage.setItem('savedImage', JSON.stringify(srcAsString));
     };
-    const getProfileDataFromDB = async () => {
-        try {
-            setLoading(true);
-            const response = await axios.get(
-                'http://localhost:3001/api/profile/get-profile'
-            );
-            if (response.status === 200) {
-                setProfileData(response.data);
-                setLoading(false);
-            }
-        } catch (error) {
-            // Handle error
-            console.error('Error fetching user profile:', error);
-        }
-        setLoading(false);
-    };
-    useEffect(() => {
-        getProfileDataFromDB();
-    }, []);
     useEffect(() => {
         convertDateFormat(userAccountCreationDate);
     }, [userAccountCreationDate]);
@@ -132,12 +114,17 @@ function Profile() {
                                 component='div'
                                 sx={{
                                     flexGrow: 1,
-                                    letterSpacing: '0.009em',
                                     cursor: 'pointer',
                                 }}
                                 onClick={() => navigate('/')}
                             >
-                                CodeBooker
+                                <div className='codebooker-logo'>
+                                    <img
+                                        src='Assets/codebooker-logo.png'
+                                        alt='CodeBooker logo'
+                                    />
+                                    <div className='animate'></div>
+                                </div>
                             </Typography>
 
                             <BookSearch
@@ -200,10 +187,10 @@ function Profile() {
                                             />
                                         </Box>
                                         <button className='prompt-btn'>
-                                            Add a Banner Image
+                                            {t('profile.banner.text')}
                                         </button>
                                         <p className='asset-size'>
-                                            Optimal dimensions 3200 x 410px
+                                            {t('profile.banner.subText')}
                                         </p>
                                     </Box>
                                 )}
@@ -280,7 +267,7 @@ function Profile() {
                                                     marginBottom: '20px',
                                                 }}
                                             >
-                                                Edit Your Profile
+                                                {t('profile.user.button')}
                                             </Button>
                                         </Box>
                                         <Box className='profile-info'>
@@ -301,7 +288,7 @@ function Profile() {
                                                             'ellipsis',
                                                     }}
                                                 >
-                                                    Bio
+                                                    {t('profile.user.bio')}
                                                 </Typography>
                                             </Box>
                                             <Box
@@ -342,7 +329,8 @@ function Profile() {
                                                     textTransform: 'uppercase',
                                                 }}
                                             >
-                                                Joined {createdOn}
+                                                {t('profile.user.joined')} {''}
+                                                {createdOn}
                                             </Typography>
                                         </Box>
                                     </Box>
@@ -360,7 +348,9 @@ function Profile() {
                                                             fontWeight: 600,
                                                         }}
                                                     >
-                                                        BASIC INFORMATION
+                                                        {t(
+                                                            'profile.userInfo.basic.title'
+                                                        )}
                                                     </Typography>
                                                 </Box>
                                                 <Box
@@ -382,7 +372,10 @@ function Profile() {
                                                             color: '#707070',
                                                         }}
                                                     >
-                                                        Name:
+                                                        {t(
+                                                            'profile.userInfo.basic.name'
+                                                        )}
+                                                        :
                                                     </Typography>
                                                     <Box
                                                         sx={{
@@ -417,7 +410,10 @@ function Profile() {
                                                             color: '#707070',
                                                         }}
                                                     >
-                                                        Age:
+                                                        {t(
+                                                            'profile.userInfo.basic.age'
+                                                        )}
+                                                        :
                                                     </Typography>
                                                     <Box
                                                         sx={{
@@ -461,8 +457,9 @@ function Profile() {
                                                             fontWeight: 600,
                                                         }}
                                                     >
-                                                        PROFESSIONAL / WORK
-                                                        EXPERIENCE
+                                                        {t(
+                                                            'profile.userInfo.professional.title'
+                                                        )}
                                                     </Typography>
                                                 </Box>
                                                 <Box
@@ -488,7 +485,10 @@ function Profile() {
                                                             color: '#707070',
                                                         }}
                                                     >
-                                                        Education:
+                                                        {t(
+                                                            'profile.userInfo.professional.edu'
+                                                        )}
+                                                        :
                                                     </Typography>
                                                     <Box
                                                         sx={{
@@ -524,7 +524,10 @@ function Profile() {
                                                             color: '#707070',
                                                         }}
                                                     >
-                                                        Current Work Experience:
+                                                        {t(
+                                                            'profile.userInfo.professional.workExp'
+                                                        )}
+                                                        :
                                                     </Typography>
                                                     <Box
                                                         sx={{
@@ -560,8 +563,10 @@ function Profile() {
                                                             color: '#707070',
                                                         }}
                                                     >
-                                                        Operating System
-                                                        Preference:
+                                                        {t(
+                                                            'profile.userInfo.professional.opSys'
+                                                        )}
+                                                        :
                                                     </Typography>
                                                     <Box
                                                         sx={{
@@ -597,7 +602,10 @@ function Profile() {
                                                             color: '#707070',
                                                         }}
                                                     >
-                                                        Programing Skill:
+                                                        {t(
+                                                            'profile.userInfo.professional.skill'
+                                                        )}
+                                                        :
                                                     </Typography>
                                                     <Box
                                                         sx={{
@@ -633,7 +641,10 @@ function Profile() {
                                                             color: '#707070',
                                                         }}
                                                     >
-                                                        Preferred IDE:
+                                                        {t(
+                                                            'profile.userInfo.professional.ide'
+                                                        )}
+                                                        :
                                                     </Typography>
                                                     <Box
                                                         sx={{
@@ -676,7 +687,9 @@ function Profile() {
                                                             fontWeight: 600,
                                                         }}
                                                     >
-                                                        SOCIALS
+                                                        {t(
+                                                            'profile.userInfo.social'
+                                                        )}
                                                     </Typography>
                                                 </Box>
                                                 <Box
