@@ -25,6 +25,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import EditIcon from '@mui/icons-material/Edit';
 import ShareIcon from '@mui/icons-material/Share';
+import { useTranslation } from 'react-i18next';
 /* import { TableVirtuoso } from 'react-virtuoso'; */
 import './Library.css';
 import Classes from './Library.module.css';
@@ -35,20 +36,6 @@ import Snackbar from '@mui/material/Snackbar';
 import ISBN from 'isbn-validate';
 import { Rating } from 'react-simple-star-rating';
 import axios from 'axios';
-
-// function createData(name, calories, fat, carbs, protein) {
-// 	return { name, calories, fat, carbs, protein };
-// }
-
-// const rows = [
-// 	createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-// 	createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-// 	createData('Eclair', 262, 16.0, 24, 6.0),
-// 	createData('Cupcake', 305, 3.7, 67, 4.3),
-// 	createData('Gingerbread', 356, 16.0, 49, 3.9),
-
-// ];
-
 export default function Library({ filter, setFilter }) {
     const [myRows, setMyRows] = useState([]);
     const [visibleContent, setVisibleContent] = useState(-1);
@@ -90,6 +77,7 @@ export default function Library({ filter, setFilter }) {
     const userId = JSON.parse(localStorage.getItem('user'))._id;
     //This state helps us for two way in input filed
     const [isAdded, handleIsAdded] = useState(false);
+    const { t } = useTranslation();
     const removeBookByName = async (row) => {
         try {
             setLoading(true);
@@ -206,9 +194,6 @@ export default function Library({ filter, setFilter }) {
                             },
                         }
                     );
-
-                    // // Introduce a delay (e.g., 500 milliseconds) between requests
-                    // await new Promise((resolve) => setTimeout(resolve, 500));
                 }
 
                 // After adding all books, fetch books from the backend
@@ -413,7 +398,6 @@ export default function Library({ filter, setFilter }) {
         };
     }, [filter, setFilter, myRows]);
 
-
     useEffect(() => {
         fetchBooksFromDB();
     }, []);
@@ -466,7 +450,7 @@ export default function Library({ filter, setFilter }) {
                         variant='h6'
                         component='h2'
                     >
-                        Review for {bookName}
+                        {t('modal.review.title')} {bookName}
                     </Typography>
 
                     <Rating
@@ -482,7 +466,7 @@ export default function Library({ filter, setFilter }) {
                         type='string'
                         value={bookReview}
                         inputProps={{ maxLength: 150 }}
-                        placeholder='type your review here...'
+                        placeholder={t('modal.review.placeholder')}
                         onChange={(e) => {
                             setBookReview(e.target.value);
                         }}
@@ -499,7 +483,7 @@ export default function Library({ filter, setFilter }) {
                                     handleReviewAdded(false);
                                 }}
                             >
-                                Close Modal
+                                {t('home.buttons.closeModal')}
                             </Button>
                         </>
                     ) : (
@@ -513,7 +497,7 @@ export default function Library({ filter, setFilter }) {
                                     handleBookReview();
                                 }}
                             >
-                                Add Review
+                                {t('modal.review.addReview')}
                             </Button>
                         </>
                     )}
@@ -530,7 +514,7 @@ export default function Library({ filter, setFilter }) {
                     aria-describedby='alert-dialog-description'
                 >
                     <DialogTitle align='center' id='alert-dialog-title'>
-                        Reading reviews of {book?.name}
+                        {t('modal.review.readReview')} {book?.title}
                     </DialogTitle>
 
                     <DialogContent dividers>
@@ -551,8 +535,8 @@ export default function Library({ filter, setFilter }) {
                                 })
                             ) : (
                                 <Typography variant='p'>
-                                    There are no reviews yet for{' '}
-                                    <strong>{book?.name}</strong>
+                                    {t('modal.review.noReview')}{' '}
+                                    <strong>{book?.title}</strong>
                                 </Typography>
                             )}
                         </DialogContentText>
@@ -564,7 +548,7 @@ export default function Library({ filter, setFilter }) {
                             }}
                             autoFocus
                         >
-                            Close
+                            {t('home.buttons.close')}
                         </Button>
                     </DialogActions>
                 </Dialog>
@@ -582,7 +566,7 @@ export default function Library({ filter, setFilter }) {
                         variant='h6'
                         component='h2'
                     >
-                        Add Item to table
+                        {t('home.headings.item')}
                     </Typography>
                     <form
                         onSubmit={(e) => {
@@ -590,7 +574,7 @@ export default function Library({ filter, setFilter }) {
                         }}
                     >
                         <TextField
-                            label='Enter Book Name'
+                            label={t('modal.labels.book')}
                             fullWidth
                             style={{ marginTop: '10px' }}
                             onChange={(e) => {
@@ -599,7 +583,7 @@ export default function Library({ filter, setFilter }) {
                             defaultValue=''
                         />
                         <TextField
-                            label='Enter Author Name'
+                            label={t('modal.labels.author')}
                             onChange={(e) => {
                                 setAuthor(e.target.value);
                             }}
@@ -607,7 +591,7 @@ export default function Library({ filter, setFilter }) {
                             style={{ marginTop: '10px' }}
                         />
                         <TextField
-                            label='Enter Category'
+                            label={t('modal.labels.category')}
                             onChange={(e) => {
                                 setCategory(e.target.value);
                             }}
@@ -615,7 +599,7 @@ export default function Library({ filter, setFilter }) {
                             style={{ marginTop: '10px' }}
                         />
                         <TextField
-                            label='Who is the publisher'
+                            label={t('modal.labels.publisher')}
                             onChange={(e) => {
                                 setPublisher(e.target.value);
                             }}
@@ -623,27 +607,27 @@ export default function Library({ filter, setFilter }) {
                             style={{ marginTop: '10px' }}
                         />
                         <TextField
-                            label='ISBN'
+                            label={t('modal.labels.isbn')}
                             onChange={handleISBNChange}
                             error={error}
                             helperText={
-                                error ? 'Please enter a valid ISBN' : ''
+                                error ? t('modal.errors.invalidISBN') : ''
                             }
                             fullWidth
                             style={{ marginTop: '10px' }}
                         />
                         <TextField
-                            label='Year Published'
+                            label={t('modal.labels.year')}
                             onChange={handleYearChange}
                             fullWidth
                             style={{ marginTop: '10px' }}
                             error={error}
                             helperText={
-                                error ? 'Please enter a valid year' : ''
+                                error ? t('modal.errors.invalidYear') : ''
                             }
                         />
                         <TextField
-                            label='Edition'
+                            label={t('modal.labels.edition')}
                             onChange={(e) => {
                                 setEdition(e.target.value);
                             }}
@@ -660,7 +644,7 @@ export default function Library({ filter, setFilter }) {
                                         handleModalBox(false);
                                     }}
                                 >
-                                    Close Modal
+                                    {t('home.buttons.closeModal')}
                                 </Button>
                             </>
                         ) : (
@@ -678,7 +662,7 @@ export default function Library({ filter, setFilter }) {
                                             color='inherit'
                                         />
                                     )}
-                                    Add Book
+                                    {t('home.buttons.add')}
                                 </Button>
                             </>
                         )}
@@ -698,7 +682,9 @@ export default function Library({ filter, setFilter }) {
                     >
                         <TableHead>
                             <TableRow>
-                                <TableCell>Action</TableCell>
+                                <TableCell>
+                                    {t('home.headings.action')}
+                                </TableCell>
                                 <TableCell align='center'>
                                     <TableSortLabel
                                         active={true}
@@ -717,7 +703,7 @@ export default function Library({ filter, setFilter }) {
                                             );
                                         }}
                                     >
-                                        Title
+                                        {t('home.headings.title')}
                                     </TableSortLabel>
                                 </TableCell>
                                 <TableCell align='center'>
@@ -738,7 +724,7 @@ export default function Library({ filter, setFilter }) {
                                             );
                                         }}
                                     >
-                                        Author
+                                        {t('home.headings.author')}
                                     </TableSortLabel>{' '}
                                 </TableCell>
                                 <TableCell align='center'>
@@ -760,7 +746,7 @@ export default function Library({ filter, setFilter }) {
                                             );
                                         }}
                                     >
-                                        Category
+                                        {t('home.headings.category')}
                                     </TableSortLabel>{' '}
                                 </TableCell>
                                 <TableCell align='center'>
@@ -782,7 +768,7 @@ export default function Library({ filter, setFilter }) {
                                             );
                                         }}
                                     >
-                                        Publisher
+                                        {t('home.headings.publisher')}
                                     </TableSortLabel>{' '}
                                 </TableCell>
                                 <TableCell align='center'>
@@ -804,7 +790,7 @@ export default function Library({ filter, setFilter }) {
                                             );
                                         }}
                                     >
-                                        ISBN
+                                        {t('home.headings.isbn')}
                                     </TableSortLabel>
                                 </TableCell>
                                 <TableCell align='center'>
@@ -826,7 +812,7 @@ export default function Library({ filter, setFilter }) {
                                             );
                                         }}
                                     >
-                                        Year
+                                        {t('home.headings.year')}
                                     </TableSortLabel>{' '}
                                 </TableCell>
                                 <TableCell align='center'>
@@ -847,10 +833,12 @@ export default function Library({ filter, setFilter }) {
                                             );
                                         }}
                                     >
-                                        Edition
+                                        {t('home.headings.edition')}
                                     </TableSortLabel>
                                 </TableCell>
-                                <TableCell align='center'>Review</TableCell>
+                                <TableCell align='center'>
+                                    {t('home.headings.review')}
+                                </TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -898,7 +886,7 @@ export default function Library({ filter, setFilter }) {
                                                     <MoreHorizIcon />
                                                 </Box>
                                                 <span className='more-span'>
-                                                    More
+                                                    {t('home.more')}
                                                 </span>
                                             </div>
                                             <Box
@@ -936,7 +924,7 @@ export default function Library({ filter, setFilter }) {
                                                         setVisibleContent(-1)
                                                     }
                                                 >
-                                                    Close
+                                                    {t('home.buttons.close')}
                                                     <CloseIcon
                                                         sx={{
                                                             fontSize: '14px',
@@ -963,7 +951,7 @@ export default function Library({ filter, setFilter }) {
                                                         removeBookByName(row);
                                                     }}
                                                 >
-                                                    Delete
+                                                    {t('home.buttons.delete')}
                                                     {loading ? (
                                                         <CircularProgress
                                                             size={16}
@@ -993,7 +981,7 @@ export default function Library({ filter, setFilter }) {
                                                         },
                                                     }}
                                                 >
-                                                    Edit
+                                                    {t('home.buttons.edit')}
                                                     <EditIcon
                                                         sx={{
                                                             fontSize: '16px',
@@ -1016,7 +1004,7 @@ export default function Library({ filter, setFilter }) {
                                                         },
                                                     }}
                                                 >
-                                                    Share
+                                                    {t('home.buttons.share')}
                                                     <ShareIcon
                                                         sx={{
                                                             fontSize: '16px',
@@ -1060,11 +1048,11 @@ export default function Library({ filter, setFilter }) {
                                             color='primary'
                                             style={{ width: '80px' }}
                                             onClick={() => {
-                                                setBookName(row.name);
+                                                setBookName(row.title);
                                                 handleReviewModal(true);
                                             }}
                                         >
-                                            Review Book
+                                            {t('home.buttons.review')}
                                         </Button>
                                         <Button
                                             type='submit'
@@ -1079,8 +1067,7 @@ export default function Library({ filter, setFilter }) {
                                                 setEnableReviewModal(true);
                                             }}
                                         >
-                                            {' '}
-                                            Read Reviews
+                                            {t('home.buttons.read')}
                                         </Button>
                                     </TableCell>
                                 </TableRow>
