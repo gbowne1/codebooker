@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import './pages/Settings/utils/i18n';
 import reportWebVitals from './reportWebVitals';
 import { StyledEngineProvider } from '@mui/styled-engine';
 
