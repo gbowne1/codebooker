@@ -6,11 +6,13 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Snackbar from '@mui/material/Snackbar';
 import CloseIcon from '@mui/icons-material/Close';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 const SupportForm = () => {
     const [loading, setLoading] = useState(false);
     const [showSnackBar, setShowSnackBar] = useState(false);
     const [showError, setShowError] = useState(false);
     const [supportError, setSupportError] = useState('');
+    const { t } = useTranslation();
     const initialValue = {
         name: '',
         email: '',
@@ -99,7 +101,7 @@ const SupportForm = () => {
                                     return (
                                         <Form>
                                             <TextField
-                                                label='Name'
+                                                label={t('support.form.name')}
                                                 name='name'
                                                 fullWidth
                                                 variant='outlined'
@@ -116,7 +118,7 @@ const SupportForm = () => {
                                                 required
                                             />
                                             <TextField
-                                                label='E-mail'
+                                                label={t('support.form.email')}
                                                 name='email'
                                                 fullWidth
                                                 variant='outlined'
@@ -135,7 +137,9 @@ const SupportForm = () => {
                                             />
                                             <Field
                                                 as={TextField}
-                                                label='How can we help?'
+                                                label={t(
+                                                    'support.form.placeholder'
+                                                )}
                                                 type='text'
                                                 name='description'
                                                 fullWidth
@@ -168,7 +172,7 @@ const SupportForm = () => {
                                                         color='inherit'
                                                     />
                                                 )}
-                                                Submit
+                                                {t('support.form.submit')}
                                             </Button>
                                         </Form>
                                     );
