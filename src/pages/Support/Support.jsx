@@ -22,6 +22,7 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import SupportForm from '../../components/FormikContainer/SupportForm/SupportForm';
 
 const Support = () => {
@@ -29,6 +30,7 @@ const Support = () => {
     const [closeNotice, setCloseNotce] = useState(true);
     const userName = JSON.parse(localStorage.getItem('user')).username;
     const navigate = useNavigate();
+    const { t } = useTranslation();
     const open = Boolean(anchorEl);
     const handleLogOut = () => {
         localStorage.setItem('user', null);
@@ -70,9 +72,7 @@ const Support = () => {
                                 fontSize: mobileDisplay ? '14px' : 'unset',
                             }}
                         >
-                            Due to the ongoing development phase of Codebooker,
-                            our search functionality is currently unavailable.
-                            Kindly submit your queries via the form below.
+                            {t('support.notice')}
                         </Typography>
                     </Box>
                     <ListItemIcon>
@@ -91,7 +91,7 @@ const Support = () => {
                         margin: '0 auto',
                     }}
                 >
-                    <nav className='help-navigation'>
+                    <Box className='help-navigation'>
                         <Typography
                             variant={`${matches ? 'h7' : 'h5'}`}
                             component='div'
@@ -101,7 +101,7 @@ const Support = () => {
                                 textAlign: 'center',
                             }}
                         >
-                            CodeBooker Help
+                            {t('support.title')}
                         </Typography>
                         <Box
                             sx={{
@@ -200,7 +200,8 @@ const Support = () => {
                                             <PersonIcon />
                                         </ListItemIcon>
                                         <Typography fontSize='14px'>
-                                            Hi, {userName}
+                                            {t('support.interface.user')},
+                                            {userName}
                                         </Typography>
                                     </MenuItem>
                                     <Divider />
@@ -208,7 +209,7 @@ const Support = () => {
                             )}
                             <MenuItem>
                                 <Typography fontSize='14px'>
-                                    View your support cases
+                                    {t('support.text')}
                                 </Typography>
                             </MenuItem>
                             <Divider />
@@ -217,7 +218,7 @@ const Support = () => {
                                     <HouseIcon />
                                 </ListItemIcon>
                                 <Typography fontSize='14px'>
-                                    Go to Codebooker
+                                    {t('navigation.menu.home')}
                                 </Typography>
                             </MenuItem>
                             <Divider />
@@ -225,10 +226,12 @@ const Support = () => {
                                 <ListItemIcon>
                                     <LogoutIcon fontSize='small' />
                                 </ListItemIcon>
-                                <Typography fontSize='14px'>Logout</Typography>
+                                <Typography fontSize='14px'>
+                                    {t('navigation.menu.logout')}
+                                </Typography>
                             </MenuItem>
                         </Menu>
-                    </nav>
+                    </Box>
                 </Box>
             </header>
             <Box
@@ -261,7 +264,8 @@ const Support = () => {
                                     color: '#fff',
                                 }}
                             >
-                                Hi {userName}, Welcome to Codebooker Support.
+                                {t('support.interface.user')} {userName},
+                                {t('support.interface.greeting')}
                             </Typography>
                             <Box
                                 sx={{
@@ -279,7 +283,9 @@ const Support = () => {
                                     >
                                         <input
                                             type='text'
-                                            placeholder='How can we help?'
+                                            placeholder={t(
+                                                'support.interface.placeholder'
+                                            )}
                                             className='search'
                                         />
                                     </Box>
@@ -317,8 +323,7 @@ const Support = () => {
                         textAlign: 'center',
                     }}
                 >
-                    Please provide details of your support inquiry in the form
-                    below.
+                    {t('support.form.action')}
                 </Typography>
                 <SupportForm />
             </Box>
