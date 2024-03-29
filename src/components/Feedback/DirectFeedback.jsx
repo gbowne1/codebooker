@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import toast, { Toaster } from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 import './Feedback.css';
 
 const feedbackValidationSchema = Yup.object().shape({
@@ -25,6 +26,7 @@ export default function DirectFeedback({
     setRating,
     onClose,
 }) {
+    const { t } = useTranslation();
     return (
         <React.Fragment>
             <Formik
@@ -105,14 +107,14 @@ export default function DirectFeedback({
                                 }
                                 className='back-button'
                             >
-                                Back
+                                {t('feedback.actions.back')}
                             </button>
                             <button
                                 type='submit'
                                 disabled={isSubmitting}
                                 className='submit-button'
                             >
-                                Submit Feedback
+                                {t('feedback.actions.submit')}
                             </button>
                         </div>
                     </Form>

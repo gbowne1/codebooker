@@ -5,12 +5,13 @@ import { Toaster } from 'react-hot-toast';
 import DirectFeedback from './DirectFeedback';
 import EmailFeedback from './EmailFeedback';
 import Typography from '@mui/material/Typography';
+import { useTranslation } from 'react-i18next';
 
 export function CaptureFeedback({ isActive, onClose }) {
     Modal.setAppElement('#root');
     const [formToShow, setFormToShow] = useState('initialPrompt');
     const [rating, setRating] = useState(0);
-
+    const { t } = useTranslation();
     const handleFormSwitch = (formType) => {
         setRating(0);
         setFormToShow(formType);
@@ -47,8 +48,8 @@ export function CaptureFeedback({ isActive, onClose }) {
                             fontWeight: 'bold',
                         }}
                     >
-                        We appreciate your feedback. <br />
-                        Please let us know how we can improve.
+                        {t('feedback.text')} <br />
+                        {t('feedback.subText')}
                     </Typography>
                     {formToShow === 'initialPrompt' && (
                         <div className='button-group'>
@@ -58,7 +59,7 @@ export function CaptureFeedback({ isActive, onClose }) {
                                     handleFormSwitch('directFeedback')
                                 }
                             >
-                                Leave us a message
+                                {t('feedback.actions.msg')}
                             </button>
                             <button
                                 className='feedback-button'
@@ -66,7 +67,7 @@ export function CaptureFeedback({ isActive, onClose }) {
                                     handleFormSwitch('emailFeedback')
                                 }
                             >
-                                Send us an email
+                                {t('feedback.actions.email')}
                             </button>
                         </div>
                     )}
