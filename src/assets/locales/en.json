@@ -1,0 +1,375 @@
+{
+  "about": {
+    "description": "CodeBooker is a book recommendation app created with React 18.2 and MUI for coders/programmers looking for recommendations to books on programming/coding to read",
+    "title": "About CodeBooker"
+  },
+  "auth": {
+    "createAccount": "Don't have an account yet? <0>Create an account.</0>",
+    "deviceNameLabel": "Device name",
+    "deviceNamePlaceholder": "Personal phone",
+    "generate": {
+      "description": "Your passphrase acts as your username and password. Make sure to keep it safe as you will need to enter it to login to your account",
+      "next": "I have saved my passphrase",
+      "passphraseFrameLabel": "Passphrase",
+      "title": "Your passphrase"
+    },
+    "hasAccount": "Already have an account? <0>Login here.</0>",
+    "login": {
+      "description": "Please enter your passphrase to login to your account",
+      "deviceLengthError": "Please enter a device name",
+      "passphraseLabel": "12-Word passphrase",
+      "passphrasePlaceholder": "Passphrase",
+      "submit": "Login",
+      "title": "Login to your account",
+      "validationError": "Incorrect or incomplete passphrase"
+    },
+    "register": {
+      "information": {
+        "color1": "Profile color one",
+        "color2": "Profile color two",
+        "header": "Enter a name for your device and pick colours and a user icon of your choosing",
+        "icon": "User icon",
+        "next": "Next",
+        "title": "Account information"
+      }
+    },
+    "trust": {
+      "failed": {
+        "text": "Did you configure it correctly?",
+        "title": "Failed to reach server"
+      },
+      "host": "You are connecting to <0>{{hostname}}</0> - please confirm you trust it before making an account",
+      "no": "Go back",
+      "title": "Do you trust this server?",
+      "yes": "I trust this server"
+    },
+    "verify": {
+      "description": "Please enter your passphrase from earlier to confirm you have saved it and to create your account",
+      "invalidData": "Data is not valid",
+      "noMatch": "Passphrase doesn't match",
+      "passphraseLabel": "Your 12-word passphrase",
+      "recaptchaFailed": "ReCaptcha validation failed",
+      "register": "Create account",
+      "title": "Confirm your passphrase"
+    }
+  },
+  "errors": {
+    "badge": "It broke",
+    "details": "Error details",
+    "reloadPage": "Reload the page",
+    "showError": "Show error details",
+    "title": "We encountered an error!"
+  },
+  "feedback":{
+    "text": "We appreciate your feedback.",
+    "subText": "Please let us know how we can improve.",
+    "actions":{
+      "msg": "Leave us a message",
+      "email": "Send us an email",
+      "back": "Back",
+      "submit": "Submit Feedback",
+      "submitEmail": "Submit Email"
+    }
+  },
+  "home": {
+    "buttons": {
+      "read": "Read Reviews",
+      "review": "Review Book",
+      "add": "Add Book",
+      "close": "Close",
+      "cancel": "Cancel",
+      "closeModal": "Close Modal",
+      "share": "Share",
+      "save": "Save",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "headings": {
+      "action": "Action",
+      "title": "Title",
+      "author": "Author",
+      "category": "Category",
+      "publisher": "Publisher",
+      "isbn": "ISBN",
+      "year": "Year",
+      "edition": "Edition",
+      "review": "Review",
+      "item": "Add item to table"
+    },
+    "more": "More"
+  },
+  "modal": {
+    "review": {
+      "title": "Review for",
+      "noReview":"There are no reviews yet for",
+      "readReview":"Reading reviews of",
+      "addReview":"Add Review",
+      "placeholder": "type your review here..."
+    },
+    "labels": {
+      "edition": "Edition",
+      "year": "Year Published",
+      "isbn": "ISBN",
+      "publisher": "Who is the publisher",
+      "category": "Enter Category",
+      "author": "Enter Author Name",
+      "book": "Enter Book Name",
+      "sideNav":{
+        "category":"Category",
+        "library":"Library"
+      }
+    },
+    "errors":{
+      "invalidYear": "Please enter a valid year",
+      "invalidISBN": "Please enter a valid ISBN"
+    }
+    
+  },
+  "navigation": {
+    "menu": {
+      "about": "About us",
+      "feedback": "Feedback",
+      "home": "Go to CodeBooker",
+      "logout": "Log out",
+      "privacy": "Privacy Policy",
+      "profile": "Profile",
+      "settings": "Settings",
+      "support": "Help"
+    }
+  },
+  "privacy":{
+    "title":"Pivacy Policy",
+    "update": "updated",
+    "about":"CodeBooker website is owned by Gregory Bowne, which is a data controller of your personal data. We have adopted this Privacy Policy, which determines how we are processing the information collected by CodeBooker, which also provides the reasons why we must collect certain personal data about you. Therefore, you must read this Privacy Policy before using CodeBooker website.We take care of your personal data and undertake to guarantee its confidentiality and security.",
+    "options":{
+      "personalInfo":{
+        "title": "Personal information we collect:",
+        "text": "When you visit the CodeBooker, we automatically collect certain information about your device, including information about your web browser, IP  address, time zone, and some of the installed cookies on your device Additionally, as you browse the Site, we collect information about the individual web pages or products you view, what websites or search terms referred you to the Site, and how you interact with the Site.We refer to this automatically-collected information  “Device Information.” Moreover, we might collect the personal data you provide to  us (including but not limited to Name, Surname, Address, payment information,  etc.) during registration to be able to fulfill the agreement."
+      },
+      "data": {
+        "title": "Why do we process your data?",
+        "text": "Our top priority is customer data security, and, as such, we may process only minimal user data, only as much as it is absolutely necessary to maintain the website. Information collected automatically is used only to identify potential cases of abuse and establish statistical information regarding website usage. This statistical information is not otherwise aggregated in such a way that it would identify any particular user of the system. You can visit the website without telling us who you are or revealing any information, by which someone could identify you as a specific, identifiable individual. If, however, you wish to use some of the website’s features, or you wish to receive our newsletter or provide other details by filling a form, you may provide personal data to us, such as your email, first name, last name, city of residence, organization, telephone number. You can choose not to provide us with your personal data, but then you may not be able to take advantage of some of the website’s features. For example, you won’t be able to receive our Newsletter or contact us directly from the website. Users who are uncertain about what information is mandatory are welcome to contact us via example@gmail.com."
+      },
+      "rights":{
+        "title":"Your rights:",
+        "text": "If you are a European resident, you have the following rights related to your personal data:",
+        "r1": "The right to be informed.",
+        "r2": "he right of access.",
+        "r3": "The right to rectification.",
+        "r4": "The right to erasure.",
+        "r5": "The right to restrict processing.",
+        "r6": "The right to data portability.",
+        "r7": "The right to object.",
+        "r8": "Rights in relation to automated decision-making and profiling.",
+        "subText": "If you would like to exercise this right, please contact us through the  contact information below. Additionally, if you are a European resident, we note that we are processing your information in order to fulfill contracts we might have with you (for example, if you make an order through the Site), or otherwise to pursue our legitimate business interests listed above. Additionally, please note that your information might be transferred outside of Europe, including Canada and the United States."
+      },
+      "links":{
+        "title": "Links to other websites:",
+        "text": "Our website may contain links to other websites that are not owned or controlled by us. Please be aware that we are not responsible for such other websites or third parties privacy practices. We encourage you to be aware  when you leave our website and read the privacy statements of each website that may collect personal information."
+      },
+      "security":{
+        "title": "Information security:",
+        "text": " We secure information you provide on computer servers in a controlled, secure environment, protected from unauthorized access, use, or disclosure. We keep reasonable administrative, technical, and physical safeguards to protect against unauthorized access, use, modification, and personal data  disclosure in its control and custody. However, no data transmission over the Internet or wireless network can be guaranteed."
+      },
+      "legal":{
+        "title": "Legal disclosure:",
+        "text": "We will disclose any information we collect, use or receive if required or permitted by law, such as to comply with a subpoena or similar legal process, and when we believe in good faith that disclosure is necessary to protect our rights, protect your safety or the safety of others, investigate fraud, or respond to a government request."
+      },
+      "contact":{
+        "title": "Contact information:",
+        "text": "If you would like to contact us to understand more about this Policy or wish to contact us concerning any matter relating to individual rights and your Personal Information, you may send an email to example@gmail.com."
+      }
+    }
+  },
+  "profile":{
+    "banner":{
+      "text": "Add a Banner Image",
+      "subText": "Optimal dimensions 3200 x 410px"
+    },
+    "user":{
+      "bio": "Bio",
+      "button": "Edit Your Profile",
+      "joined": "Joined"
+    },
+    "userInfo":{
+      "basic": {
+        "title": "BASIC INFORMATION",
+        "age": "Age",
+        "name": "Name"
+      },
+      "professional": {
+        "title": "PROFESSIONAL / WORK EXPERIENCE",
+        "edu": "Education",
+        "workExp": "Current Work Experience",
+        "opSys": "Operating System Preference",
+        "skill": "Programing Skill",
+        "ide":"Preferred IDE"
+      },
+      "social": "SOCIALS"
+    }
+  },
+  "settings": {
+    "title": "SETTINGS",
+    "alert": "You have unsaved changes",
+    "account": {
+      "accountDetails": {
+        "editProfile": "Edit",
+        "logoutButton": "Log out"
+      },
+      "actions": {
+        "updateEmail": {
+          "text": "Click the button below to update your email",
+          "title":"Update Email"
+        },
+        "updatePassword": {
+          "text": "Click the button below to update your password",
+          "title":"Update Password"
+        },
+        "updateAvatar": {
+          "text": "Click the button below to update your avatar",
+          "title":"Update Avatar"
+        },
+        "socialMedia": {
+          "text": "Click the button below to link your social media handles to CodeBooker",
+          "title":"Update Social Media",
+          "name": "Social Media"
+        }
+      },
+      "profile": {
+        "finish": "Finish editing",
+        "firstColor": "Profile color one",
+        "secondColor": "Profile color two",
+        "title": "Edit profile picture",
+        "userIcon": "User icon"
+      },
+      "register": {
+        "cta": "Get started",
+        "text": "Share your watch progress between devices and keep them synced.",
+        "title": "Sync to the cloud"
+      },
+      "title": "Account",
+      "subTitle": "Choose how you appear and what you see on CodeBooker",
+      "signedAs": "Signed in as",
+      "yourAccount": "Your Account",
+      "subText": "Enhance your CodeBooker experience by managing your account details.      Easily update your email address, password, or profile picture. Additionally, seamlessly connect your social media accounts to CodeBooker for added convenience."
+    },
+    "notification": {
+      "title": "Notification",
+      "subTitle": "Choose when and how to be notified",
+      "pushNot": "Select push and email notifications you'd like to receive",
+      "name": "Push notifications",
+      "text": "Manage your mobile and desktop notifications",
+      "pushOptions":{
+        "title": "Your Preferences",
+        "newBook":{
+          "type": "New Book Release",
+          "text": "Notify me when a new book is released"
+        },
+        "bookRecommendation":{
+          "type": "Book Recommendation",
+          "text": "Notify me when a new book is recommended"
+        },
+        "bookReviewUpdate":{
+          "type": "Book Review Update",
+          "text": "Notify me when a new book review is added"
+        }
+      },
+      "emailOptions":{
+        "title": "Email notifications",
+        "text": "Your emails are sent to",
+        "heading": "Your Preferences",
+        "updates":{
+          "type": "CodeBooker Updates",
+          "text": "News about updates to CodeBooker products and features"
+        },
+        "tips":{
+          "type": "Tips",
+          "text": "Tips on getting more out of CodeBooker"
+        },
+        "suggestions":{
+          "type": "Suggestions",
+          "text": "Suggestions for recommended accounts"
+        }
+      },
+      "locale":{
+        "title": "Language",
+        "text": "This setting applies to emails only",
+        "defaultLang": "Email language"
+      }
+    },
+    "privacy": {
+      "title": "Privacy",
+      "text": "Manage your profile visibility and reviews",
+      "subText": "Choose who can see your profile and reviews",
+      "options":{
+        "title": "Your prefrences",
+        "private":{
+          "text": "Keep my profile private",
+          "subText": "Your profile won't be visible to others, unless you make it public"
+        },
+        "friendsOnly":{
+          "text": "Friends Only",
+          "subText": "Your review will be visible to only people in your friends' list."
+        },
+        "public":{
+          "text": "Public",
+          "subText": "Your review will be visible to everyone"
+        }
+      }
+    },
+    "readingPreferences": {
+      "title": "Reading Preferences",
+      "text": "Tailor your reading experience to your unique tastes and interests.",
+      "subText": "Set your favourite book genre, authors and reading goal",
+      "genre": {
+        "title": "Favourite Book Genres",
+        "text": "We use your favorite genres to make better book recommendations and tailor what you see in your Updates feed."
+      },
+      "author": {
+        "title": "Favourite Authors",
+        "text": "We use your favorite authors to make better book recommendations and tailor what you see in your Updates feed.",
+        "buttons":{
+          "addAuthor": "Add Author"
+        }
+      },
+      "readingGoal":{
+        "title": "Reading Goal",
+        "text": "Challenge your self to read more by setting a reading goal.",
+        "challenge":{
+          "title": "2024 READING GOAL",
+          "text": "Motivate yourself to read more this year!",
+          "numOfBooks": "I want to read",
+          "completedIn": "books in 2024",
+          "fyi": "You can change your goal at any time",
+          "button": "Start Challenge"
+        }
+      }
+    }
+  },
+  "support":{
+    "title": "CodeBooker Help",
+    "text": "View your support cases",
+    "notice": "Due to the ongoing development phase of Codebooker, our search functionality is currently unavailable. Kindly submit your queries via the form below.",
+    "interface":{
+      "user": "Hi",
+      "greeting": "Welcome to Codebooker Support",
+      "placeholder": "How can we help?"
+
+    },
+    "form":{
+      "action": "Please provide details of your support inquiry in the form below.",
+      "placeholder": "How can we help?",
+      "email": "E-mail",
+      "name": "Name",
+      "submit": "Submit"
+    }
+  },
+  "locale":{
+    "title": "Language",
+    "text": "Choose your preferred language for CodeBooker's interface",
+    "subText": "Select the language you prefer for browsing, and communications.",
+    "language": "Language",
+    "fyi": "Language applied to the entire application.",
+    "type": "Email language"
+  }
+}
