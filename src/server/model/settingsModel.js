@@ -50,7 +50,8 @@ const settingSchema = new mongoose.Schema({
     },
     reading_preferences: {
         favorite_genre: {
-            type:[String]
+            type:[String],
+            default: undefined
         },
         favorite_author: {
             type:[String]
