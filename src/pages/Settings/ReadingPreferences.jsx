@@ -16,7 +16,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 const ReadingPreferences = ({
-    names,
+    // names,
     error,
     setError,
     inputValue,
@@ -27,9 +27,14 @@ const ReadingPreferences = ({
     removeAuthorName,
 }) => {
     const { t } = useTranslation();
+    const authorArrIdx = checkedCheckboxes.findIndex(
+        (item) => item.name === 'authors'
+    );
+    const readingPrefArrIdx = checkedCheckboxes?.findIndex(
+        (item) => item.name === 'reading-preferences'
+    );
     const isSwitchChecked = (name) =>
-        checkedCheckboxes.some((item) => item.name === name);
-    console.log(checkedCheckboxes);
+        checkedCheckboxes[readingPrefArrIdx]?.values.includes(name);
     const action = (
         <React.Fragment>
             <IconButton
@@ -121,10 +126,13 @@ const ReadingPreferences = ({
                                 <FormControlLabel
                                     control={
                                         <Checkbox
-                                            checked={isSwitchChecked(
-                                                'Web Development'
-                                            )}
                                             id='Web Development'
+                                            checked={
+                                                checkedCheckboxes.length > 0 &&
+                                                isSwitchChecked(
+                                                    'Web Development'
+                                                )
+                                            }
                                             onChange={toggleCheckbox}
                                         />
                                     }
@@ -144,9 +152,12 @@ const ReadingPreferences = ({
                                     control={
                                         <Checkbox
                                             id='Mobile App Development'
-                                            checked={isSwitchChecked(
-                                                'Mobile App Development'
-                                            )}
+                                            checked={
+                                                checkedCheckboxes.length > 0 &&
+                                                isSwitchChecked(
+                                                    'Mobile App Development'
+                                                )
+                                            }
                                             onChange={toggleCheckbox}
                                         />
                                     }
@@ -166,9 +177,10 @@ const ReadingPreferences = ({
                                     control={
                                         <Checkbox
                                             id='Data Science'
-                                            checked={isSwitchChecked(
-                                                'Data Science'
-                                            )}
+                                            checked={
+                                                checkedCheckboxes.length > 0 &&
+                                                isSwitchChecked('Data Science')
+                                            }
                                             onChange={toggleCheckbox}
                                         />
                                     }
@@ -188,9 +200,12 @@ const ReadingPreferences = ({
                                     control={
                                         <Checkbox
                                             id='Machine Learning'
-                                            checked={isSwitchChecked(
-                                                'Machine Learning'
-                                            )}
+                                            checked={
+                                                checkedCheckboxes.length > 0 &&
+                                                isSwitchChecked(
+                                                    'Machine Learning'
+                                                )
+                                            }
                                             onChange={toggleCheckbox}
                                         />
                                     }
@@ -210,9 +225,12 @@ const ReadingPreferences = ({
                                     control={
                                         <Checkbox
                                             id='Artificial Intelligence'
-                                            checked={isSwitchChecked(
-                                                'Artificial Intelligence'
-                                            )}
+                                            checked={
+                                                checkedCheckboxes.length > 0 &&
+                                                isSwitchChecked(
+                                                    'Artificial Intelligence'
+                                                )
+                                            }
                                             onChange={toggleCheckbox}
                                         />
                                     }
@@ -232,9 +250,10 @@ const ReadingPreferences = ({
                                     control={
                                         <Checkbox
                                             id='Cybersecurity'
-                                            checked={isSwitchChecked(
-                                                'Cybersecurity'
-                                            )}
+                                            checked={
+                                                checkedCheckboxes.length > 0 &&
+                                                isSwitchChecked('Cybersecurity')
+                                            }
                                             onChange={toggleCheckbox}
                                         />
                                     }
@@ -254,9 +273,12 @@ const ReadingPreferences = ({
                                     control={
                                         <Checkbox
                                             id='Game Development'
-                                            checked={isSwitchChecked(
-                                                'Game Development'
-                                            )}
+                                            checked={
+                                                checkedCheckboxes.length > 0 &&
+                                                isSwitchChecked(
+                                                    'Game Development'
+                                                )
+                                            }
                                             onChange={toggleCheckbox}
                                         />
                                     }
@@ -276,7 +298,10 @@ const ReadingPreferences = ({
                                     control={
                                         <Checkbox
                                             id='DevOps'
-                                            checked={isSwitchChecked('DevOps')}
+                                            checked={
+                                                checkedCheckboxes.length > 0 &&
+                                                isSwitchChecked('DevOps')
+                                            }
                                             onChange={toggleCheckbox}
                                         />
                                     }
@@ -296,9 +321,12 @@ const ReadingPreferences = ({
                                     control={
                                         <Checkbox
                                             id='Cloud Computing'
-                                            checked={isSwitchChecked(
-                                                'Cloud Computing'
-                                            )}
+                                            checked={
+                                                checkedCheckboxes.length > 0 &&
+                                                isSwitchChecked(
+                                                    'Cloud Computing'
+                                                )
+                                            }
                                             onChange={toggleCheckbox}
                                         />
                                     }
@@ -318,9 +346,12 @@ const ReadingPreferences = ({
                                     control={
                                         <Checkbox
                                             id='Programming Languages'
-                                            checked={isSwitchChecked(
-                                                'Programming Languages'
-                                            )}
+                                            checked={
+                                                checkedCheckboxes.length > 0 &&
+                                                isSwitchChecked(
+                                                    'Programming Languages'
+                                                )
+                                            }
                                             onChange={toggleCheckbox}
                                         />
                                     }
@@ -340,9 +371,12 @@ const ReadingPreferences = ({
                                     control={
                                         <Checkbox
                                             id='Algorithms and Data Structures'
-                                            checked={isSwitchChecked(
-                                                'Algorithms and Data Structures'
-                                            )}
+                                            checked={
+                                                checkedCheckboxes.length > 0 &&
+                                                isSwitchChecked(
+                                                    'Algorithms and Data Structures'
+                                                )
+                                            }
                                             onChange={toggleCheckbox}
                                         />
                                     }
@@ -362,9 +396,12 @@ const ReadingPreferences = ({
                                     control={
                                         <Checkbox
                                             id='Software Engineering'
-                                            checked={isSwitchChecked(
-                                                'Software Engineering'
-                                            )}
+                                            checked={
+                                                checkedCheckboxes.length > 0 &&
+                                                isSwitchChecked(
+                                                    'Software Engineering'
+                                                )
+                                            }
                                             onChange={toggleCheckbox}
                                         />
                                     }
@@ -434,45 +471,49 @@ const ReadingPreferences = ({
                                 flexWrap: 'wrap',
                             }}
                         >
-                            {names.map((name, idx) => (
-                                <Box
-                                    key={idx}
-                                    sx={{
-                                        backgroundColor: '#e0e0e0',
-                                        color: '#333',
-                                        borderRadius: '4px',
-                                        padding: '4px 8px',
-                                        margin: '4px',
-                                        alignItems: 'center',
-                                        display: 'flex',
-                                    }}
-                                >
-                                    {name}
+                            {checkedCheckboxes[authorArrIdx]?.values.map(
+                                (name, idx) => (
                                     <Box
-                                        onClick={() => removeAuthorName(name)}
+                                        key={idx}
                                         sx={{
-                                            marginLeft: '14px',
-                                            cursor: 'pointer',
-                                            borderLeft: '1px solid #f7f7f7',
-                                            paddingLeft: '5px',
-                                            display: 'grid',
-                                            placeItems: 'center',
+                                            backgroundColor: '#e0e0e0',
+                                            color: '#333',
+                                            borderRadius: '4px',
+                                            padding: '4px 8px',
+                                            margin: '4px',
+                                            alignItems: 'center',
+                                            display: 'flex',
                                         }}
                                     >
-                                        <IconButton
+                                        {name}
+                                        <Box
+                                            onClick={() =>
+                                                removeAuthorName(name)
+                                            }
                                             sx={{
-                                                '&:hover': {
-                                                    '& svg': {
-                                                        color: '#1976d2',
-                                                    },
-                                                },
+                                                marginLeft: '14px',
+                                                cursor: 'pointer',
+                                                borderLeft: '1px solid #f7f7f7',
+                                                paddingLeft: '5px',
+                                                display: 'grid',
+                                                placeItems: 'center',
                                             }}
                                         >
-                                            <DeleteIcon />
-                                        </IconButton>
+                                            <IconButton
+                                                sx={{
+                                                    '&:hover': {
+                                                        '& svg': {
+                                                            color: '#1976d2',
+                                                        },
+                                                    },
+                                                }}
+                                            >
+                                                <DeleteIcon />
+                                            </IconButton>
+                                        </Box>
                                     </Box>
-                                </Box>
-                            ))}
+                                )
+                            )}
                         </Box>
                     </Box>
                 </Box>
@@ -602,7 +643,6 @@ const ReadingPreferences = ({
 export default ReadingPreferences;
 ReadingPreferences.propTypes = {
     checkedCheckboxes: PropTypes.array,
-    names: PropTypes.array,
     setError: PropTypes.func,
     error: PropTypes.bool,
     inputValue: PropTypes.string,

@@ -1,4 +1,5 @@
 import LanguageIcon from '@mui/icons-material/Language';
+import CloseIcon from '@mui/icons-material/Close';
 import PersonIcon from '@mui/icons-material/Person';
 import NotificationAddIcon from '@mui/icons-material/NotificationAdd';
 import LockIcon from '@mui/icons-material/Lock';
@@ -9,9 +10,16 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 import { useRecoilState } from 'recoil';
-import { change } from './utils/alert';
+import { userSettingsAtom } from './utils/alert';
+import { isEqual } from 'lodash';
 // import Alert from '@mui/material/Alert';
-import { Button, Divider } from '@mui/material';
+import {
+    Button,
+    CircularProgress,
+    Divider,
+    IconButton,
+    Snackbar,
+} from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -30,6 +38,7 @@ import Notifications from './Notifications';
 import Privacy from './Privacy';
 import ReadingPreferences from './ReadingPreferences';
 import './Settings.css';
+import axios from 'axios';
 const label = { inputProps: { 'aria-label': 'Color switch demo' } };
 
 const lightTheme = createTheme({
@@ -57,8 +66,13 @@ const darkTheme = createTheme({
 
 const Settings = () => {
     const [activeLink, setActiveLink] = useState('');
+    const [showSnackBar, setShowSnackBar] = useState(false);
+    const [snackBarErrorState, setSnackBarErrorState] = useState(false);
+    const [showErrorMsg, setShowErrorMsg] = useState('');
+    const [loading, setLoading] = useState(false);
     const [isDarkMode, setIsDarkMode] = useState(false);
-    const [unSavedSettings, setUnsavedSettings] = useRecoilState(change);
+    const [unSavedSettings, setUnsavedSettings] =
+        useRecoilState(userSettingsAtom);
     const [filter, setFilter] = useState('');
     //get loggedIn user email
     const userEmail = JSON.parse(localStorage.getItem('user')).email;
@@ -70,20 +84,20 @@ const Settings = () => {
         setIsDarkMode(!isDarkMode);
     };
     const {
-        names,
         error,
         setError,
         inputValue,
         checkedCheckboxes,
         toggleCheckbox,
         toggleSwitch,
-        setNames,
         handleInputChange,
         addAuthor,
         removeAuthorName,
     } = useCheckboxToggle();
     const { profileData } = useProfileData();
     const matches = useMediaQuery('(max-width:820px)');
+    const prevSettings = JSON.parse(localStorage.getItem('settings')) ?? [];
+    const isSettingsChanged = isEqual(prevSettings, unSavedSettings);
     const sidebarLinks = [
         {
             name: t('settings.account.title'),
@@ -178,7 +192,7 @@ const Settings = () => {
         return () => {
             document.removeEventListener('scroll', recheck);
         };
-    });
+    }, []);
     const scrollTo = useCallback((id) => {
         const el = document.querySelector(id);
         if (!el) return null;
@@ -189,11 +203,64 @@ const Settings = () => {
         });
     }, []);
     const cancelUnsavedSettings = () => {
-        setUnsavedSettings([]);
-        setNames([]);
+        setUnsavedSettings(prevSettings);
     };
+    const handleUserSettings = async () => {
+        try {
+            setLoading(true);
+            const response = await axios.post(
+                'http://localhost:3001/api/settings/user-settings',
+                { checkedCheckboxes, userEmail }
+            );
+
+            if (response.status === 200) {
+                setShowSnackBar(true);
+                localStorage.setItem(
+                    'settings',
+                    JSON.stringify(checkedCheckboxes)
+                );
+                setUnsavedSettings(checkedCheckboxes);
+            }
+        } catch (err) {
+            const errorMsg = err.response.data.message;
+            setShowSnackBar(true);
+            setShowErrorMsg(errorMsg);
+        }
+        setLoading(false);
+    };
+    const closeSnackBar = () => {
+        setShowSnackBar(false);
+        setSnackBarErrorState(false);
+    };
+    const action = (
+        <React.Fragment>
+            <IconButton
+                size='small'
+                aria-label='close'
+                color='inherit'
+                onClick={closeSnackBar}
+                autohideduration={4000}
+            >
+                <CloseIcon fontSize='small' />
+            </IconButton>
+        </React.Fragment>
+    );
     return (
         <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
+            <Snackbar
+                action={action}
+                open={showSnackBar}
+                autoHideDuration={3000}
+                onClose={closeSnackBar}
+                message='User settings added successfully'
+            />
+            <Snackbar
+                action={action}
+                open={snackBarErrorState}
+                autoHideDuration={3000}
+                onClose={closeSnackBar}
+                message={showErrorMsg}
+            />
             <CssBaseline />
             <div className='App'>
                 <Box sx={{ flexGrow: 1 }}>
@@ -330,12 +397,11 @@ const Settings = () => {
                         handleInputChange={handleInputChange}
                         addAuthor={addAuthor}
                         removeAuthorName={removeAuthorName}
-                        names={names}
                         inputValue={inputValue}
                     />
                     <LanguageSetting />
                 </main>
-                {unSavedSettings.length > 0 && (
+                {!isSettingsChanged && (
                     <div className='alert'>
                         <Box>
                             <Typography variant='h6' sx={{ color: '#fff' }}>
@@ -357,12 +423,21 @@ const Settings = () => {
                                 {t('home.buttons.cancel')}
                             </Button>
                             <Button
+                                onClick={handleUserSettings}
                                 size={matches ? 'small' : 'medium'}
                                 variant='contained'
                                 sx={{
                                     marginLeft: matches ? 'unset' : '20px',
                                 }}
+                                disabled={loading}
                             >
+                                {loading && (
+                                    <CircularProgress
+                                        size={15}
+                                        sx={{ mr: '10px' }}
+                                        color='inherit'
+                                    />
+                                )}
                                 {t('home.buttons.save')}
                             </Button>
                         </Box>

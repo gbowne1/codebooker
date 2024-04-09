@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
-
-export const change = atom({
-    key: 'checkedCheckboxes',
-    default: [],
+const settings = JSON.parse(localStorage.getItem('settings'));
+export const userSettingsAtom = atom({
+    key: 'userSettings',
+    default: settings ?? [],
 });
