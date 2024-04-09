@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useMemo, useState } from 'react';
 
 const useProfileData = () => {
     const [loading, setLoading] = useState(false);
@@ -20,7 +20,7 @@ const useProfileData = () => {
             setLoading(false);
         }
     };
-    useEffect(() => {
+    useMemo(() => {
         getProfileDataFromDB();
     }, []);
     return { loading, profileData };
