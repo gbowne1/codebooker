@@ -6,8 +6,11 @@ import './Privacy.css';
 const Privacy = ({ checkedCheckboxes, toggleSwitch }) => {
     const matches = useMediaQuery('(max-width:820px)');
     const { t } = useTranslation();
+    const privIdx = checkedCheckboxes.findIndex(
+        (item) => item.name === 'privacy'
+    );
     const isSwitchChecked = (name) =>
-        checkedCheckboxes.some((item) => item.name === name);
+        checkedCheckboxes[privIdx]?.values?.some((item) => item.name === name);
     return (
         <>
             <Box className='privacy'>
@@ -88,10 +91,15 @@ const Privacy = ({ checkedCheckboxes, toggleSwitch }) => {
                                 >
                                     <Switch
                                         name='profile-visibility'
-                                        onChange={toggleSwitch}
-                                        checked={isSwitchChecked(
-                                            'profile-visibility'
-                                        )}
+                                        onChange={(e) =>
+                                            toggleSwitch(e, 'privacy')
+                                        }
+                                        checked={
+                                            checkedCheckboxes.length > 0 &&
+                                            isSwitchChecked(
+                                                'profile-visibility'
+                                            )
+                                        }
                                         inputProps={{
                                             'aria-label': 'controlled',
                                         }}
@@ -140,10 +148,13 @@ const Privacy = ({ checkedCheckboxes, toggleSwitch }) => {
                                 >
                                     <Switch
                                         name='friends_only'
-                                        onChange={toggleSwitch}
-                                        checked={isSwitchChecked(
-                                            'friends_only'
-                                        )}
+                                        onChange={(e) =>
+                                            toggleSwitch(e, 'privacy')
+                                        }
+                                        checked={
+                                            checkedCheckboxes.length > 0 &&
+                                            isSwitchChecked('friends_only')
+                                        }
                                         inputProps={{
                                             'aria-label': 'controlled',
                                         }}
@@ -192,8 +203,13 @@ const Privacy = ({ checkedCheckboxes, toggleSwitch }) => {
                                 >
                                     <Switch
                                         name='public'
-                                        onChange={toggleSwitch}
-                                        checked={isSwitchChecked('public')}
+                                        onChange={(e) =>
+                                            toggleSwitch(e, 'privacy')
+                                        }
+                                        checked={
+                                            checkedCheckboxes.length > 0 &&
+                                            isSwitchChecked('public')
+                                        }
                                         inputProps={{
                                             'aria-label': 'controlled',
                                         }}
