@@ -1,6 +1,6 @@
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { Box, Switch, Typography, useMediaQuery } from '@mui/material';
 import PropTypes from 'prop-types';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import './Notifications.css';
@@ -11,8 +11,11 @@ const Notifications = ({ checkedCheckboxes, toggleSwitch }) => {
     const userEmail = JSON.parse(localStorage.getItem('user')).email;
     const { t } = useTranslation();
     const matches = useMediaQuery('(max-width:820px)');
+    const notIdx = checkedCheckboxes.findIndex(
+        (item) => item.name === 'notification'
+    );
     const isSwitchChecked = (name) =>
-        checkedCheckboxes.some((item) => item.name === name);
+        checkedCheckboxes[notIdx]?.values?.some((item) => item.name === name);
     const changeLanguage = (e) => {
         setActive(!active);
     };
@@ -111,8 +114,13 @@ const Notifications = ({ checkedCheckboxes, toggleSwitch }) => {
                                 >
                                     <Switch
                                         name='newBook'
-                                        onChange={toggleSwitch}
-                                        checked={isSwitchChecked('newBook')}
+                                        onChange={(e) =>
+                                            toggleSwitch(e, 'notification')
+                                        }
+                                        checked={
+                                            checkedCheckboxes.length > 0 &&
+                                            isSwitchChecked('newBook')
+                                        }
                                         inputProps={{
                                             'aria-label': 'controlled',
                                         }}
@@ -161,10 +169,13 @@ const Notifications = ({ checkedCheckboxes, toggleSwitch }) => {
                                 >
                                     <Switch
                                         name='recommendation'
-                                        onChange={toggleSwitch}
-                                        checked={isSwitchChecked(
-                                            'recommendation'
-                                        )}
+                                        onChange={(e) =>
+                                            toggleSwitch(e, 'notification')
+                                        }
+                                        checked={
+                                            checkedCheckboxes.length > 0 &&
+                                            isSwitchChecked('recommendation')
+                                        }
                                         inputProps={{
                                             'aria-label': 'controlled',
                                         }}
@@ -213,8 +224,13 @@ const Notifications = ({ checkedCheckboxes, toggleSwitch }) => {
                                 >
                                     <Switch
                                         name='reviews'
-                                        onChange={toggleSwitch}
-                                        checked={isSwitchChecked('reviews')}
+                                        onChange={(e) =>
+                                            toggleSwitch(e, 'notification')
+                                        }
+                                        checked={
+                                            checkedCheckboxes.length > 0 &&
+                                            isSwitchChecked('reviews')
+                                        }
                                         inputProps={{
                                             'aria-label': 'controlled',
                                         }}
@@ -313,10 +329,17 @@ const Notifications = ({ checkedCheckboxes, toggleSwitch }) => {
                                         >
                                             <Switch
                                                 name='updates'
-                                                onChange={toggleSwitch}
-                                                checked={isSwitchChecked(
-                                                    'updates'
-                                                )}
+                                                onChange={(e) =>
+                                                    toggleSwitch(
+                                                        e,
+                                                        'notification'
+                                                    )
+                                                }
+                                                checked={
+                                                    checkedCheckboxes.length >
+                                                        0 &&
+                                                    isSwitchChecked('updates')
+                                                }
                                                 inputProps={{
                                                     'aria-label': 'controlled',
                                                 }}
@@ -365,10 +388,17 @@ const Notifications = ({ checkedCheckboxes, toggleSwitch }) => {
                                         >
                                             <Switch
                                                 name='tips'
-                                                onChange={toggleSwitch}
-                                                checked={isSwitchChecked(
-                                                    'tips'
-                                                )}
+                                                onChange={(e) =>
+                                                    toggleSwitch(
+                                                        e,
+                                                        'notification'
+                                                    )
+                                                }
+                                                checked={
+                                                    checkedCheckboxes.length >
+                                                        0 &&
+                                                    isSwitchChecked('tips')
+                                                }
                                                 inputProps={{
                                                     'aria-label': 'controlled',
                                                 }}
@@ -417,10 +447,19 @@ const Notifications = ({ checkedCheckboxes, toggleSwitch }) => {
                                         >
                                             <Switch
                                                 name='suggestions'
-                                                onChange={toggleSwitch}
-                                                checked={isSwitchChecked(
-                                                    'suggestions'
-                                                )}
+                                                onChange={(e) =>
+                                                    toggleSwitch(
+                                                        e,
+                                                        'notification'
+                                                    )
+                                                }
+                                                checked={
+                                                    checkedCheckboxes.length >
+                                                        0 &&
+                                                    isSwitchChecked(
+                                                        'suggestions'
+                                                    )
+                                                }
                                                 inputProps={{
                                                     'aria-label': 'controlled',
                                                 }}
@@ -548,4 +587,5 @@ export default Notifications;
 Notifications.propTypes = {
     checkedCheckboxes: PropTypes.array,
     toggleSwitch: PropTypes.func,
+    // boxRef: PropTypes.object,
 };
