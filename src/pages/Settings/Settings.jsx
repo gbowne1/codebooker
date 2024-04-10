@@ -6,7 +6,7 @@ import LockIcon from '@mui/icons-material/Lock';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 import { useRecoilState } from 'recoil';
@@ -98,68 +98,71 @@ const Settings = () => {
     const matches = useMediaQuery('(max-width:820px)');
     const prevSettings = JSON.parse(localStorage.getItem('settings')) ?? [];
     const isSettingsChanged = isEqual(prevSettings, unSavedSettings);
-    const sidebarLinks = [
-        {
-            name: t('settings.account.title'),
-            id: 'account',
-            icon: (
-                <PersonIcon
-                    sx={{
-                        marginRight: '10px',
-                        color: '#1976d2',
-                    }}
-                />
-            ),
-        },
-        {
-            name: t('settings.notification.title'),
-            id: 'notification',
-            icon: (
-                <NotificationAddIcon
-                    sx={{
-                        marginRight: '10px',
-                        color: '#1976d2',
-                    }}
-                />
-            ),
-        },
-        {
-            name: t('settings.privacy.title'),
-            id: 'privacy',
-            icon: (
-                <LockIcon
-                    sx={{
-                        marginRight: '10px',
-                        color: '#1976d2',
-                    }}
-                />
-            ),
-        },
-        {
-            name: t('settings.readingPreferences.title'),
-            id: 'preferences',
-            icon: (
-                <MenuBookIcon
-                    sx={{
-                        marginRight: '10px',
-                        color: '#1976d2',
-                    }}
-                />
-            ),
-        },
-        {
-            name: t('locale.title'),
-            id: 'language',
-            icon: (
-                <LanguageIcon
-                    sx={{
-                        marginRight: '10px',
-                        color: '#1976d2',
-                    }}
-                />
-            ),
-        },
-    ];
+    const sidebarLinks = useMemo(
+        () => [
+            {
+                name: t('settings.account.title'),
+                id: 'account',
+                icon: (
+                    <PersonIcon
+                        sx={{
+                            marginRight: '10px',
+                            color: '#1976d2',
+                        }}
+                    />
+                ),
+            },
+            {
+                name: t('settings.notification.title'),
+                id: 'notification',
+                icon: (
+                    <NotificationAddIcon
+                        sx={{
+                            marginRight: '10px',
+                            color: '#1976d2',
+                        }}
+                    />
+                ),
+            },
+            {
+                name: t('settings.privacy.title'),
+                id: 'privacy',
+                icon: (
+                    <LockIcon
+                        sx={{
+                            marginRight: '10px',
+                            color: '#1976d2',
+                        }}
+                    />
+                ),
+            },
+            {
+                name: t('settings.readingPreferences.title'),
+                id: 'preferences',
+                icon: (
+                    <MenuBookIcon
+                        sx={{
+                            marginRight: '10px',
+                            color: '#1976d2',
+                        }}
+                    />
+                ),
+            },
+            {
+                name: t('locale.title'),
+                id: 'language',
+                icon: (
+                    <LanguageIcon
+                        sx={{
+                            marginRight: '10px',
+                            color: '#1976d2',
+                        }}
+                    />
+                ),
+            },
+        ],
+        [t]
+    );
     useEffect(() => {
         function recheck() {
             const windowHeight =
@@ -192,7 +195,7 @@ const Settings = () => {
         return () => {
             document.removeEventListener('scroll', recheck);
         };
-    }, []);
+    }, [sidebarLinks]);
     const scrollTo = useCallback((id) => {
         const el = document.querySelector(id);
         if (!el) return null;
