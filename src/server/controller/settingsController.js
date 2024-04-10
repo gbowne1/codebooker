@@ -10,8 +10,6 @@ module.exports.userSettings = async (req, res) => {
         const settingArrName = checkedCheckboxes.find((settingObj)=> settingObj.name === name);
         return settingArrName;
     }
-    const s = settingObj2('authors');
-    console.log(s.values);
     try {
         // find settings
         const user = await User.findOne({ email:userEmail });
