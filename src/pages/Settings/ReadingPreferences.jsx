@@ -31,7 +31,7 @@ const ReadingPreferences = ({
         (item) => item.name === 'authors'
     );
     const readingPrefArrIdx = checkedCheckboxes?.findIndex(
-        (item) => item.name === 'reading-preferences'
+        (item) => item.name === 'reading_preferences'
     );
     const isSwitchChecked = (name) =>
         checkedCheckboxes[readingPrefArrIdx]?.values.includes(name);
