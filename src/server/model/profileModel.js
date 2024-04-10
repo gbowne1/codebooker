@@ -6,6 +6,12 @@ const profileSchema = new mongoose.Schema({
         required: true,
         ref: 'User',
     },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        ref: 'User',
+    },
     profile_picture: {
         type: String,
     },

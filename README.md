@@ -30,7 +30,23 @@ We recommend using this with Node 18.15.0, be sure and let us know. We do not re
 
 You should already be familiar with React 17 and or 18, JavaScript ES5/ES6/ES7 and JSX. If you are not there are several tutorials we recommend using before you get started with. To learn React, go here: <https://www.freecodecamp.org/news/free-react-course-2022/>
 
-The backend of this project is currently under construction so please use the Create React App development server by running`npm start` inside the root of the project folder after installing with `npm i` or `npm install`.
+The backend of this project is currently under construction so please use the Create React App development server, 
+inside the root of the project folder:
+ 
+# After installing the project dependencies
+npm install
+
+# To run the backend server separately
+npm run server
+
+#### [CodeBooker API documentation](https://bmacarini.github.io/codebooker-documentation/)
+
+# To run the frontend separately
+npm start
+
+# To run both the frontend and the backend server concurrently in development mode
+npm run dev
+
 
 This is not hosted anywhere yet and is not yet production-ready.
 
