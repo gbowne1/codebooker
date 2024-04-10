@@ -63,7 +63,7 @@ const useCheckboxToggle = () => {
             setCheckedCheckboxes((prevObj) => {
                 const updatedArrValues = [...prevObj];
                 const existingIndex = updatedArrValues.findIndex(
-                    (item) => item.name === 'reading-preferences'
+                    (item) => item.name === 'reading_preferences'
                 );
                 if (existingIndex !== -1) {
                     updatedArrValues[existingIndex] = {
@@ -72,7 +72,7 @@ const useCheckboxToggle = () => {
                     };
                 } else {
                     updatedArrValues.push({
-                        name: 'reading-preferences',
+                        name: 'reading_preferences',
                         values: [id],
                     });
                 }
@@ -82,7 +82,7 @@ const useCheckboxToggle = () => {
             setCheckedCheckboxes((prevObj) => {
                 const updatedArrValues = [...prevObj];
                 const existingIndex = updatedArrValues.findIndex(
-                    (item) => item.name === 'reading-preferences'
+                    (item) => item.name === 'reading_preferences'
                 );
                 if (existingIndex !== -1) {
                     const newArray = updatedArrValues[
