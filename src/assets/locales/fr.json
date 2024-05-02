@@ -1,0 +1,374 @@
+{
+    "about": {
+      "description": "CodeBooker est une application de recommandation de livres créée avec React 18.2 et MUI pour les codeurs/programmeurs à la recherche de recommandations de livres sur la programmation/codage à lire.",
+      "title": "À propos de CodeBooker"
+    },
+    "auth": {
+      "createAccount": "Vous n'avez pas encore de compte ? <0>Créez un compte.</0>",
+      "deviceNameLabel": "Nom de l'appareil",
+      "deviceNamePlaceholder": "Téléphone personnel",
+      "generate": {
+        "description": "Votre phrase secrète fait office de nom d'utilisateur et de mot de passe. Assurez-vous de la garder en sécurité car vous devrez la saisir pour vous connecter à votre compte.",
+        "next": "J'ai enregistré ma phrase secrète",
+        "passphraseFrameLabel": "Phrase secrète",
+        "title": "Votre phrase secrète"
+      },
+      "hasAccount": "Vous avez déjà un compte ? <0>Connectez-vous ici.</0>",
+      "login": {
+        "description": "Veuillez saisir votre phrase secrète pour vous connecter à votre compte",
+        "deviceLengthError": "Veuillez saisir un nom d'appareil",
+        "passphraseLabel": "Phrase secrète de 12 mots",
+        "passphrasePlaceholder": "Phrase secrète",
+        "submit": "Se connecter",
+        "title": "Connectez-vous à votre compte",
+        "validationError": "Phrase secrète incorrecte ou incomplète"
+      },
+      "register": {
+        "information": {
+          "color1": "Couleur de profil un",
+          "color2": "Couleur de profil deux",
+          "header": "Saisissez un nom pour votre appareil et choisissez des couleurs et une icône d'utilisateur de votre choix",
+          "icon": "Icône d'utilisateur",
+          "next": "Suivant",
+          "title": "Informations du compte"
+        }
+      },
+      "trust": {
+        "failed": {
+          "text": "L'avez-vous configuré correctement ?",
+          "title": "Impossible de contacter le serveur"
+        },
+        "host": "Vous vous connectez à <0>{{hostname}}</0> - veuillez confirmer que vous lui faites confiance avant de créer un compte",
+        "no": "Retour",
+        "title": "Faites-vous confiance à ce serveur ?",
+        "yes": "Je fais confiance à ce serveur"
+      },
+      "verify": {
+        "description": "Veuillez saisir votre phrase secrète précédente pour confirmer que vous l'avez enregistrée et pour créer votre compte",
+        "invalidData": "Les données ne sont pas valides",
+        "noMatch": "La phrase secrète ne correspond pas",
+        "passphraseLabel": "Votre phrase secrète de 12 mots",
+        "recaptchaFailed": "Échec de la validation ReCaptcha",
+        "register": "Créer un compte",
+        "title": "Confirmez votre phrase secrète"
+      }
+    },
+    "errors": {
+      "badge": "Il est cassé",
+      "details": "Détails de l'erreur",
+      "reloadPage": "Recharger la page",
+      "showError": "Afficher les détails de l'erreur",
+      "title": "Nous avons rencontré une erreur !"
+    },
+    "feedback": {
+      "text": "Nous apprécions vos commentaires.",
+      "subText": "Veuillez nous faire savoir comment nous pouvons nous améliorer.",
+      "actions": {
+        "msg": "Laissez-nous un message",
+        "email": "Envoyez-nous un e-mail",
+        "back": "Retour",
+        "submit": "Soumettre des commentaires",
+        "submitEmail": "Envoyer un e-mail"
+      }
+    },
+    "home": {
+      "buttons": {
+        "read": "Lire les avis",
+        "review": "Critiquer le livre",
+        "add": "Ajouter un livre",
+        "close": "Fermer",
+        "cancel": "Annuler",
+        "closeModal": "Fermer la fenêtre modale",
+        "share": "Partager",
+        "save": "Enregistrer",
+        "edit": "Modifier",
+        "delete": "Supprimer"
+      },
+      "headings": {
+        "action": "Action",
+        "title": "Titre",
+        "author": "Auteur",
+        "category": "Catégorie",
+        "publisher": "Éditeur",
+        "isbn": "ISBN",
+        "year": "Année",
+        "edition": "Édition",
+        "review": "Critique",
+        "item": "Ajouter un élément au tableau"
+      },
+      "more": "Plus"
+    },
+    "modal": {
+      "review": {
+        "title": "Critique pour",
+        "noReview": "Il n'y a pas encore de critiques pour",
+        "readReview": "Lecture des critiques de",
+        "addReview": "Ajouter une critique",
+        "placeholder": "écrivez votre critique ici..."
+      },
+      "labels": {
+        "edition": "Édition",
+        "year": "Année de publication",
+        "isbn": "ISBN",
+        "publisher": "Qui est l'éditeur",
+        "category": "Saisir la catégorie",
+        "author": "Saisir le nom de l'auteur",
+        "book": "Saisir le nom du livre",
+        "sideNav": {
+          "category": "Catégorie",
+          "library": "Bibliothèque"
+        }
+      },
+      "errors": {
+        "invalidYear": "Veuillez saisir une année valide",
+        "invalidISBN": "Veuillez saisir un ISBN valide"
+      }
+    },
+    "navigation": {
+      "menu": {
+        "about": "À propos de nous",
+        "feedback": "Retour d'information",
+        "home": "Aller à CodeBooker",
+        "logout": "Se déconnecter",
+        "privacy": "Politique de confidentialité",
+        "profile": "Profil",
+        "settings": "Paramètres",
+        "support": "Aide"
+      }
+    },
+    "privacy": {
+      "title": "Politique de confidentialité",
+      "update": "mis à jour",
+      "about": "Le site Web de CodeBooker est détenu par Gregory Bowne, qui est un contrôleur de données de vos données personnelles. Nous avons adopté cette politique de confidentialité, qui détermine la manière dont nous traitons les informations collectées par CodeBooker, qui fournit également les raisons pour lesquelles nous devons collecter certaines données personnelles vous concernant. Par conséquent, vous devez lire cette politique de confidentialité avant d'utiliser le site Web de CodeBooker. Nous prenons soin de vos données personnelles et nous nous engageons à garantir leur confidentialité et leur sécurité.",
+      "options": {
+        "personalInfo": {
+          "title": "Informations personnelles que nous collectons :",
+          "text": "Lorsque vous visitez CodeBooker, nous collectons automatiquement certaines informations sur votre appareil, y compris des informations sur votre navigateur Web, votre adresse IP, votre fuseau horaire et certains cookies installés sur votre appareil. De plus, lorsque vous naviguez sur le site, nous collectons des informations sur les pages Web individuelles ou les produits que vous consultez, sur les sites Web ou les termes de recherche qui vous ont dirigé vers le site, et sur la manière dont vous interagissez avec le site. Nous appelons ces informations collectées automatiquement « Informations sur l'appareil ». De plus, nous pourrions collecter les données personnelles que vous nous fournissez (y compris, mais sans s'y limiter, Nom, Prénom, Adresse, informations de paiement, etc.) lors de l'inscription pour pouvoir remplir l'accord."
+        },
+        "data": {
+          "title": "Pourquoi traitons-nous vos données ?",
+          "text": "Notre priorité absolue est la sécurité des données des clients, et, en tant que tel, nous pouvons traiter uniquement les données utilisateur minimales, uniquement autant qu'il est absolument nécessaire pour maintenir le site Web. Les informations collectées automatiquement ne sont utilisées que pour identifier d'éventuels cas d'abus et établir des informations statistiques sur l'utilisation du site Web. Ces informations statistiques ne sont pas agrégées de manière à identifier un utilisateur particulier du système. Vous pouvez visiter le site Web sans nous dire qui vous êtes ou sans révéler aucune information par laquelle quelqu'un pourrait vous identifier en tant qu'individu spécifique et identifiable. Si, cependant, vous souhaitez utiliser certaines fonctionnalités du site Web, ou si vous souhaitez recevoir notre newsletter ou fournir d'autres détails en remplissant un formulaire, vous pouvez nous fournir des données personnelles, telles que votre adresse e-mail, votre prénom, votre nom de famille, votre ville de résidence, votre organisation, votre numéro de téléphone. Vous pouvez choisir de ne pas nous fournir vos données personnelles, mais vous ne pourrez alors peut-être pas profiter de certaines fonctionnalités du site Web. Par exemple, vous ne pourrez pas recevoir notre newsletter ou nous contacter directement à partir du site Web. Les utilisateurs qui ne sont pas certains de ce qui est obligatoire sont invités à nous contacter via example@gmail.com."
+        },
+        "rights": {
+          "title": "Vos droits :",
+          "text": "Si vous êtes un résident européen, vous avez les droits suivants relatifs à vos données personnelles :",
+          "r1": "Le droit à l'information.",
+          "r2": "Le droit d'accès.",
+          "r3": "Le droit de rectification.",
+          "r4": "Le droit à l'effacement.",
+          "r5": "Le droit à la limitation du traitement.",
+          "r6": "Le droit à la portabilité des données.",
+          "r7": "Le droit d'opposition.",
+          "r8": "Droits relatifs à la prise de décision automatisée et au profilage.",
+          "subText": "Si vous souhaitez exercer ce droit, veuillez nous contacter via les coordonnées ci-dessous. De plus, si vous êtes un résident européen, nous vous informons que nous traitons vos informations afin de remplir les contrats que nous pourrions avoir avec vous (par exemple, si vous passez une commande via le Site), ou autrement pour poursuivre nos intérêts commerciaux légitimes énumérés ci-dessus. De plus, veuillez noter que vos informations peuvent être transférées en dehors de l'Europe, y compris au Canada et aux États-Unis."
+        },
+        "links": {
+          "title": "Liens vers d'autres sites Web :",
+          "text": "Notre site Web peut contenir des liens vers d'autres sites Web qui ne nous appartiennent pas et que nous ne contrôlons pas. Veuillez noter que nous ne sommes pas responsables de ces autres sites Web ou des pratiques en matière de confidentialité de tiers. Nous vous encourageons à être conscient lorsque vous quittez notre site Web et à lire les déclarations de confidentialité de chaque site Web qui peut collecter des informations personnelles."
+        },
+        "security": {
+          "title": "Sécurité des informations :",
+          "text": "Nous sécurisons les informations que vous fournissez sur les serveurs informatiques dans un environnement contrôlé et sécurisé, protégé contre tout accès, utilisation ou divulgation non autorisés. Nous maintenons des garanties administratives, techniques et physiques raisonnables pour protéger contre tout accès, utilisation, modification et divulgation non autorisés de données personnelles sous son contrôle et sa garde. Cependant, aucune transmission de données sur Internet ou réseau sans fil ne peut être garantie."
+        },
+        "legal": {
+          "title": "Divulgation légale :",
+          "text": "Nous divulguerons toute information que nous collectons, utilisons ou recevons si cela est requis ou permis par la loi, par exemple pour se conformer à une assignation à comparaître ou à une procédure judiciaire similaire, et lorsque nous croyons de bonne foi que la divulgation est nécessaire pour protéger nos droits, votre sécurité ou la sécurité des autres, enquêter sur la fraude ou répondre à une demande gouvernementale."
+        },
+        "contact": {
+          "title": "Coordonnées :",
+          "text": "Si vous souhaitez nous contacter pour en savoir plus sur cette politique ou si vous souhaitez nous contacter concernant un problème relatif à des droits individuels et à vos informations personnelles, vous pouvez envoyer un e-mail à example@gmail.com."
+        }
+      }
+    },
+    "profile":{
+      "banner":{
+      "text": "Ajouter une image de bannière",
+      "subText": "Dimensions optimales 3200 x 410px"
+      },
+      "user":{
+      "bio": "Biographie",
+      "button": "Modifier votre profil",
+      "joined": "Rejoint"
+      },
+      "userInfo":{
+      "basic": {
+      "title": "INFORMATIONS DE BASE",
+      "age": "Âge",
+      "name": "Nom"
+      },
+      "professional": {
+      "title": "EXPÉRIENCE PROFESSIONNELLE",
+      "educ": "Éducation",
+      "workExp": "Expérience de travail actuelle",
+      "opSys": "Préférence du système d'exploitation",
+      "skill": "Compétence en programmation",
+      "ide":"IDE préféré"
+      },
+      "social": "Réseaux sociaux"
+      }
+    },
+    "settings": {
+      "title": "PARAMÈTRES",
+      "alert": "Vous avez des modifications non enregistrées",
+      "account": {
+        "accountDetails": {
+          "editProfile": "Modifier",
+          "logoutButton": "Se déconnecter"
+        },
+        "actions": {
+          "updateEmail": {
+            "text": "Cliquez sur le bouton ci-dessous pour mettre à jour votre e-mail",
+            "title": "Mettre à jour l'e-mail"
+          },
+          "updatePassword": {
+            "text": "Cliquez sur le bouton ci-dessous pour mettre à jour votre mot de passe",
+            "title": "Mettre à jour le mot de passe"
+          },
+          "updateAvatar": {
+            "text": "Cliquez sur le bouton ci-dessous pour mettre à jour votre avatar",
+            "title": "Mettre à jour l'avatar"
+          },
+          "socialMedia": {
+            "text": "Cliquez sur le bouton ci-dessous pour lier vos comptes de médias sociaux à CodeBooker",
+            "title": "Mettre à jour les médias sociaux",
+            "name": "Médias sociaux"
+          }
+        },
+        "profile": {
+          "finish": "Terminer l'édition",
+          "firstColor": "Couleur de profil un",
+          "secondColor": "Couleur de profil deux",
+          "title": "Modifier l'image de profil",
+          "userIcon": "Icône d'utilisateur"
+        },
+        "register": {
+          "cta": "Commencer",
+          "text": "Partagez votre progression de visionnage entre les appareils et gardez-les synchronisés.",
+          "title": "Synchroniser avec le cloud"
+        },
+        "title": "Compte",
+        "subTitle": "Choisissez comment vous apparaissez et ce que vous voyez sur CodeBooker",
+        "signedAs": "Connecté en tant que",
+        "yourAccount": "Votre compte",
+        "subText": "Améliorez votre expérience CodeBooker en gérant les détails de votre compte. Mettez facilement à jour votre adresse e-mail, votre mot de passe ou votre image de profil. De plus, connectez facilement vos comptes de médias sociaux à CodeBooker pour plus de commodité."
+      },
+      "notification": {
+        "title": "Notification",
+        "subTitle": "Choisissez quand et comment être notifié",
+        "pushNot": "Sélectionnez les notifications push et par e-mail que vous souhaitez recevoir",
+        "name": "Notifications push",
+        "text": "Gérez vos notifications mobiles et de bureau",
+        "pushOptions": {
+          "title": "Vos préférences",
+          "newBook": {
+            "type": "Nouvelle sortie de livre",
+            "text": "Prévenez-moi lorsqu'un nouveau livre est publié"
+          },
+          "bookRecommendation": {
+            "type": "Recommandation de livre",
+            "text": "Prévenez-moi lorsqu'un nouveau livre est recommandé"
+          },
+          "bookReviewUpdate": {
+            "type": "Mise à jour de la critique de livre",
+            "text": "Prévenez-moi lorsqu'une nouvelle critique de livre est ajoutée"
+          }
+        },
+        "emailOptions": {
+          "title": "Notifications par e-mail",
+          "text": "Vos e-mails sont envoyés à",
+          "heading": "Vos préférences",
+          "updates": {
+            "type": "Mises à jour CodeBooker",
+            "text": "Actualités sur les mises à jour des produits et fonctionnalités de CodeBooker"
+          },
+          "tips": {
+            "type": "Conseils",
+            "text": "Conseils pour tirer le meilleur parti de CodeBooker"
+          },
+          "suggestions": {
+            "type": "Suggestions",
+            "text": "Suggestions pour les comptes recommandés"
+          }
+        },
+        "locale": {
+          "title": "Langue",
+          "text": "Ce paramètre s'applique aux e-mails uniquement",
+          "defaultLang": "Langue anglaise"
+        }
+      },
+      "privacy": {
+        "title": "Confidentialité",
+        "text": "Gérez la visibilité de votre profil et de vos critiques",
+        "subText": "Choisissez qui peut voir votre profil et vos critiques",
+        "options": {
+          "title": "Vos préférences",
+          "private": {
+            "text": "Gardez mon profil privé",
+            "subText": "Votre profil ne sera pas visible par les autres, à moins que vous ne le rendiez public"
+          },
+          "friendsOnly": {
+            "text": "Amis seulement",
+            "subText": "Votre critique ne sera visible que par les personnes figurant dans votre liste d'amis."
+          },
+          "public": {
+            "text": "Public",
+            "subText": "Votre profil et vos critiques seront visibles par tout le monde."
+          }
+        }
+      },
+      "readingPreferences": {
+        "title": "Préférences de lecture",
+        "text": "Adaptez votre expérience de lecture à vos goûts et intérêts uniques.",
+        "subText": "Définissez votre genre de livre préféré, vos auteurs favoris et vos objectifs de lecture.",
+        "genre": {
+          "title": "Genres de Livres Favoris",
+          "text": "Nous utilisons vos genres préférés pour vous proposer de meilleures recommandations de livres et personnaliser ce que vous voyez dans votre flux de mises à jour."
+        },
+        "author": {
+          "title": "Auteurs Favoris",
+          "text": "Nous utilisons vos auteurs préférés pour améliorer nos recommandations de livres et personnaliser ce que vous voyez dans votre fil d'actualités.",
+          "buttons":{
+            "addAuthor": "Ajouter un Auteur"
+          }
+        },
+        "readingGoal":{
+          "title": "Objectif de Lecture",
+          "text": "Challengez-vous à lire davantage en fixant un objectif de lecture.",
+          "challenge":{
+            "title": "OBJECTIF DE LECTURE 2024",
+            "text": "Motivez-vous à lire davantage cette année !",
+            "numOfBooks": "Je veux lire",
+            "completedIn": "livres en 2024",
+            "button": "Commencer le défi",
+            "fyi": "Vous pouvez modifier votre objectif à tout moment"
+          }
+        }
+      }
+    },
+    "support": {
+        "title": "Aide de CodeBooker",
+        "text": "Consultez vos cas de support",
+        "notice": "En raison de la phase de développement en cours de CodeBooker, notre fonctionnalité de recherche n'est actuellement pas disponible. Veuillez soumettre vos requêtes via le formulaire ci-dessous.",
+        "interface": {
+          "user": "Salut",
+          "greeting": "Bienvenue au support de CodeBooker",
+          "placeholder": "Comment pouvons-nous vous aider ?"
+        },
+        "form": {
+          "action": "Veuillez fournir les détails de votre demande de support dans le formulaire ci-dessous.",
+          "placeholder": "Comment pouvons-nous vous aider ?",
+          "email": "E-mail",
+          "name": "Nom",
+          "submit": "Envoyer"
+        }
+    },
+    "locale": {
+      "title": "Langue",
+      "text": "Choisissez la langue de votre choix pour l'interface de CodeBooker",
+      "subText": "Sélectionnez la langue que vous préférez pour la navigation et les communications.",
+      "language": "Langue",
+      "fyi": "Langue appliquée à l'ensemble de l'application.",
+      "type": "Langue des e-mails"
+    }
+}
+  

@@ -1,0 +1,32 @@
+.button{
+    position: relative;
+    background-color: #d2d2d2;
+    width:50px;
+    height: 21px;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.button::before{
+    position: absolute;
+    content: '';
+    background-color: #fff;
+    width: 18px;
+    height: 18px;
+    border-radius: 100px;
+    margin: .1em;
+    transition: 0.2s;
+}
+
+#profile-visibility,
+#friends, #public{
+    display: none;
+}
+
+input:checked + .button{
+    background-color: #1976d2;
+}
+input:checked + .button::before{
+    transform: translateX(28px);
+}

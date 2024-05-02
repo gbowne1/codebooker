@@ -16,7 +16,8 @@ import HelpIcon from '@mui/icons-material/Help';
 import MessageIcon from '@mui/icons-material/Message';
 import PolicyIcon from '@mui/icons-material/Policy';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
-import { CaptureFeedback } from '../Feedback/CaptureFeedback'; //
+import { CaptureFeedback } from '../Feedback/CaptureFeedback';
+import { useTranslation } from 'react-i18next';
 
 export default function Dropdown() {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -24,6 +25,7 @@ export default function Dropdown() {
     const [feedbackVisible, setFeedbackVisible] = useState(false); // Toggle visibility of feedback modal
     const open = Boolean(anchorEl);
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -61,6 +63,9 @@ export default function Dropdown() {
     }
     function navigateToPrivacyPolicy() {
         navigate('/privacy-policy');
+    }
+    function navigateToSettings() {
+        navigate('/settings');
     }
 
     // Toggle CaptureFeedback modal component visibility
@@ -126,22 +131,22 @@ export default function Dropdown() {
             >
                 <MenuItem onClick={() => navigate('/support')}>
                     <HelpIcon fontSize='large' />
-                    &nbsp; Help
+                    &nbsp; {t('navigation.menu.support')}
                 </MenuItem>
                 <MenuItem onClick={toggleFeedbackModal}>
                     <MessageIcon fontSize='large' />
-                    &nbsp; Feedback
+                    &nbsp; {t('navigation.menu.feedback')}
                 </MenuItem>
                 <MenuItem onClick={navigateToPrivacyPolicy}>
                     <PolicyIcon fontSize='large' />
-                    &nbsp; Privacy Policy
+                    &nbsp; {t('navigation.menu.privacy')}
                 </MenuItem>
                 <Divider />
-                <MenuItem>
+                <MenuItem onClick={navigateToSettings}>
                     <ListItemIcon>
                         <Settings fontSize='small' />
                     </ListItemIcon>
-                    Settings
+                    {t('navigation.menu.settings')}
                 </MenuItem>
                 {loggedIn ? ( // Use the 'loggedIn' state to conditionally render the Logout/Login menu item
                     <div>
@@ -149,13 +154,13 @@ export default function Dropdown() {
                             <ListItemIcon>
                                 <ManageAccountsIcon fontSize='small' />
                             </ListItemIcon>
-                            Profile
+                            {t('navigation.menu.profile')}
                         </MenuItem>
                         <MenuItem onClick={handleLogOut}>
                             <ListItemIcon>
                                 <LogoutIcon fontSize='small' />
                             </ListItemIcon>
-                            Logout
+                            {t('navigation.menu.logout')}
                         </MenuItem>
                     </div>
                 ) : (

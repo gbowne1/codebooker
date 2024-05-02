@@ -8,6 +8,7 @@ import {
     ListItemIcon,
     Collapse,
 } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
 import BookIcon from '@mui/icons-material/Book';
@@ -30,7 +31,7 @@ export default function SideNav({ setfilter }) {
     const expandItem = (name) => {
         setIsItemExpanded({ ...isItemExpanded, [name]: !isItemExpanded[name] });
     };
-
+    const { t } = useTranslation();
     const MenuButton = ({ buttonProps, name, label, icon, expandable }) => (
         <ListItemButton
             {...buttonProps}
@@ -103,7 +104,7 @@ export default function SideNav({ setfilter }) {
                                 key: '1',
                                 component: 'a',
                             }}
-                            label='Library'
+                            label={t('modal.labels.sideNav.library')}
                             name='library'
                             icon={<BookIcon />}
                         />
@@ -112,7 +113,7 @@ export default function SideNav({ setfilter }) {
                                 key: '2',
                                 component: 'a',
                             }}
-                            label='Category'
+                            label={t('modal.labels.sideNav.category')}
                             name='category'
                             expandable
                             icon={<CategoryIcon />}
