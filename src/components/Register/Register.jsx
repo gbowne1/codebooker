@@ -65,7 +65,7 @@ const Register = () => {
                 );
 
                 // Redirect to home route
-                navigate('/', { state: { loggin: 'true' } });
+                navigate('/', { state: { login: 'true' } });
             }
         } catch (error) {
             console.error(error);
