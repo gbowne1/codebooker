@@ -39,7 +39,7 @@ function Login() {
                     'user',
                     JSON.stringify(response.data.user)
                 );
-                navigate('/', { state: { loggin: 'true' } }); // Redirect to the desired page
+                navigate('/', { state: { login: 'true' } }); // Redirect to the desired page
             }
         } catch (error) {
             console.error(error);
