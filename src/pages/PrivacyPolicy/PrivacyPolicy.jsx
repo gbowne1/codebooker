@@ -91,7 +91,7 @@ const PrivacyPolicy = () => {
                     </AppBar>
                 </Box>
             </div>
-            <Box sx={{ marginTop: '60px' }}>
+            <Box sx={{ marginTop: '60px', background: 'background.paper' }}>
                 <Box className='privacy-wrapper'>
                     <Box className='privacy-header-cta'>
                         <Box className='privacy-title'>
