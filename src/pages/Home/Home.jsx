@@ -80,10 +80,10 @@ function Home() {
     const hasRun = useRef(false);
     useEffect(() => {
         if (!hasRun.current) {
-            if (location?.state?.loggin || localStorage.getItem('user')) {
+            if (location?.state?.login || localStorage.getItem('user')) {
                 if (
                     location.state &&
-                    location.state.loggin &&
+                    location.state.login &&
                     localStorage.getItem('user')
                 ) {
                     notify(JSON.parse(localStorage.getItem('user')).username);
